@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2025/10/03 14:24:48 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:35:39 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <sys/time.h>
 
 # define BUFFER_SIZE 200
+// we'll limit this to the limit we put ourselves, so we'll always do one read()
+// and we don't have to realloc again
 # define MAX_WIDTH 3840
 # define MAX_HEIGHT 2160
 
@@ -46,7 +48,19 @@ typedef struct s_game
 	size_t				move_count;
 }	t_game;
 
-int	error_check(int argc, char *argv);
-int	check_arg(char *str);
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
+int		update_leftover(char **leftover);
+char	*extract_str(char *leftover);
+int		read_into_leftover(char **leftover, int fd);
+char	*get_next_line(int fd);
+
+void	free_map(char **map);
+void	read_into_map(char **map, int fd);
+int		error_check(int argc, char *argv);
+int		check_arg(char *str);
+int		init_map(int argc, char *argv, t_game *game, char **map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 16:29:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2025/09/12 17:54:52 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:32:06 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,61 +55,3 @@ int	check_arg(char *str)
 	}
 	return (0);
 }
-
-// int	read_into_map(char **map, int fd)
-// {
-// 	char	*tmp;
-// 	char	*new_map;
-// 	int		bytes_read;
-
-// 	bytes_read = 1;
-// 	while (bytes_read > 0)
-// 	{
-// 		tmp = malloc(BUFFER_SIZE + 1);
-// 		if (!tmp)
-// 			return (0);
-// 		bytes_read = read(fd, tmp, BUFFER_SIZE);
-// 		if (bytes_read < 0)
-// 			return (free(tmp), 0);
-// 		tmp[bytes_read] = '\0';
-// 		new_map = ft_strjoin(*map, tmp);
-// 		if (!new_map)
-// 			return (free(tmp), 0);
-// 		free(*map);
-// 		*map = ft_strdup(new_map);
-// 		free(new_map);
-// 		free(tmp);
-// 	}
-// 	return (1);
-// }
-
-// int	width_size(char *map)
-// {
-// 	int	i;
-// 	int	width;
-
-// 	i = 0;
-// 	width = 0;
-// 	while (map[i] == '1')
-// 	{
-// 		width++;
-// 		i++;
-// 	}
-// 	return (width * 100);
-// }
-
-// int	height_size(char *map)
-// {
-// 	int	i;
-// 	int	height;
-
-// 	i = 0;
-// 	height = 0;
-// 	while (map[i])
-// 	{
-// 		if (map[i] == '\n')
-// 			height++;
-// 		i++;
-// 	}
-// 	return (height * 100);
-// }

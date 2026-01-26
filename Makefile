@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/07 16:20:34 by aelbouaz          #+#    #+#              #
-#    Updated: 2025/10/02 16:10:20 by aelbouaz         ###   ########.fr        #
+#    Updated: 2026/01/26 19:25:56 by aelbouaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,10 @@ CFLAGS = -Wall -Wextra -Werror
 CC = cc
 
 CUBED = cubed
-CUBED_SRCS = main.c initialise_map.c utils_1.c
+CUBED_SRCS = main.c initialise_map.c utils_1.c gnl.c
 
-CUBED_OBJ = $(CUBED_SRCS:.c=.o)
+OBJS_DIR = objects
+CUBED_OBJ = $(addprefix $(OBJS_DIR)/, $(CUBED_SRCS:.c=.o))
 
 LIBFT_DIR = libft/
 LIBFT = $(LIBFT_DIR)libft.a
@@ -42,12 +43,15 @@ $(MLX42_LIB):
 	@cmake -B $(MLX42_DIR)/build $(MLX42_DIR) > /dev/null
 	@make -s -C $(MLX42_DIR)/build | while read -r line; do printf "$(GREEN).$(RESET)"; done
 
-$(CUBED): $(LIBFT) $(CUBED_OBJ) $(MLX42_LIB) 
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)
+
+$(CUBED): $(LIBFT) $(CUBED_OBJ) $(MLX42_LIB)
 	@$(CC) $(CFLAGS) -o $(CUBED) $(CUBED_OBJ) \
 	-L$(LIBFT_DIR) -lft \
 	$(MLX42_LIB) -I$(MLX42_INC) -ldl -lglfw -pthread -lm
 
-%.o: %.c $(HEADERS)
+$(OBJS_DIR)/%.o: %.c $(HEADERS) | $(OBJS_DIR)
 	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(MLX42_INC) -c $< -o $@
 	@printf "$(GREEN).$(RESET)"
 
