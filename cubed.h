@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/01/26 16:35:39 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/01/26 20:01:50 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,23 @@ typedef struct s_game
 #  define BUFFER_SIZE 1
 # endif
 
+typedef struct s_map
+{
+	char			*str;
+	struct s_map	*next;
+}	t_map;
+
 int		update_leftover(char **leftover);
 char	*extract_str(char *leftover);
 int		read_into_leftover(char **leftover, int fd);
 char	*get_next_line(int fd);
 
-void	free_map(char **map);
-void	read_into_map(char **map, int fd);
+void	free_map(t_map **map);
+int		read_into_map(t_map **map, int fd);
 int		error_check(int argc, char *argv);
 int		check_arg(char *str);
-int		init_map(int argc, char *argv, t_game *game, char **map);
+int		init_map(int argc, char *argv, t_game *game, t_map **map);
+
+void	cleanup(t_map **map, t_game *game);
 
 #endif
