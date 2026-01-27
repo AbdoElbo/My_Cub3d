@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/01/26 20:01:15 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/01/27 14:57:31 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,19 @@
 // 		mlx_close_window(game->mlx);
 // }
 
-void	cleanup(t_map **map, t_game *game)
-{
-	free_map(map);
-	close(game->fd);
-}
-
 int	main(int argc, char **argv)
 {
 	t_game	game;
-	t_map	*map;
 
-	map = NULL;
-	if (!init_map(argc, argv[1], &game, &map))
+	game.map = NULL;
+	if (!init_map(argc, argv[1], &game))
 		return (1);
+	int	i = 0;
+	while (game.map[i])
+		printf("%s", game.map[i++]);
+
 	/*
 		INSET CODE HERE
 	*/
-	return (cleanup(&map, &game), 0);
+	return (cleanup(&game), 0);
 }
