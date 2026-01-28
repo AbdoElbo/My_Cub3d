@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/01/28 13:27:51 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/01/28 19:35:47 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_game
 	char		**map;
 	mlx_t		*mlx;
 	t_files		files;
+	uint32_t	floor_color;
+	uint32_t	ceiling_color;
 	int			status;
 	int			height;
 	int			width;
@@ -60,6 +62,7 @@ char	*get_next_line(int fd);
 int		init_map(int argc, char *argv, t_game *game);
 int		load_map_and_components(t_game *game);
 int		get_textures(t_game *game);
+int		get_colors(t_game *game);
 
 void	free_map(char **map);
 void	cleanup(t_game *game);

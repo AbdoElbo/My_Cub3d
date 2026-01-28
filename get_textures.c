@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:55:37 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/01/28 17:56:58 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/01/28 18:42:17 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,35 +86,23 @@ int	get_textures(t_game *game)
 	int	j;
 
 	i = 0;
-	game->files.east = NULL;
-	game->files.north = NULL;
-	game->files.west = NULL;
-	game->files.south = NULL;
 	while (game->map[i])
 	{
 		j = 0;
 		while (ft_isspace(game->map[i][j]))
 			j++;
-		if (ft_strncmp(&game->map[i][j], "NO", 2) == 0)
-		{
-			if (!get_north_location(game, i, j + 2))
-				return (0);
-		}
-		else if (ft_strncmp(&game->map[i][j], "SO", 2) == 0)
-		{
-			if (!get_south_location(game, i, j + 2))
-				return (0);
-		}
-		else if (ft_strncmp(&game->map[i][j], "WE", 2) == 0)
-		{
-			if (!get_west_location(game, i, j + 2))
-				return (0);
-		}
-		else if (ft_strncmp(&game->map[i][j], "EA", 2) == 0)
-		{
-			if (!get_east_location(game, i, j + 2))
-				return (0);
-		}
+		if (ft_strncmp(&game->map[i][j], "NO", 2) == 0
+				&& !get_north_location(game, i, j + 2))
+			return (0);
+		else if (ft_strncmp(&game->map[i][j], "SO", 2) == 0
+				&& !get_south_location(game, i, j + 2))
+			return (0);
+		else if (ft_strncmp(&game->map[i][j], "WE", 2) == 0
+				&& !get_west_location(game, i, j + 2))
+			return (0);
+		else if (ft_strncmp(&game->map[i][j], "EA", 2) == 0
+				&& !get_east_location(game, i, j + 2))
+			return (0);
 		i++;
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/01/28 13:36:37 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/01/28 19:32:17 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,18 @@ void	ft_hook(void *param)
 
 int	load_map_and_components(t_game *game)
 {
-	game->mlx = mlx_init(game->width, game->height, "My Awesome Game 🦎", 0);
+	mlx_image_t	*img;
+
+	game->mlx = mlx_init(500, 500, "My Awesome Game 🦎", 0);
 	if (!game->mlx)
 		return (printf("Error:\nMlx initialization failed"), 0);
+	img = mlx_new_image(game->mlx, 500, 500);
+	mlx_image_to_window(game->mlx, img, 0, 0);
+	for (int i = 0; i < 500; i++)
+	{
+		for (int j = 0; j < 500; j++)
+			mlx_put_pixel(img, i, j, game->floor_color);
+	}
 	return (1);
 }
 
@@ -39,10 +48,6 @@ int	main(int argc, char **argv)
 	// if (!check_map(game.map))
 	// 	return (cleanup(&game), 1);
 	load_map_and_components(&game);
-	printf("north is '%s'\n", game.files.north);
-	printf("south is '%s'\n", game.files.south);
-	printf("west is '%s'\n", game.files.west);
-	printf("east is '%s'\n", game.files.east);
 	mlx_loop_hook(game.mlx, &ft_hook, &game);
 	mlx_loop(game.mlx);
 	return (cleanup(&game), 0);

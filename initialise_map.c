@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/01/28 13:30:12 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/01/28 19:36:12 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,15 @@ int	init_map(int argc, char *argv, t_game *game)
 	game->map = read_into_map(game, argv);
 	if (!(game->map))
 		return (0);
-	if (!get_textures(game))
-		return (0);
 	game->height = MAX_HEIGHT;
 	game->width = MAX_WIDTH;
+	game->files.east = NULL;
+	game->files.north = NULL;
+	game->files.west = NULL;
+	game->files.south = NULL;
+	if (!get_textures(game))
+		return (0);
+	if (!get_colors(game))
+		return (0);
 	return (1);
 }
