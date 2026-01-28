@@ -6,7 +6,7 @@
 #    By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/07 16:20:34 by aelbouaz          #+#    #+#              #
-#    Updated: 2026/01/26 19:25:56 by aelbouaz         ###   ########.fr        #
+#    Updated: 2026/01/28 13:27:56 by aelbouaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CFLAGS = -Wall -Wextra -Werror
 CC = cc
 
 CUBED = cubed
-CUBED_SRCS = main.c initialise_map.c utils_1.c gnl.c
+CUBED_SRCS = main.c initialise_map.c utils_1.c gnl.c get_textures.c
 
 OBJS_DIR = objects
 CUBED_OBJ = $(addprefix $(OBJS_DIR)/, $(CUBED_SRCS:.c=.o))

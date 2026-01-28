@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/01/27 15:10:24 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/01/28 13:30:12 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,10 @@ static char	**read_into_map(t_game *game, char *file_name)
 	num_lines = lines_counter(game);
 	game->fd = open(file_name, O_RDONLY);
 	if (game->fd < 0)
-		return (printf("Error:\nMap file doesn't exist (from read_into_map)\n"), NULL);
+		return (printf("Error:\nMap file doesn't exist\n"), NULL);
 	map = malloc(sizeof(char *) * (num_lines + 1));
 	if (!map)
-		return (printf("Error:\nchar **Map Allocation failed (from read_into_map)\n"), NULL);
+		return (printf("Error:\nchar **Map Allocation failed\n"), NULL);
 	i = 0;
 	line = get_next_line(game->fd);
 	while (line)
@@ -105,9 +105,13 @@ int	init_map(int argc, char *argv, t_game *game)
 		return (0);
 	game->fd = open(argv, O_RDONLY);
 	if (game->fd < 0)
-		return (printf("Error:\nMap file doesn't exist (from init_map)\n"), 0);
+		return (printf("Error:\nMap file doesn't exist\n"), 0);
 	game->map = read_into_map(game, argv);
 	if (!(game->map))
-		return (printf("Error:\nMap Allocation failed (from init_map)\n"), 0);
+		return (0);
+	if (!get_textures(game))
+		return (0);
+	game->height = MAX_HEIGHT;
+	game->width = MAX_WIDTH;
 	return (1);
 }
