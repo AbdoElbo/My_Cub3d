@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/01/28 19:32:17 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/01/28 20:22:25 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ int	main(int argc, char **argv)
 	// if (!check_map(game.map))
 	// 	return (cleanup(&game), 1);
 	load_map_and_components(&game);
+	printf("north:'%s'\n", game.files.north);
+	printf("east:'%s'\n", game.files.east);
+	printf("west:'%s'\n", game.files.west);
+	printf("south:'%s'\n", game.files.south);
+	printf("ceiling:'%u'\n", game.ceiling_color);
+	printf("floor:'%u'\n", game.floor_color);
 	mlx_loop_hook(game.mlx, &ft_hook, &game);
 	mlx_loop(game.mlx);
 	return (cleanup(&game), 0);
