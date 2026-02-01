@@ -23,19 +23,32 @@ void	ft_hook(void *param)
 
 int	load_map_and_components(t_game *game)
 {
-	mlx_image_t	*img;
-
-	game->mlx = mlx_init(500, 500, "My Awesome Game 🦎", 0);
+	game->mlx = mlx_init(1000, 500, "My Awesome Game 🦎", 0);
 	if (!game->mlx)
-		return (printf("Error:\nMlx initialization failed"), 0);
-	img = mlx_new_image(game->mlx, 500, 500);
-	mlx_image_to_window(game->mlx, img, 0, 0);
+		return (printf("Error:\nMlx initialization failed\n"), 0);
+	game->img = mlx_new_image(game->mlx, 1000, 500);
+	mlx_image_to_window(game->mlx, game->img, 0, 0);
 	for (int i = 0; i < 500; i++)
 	{
 		for (int j = 0; j < 500; j++)
-			mlx_put_pixel(img, i, j, game->floor_color);
+			mlx_put_pixel(game->img, i, j, game->floor_color);
+	}
+	for (int i = 500; i < 1000; i++)
+	{
+		for (int j = 0; j < 500; j++)
+			mlx_put_pixel(game->img, i, j, game->ceiling_color);
 	}
 	return (1);
+}
+
+static void	print_stuff(t_game *game)
+{
+	printf("North:'%s'\n", game->files.north);
+	printf("East:'%s'\n", game->files.east);
+	printf("West:'%s'\n", game->files.west);
+	printf("South:'%s'\n\n", game->files.south);
+	printf("ceiling:'0x%08X'\n", game->ceiling_color);
+	printf("floor:'0x%08X'\n", game->floor_color);
 }
 
 int	main(int argc, char **argv)
@@ -48,12 +61,7 @@ int	main(int argc, char **argv)
 	// if (!check_map(game.map))
 	// 	return (cleanup(&game), 1);
 	load_map_and_components(&game);
-	printf("north:'%s'\n", game.files.north);
-	printf("east:'%s'\n", game.files.east);
-	printf("west:'%s'\n", game.files.west);
-	printf("south:'%s'\n", game.files.south);
-	printf("ceiling:'%u'\n", game.ceiling_color);
-	printf("floor:'%u'\n", game.floor_color);
+	print_stuff(&game);
 	mlx_loop_hook(game.mlx, &ft_hook, &game);
 	mlx_loop(game.mlx);
 	return (cleanup(&game), 0);

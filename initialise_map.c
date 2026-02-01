@@ -99,6 +99,19 @@ static char	**read_into_map(t_game *game, char *file_name)
 	return (map);
 }
 
+void	init_vars(t_game *game)
+{
+	game->height = MAX_HEIGHT;
+	game->width = MAX_WIDTH;
+	game->files.east = NULL;
+	game->files.north = NULL;
+	game->files.west = NULL;
+	game->files.south = NULL;
+	game->ceiling_color = 0;
+	game->floor_color = 0;
+	game->img = NULL;
+}
+
 int	init_map(int argc, char *argv, t_game *game)
 {
 	if (!error_check(argc, argv))
@@ -109,15 +122,14 @@ int	init_map(int argc, char *argv, t_game *game)
 	game->map = read_into_map(game, argv);
 	if (!(game->map))
 		return (0);
-	game->height = MAX_HEIGHT;
-	game->width = MAX_WIDTH;
-	game->files.east = NULL;
-	game->files.north = NULL;
-	game->files.west = NULL;
-	game->files.south = NULL;
+	init_vars(game);
 	if (!get_textures(game))
 		return (0);
 	if (!get_colors(game))
 		return (0);
+	if (!game->files.east || !game->files.north || !game->files.west || 
+		!game->files.south || !game->files.east || !game->ceiling_color || 
+		!game->floor_color)
+			return (printf("Error:\nMissing Map components\n"), 0);
 	return (1);
 }

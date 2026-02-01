@@ -42,6 +42,8 @@ void	cleanup(t_game *game)
 		free(game->files.west);
 	if (game->files.east)
 		free(game->files.east);
+	if (game->img)
+		mlx_delete_image(game->mlx, game->img);
 	if (game->fd >= 0)
 		close(game->fd);
 }

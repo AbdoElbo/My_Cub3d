@@ -15,15 +15,20 @@
 static int	get_north_location(t_game *game, int i, int j)
 {
 	char	*str;
+	int		k;
 
+	j += 2;
 	str = game->map[i];
-	while (ft_isspace(str[j]))
+	while (str[j] && ft_isspace(str[j]))
 		j++;
 	if (!str[j])
 		return (printf("Error:\nNorth texture not found!\n"), 0);
 	if (game->files.north)
 		return (printf("Error:\nDuplicated North texture\n"), 0);
-	game->files.north = ft_substr(str, j, ft_strlen(str) - j - 1);
+	k = j;
+	while (str[k] && str[k] != '\n')
+		k++;
+	game->files.north = ft_substr(str, j, k - j);
 	if (!game->files.north)
 		return (printf("Error:\nfiles.north allocation failed\n"), 0);
 	return (1);
@@ -32,32 +37,42 @@ static int	get_north_location(t_game *game, int i, int j)
 static int	get_south_location(t_game *game, int i, int j)
 {
 	char	*str;
+	int		k;
 
+	j += 2;
 	str = game->map[i];
-	while (ft_isspace(str[j]))
+	while (str[j] && ft_isspace(str[j]))
 		j++;
 	if (!str[j])
 		return (printf("Error:\nSouth texture not found!\n"), 0);
 	if (game->files.south)
 		return (printf("Error:\nDuplicated South texture\n"), 0);
-	game->files.south = ft_substr(str, j, ft_strlen(str) - j - 1);
+	k = j;
+	while (str[k] && str[k] != '\n')
+		k++;
+	game->files.south = ft_substr(str, j, k - j);
 	if (!game->files.south)
-		return (printf("Error:\nfiles.south allocation failed\n"), 0);
+		return (printf("Error:\nfiles.South allocation failed\n"), 0);
 	return (1);
 }
 
 static int	get_west_location(t_game *game, int i, int j)
 {
 	char	*str;
+	int		k;
 
+	j += 2;
 	str = game->map[i];
-	while (ft_isspace(str[j]))
+	while (str[j] && ft_isspace(str[j]))
 		j++;
 	if (!str[j])
 		return (printf("Error:\nWest texture not found!\n"), 0);
 	if (game->files.west)
-		return (printf("Error:\nDuplicated North texture\n"), 0);
-	game->files.west = ft_substr(str, j, ft_strlen(str) - j - 1);
+		return (printf("Error:\nDuplicated West texture\n"), 0);
+	k = j;
+	while (str[k] && str[k] != '\n')
+		k++;
+	game->files.west = ft_substr(str, j, k - j);
 	if (!game->files.west)
 		return (printf("Error:\nfiles.west allocation failed\n"), 0);
 	return (1);
@@ -66,15 +81,20 @@ static int	get_west_location(t_game *game, int i, int j)
 static int	get_east_location(t_game *game, int i, int j)
 {
 	char	*str;
+	int		k;
 
+	j += 2;
 	str = game->map[i];
-	while (ft_isspace(str[j]))
+	while (str[j] && ft_isspace(str[j]))
 		j++;
 	if (!str[j])
 		return (printf("Error:\nEast texture not found!\n"), 0);
 	if (game->files.east)
 		return (printf("Error:\nDuplicated East texture\n"), 0);
-	game->files.east = ft_substr(str, j, ft_strlen(str) - j - 1);
+	k = j;
+	while (str[k] && str[k] != '\n')
+		k++;
+	game->files.east = ft_substr(str, j, k - j);
 	if (!game->files.east)
 		return (printf("Error:\nfiles.east allocation failed\n"), 0);
 	return (1);
@@ -92,16 +112,16 @@ int	get_textures(t_game *game)
 		while (ft_isspace(game->map[i][j]))
 			j++;
 		if (ft_strncmp(&game->map[i][j], "NO", 2) == 0
-				&& !get_north_location(game, i, j + 2))
+				&& !get_north_location(game, i, j))
 			return (0);
 		else if (ft_strncmp(&game->map[i][j], "SO", 2) == 0
-				&& !get_south_location(game, i, j + 2))
+				&& !get_south_location(game, i, j))
 			return (0);
 		else if (ft_strncmp(&game->map[i][j], "WE", 2) == 0
-				&& !get_west_location(game, i, j + 2))
+				&& !get_west_location(game, i, j))
 			return (0);
 		else if (ft_strncmp(&game->map[i][j], "EA", 2) == 0
-				&& !get_east_location(game, i, j + 2))
+				&& !get_east_location(game, i, j))
 			return (0);
 		i++;
 	}

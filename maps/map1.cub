@@ -3,8 +3,8 @@ WE  			../textures/west_texture.png
 EA../textures/east_texture.png
 NO                 ../textures/north_texture.png
 
-F 0,0,108
-C 225,30,0
+F 40,24,30
+C 53,94,70
 
 1111111111
 1000000001

@@ -29,6 +29,16 @@
 # define MAX_WIDTH 3840
 # define MAX_HEIGHT 2160
 
+# define R "\033[1;31m"
+# define G "\033[1;32m"
+# define Y "\033[1;33m"
+# define B "\033[1;34m"
+# define M "\033[1;35m"
+# define C "\033[1;36m"
+# define W "\033[1;37m"
+# define R "\033[1;31m"
+# define RESET "\033[0m"
+
 typedef struct s_files
 {
 	char	*north;
@@ -41,6 +51,7 @@ typedef struct s_game
 {
 	char		**map;
 	mlx_t		*mlx;
+	mlx_image_t	*img;
 	t_files		files;
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
@@ -61,6 +72,7 @@ char	*get_next_line(int fd);
 
 int		init_map(int argc, char *argv, t_game *game);
 int		load_map_and_components(t_game *game);
+void	init_vars(t_game *game);
 int		get_textures(t_game *game);
 int		get_colors(t_game *game);
 

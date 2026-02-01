@@ -47,9 +47,12 @@ static int	get_floor_color(t_game *game, int i, int j)
 	int			b;
 	char		*str;
 
+	r = -1;
+	g = -1;
+	b = -1;
 	counter++;
 	str = game->map[i];
-	while (ft_isspace(str[j]))
+	while (str[j] && ft_isspace(str[j]))
 		j++;
 	if (!str[j])
 		return (printf("Error:\nNo Floor Color Found!\n"), 0);
@@ -60,6 +63,9 @@ static int	get_floor_color(t_game *game, int i, int j)
 	g = ft_atoi(&str[j]);
 	j += digit_count(g) + 1;
 	b = ft_atoi(&str[j]);
+	if (r == -1 || g == -1 || b == -1)
+		return (printf("Error:\nIncomplete RGB values\n"), 0);
+	printf("Floor RGB:\nR=%i, G=%i, B=%i\n", r, g, b);
 	game->floor_color = get_rgb_color(r, g, b);
 	return (1);
 }
@@ -72,9 +78,12 @@ static int	get_ceiling_color(t_game *game, int i, int j)
 	int			b;
 	char		*str;
 
+	r = -1;
+	g = -1;
+	b = -1;
 	counter++;
 	str = game->map[i];
-	while (ft_isspace(str[j]))
+	while (str[j] && ft_isspace(str[j]))
 		j++;
 	if (!str[j])
 		return (printf("Error:\nNo Ceiling Color Found!\n"), 0);
@@ -85,6 +94,9 @@ static int	get_ceiling_color(t_game *game, int i, int j)
 	g = ft_atoi(&str[j]);
 	j += digit_count(g) + 1;
 	b = ft_atoi(&str[j]);
+	if (r == -1 || g == -1 || b == -1)
+		return (printf("Error:\nIncomplete RGB values\n"), 0);
+	// printf("ceiling RGB:\nR=%i, G=%i, B=%i\n\n", r, g, b);
 	game->ceiling_color = get_rgb_color(r, g, b);
 	return (1);
 }
@@ -105,7 +117,7 @@ int	get_colors(t_game *game)
 			if (!get_floor_color(game, i, j + 1))
 				return (0);
 		}
-		if (game->map[i][j] == 'C')
+		else if (game->map[i][j] == 'C')
 		{
 			if (!get_ceiling_color(game, i, j + 1))
 				return (0);
