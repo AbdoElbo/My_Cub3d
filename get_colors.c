@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 18:46:33 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/02/04 14:06:13 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/04 14:15:27 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ static int	get_floor_color(t_game *game, int i, int j)
 		return (printf("Error:\nNo Floor Color Found!\n"), 0);
 	if (counter > 1)
 		return (free_arr(arr), printf("Error:\nDuplicated Floor color\n"), 0);
+	if (arr_size(arr) != 3)
+		return (free_arr(arr), printf("Error:\nIncorrect RGB values\n"), 0);
 	r = ft_atoi(arr[0]);
 	g = ft_atoi(arr[1]);
 	b = ft_atoi(arr[2]);
 	if (r == -1 || g == -1 || b == -1)
 		return (free_arr(arr), printf("Error:\nIncomplete RGB values\n"), 0);
-	printf("Floor RGB:\nR=%i, G=%i, B=%i\n", r, g, b);
 	game->floor_color = get_rgb_color(r, g, b);
-	printf("floor:'0x%08X'\n\n", game->floor_color);
 	return (free_arr(arr), 1);
 }
 
@@ -67,9 +67,7 @@ static int	get_ceiling_color(t_game *game, int i, int j)
 	b = ft_atoi(arr[2]);
 	if (r == -1 || g == -1 || b == -1)
 		return (free_arr(arr), printf("Error:\nIncomplete RGB values\n"), 0);
-	printf("Ceiling RGB:\nR=%i, G=%i, B=%i\n\n", r, g, b);
 	game->ceiling_color = get_rgb_color(r, g, b);
-	printf("Ceiling:'0x%08X'\n", game->ceiling_color);
 	return (free_arr(arr), 1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/02/04 14:05:38 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/04 14:15:50 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	load_map_and_components(t_game *game)
 
 static void	print_stuff(t_game *game)
 {
+	printf("Floor:'0x%08X'\n", game->floor_color);
+	printf("Ceiling:'0x%08X'\n\n", game->ceiling_color);
 	printf("North:'%s'\n", game->files.north);
 	printf("East:'%s'\n", game->files.east);
 	printf("West:'%s'\n", game->files.west);

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/02/04 13:32:15 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/04 14:14:59 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	init_vars(t_game *game);
 int		get_textures(t_game *game);
 int		get_colors(t_game *game);
 
-void	free_map(char **map);
-void	cleanup(t_game *game);
 void	free_arr(char **arr);
+int		arr_size(char **arr);
+void	cleanup(t_game *game);
 
 #endif
