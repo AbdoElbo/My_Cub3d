@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:55:37 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/01/28 18:42:17 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/04 14:03:46 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	get_textures(t_game *game)
 	while (game->map[i])
 	{
 		j = 0;
-		while (ft_isspace(game->map[i][j]))
+		while (game->map[i][j] == '\t' || game->map[i][j] == ' ')
 			j++;
 		if (ft_strncmp(&game->map[i][j], "NO", 2) == 0
 				&& !get_north_location(game, i, j))

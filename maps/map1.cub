@@ -3,8 +3,8 @@ WE  			../textures/west_texture.png
 EA../textures/east_texture.png
 NO                 ../textures/north_texture.png
 
-F 40,24,30
-C 53,94,70
+F 40	, 24,			30
+C 53        , 94,70
 
 1111111111
 1000000001
@@ -12,3 +12,6 @@ C 53,94,70
 110001P001
 1000011001
 1111111111
+
+
+

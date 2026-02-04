@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/01/28 20:22:25 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/04 14:05:38 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ static void	print_stuff(t_game *game)
 	printf("East:'%s'\n", game->files.east);
 	printf("West:'%s'\n", game->files.west);
 	printf("South:'%s'\n\n", game->files.south);
-	printf("ceiling:'0x%08X'\n", game->ceiling_color);
-	printf("floor:'0x%08X'\n", game->floor_color);
 }
 
 int	main(int argc, char **argv)
@@ -58,8 +56,6 @@ int	main(int argc, char **argv)
 	game.map = NULL;
 	if (!init_map(argc, argv[1], &game))
 		return (1);
-	// if (!check_map(game.map))
-	// 	return (cleanup(&game), 1);
 	load_map_and_components(&game);
 	print_stuff(&game);
 	mlx_loop_hook(game.mlx, &ft_hook, &game);

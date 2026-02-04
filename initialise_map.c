@@ -6,55 +6,11 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/01/28 19:36:12 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/04 13:31:40 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
-
-static int	check_arg(char *str)
-{
-	int	len;
-
-	len = ft_strlen(str) - 1;
-	if (str[len] == 'b')
-	{
-		len--;
-		if (str[len] == 'u')
-		{
-			len--;
-			if (str[len] == 'c')
-			{
-				len--;
-				if (str[len] == '.')
-				{
-					if (!len)
-						return (0);
-					else
-						return (1);
-				}
-			}
-		}
-	}
-	return (0);
-}
-
-static int	error_check(int argc, char *argv)
-{
-	if (argc != 2)
-	{
-		printf("enter correct number of Args\n");
-		printf("Example : ./cubed maps/map1.cub\n");
-		return (0);
-	}
-	if (!check_arg(argv))
-	{
-		printf("Wrong File Bruh\n");
-		printf("Format *.cub\n");
-		return (0);
-	}
-	return (1);
-}
 
 static int	lines_counter(t_game *game)
 {
@@ -127,9 +83,10 @@ int	init_map(int argc, char *argv, t_game *game)
 		return (0);
 	if (!get_colors(game))
 		return (0);
-	if (!game->files.east || !game->files.north || !game->files.west || 
-		!game->files.south || !game->files.east || !game->ceiling_color || 
-		!game->floor_color)
-			return (printf("Error:\nMissing Map components\n"), 0);
+	if (!game->files.east || !game->files.north || !game->files.west ||
+		!game->files.south || !game->files.east)
+		return (printf("Error:\nMissing Map Directions\n"), 0);
+	if (!game->ceiling_color || !game->floor_color)
+		return (printf("Error:\nMissing Map Colors\n"), 0);
 	return (1);
 }

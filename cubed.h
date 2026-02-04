@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/01/28 19:35:47 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/04 13:32:15 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ char	*extract_str(char *leftover);
 int		read_into_leftover(char **leftover, int fd);
 char	*get_next_line(int fd);
 
+int		check_arg(char *str);
+int		error_check(int argc, char *argv);
+
 int		init_map(int argc, char *argv, t_game *game);
 int		load_map_and_components(t_game *game);
 void	init_vars(t_game *game);
@@ -78,5 +81,6 @@ int		get_colors(t_game *game);
 
 void	free_map(char **map);
 void	cleanup(t_game *game);
+void	free_arr(char **arr);
 
 #endif

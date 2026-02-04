@@ -6,33 +6,11 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 18:46:33 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/01/28 19:37:13 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/04 14:06:13 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
-
-static int	digit_count(int a)
-{
-	int		count;
-	long	num;
-
-	count = 0;
-	num = a;
-	if (num == 0)
-		return (1);
-	if (num < 0)
-	{
-		count++;
-		num = -num;
-	}
-	while (num > 0)
-	{
-		count++;
-		num = num / 10;
-	}
-	return (count);
-}
 
 static uint32_t	get_rgb_color(int r, int g, int b)
 {
@@ -45,29 +23,26 @@ static int	get_floor_color(t_game *game, int i, int j)
 	int			r;
 	int			g;
 	int			b;
-	char		*str;
+	char		**arr;
 
 	r = -1;
 	g = -1;
 	b = -1;
 	counter++;
-	str = game->map[i];
-	while (str[j] && ft_isspace(str[j]))
-		j++;
-	if (!str[j])
+	arr = ft_split(&game->map[i][j], ',');
+	if (!arr)
 		return (printf("Error:\nNo Floor Color Found!\n"), 0);
 	if (counter > 1)
-		return (printf("Error:\nDuplicated Floor color\n"), 0);
-	r = ft_atoi(&str[j]);
-	j += digit_count(r) + 1;
-	g = ft_atoi(&str[j]);
-	j += digit_count(g) + 1;
-	b = ft_atoi(&str[j]);
+		return (free_arr(arr), printf("Error:\nDuplicated Floor color\n"), 0);
+	r = ft_atoi(arr[0]);
+	g = ft_atoi(arr[1]);
+	b = ft_atoi(arr[2]);
 	if (r == -1 || g == -1 || b == -1)
-		return (printf("Error:\nIncomplete RGB values\n"), 0);
+		return (free_arr(arr), printf("Error:\nIncomplete RGB values\n"), 0);
 	printf("Floor RGB:\nR=%i, G=%i, B=%i\n", r, g, b);
 	game->floor_color = get_rgb_color(r, g, b);
-	return (1);
+	printf("floor:'0x%08X'\n\n", game->floor_color);
+	return (free_arr(arr), 1);
 }
 
 static int	get_ceiling_color(t_game *game, int i, int j)
@@ -76,29 +51,26 @@ static int	get_ceiling_color(t_game *game, int i, int j)
 	int			r;
 	int			g;
 	int			b;
-	char		*str;
+	char		**arr;
 
 	r = -1;
 	g = -1;
 	b = -1;
 	counter++;
-	str = game->map[i];
-	while (str[j] && ft_isspace(str[j]))
-		j++;
-	if (!str[j])
+	arr = ft_split(&game->map[i][j], ',');
+	if (!arr)
 		return (printf("Error:\nNo Ceiling Color Found!\n"), 0);
 	if (counter > 1)
-		return (printf("Error:\nDuplicated Ceiling color\n"), 0);
-	r = ft_atoi(&str[j]);
-	j += digit_count(r) + 1;
-	g = ft_atoi(&str[j]);
-	j += digit_count(g) + 1;
-	b = ft_atoi(&str[j]);
+		return (free_arr(arr), printf("Error:\nDuplicated Ceiling color\n"), 0);
+	r = ft_atoi(arr[0]);
+	g = ft_atoi(arr[1]);
+	b = ft_atoi(arr[2]);
 	if (r == -1 || g == -1 || b == -1)
-		return (printf("Error:\nIncomplete RGB values\n"), 0);
-	// printf("ceiling RGB:\nR=%i, G=%i, B=%i\n\n", r, g, b);
+		return (free_arr(arr), printf("Error:\nIncomplete RGB values\n"), 0);
+	printf("Ceiling RGB:\nR=%i, G=%i, B=%i\n\n", r, g, b);
 	game->ceiling_color = get_rgb_color(r, g, b);
-	return (1);
+	printf("Ceiling:'0x%08X'\n", game->ceiling_color);
+	return (free_arr(arr), 1);
 }
 
 int	get_colors(t_game *game)
@@ -110,7 +82,7 @@ int	get_colors(t_game *game)
 	while (game->map[i])
 	{
 		j = 0;
-		while (ft_isspace(game->map[i][j]))
+		while (game->map[i][j] == '\t' || game->map[i][j] == ' ')
 			j++;
 		if (game->map[i][j] == 'F')
 		{

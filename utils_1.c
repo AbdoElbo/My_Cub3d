@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 16:29:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/01/28 13:45:37 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/04 13:30:26 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,19 @@ void	free_map(char **map)
 	map = NULL;
 }
 
+void	free_arr(char **arr)
+{
+	size_t	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
+
 void	cleanup(t_game *game)
 {
 	free_map(game->map);
@@ -47,3 +60,4 @@ void	cleanup(t_game *game)
 	if (game->fd >= 0)
 		close(game->fd);
 }
+
