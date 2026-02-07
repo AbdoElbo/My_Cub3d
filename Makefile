@@ -6,7 +6,7 @@
 #    By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/07 16:20:34 by aelbouaz          #+#    #+#              #
-#    Updated: 2026/02/04 13:32:23 by aelbouaz         ###   ########.fr        #
+#    Updated: 2026/02/07 19:00:33 by aelbouaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ CC = cc
 
 CUBED = cubed
 CUBED_SRCS = main.c initialise_map.c utils_1.c gnl.c \
-	get_textures.c get_colors.c error_check.c
+	get_textures.c get_colors.c error_check.c draw_minimap.c \
+	
 
 OBJS_DIR = objects
 CUBED_OBJ = $(addprefix $(OBJS_DIR)/, $(CUBED_SRCS:.c=.o))

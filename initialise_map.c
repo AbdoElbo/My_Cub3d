@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/02/04 14:13:48 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/07 18:46:34 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,30 @@ void	init_vars(t_game *game)
 	game->files.south = NULL;
 	game->ceiling_color = 0;
 	game->floor_color = 0;
+	game->map_start = 0;
 	game->img = NULL;
+}
+
+static void	get_map_size(t_game *game)
+{
+	char		**str;
+	int			i;
+	size_t		height;
+	size_t		width;
+
+	i = game->map_start;
+	str = game->map;
+	height = 0;
+	width = 0;
+	while (str[i] && str[i][0] != '\n')
+	{
+		if (width < ft_strlen(str[i]))
+			width = ft_strlen(str[i]);
+		i++;
+	}
+	height = i - game->map_start;
+	game->width = width - 1;
+	game->height = height;
 }
 
 int	init_map(int argc, char *argv, t_game *game)
@@ -83,6 +106,7 @@ int	init_map(int argc, char *argv, t_game *game)
 		return (0);
 	if (!get_colors(game))
 		return (0);
+	get_map_size(game);
 	if (!game->files.east || !game->files.north || !game->files.west
 		|| !game->files.south || !game->files.east)
 		return (printf("Error:\nMissing Map Directions\n"), 0);

@@ -6,13 +6,13 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 18:46:33 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/02/04 14:15:27 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/04 15:35:01 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
 
-static uint32_t	get_rgb_color(int r, int g, int b)
+uint32_t	get_rgb_color(int r, int g, int b)
 {
 	return (r << 24 | g << 16 | b << 8 | 255);
 }
@@ -82,16 +82,12 @@ int	get_colors(t_game *game)
 		j = 0;
 		while (game->map[i][j] == '\t' || game->map[i][j] == ' ')
 			j++;
-		if (game->map[i][j] == 'F')
-		{
-			if (!get_floor_color(game, i, j + 1))
-				return (0);
-		}
-		else if (game->map[i][j] == 'C')
-		{
-			if (!get_ceiling_color(game, i, j + 1))
-				return (0);
-		}
+		if (game->map[i][j] == 'F' && !get_floor_color(game, i, j + 1))
+			return (0);
+		else if (game->map[i][j] == 'C' && !get_ceiling_color(game, i, j + 1))
+			return (0);
+		else if (game->map[i][j] == '1' && !game->map_start)
+			game->map_start = i;
 		i++;
 	}
 	return (1);

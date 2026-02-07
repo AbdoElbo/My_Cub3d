@@ -6,13 +6,13 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 16:14:41 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/01/26 16:14:44 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/04 15:04:44 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
 
-int	update_leftover(char **leftover)
+static int	update_leftover(char **leftover)
 {
 	int		i;
 	int		n;
@@ -39,7 +39,7 @@ int	update_leftover(char **leftover)
 	return (free(leftover_tmp), 1);
 }
 
-char	*extract_str(char *leftover)
+static char	*extract_str(char *leftover)
 {
 	int		i;
 	int		n;
@@ -63,7 +63,7 @@ char	*extract_str(char *leftover)
 	return (str);
 }
 
-int	read_into_leftover(char **leftover, int fd)
+static int	read_into_leftover(char **leftover, int fd)
 {
 	char	*tmp;
 	char	*new_leftover;

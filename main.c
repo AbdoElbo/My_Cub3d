@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/02/04 14:15:50 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/07 19:01:35 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,12 @@ void	ft_hook(void *param)
 
 int	load_map_and_components(t_game *game)
 {
-	game->mlx = mlx_init(1000, 500, "My Awesome Game 🦎", 0);
+	game->mlx = mlx_init(1000, 1000, "My Awesome Game 🦎", 1);
 	if (!game->mlx)
 		return (printf("Error:\nMlx initialization failed\n"), 0);
-	game->img = mlx_new_image(game->mlx, 1000, 500);
+	game->img = mlx_new_image(game->mlx, 1000, 1000);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
-	for (int i = 0; i < 500; i++)
-	{
-		for (int j = 0; j < 500; j++)
-			mlx_put_pixel(game->img, i, j, game->floor_color);
-	}
-	for (int i = 500; i < 1000; i++)
-	{
-		for (int j = 0; j < 500; j++)
-			mlx_put_pixel(game->img, i, j, game->ceiling_color);
-	}
+	draw_minimap(game);
 	return (1);
 }
 
@@ -48,7 +39,10 @@ static void	print_stuff(t_game *game)
 	printf("North:'%s'\n", game->files.north);
 	printf("East:'%s'\n", game->files.east);
 	printf("West:'%s'\n", game->files.west);
-	printf("South:'%s'\n\n", game->files.south);
+	printf("South:'%s'\n", game->files.south);
+	printf("map_start at %d\n\n", game->map_start);
+	printf("map height is %d\n", game->height);
+	printf("map width is %d\n", game->width);
 }
 
 int	main(int argc, char **argv)
