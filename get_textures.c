@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:55:37 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/02/04 14:03:46 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/14 20:16:03 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@ static int	get_north_location(t_game *game, int i, int j)
 {
 	char	*str;
 	int		k;
+	static int	counter;
 
 	j += 2;
+	counter++;
 	str = game->map[i];
 	while (str[j] && ft_isspace(str[j]))
 		j++;
 	if (!str[j])
 		return (printf("Error:\nNorth texture not found!\n"), 0);
-	if (game->files.north)
+	if (counter > 1)
 		return (printf("Error:\nDuplicated North texture\n"), 0);
 	k = j;
 	while (str[k] && str[k] != '\n')
@@ -38,14 +40,16 @@ static int	get_south_location(t_game *game, int i, int j)
 {
 	char	*str;
 	int		k;
+	static int	counter;
 
 	j += 2;
+	counter++;
 	str = game->map[i];
 	while (str[j] && ft_isspace(str[j]))
 		j++;
 	if (!str[j])
 		return (printf("Error:\nSouth texture not found!\n"), 0);
-	if (game->files.south)
+	if (counter > 1)
 		return (printf("Error:\nDuplicated South texture\n"), 0);
 	k = j;
 	while (str[k] && str[k] != '\n')
@@ -60,14 +64,16 @@ static int	get_west_location(t_game *game, int i, int j)
 {
 	char	*str;
 	int		k;
+	static int	counter;
 
 	j += 2;
+	counter++;
 	str = game->map[i];
 	while (str[j] && ft_isspace(str[j]))
 		j++;
 	if (!str[j])
 		return (printf("Error:\nWest texture not found!\n"), 0);
-	if (game->files.west)
+	if (counter > 1)
 		return (printf("Error:\nDuplicated West texture\n"), 0);
 	k = j;
 	while (str[k] && str[k] != '\n')
@@ -80,16 +86,18 @@ static int	get_west_location(t_game *game, int i, int j)
 
 static int	get_east_location(t_game *game, int i, int j)
 {
-	char	*str;
-	int		k;
+	char		*str;
+	int			k;
+	static int	counter;
 
 	j += 2;
+	counter++;
 	str = game->map[i];
 	while (str[j] && ft_isspace(str[j]))
 		j++;
 	if (!str[j])
 		return (printf("Error:\nEast texture not found!\n"), 0);
-	if (game->files.east)
+	if (counter > 1)
 		return (printf("Error:\nDuplicated East texture\n"), 0);
 	k = j;
 	while (str[k] && str[k] != '\n')
@@ -109,7 +117,7 @@ int	get_textures(t_game *game)
 	while (game->map[i])
 	{
 		j = 0;
-		while (game->map[i][j] == '\t' || game->map[i][j] == ' ')
+		while (ft_isspace(game->map[i][j]))
 			j++;
 		if (ft_strncmp(&game->map[i][j], "NO", 2) == 0
 				&& !get_north_location(game, i, j))
