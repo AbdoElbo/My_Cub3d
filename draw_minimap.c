@@ -6,21 +6,21 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 18:59:22 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/02/07 19:00:17 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/23 14:16:41 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
 
-static uint32_t	get_color(char c)
+static uint32_t	get_color(t_game *game, char c)
 {
 	uint32_t	color;
 
 	color = 0;
 	if (c == '1')
-		color = get_rgb_color(250, 0, 0);
+		color = game->ceiling_color;
 	else if (c == '0')
-		color = get_rgb_color(0, 0, 250);
+		color = game->floor_color;
 	else if (c == 'P')
 		color = get_rgb_color(0, 250, 0);
 	return (color);
@@ -34,7 +34,7 @@ static void	draw_square(t_game *game, char c, int row, int col)
 	int			x;
 	int			y;
 
-	color = get_color(c);
+	color = get_color(game, c);
 	start_x = col * game->multiplier;
 	start_y = row * game->multiplier;
 	x = start_x;

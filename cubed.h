@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/02/07 19:00:06 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/23 14:12:32 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 // and we don't have to realloc again
 # define MAX_WIDTH 3840
 # define MAX_HEIGHT 2160
-# define MINIMAP_MAX 350
+# define MINIMAP_MAX 500
 # define TILE_SIZE 50
 
 # define R "\033[1;31m"
@@ -74,8 +74,6 @@ typedef struct s_game
 	int			map_start;
 	int			fd;
 }	t_game;
-
-
 
 char		*get_next_line(int fd);
 

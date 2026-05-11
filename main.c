@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/02/07 19:01:35 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/16 20:07:04 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@ void	ft_hook(void *param)
 	game = (t_game *)param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
+	// if (mlx_is_key_down(game->mlx, MLX_KEY_W))
+	// 	move_forward(game->mlx);
+	// if (mlx_is_key_down(game->mlx, MLX_KEY_S))
+	// 	move_backwards(game->mlx);
+	// if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+	// 	move_right(game->mlx);
+	// if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+	// 	move_left(game->mlx);
 }
 
 int	load_map_and_components(t_game *game)
@@ -52,8 +60,8 @@ int	main(int argc, char **argv)
 	game.map = NULL;
 	if (!init_map(argc, argv[1], &game))
 		return (1);
-	load_map_and_components(&game);
 	print_stuff(&game);
+	load_map_and_components(&game);
 	mlx_loop_hook(game.mlx, &ft_hook, &game);
 	mlx_loop(game.mlx);
 	return (cleanup(&game), 0);

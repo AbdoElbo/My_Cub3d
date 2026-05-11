@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 18:46:33 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/02/14 20:14:58 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/02/16 15:53:10 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int	get_colors(t_game *game)
 	while (game->map[i])
 	{
 		j = 0;
+		while (game->map[i] && game->map[i][0] == '\n')
+			i++;
 		while (ft_isspace(game->map[i][j]))
 			j++;
 		if (game->map[i][j] == 'F' && !get_floor_color(game, i, j + 1))
