@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 13:35:15 by lpieck            #+#    #+#             */
-/*   Updated: 2026/05/27 14:07:49 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/05/27 15:58:45 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,7 +205,7 @@ static void	draw_column(t_game *g, t_ray *r, int x)
 	y = 0;
 	while (y < r->draw_start)
 	{
-		put_pixel(g, x, y, g->ceil_color);
+		put_pixel(g, x, y, C);
 		y++;
 	}
 

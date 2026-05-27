@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/02/23 14:12:32 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/05/27 15:59:22 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include <sys/time.h>
+# include "raycaster.h"
 
 # define BUFFER_SIZE 200
 // we'll limit this to the limit we put ourselves, so we'll always do one read()
@@ -73,6 +74,8 @@ typedef struct s_game
 	int			width;
 	int			map_start;
 	int			fd;
+	t_player	player;
+	t_tex		tex;
 }	t_game;
 
 char		*get_next_line(int fd);
