@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   Main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/02/16 20:07:04 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/04 14:21:07 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "Cubed.h"
 
 void	ft_hook(void *param)
 {
@@ -31,12 +31,11 @@ void	ft_hook(void *param)
 
 int	load_map_and_components(t_game *game)
 {
-	game->mlx = mlx_init(1000, 1000, "My Awesome Game 🦎", 1);
+	game->mlx = mlx_init(1000, 1000, "Our Awesome Game", 1);
 	if (!game->mlx)
 		return (printf("Error:\nMlx initialization failed\n"), 0);
 	game->img = mlx_new_image(game->mlx, 1000, 1000);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
-	draw_minimap(game);
 	return (1);
 }
 

@@ -6,25 +6,26 @@
 #    By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/07 16:20:34 by aelbouaz          #+#    #+#              #
-#    Updated: 2026/02/23 13:06:24 by aelbouaz         ###   ########.fr        #
+#    Updated: 2026/06/04 14:21:55 by aelbouaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS = -Wall -Wextra -Werror
 CC = cc
 
-CUBED = cub3d
-CUBED_SRCS = main.c initialise_map.c utils_1.c gnl.c \
-	get_textures.c get_colors.c error_check.c draw_minimap.c \
+CUBED = Cub3d
+CUBED_SRCS = Main.c Parsing/error_check.c Parsing/get_colors.c \
+			Parsing/get_textures.c Parsing/gnl.c Parsing/initialise_map.c \
+			Parsing/utils_1.c
 
 
-OBJS_DIR = objects
+OBJS_DIR = Objects
 CUBED_OBJ = $(addprefix $(OBJS_DIR)/, $(CUBED_SRCS:.c=.o))
 
-LIBFT_DIR = libft/
+LIBFT_DIR = Libft/
 LIBFT = $(LIBFT_DIR)libft.a
 
-MLX42_DIR = mlx42
+MLX42_DIR = Mlx42
 MLX42_LIB = $(MLX42_DIR)/build/libmlx42.a
 MLX42_INC = $(MLX42_DIR)/include
 
@@ -54,6 +55,7 @@ $(CUBED): $(LIBFT) $(CUBED_OBJ) $(MLX42_LIB)
 	$(MLX42_LIB) -I$(MLX42_INC) -ldl -lglfw -pthread -lm
 
 $(OBJS_DIR)/%.o: %.c $(HEADERS) | $(OBJS_DIR)
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(MLX42_INC) -c $< -o $@
 	@printf "$(GREEN).$(RESET)"
 
@@ -61,7 +63,7 @@ clean:
 	@printf "$(BLUE)Cleaned Up$(RESET)\n"
 	@make --no-print-directory -C $(LIBFT_DIR) clean
 	@rm -rf $(MLX42_DIR)/build
-	@rm -f $(CUBED_OBJ)
+	@rm -rf $(OBJS_DIR)
 
 fclean: clean
 	@make --no-print-directory -C $(LIBFT_DIR) fclean

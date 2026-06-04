@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cubed.h                                            :+:      :+:    :+:   */
+/*   Cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/02/23 14:12:32 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/04 14:20:57 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBED_H
 # define CUBED_H
 
-# include "libft/libft.h"
-# include "mlx42/include/MLX42/MLX42.h"
+# include "Libft/libft.h"
+# include "Mlx42/include/MLX42/MLX42.h"
 # include <signal.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -75,22 +75,11 @@ typedef struct s_game
 	int			fd;
 }	t_game;
 
-char		*get_next_line(int fd);
+#include "Parsing/Parsing.h"
 
-int			check_arg(char *str);
-int			error_check(int argc, char *argv);
 
 int			init_map(int argc, char *argv, t_game *game);
 int			load_map_and_components(t_game *game);
-void		init_vars(t_game *game);
-int			get_textures(t_game *game);
-uint32_t	get_rgb_color(int r, int g, int b);
-int			get_colors(t_game *game);
 
-void		draw_minimap(t_game *game);
-
-void		free_arr(char **arr);
-int			arr_size(char **arr);
-void		cleanup(t_game *game);
 
 #endif
