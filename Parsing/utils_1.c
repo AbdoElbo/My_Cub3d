@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 16:29:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/05 11:20:30 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/05 17:10:10 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,3 @@ void	cleanup(t_game *game)
 	if (game->fd >= 0)
 		close(game->fd);
 }
-
