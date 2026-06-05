@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/05 10:08:31 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/05 12:40:30 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_game
 }	t_game;
 
 #include "Parsing/Parsing.h"
+#include "Map_validity/Validity.h"
 
 int			init_map(int argc, char *argv, t_game *game);
 int			load_map_and_components(t_game *game);

@@ -6,23 +6,30 @@
 #    By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/07 16:20:34 by aelbouaz          #+#    #+#              #
-#    Updated: 2026/06/05 10:09:46 by aelbouaz         ###   ########.fr        #
+#    Updated: 2026/06/05 16:34:48 by aelbouaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS = -Wall -Wextra -Werror -MMD
 CC = cc
 
-CUBED = Cub3d
-CUBED_SRCS = Main.c Parsing/error_check.c Parsing/get_colors.c \
+CUBED = cub3D
+CUBED_SRCS = Main.c \
+			Parsing/error_check.c Parsing/get_colors.c \
 			Parsing/get_textures.c Parsing/gnl.c Parsing/initialise_map.c \
-			Parsing/utils_1.c
+			Parsing/utils_1.c \
+			Map_validity/Map_validity.c
 
+CUBED_SRCS_BONUS = Bonus/Animations.c Bonus/Doors_opening.c \
+			Bonus/Minimap.c Bonus/Mouse_mouvements.c
+
+BONUS_STAMP = $(OBJS_DIR)/.bonus_built
 
 OBJS_DIR = Objects
 CUBED_OBJ = $(addprefix $(OBJS_DIR)/, $(CUBED_SRCS:.c=.o))
+CUBED_OBJ_BONUS = $(addprefix $(OBJS_DIR)/, $(CUBED_SRCS_BONUS:.c=.o))
 
-DEPS = ${CUBED_OBJ:.o=.d}
+DEPS = ${CUBED_OBJ:.o=.d} ${CUBED_OBJ_BONUS:.o=.d}
 
 LIBFT_DIR = Libft/
 LIBFT = $(LIBFT_DIR)libft.a
@@ -51,10 +58,18 @@ $(MLX42_LIB):
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
 
-$(CUBED): $(LIBFT) $(CUBED_OBJ) $(MLX42_LIB)
+$(CUBED): $(MLX42_LIB) $(LIBFT) $(CUBED_OBJ)
 	@$(CC) $(CFLAGS) -o $(CUBED) $(CUBED_OBJ) \
-	-L$(LIBFT_DIR) -lft \
+	-L $(LIBFT_DIR) -lft \
 	$(MLX42_LIB) -I$(MLX42_INC) -ldl -lglfw -pthread -lm
+
+bonus: $(MLX42_LIB) $(LIBFT) $(CUBED_OBJ) $(CUBED_OBJ_BONUS) $(BONUS_STAMP)
+
+$(BONUS_STAMP): $(MLX42_LIB) $(LIBFT) $(CUBED_OBJ) $(CUBED_OBJ_BONUS)
+	@$(CC) $(CFLAGS) -o $(CUBED) $(CUBED_OBJ) $(CUBED_OBJ_BONUS) \
+	-L $(LIBFT_DIR) -lft \
+	$(MLX42_LIB) -I$(MLX42_INC) -ldl -lglfw -pthread -lm
+	@touch $(BONUS_STAMP)
 
 $(OBJS_DIR)/%.o: %.c $(HEADERS) Makefile | $(OBJS_DIR)
 	@mkdir -p $(dir $@)
