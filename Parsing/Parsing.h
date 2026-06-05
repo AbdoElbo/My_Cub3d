@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 13:36:06 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/05 11:53:48 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/05 16:41:52 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char		*get_next_line(int fd);
 int			check_arg(char *str);
 int			error_check(int argc, char *argv);
 void		init_vars(t_game *game);
-int			check_map_order(char **map);
+int			check_map_order(char **map, int map_start);
 int			directions_check(char **map);
 int			colors_check(char **map, int index);
 int			get_textures(t_game *game);

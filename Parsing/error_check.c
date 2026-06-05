@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 13:31:43 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/05 11:59:40 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/05 16:43:55 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,19 @@ int	error_check(int argc, char *argv)
 	return (1);
 }
 
-int check_map_order(char **map)
+int check_map_order(char **map, int map_start)
 {
 	int	i;
 	int	j;
 
 	i = directions_check(map);
 	if (i == 0)
-		return (printf("(DIRECTIONS) Map is Not Oredered Correctly! Exiting...\n"), 0);
+		return (printf("(DIRECTIONS) Map is Not Oredered Correctly or Missing Directions! Exiting...\n"), 0);
 	j = colors_check(map, i);
 	if (j == 0)
-		return (printf("(COLORS) Map is Not Oredered Correctly! Exiting...\n"), 0);
+		return (printf("(COLORS) Map is Not Oredered Correctly or Missing colors! Exiting...\n"), 0);
+	if (map_start == -1)
+		return (printf("(MAP) Map Not Found!! Exiting...\n"), 0);
 	return (1);
 }
 

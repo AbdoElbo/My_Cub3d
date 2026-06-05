@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/05 12:26:32 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/05 16:41:59 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	init_vars(t_game *game)
 	game->files.south = NULL;
 	game->ceiling_color = 0;
 	game->floor_color = 0;
-	game->map_start = 0;
+	game->map_start = -1;
 	game->img = NULL;
 }
 
@@ -102,7 +102,7 @@ int	init_map(int argc, char *argv, t_game *game)
 	if (!(game->map))
 		return (0);
 	init_vars(game);
-	if (!check_map_order(game->map))
+	if (!check_map_order(game->map, game->map_start))
 		return (0);
 	if (!get_textures(game))
 		return (0);

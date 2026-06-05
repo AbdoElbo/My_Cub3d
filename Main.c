@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/05 12:37:24 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/05 16:45:38 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ int	main(int argc, char **argv)
 
 	game.map = NULL;
 	if (!init_map(argc, argv[1], &game))
-		return (EXIT_FAILURE);
+		return (cleanup(&game), EXIT_FAILURE);
 	if (!map_validity(&game))
-		return (EXIT_FAILURE);
+		return (cleanup(&game), EXIT_FAILURE);
 	print_stuff(&game);
 	if (!load_map_and_components(&game))
-		return (EXIT_FAILURE);
+		return (cleanup(&game), EXIT_FAILURE);
 	mlx_loop_hook(game.mlx, &ft_hook, &game);
 	mlx_loop(game.mlx);
 	return (cleanup(&game), EXIT_SUCCESS);
