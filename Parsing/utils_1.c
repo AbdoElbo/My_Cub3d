@@ -6,11 +6,27 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 16:29:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/04 14:19:42 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/05 11:20:30 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Parsing.h"
+
+int	is_empty(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (1);
+	while(str[i])
+	{
+		if (!ft_isspace(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 void	free_arr(char **arr)
 {
@@ -52,3 +68,4 @@ void	cleanup(t_game *game)
 	if (game->fd >= 0)
 		close(game->fd);
 }
+

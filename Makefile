@@ -6,11 +6,11 @@
 #    By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/07 16:20:34 by aelbouaz          #+#    #+#              #
-#    Updated: 2026/06/04 14:21:55 by aelbouaz         ###   ########.fr        #
+#    Updated: 2026/06/05 10:09:46 by aelbouaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -MMD
 CC = cc
 
 CUBED = Cub3d
@@ -21,6 +21,8 @@ CUBED_SRCS = Main.c Parsing/error_check.c Parsing/get_colors.c \
 
 OBJS_DIR = Objects
 CUBED_OBJ = $(addprefix $(OBJS_DIR)/, $(CUBED_SRCS:.c=.o))
+
+DEPS = ${CUBED_OBJ:.o=.d}
 
 LIBFT_DIR = Libft/
 LIBFT = $(LIBFT_DIR)libft.a
@@ -54,7 +56,7 @@ $(CUBED): $(LIBFT) $(CUBED_OBJ) $(MLX42_LIB)
 	-L$(LIBFT_DIR) -lft \
 	$(MLX42_LIB) -I$(MLX42_INC) -ldl -lglfw -pthread -lm
 
-$(OBJS_DIR)/%.o: %.c $(HEADERS) | $(OBJS_DIR)
+$(OBJS_DIR)/%.o: %.c $(HEADERS) Makefile | $(OBJS_DIR)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(MLX42_INC) -c $< -o $@
 	@printf "$(GREEN).$(RESET)"
@@ -70,5 +72,7 @@ fclean: clean
 	@rm -f $(CUBED)
 
 re: fclean all
+
+-include $(DEPS)
 
 .PHONY: all clean fclean re

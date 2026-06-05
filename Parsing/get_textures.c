@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:55:37 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/04 15:18:16 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/05 10:24:40 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,7 @@ int	get_textures(t_game *game)
 		else if (ft_strncmp(&game->map[i][j], "WE", 2) == 0
 				&& !get_west_location(game, i, j))
 			return (0);
-		else if (ft_strncmp(&game->map[i][j], "EA", 2) == 0
-				&& !get_east_location(game, i, j))
+		else if (ft_strncmp(&game->map[i][j], "EA", 2) == 0&& !get_east_location(game, i, j))
 			return (0);
 		i++;
 	}

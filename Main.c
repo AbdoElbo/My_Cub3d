@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/04 14:21:07 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/05 09:53:54 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_hook(void *param)
 
 int	load_map_and_components(t_game *game)
 {
-	game->mlx = mlx_init(1000, 1000, "Our Awesome Game", 1);
+	game->mlx = mlx_init(MAX_WIDTH, MAX_HEIGHT, "Our Awesome Game", 1);
 	if (!game->mlx)
 		return (printf("Error:\nMlx initialization failed\n"), 0);
 	game->img = mlx_new_image(game->mlx, 1000, 1000);
@@ -58,10 +58,11 @@ int	main(int argc, char **argv)
 
 	game.map = NULL;
 	if (!init_map(argc, argv[1], &game))
-		return (1);
+		return (EXIT_FAILURE);
 	print_stuff(&game);
-	load_map_and_components(&game);
+	if (!load_map_and_components(&game))
+		return (EXIT_FAILURE);
 	mlx_loop_hook(game.mlx, &ft_hook, &game);
 	mlx_loop(game.mlx);
-	return (cleanup(&game), 0);
+	return (cleanup(&game), EXIT_SUCCESS);
 }

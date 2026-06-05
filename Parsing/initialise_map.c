@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/04 15:17:03 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/05 12:26:32 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,16 @@ int	init_map(int argc, char *argv, t_game *game)
 	if (!(game->map))
 		return (0);
 	init_vars(game);
+	if (!check_map_order(game->map))
+		return (0);
 	if (!get_textures(game))
 		return (0);
 	if (!get_colors(game))
 		return (0);
 	get_map_size(game);
-	if (!game->files.east || !game->files.north || !game->files.west
+	if (!game->files.north || !game->files.west
 		|| !game->files.south || !game->files.east)
-		return (printf("Error:\nMissing Map Directions\n"), 0);
+		return (printf("Error:\nMissing Map Textures\n"), 0);
 	if (!game->ceiling_color || !game->floor_color)
 		return (printf("Error:\nMissing Map Colors\n"), 0);
 	return (1);
