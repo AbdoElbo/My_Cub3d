@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 13:31:43 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/05 16:43:55 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/06 17:34:00 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	error_check(int argc, char *argv)
 	return (1);
 }
 
-int check_map_order(char **map, int map_start)
+int check_map_order(char **map)
 {
 	int	i;
 	int	j;
@@ -67,8 +67,6 @@ int check_map_order(char **map, int map_start)
 	j = colors_check(map, i);
 	if (j == 0)
 		return (printf("(COLORS) Map is Not Oredered Correctly or Missing colors! Exiting...\n"), 0);
-	if (map_start == -1)
-		return (printf("(MAP) Map Not Found!! Exiting...\n"), 0);
 	return (1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/05 17:12:55 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/06 18:17:55 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,17 @@ typedef struct s_files
 	char	*east;
 }	t_files;
 
+typedef struct s_player
+{
+	float	x;
+	float	y;
+}	t_player;
+
 typedef struct s_game
 {
+	
 	char		**map;
+	t_player	player;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	int			multiplier;

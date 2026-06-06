@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 13:36:06 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/05 17:11:06 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/06 17:34:17 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			init_map(int argc, char *argv, t_game *game);
 char		*get_next_line(int fd);
 void		init_vars(t_game *game);
 
-int			check_map_order(char **map, int map_start);
+int			check_map_order(char **map);
 int			directions_check(char **map);
 int			colors_check(char **map, int index);
 

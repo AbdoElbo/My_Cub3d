@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_colors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 18:46:33 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/05 12:26:05 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/06 17:36:15 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,11 @@ int	get_colors(t_game *game)
 			return (0);
 		else if (game->map[i][j] == 'C' && !get_ceiling_color(game, i, j + 1))
 			return (0);
-		else if (game->map[i][j] == '1' && !game->map_start)
+		else if (game->map[i][j] == '1' && game->map_start == -1)
 			game->map_start = i;
 		i++;
 	}
+	if (game->map_start == -1)
+		return (printf("(MAP) Map Not Found!! Exiting...\n"), 0);
 	return (1);
 }

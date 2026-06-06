@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/05 16:41:59 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/06 17:34:11 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	init_map(int argc, char *argv, t_game *game)
 	if (!(game->map))
 		return (0);
 	init_vars(game);
-	if (!check_map_order(game->map, game->map_start))
+	if (!check_map_order(game->map))
 		return (0);
 	if (!get_textures(game))
 		return (0);
