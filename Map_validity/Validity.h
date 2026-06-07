@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Validity.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:36:23 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/05 12:39:14 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/08 01:12:26 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "../Cubed.h"
 
+// bool	player_exists(char **map);
 int		map_validity(t_game *game);
 
 

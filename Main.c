@@ -6,7 +6,7 @@
 /*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/06 18:04:53 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/08 01:13:32 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int	main(int argc, char **argv)
 	if (!map_validity(&game))
 		return (cleanup(&game), EXIT_FAILURE);
 	print_stuff(&game);
+	for (int i = 0; i < 16; i++)
+		printf("%s", game.map[i]);
 	if (!load_map_and_components(&game))
 		return (cleanup(&game), EXIT_FAILURE);
 	mlx_loop_hook(game.mlx, &ft_hook, &game);

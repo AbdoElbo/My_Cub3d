@@ -6,7 +6,7 @@
 /*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/06 17:34:11 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/08 01:14:57 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static char	**read_into_map(t_game *game, char *file_name)
 
 void	init_vars(t_game *game)
 {
-	game->height = MAX_HEIGHT;
-	game->width = MAX_WIDTH;
+	game->width = 0;
+	game->height = 0;
 	game->files.east = NULL;
 	game->files.north = NULL;
 	game->files.west = NULL;
@@ -71,24 +71,23 @@ void	init_vars(t_game *game)
 
 static void	get_map_size(t_game *game)
 {
-	char		**str;
-	int			i;
-	size_t		height;
-	size_t		width;
+	char	**str;
+	int		i;
+	int		len;
 
 	i = game->map_start;
 	str = game->map;
-	height = 0;
-	width = 0;
-	while (str[i] && str[i][0] != '\n')
+	while (str[i])
 	{
-		if (width < ft_strlen(str[i]))
-			width = ft_strlen(str[i]);
+		if (!is_empty(str[i]))
+		{	
+			len = ft_strlen(str[i]);
+			if (game->width < len)
+				game->width = len;
+		}
 		i++;
 	}
-	height = i - game->map_start;
-	game->width = width - 1;
-	game->height = height;
+	game->height = i - game->map_start;
 }
 
 int	init_map(int argc, char *argv, t_game *game)

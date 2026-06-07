@@ -6,7 +6,7 @@
 /*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/06 18:17:55 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/08 00:44:46 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_game
 	int			status;
 	int			height;
 	int			width;
+	int			map_height;
+	int			map_width;
 	int			map_start;
 	int			fd;
 }	t_game;
