@@ -6,7 +6,7 @@
 /*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/08 00:44:46 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/08 18:37:42 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_player
 
 typedef struct s_game
 {
-	
 	char		**map;
 	t_player	player;
 	mlx_t		*mlx;
@@ -67,6 +66,8 @@ typedef struct s_game
 	int			map_start;
 	int			fd;
 }	t_game;
+
+void	print_map(t_game *game);
 
 #include "Parsing/Parsing.h"
 #include "Map_validity/Validity.h"

@@ -6,7 +6,7 @@
 /*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 13:36:06 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/06 17:34:17 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/08 18:29:14 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ int			get_textures(t_game *game);
 uint32_t	get_rgb_color(int r, int g, int b);
 int			get_colors(t_game *game);
 
+char        *line_padding(char *str, int width);
+int	        update_map(t_game *game);
+
+char        **copy_map(char **map);
 int			is_empty(char *str);
 void		free_arr(char **arr);
 int			arr_size(char **arr);

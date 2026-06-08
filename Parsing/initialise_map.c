@@ -6,7 +6,7 @@
 /*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/08 01:14:57 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/08 20:59:30 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static char	**read_into_map(t_game *game, char *file_name)
 	while (line)
 	{
 		map[i] = line;
+		map[i][ft_strlen(line) - 1] = '\0';
 		i++;
 		line = get_next_line(game->fd);
 	}
@@ -57,6 +58,8 @@ static char	**read_into_map(t_game *game, char *file_name)
 
 void	init_vars(t_game *game)
 {
+	game->player.x = 0;
+	game->player.y = 0;
 	game->width = 0;
 	game->height = 0;
 	game->files.east = NULL;
@@ -69,7 +72,7 @@ void	init_vars(t_game *game)
 	game->img = NULL;
 }
 
-static void	get_map_size(t_game *game)
+static int	get_map_size(t_game *game)
 {
 	char	**str;
 	int		i;
@@ -80,14 +83,19 @@ static void	get_map_size(t_game *game)
 	while (str[i])
 	{
 		if (!is_empty(str[i]))
-		{	
+		{
 			len = ft_strlen(str[i]);
 			if (game->width < len)
 				game->width = len;
 		}
 		i++;
 	}
-	game->height = i - game->map_start;
+	game->height = i - game->map_start - 1;
+	if (!update_map(game))
+		return (0);
+	game->height += 2; // i added the extra space (framed the map by spaces)
+	game->width += 2;
+	return (1);
 }
 
 int	init_map(int argc, char *argv, t_game *game)
@@ -107,7 +115,8 @@ int	init_map(int argc, char *argv, t_game *game)
 		return (0);
 	if (!get_colors(game))
 		return (0);
-	get_map_size(game);
+	if (!get_map_size(game))
+		return (0);
 	if (!game->files.north || !game->files.west
 		|| !game->files.south || !game->files.east)
 		return (printf("Error:\nMissing Map Textures\n"), 0);

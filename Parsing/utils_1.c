@@ -3,14 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 16:29:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/05 17:10:10 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/08 18:29:02 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Parsing.h"
+
+char **copy_map(char **map)
+{
+	char	**copy;
+	int		i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	copy = malloc(sizeof(char *) * (i + 1));
+	if (!copy)
+		return (NULL);
+	i = 0;
+	while (map[i])
+	{
+		copy[i] = ft_strdup(map[i]);
+		if (!copy[i])
+			return (free_arr(copy), NULL);
+		i++;
+	}
+	copy[i] = NULL;
+	return (copy);
+}
 
 int	is_empty(char *str)
 {

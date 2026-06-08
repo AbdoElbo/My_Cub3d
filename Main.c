@@ -6,7 +6,7 @@
 /*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/08 01:13:32 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/08 21:00:03 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,32 @@ int	load_map_and_components(t_game *game)
 	return (1);
 }
 
-static void	print_stuff(t_game *game)
+void	print_map(t_game *game)
 {
-	printf("Floor:'0x%08X'\n", game->floor_color);
-	printf("Ceiling:'0x%08X'\n\n", game->ceiling_color);
-	printf("North:'%s'\n", game->files.north);
-	printf("East:'%s'\n", game->files.east);
-	printf("West:'%s'\n", game->files.west);
-	printf("South:'%s'\n", game->files.south);
-	printf("map_start at %d\n\n", game->map_start);
-	printf("map height is %d\n", game->height);
-	printf("map width is %d\n", game->width);
+	int	i;
+
+	i = 0;
+	printf("PRINTING THE MAP:\n");
+	while(game->map[i])
+	{
+		printf("%s\n", game->map[i]);
+		i++;
+	}
+	printf("\nplayer at X= %f, Y= %f\n", game->player.x, game->player.y);
 }
+
+// static void	print_stuff(t_game *game)
+// {
+// 	printf("Floor:'0x%08X'\n", game->floor_color);
+// 	printf("Ceiling:'0x%08X'\n\n", game->ceiling_color);
+// 	printf("North:'%s'\n", game->files.north);
+// 	printf("East:'%s'\n", game->files.east);
+// 	printf("West:'%s'\n", game->files.west);
+// 	printf("South:'%s'\n", game->files.south);
+// 	printf("map_start at %d\n\n", game->map_start);
+// 	printf("map height is %d\n", game->height);
+// 	printf("map width is %d\n", game->width);
+// }
 
 int	main(int argc, char **argv)
 {
@@ -61,12 +75,11 @@ int	main(int argc, char **argv)
 		return (cleanup(&game), EXIT_FAILURE);
 	if (!map_validity(&game))
 		return (cleanup(&game), EXIT_FAILURE);
-	print_stuff(&game);
-	for (int i = 0; i < 16; i++)
-		printf("%s", game.map[i]);
-	if (!load_map_and_components(&game))
-		return (cleanup(&game), EXIT_FAILURE);
-	mlx_loop_hook(game.mlx, &ft_hook, &game);
-	mlx_loop(game.mlx);
+	// print_map(&game);
+	// print_stuff(&game);
+	// if (!load_map_and_components(&game))
+	// 	return (cleanup(&game), EXIT_FAILURE);
+	// mlx_loop_hook(game.mlx, &ft_hook, &game);
+	// mlx_loop(game.mlx);
 	return (cleanup(&game), EXIT_SUCCESS);
 }
