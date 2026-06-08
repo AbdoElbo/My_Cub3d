@@ -6,7 +6,7 @@
 /*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/08 21:00:03 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/08 21:45:23 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ int	main(int argc, char **argv)
 		return (cleanup(&game), EXIT_FAILURE);
 	if (!map_validity(&game))
 		return (cleanup(&game), EXIT_FAILURE);
-	// print_map(&game);
-	// print_stuff(&game);
+	print_map(&game);
 	// if (!load_map_and_components(&game))
 	// 	return (cleanup(&game), EXIT_FAILURE);
 	// mlx_loop_hook(game.mlx, &ft_hook, &game);

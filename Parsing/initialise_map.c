@@ -6,7 +6,7 @@
 /*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/08 20:59:30 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/08 21:43:11 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static char	**read_into_map(t_game *game, char *file_name)
 	while (line)
 	{
 		map[i] = line;
-		map[i][ft_strlen(line) - 1] = '\0';
+		if (map[i][ft_strlen(line) - 1] == '\n')
+			map[i][ft_strlen(line) - 1] = '\0';
 		i++;
 		line = get_next_line(game->fd);
 	}
