@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 16:29:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/08 18:29:02 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/09 15:08:19 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@ int	arr_size(char **arr)
 
 void	cleanup(t_game *game)
 {
-	free_arr(game->map);
+	if (game->map)
+		free_arr(game->map);
+	else
+		return ;
 	if (game->files.north)
 		free(game->files.north);
 	if (game->files.south)

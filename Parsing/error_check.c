@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 13:31:43 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/06 17:34:00 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/09 15:01:53 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	check_arg(char *str)
 	int	len;
 
 	len = ft_strlen(str) - 1;
+	if (!len)
+		return (0);
 	if (str[len] == 'b')
 	{
 		len--;
@@ -27,12 +29,7 @@ int	check_arg(char *str)
 			{
 				len--;
 				if (str[len] == '.')
-				{
-					if (!len)
-						return (0);
-					else
-						return (1);
-				}
+					return (1);
 			}
 		}
 	}

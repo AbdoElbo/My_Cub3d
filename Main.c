@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/08 21:45:23 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/09 15:28:03 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,10 @@ int	load_map_and_components(t_game *game)
 
 void	print_map(t_game *game)
 {
-	int	i;
-
-	i = 0;
-	printf("PRINTING THE MAP:\n");
-	while(game->map[i])
-	{
+	printf("\nPRINTING THE MAP:\n");
+	for(int i = 0; game->map[i]; i++)
 		printf("%s\n", game->map[i]);
-		i++;
-	}
-	printf("\nplayer at X= %f, Y= %f\n", game->player.x, game->player.y);
+	printf("\nPlayer at X= %f, Y= %f\n", game->player.x, game->player.y);
 }
 
 // static void	print_stuff(t_game *game)
