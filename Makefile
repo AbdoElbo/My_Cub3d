@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gekko <gekko@student.42.fr>                +#+  +:+       +#+         #
+#    By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/07 16:20:34 by aelbouaz          #+#    #+#              #
-#    Updated: 2026/06/08 18:30:56 by gekko            ###   ########.fr        #
+#    Updated: 2026/06/09 21:06:50 by aelbouaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CUBED = cub3D
 CUBED_SRCS = Main.c \
 			Parsing/error_check.c Parsing/get_colors.c \
 			Parsing/get_textures.c Parsing/gnl.c Parsing/initialise_map.c \
-			Parsing/utils_1.c Parsing/update_map.c \
+			Parsing/utils_1.c Parsing/update_map.c Parsing/texture_color_check.c\
 			Map_validity/Map_validity.c Map_validity/Components_exist.c \
 			Map_validity/Flood_fill.c
 

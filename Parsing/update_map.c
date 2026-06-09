@@ -6,13 +6,13 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 12:56:06 by gekko             #+#    #+#             */
-/*   Updated: 2026/06/09 15:37:41 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/09 21:02:58 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Parsing.h"
 
-char	*make_empty(int width)
+static char	*make_empty(int width)
 {
 	char    *new;
 	int     size;
@@ -32,7 +32,7 @@ char	*make_empty(int width)
 	return (new);
 }
 
-char	*line_padding(char *str, int width)
+static char	*line_padding(char *str, int width)
 {
 	char	*new;
 	int		size;

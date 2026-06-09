@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/08 18:37:42 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/09 20:58:12 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,13 @@ typedef enum s_color
 typedef struct s_files
 {
 	char	*north;
+	int		fd_n;
 	char	*south;
+	int		fd_s;
 	char	*west;
+	int		fd_w;
 	char	*east;
+	int		fd_e;
 }	t_files;
 
 typedef struct s_player

@@ -6,34 +6,11 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 16:29:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/09 15:08:19 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/09 20:50:50 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Parsing.h"
-
-char **copy_map(char **map)
-{
-	char	**copy;
-	int		i;
-
-	i = 0;
-	while (map[i])
-		i++;
-	copy = malloc(sizeof(char *) * (i + 1));
-	if (!copy)
-		return (NULL);
-	i = 0;
-	while (map[i])
-	{
-		copy[i] = ft_strdup(map[i]);
-		if (!copy[i])
-			return (free_arr(copy), NULL);
-		i++;
-	}
-	copy[i] = NULL;
-	return (copy);
-}
 
 int	is_empty(char *str)
 {

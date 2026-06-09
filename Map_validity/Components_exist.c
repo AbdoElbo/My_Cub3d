@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Components_exist.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:26:19 by gekko             #+#    #+#             */
-/*   Updated: 2026/06/08 18:31:47 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/09 20:35:14 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	player_exists(t_game *game)
 		j = 0;
 		while(game->map[i][j])
 		{
-			if (game->map[i][j] == 'N' || game->map[i][j] == 'W' 
+			if (game->map[i][j] == 'N' || game->map[i][j] == 'W'
 				|| game->map[i][j] == 'E' || game->map[i][j] == 'S')
 			{
 				found++;
@@ -52,7 +52,7 @@ int	comp_counter(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'W' 
+			if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'W'
 				|| map[i][j] == 'E' || map[i][j] == 'S')
 				count++;
 			j++;
