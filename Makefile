@@ -6,7 +6,7 @@
 #    By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/07 16:20:34 by aelbouaz          #+#    #+#              #
-#    Updated: 2026/06/09 21:06:50 by aelbouaz         ###   ########.fr        #
+#    Updated: 2026/06/10 14:27:09 by aelbouaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,10 @@ CUBED_OBJ_BONUS = $(addprefix $(OBJS_DIR)/, $(CUBED_SRCS_BONUS:.c=.o))
 
 DEPS = ${CUBED_OBJ:.o=.d} ${CUBED_OBJ_BONUS:.o=.d}
 
-LIBFT_DIR = Libft/
+LIBFT_DIR = Libraries/Libft/
 LIBFT = $(LIBFT_DIR)libft.a
 
-MLX42_DIR = Mlx42
+MLX42_DIR = Libraries/Mlx42
 MLX42_LIB = $(MLX42_DIR)/build/libmlx42.a
 MLX42_INC = $(MLX42_DIR)/include
 

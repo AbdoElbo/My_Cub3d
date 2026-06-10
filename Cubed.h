@@ -6,15 +6,15 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/09 20:58:12 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 14:29:20 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBED_H
 # define CUBED_H
 
-# include "Libft/libft.h"
-# include "Mlx42/include/MLX42/MLX42.h"
+# include "Libraries/Libft/libft.h"
+# include "Libraries/Mlx42/include/MLX42/MLX42.h"
 # include <signal.h>
 # include <stdlib.h>
 # include <unistd.h>

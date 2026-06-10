@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:38:34 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/09 21:33:35 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 14:25:06 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	map_validity(t_game *game)
 {
 	int	p_exist;
 
-	// if (!textures_exist(game))
-	// 	return (0);
+	if (!textures_exist(game))
+		return (0);
 	p_exist = player_exists(game);
 	if (p_exist > 1)
 		return (printf(R"ERROR:\nMultiple Players Found!\n"RESET), 0);
