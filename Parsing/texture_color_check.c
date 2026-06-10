@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 13:31:43 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/09 21:31:09 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 13:58:27 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ static int	textures_check(char **map)
 	while (map[i])
 	{
 		j = 0;
-		while (is_empty(map[i]))
+		while (map [i] && is_empty(map[i]))
 			i++;
-		while (ft_isspace(map[i][j]))
+		if (!map[i])
+			break ;
+		while (map [i] && ft_isspace(map[i][j]))
 			j++;
 		if (map[i][j] == 'N' || map[i][j] == 'W'
 			|| map[i][j] == 'E' || map[i][j] == 'S')
@@ -50,9 +52,11 @@ static int	colors_check(char **map, int index)
 	while (map[i])
 	{
 		j = 0;
-		while (is_empty(map[i]))
+		while (map [i] && is_empty(map[i]))
 			i++;
-		while (ft_isspace(map[i][j]))
+		if (!map[i])
+			break ;
+		while (map [i] && ft_isspace(map[i][j]))
 			j++;
 		if (map[i][j] == 'F' || map[i][j] == 'C')
 			counter++;
@@ -108,6 +112,7 @@ int check_map_order(char **map)
 		printf(R"Error: \nMap Not Ordered Correctly or Missing ");
 		return (printf("Colors! Exiting...\n"RESET), 0);
 	}
+
 	// i = check_map_existance(map, j);
 	// if (i == 0)
 	// {
