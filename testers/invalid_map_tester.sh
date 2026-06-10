@@ -1,7 +1,7 @@
 #!/bin/bash
 
-PROGRAM="./cub3D"
-MAPS_DIR="./hurtsMyEyes/maps/invalid"
+PROGRAM="../cub3D"
+MAPS_DIR="../hurtsMyEyes/maps/invalid"
 
 RED="\033[1;31m"
 GREEN="\033[1;32m"
