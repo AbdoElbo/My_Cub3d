@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/10 14:08:47 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 17:40:13 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	load_map_and_components(t_game *game)
 
 void	print_map(t_game *game)
 {
+	printf("\n map->height:%d\n", game->height);
 	printf("\nPRINTING THE MAP:\n");
 	for(int i = 0; game->map[i]; i++)
 		printf("%s\n", game->map[i]);
@@ -69,7 +70,7 @@ int	main(int argc, char **argv)
 		return (cleanup(&game), EXIT_FAILURE);
 	if (!map_validity(&game))
 		return (cleanup(&game), EXIT_FAILURE);
-	// print_map(&game);
+	print_map(&game);
 	// if (!load_map_and_components(&game))
 	// 	return (cleanup(&game), EXIT_FAILURE);
 	// mlx_loop_hook(game.mlx, &ft_hook, &game);

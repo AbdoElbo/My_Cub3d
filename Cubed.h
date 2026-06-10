@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/10 15:08:58 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 17:40:09 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ typedef struct s_game
 	int			status;
 	int			height;
 	int			width;
-	int			map_height;
-	int			map_width;
 	int			map_start;
 	int			fd;
 }	t_game;
