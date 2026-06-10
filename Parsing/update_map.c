@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 12:56:06 by gekko             #+#    #+#             */
-/*   Updated: 2026/06/09 21:02:58 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 15:17:25 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static char	*make_empty(int width)
 {
-	char    *new;
-	int     size;
+	char	*new;
+	int		size;
 	int		i;
 
 	size = width + 2;

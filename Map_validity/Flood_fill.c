@@ -6,39 +6,40 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:25:46 by gekko             #+#    #+#             */
-/*   Updated: 2026/06/10 13:55:27 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 15:14:27 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Validity.h"
 
-static void	recursive(char **map, int row, int col, int height, int width)
+static void	recursive(t_game *game, int row, int col, int height)
 	{
-	if (row < 0 || row >= height || col < 0 || col >= width)
+	if (row >= height || col >= game->width
+		|| row < 0 || col < 0)
 		return ;
-	if (map[row][col] == '1' || map[row][col] == '.')
+	if (game->map[row][col] == '1' || game->map[row][col] == '.')
 		return ;
-	map[row][col] = '.';
-	recursive(map, row, col - 1, height, width);
-	recursive(map, row, col + 1, height, width);
-	recursive(map, row + 1, col, height, width);
-	recursive(map, row - 1, col, height, width);
+	game->map[row][col] = '.';
+	recursive(game, row, col - 1, height);
+	recursive(game, row, col + 1, height);
+	recursive(game, row + 1, col, height);
+	recursive(game, row - 1, col, height);
 }
 
-bool	flood_fill_outside(t_game *game)
+int	flood_fill_outside(t_game *game)
 {
 	int	counter_before;
 	int	counter_after;
 
 	counter_before = comp_counter(game->map);
-	recursive(game->map, 0, 0, game->height + 1, game->width);
+	recursive(game, 0, 0, game->height + 1);
 	counter_after = comp_counter(game->map);
 	if (counter_before != counter_after)
-		return(false);
+		return (false);
 	return (true);
 }
 
-static bool check_surroundings(char **str, int index_i, int index_j)
+static int	check_surroundings(char **str, int index_i, int index_j)
 {
 	char	up;
 	char	down;
@@ -64,7 +65,7 @@ static bool check_surroundings(char **str, int index_i, int index_j)
 	return (true);
 }
 
-bool	check_inside(char **str)
+int	check_inside(char **str)
 {
 	int	i;
 	int	j;
@@ -73,7 +74,7 @@ bool	check_inside(char **str)
 	while (str[i])
 	{
 		j = 1;
-		while(str[i][j])
+		while (str[i][j])
 		{
 			if (str[i][j] == '0' || str[i][j] == 'N' || str[i][j] == 'W'
 				|| str[i][j] == 'E' || str[i][j] == 'S')

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:26:19 by gekko             #+#    #+#             */
-/*   Updated: 2026/06/09 20:35:14 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 15:01:24 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	player_exists(t_game *game)
 	while (game->map[i])
 	{
 		j = 0;
-		while(game->map[i][j])
+		while (game->map[i][j])
 		{
 			if (game->map[i][j] == 'N' || game->map[i][j] == 'W'
 				|| game->map[i][j] == 'E' || game->map[i][j] == 'S')

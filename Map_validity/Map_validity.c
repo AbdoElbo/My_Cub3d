@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:38:34 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/10 14:25:06 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 15:08:17 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int	textures_exist(t_game *game)
 {
-	game->files.fd_n =  open(game->files.north, O_RDONLY);
+	game->files.fd_n = open(game->files.north, O_RDONLY);
 	if (game->files.fd_n < 0)
 		return (printf(R"Error:\nFailed to open North texture.\n"RESET), 0);
-	game->files.fd_w =  open(game->files.west, O_RDONLY);
+	game->files.fd_w = open(game->files.west, O_RDONLY);
 	if (game->files.fd_w < 0)
 		return (printf(R"Error:\nFailed to open West texture.\n"RESET), 0);
-	game->files.fd_e =  open(game->files.east, O_RDONLY);
+	game->files.fd_e = open(game->files.east, O_RDONLY);
 	if (game->files.fd_e < 0)
 		return (printf(R"Error:\nFailed to open East texture.\n"RESET), 0);
-	game->files.fd_s =  open(game->files.south, O_RDONLY);
+	game->files.fd_s = open(game->files.south, O_RDONLY);
 	if (game->files.fd_s < 0)
 		return (printf(R"Error:\nFailed to open South texture.\n"RESET), 0);
 	return (1);

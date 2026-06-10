@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 13:31:43 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/10 13:58:27 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 15:16:43 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,33 +69,7 @@ static int	colors_check(char **map, int index)
 	return (i);
 }
 
-// static int check_map_existance(char **map, int index)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	counter;
-
-// 	i = index;
-// 	counter = 0;
-// 	while (is_empty(map[i]))
-// 		i++;
-// 	while (map[i])
-// 	{
-// 		j = 0;
-// 		while (ft_isspace(map[i][j]))
-// 			j++;
-// 		if (map[i][j] == 'F' || map[i][j] == 'C')
-// 			counter++;
-// 		else
-// 			break ;
-// 		i++;
-// 	}
-// 	if (counter == 0)
-// 		return (0);
-// 	return (i);
-// }
-
-int check_map_order(char **map)
+int	check_map_order(char **map)
 {
 	int	i;
 	int	j;
@@ -112,12 +86,5 @@ int check_map_order(char **map)
 		printf(R"Error: \nMap Not Ordered Correctly or Missing ");
 		return (printf("Colors! Exiting...\n"RESET), 0);
 	}
-
-	// i = check_map_existance(map, j);
-	// if (i == 0)
-	// {
-	// 	printf(R"Error: \nMap Doesn't");
-	// 	return (printf(" exist! Exiting...\n"RESET), 0);
-	// }
 	return (1);
 }

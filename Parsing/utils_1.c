@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 16:29:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/09 20:50:50 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 15:17:44 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_empty(char *str)
 	i = 0;
 	if (!str)
 		return (1);
-	while(str[i])
+	while (str[i])
 	{
 		if (!ft_isspace(str[i]))
 			return (0);

@@ -6,14 +6,18 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 13:36:06 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/09 21:30:32 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 15:11:13 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
-#define PARSING_H
+# define PARSING_H
 
-#include "../Cubed.h"
+# include "../Cubed.h"
+
+typedef struct s_game	t_game ;
+typedef struct s_files	t_files ;
+typedef struct s_player	t_player ;
 
 int		error_check(int argc, char *argv);
 int		check_arg(char *str);

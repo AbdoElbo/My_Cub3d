@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/09 21:30:21 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 15:12:33 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static int	get_map_size(t_game *game)
 	game->height = i - game->map_start - 1;
 	if (!update_map(game))
 		return (0);
-	game->height += 2; // i added the extra space (framed the map by spaces)
+	game->height += 2;
 	game->width += 2;
 	return (1);
 }

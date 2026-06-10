@@ -6,12 +6,12 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 17:11:56 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/09 20:15:08 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 15:18:18 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACROS_H
-#define MACROS_H
+# define MACROS_H
 
 # define BUFFER_SIZE 200
 // we'll limit this to the limit we put ourselves, so we'll always do one read()

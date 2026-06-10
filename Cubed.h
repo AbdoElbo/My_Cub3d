@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/10 14:29:20 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/10 15:08:58 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "Libraries/Libft/libft.h"
 # include "Libraries/Mlx42/include/MLX42/MLX42.h"
+# include "Libraries/Macros.h"
 # include <signal.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -22,17 +23,8 @@
 # include <math.h>
 # include <fcntl.h>
 # include <sys/time.h>
-# include "Macros.h"
-
-typedef enum s_color
-{
-	RED,
-	GREEN,
-	BLUE,
-	WHITE,
-	BROWN,
-	CYAN,
-}	t_color;
+# include "Parsing/Parsing.h"
+# include "Map_validity/Validity.h"
 
 typedef struct s_files
 {
@@ -72,8 +64,5 @@ typedef struct s_game
 }	t_game;
 
 void	print_map(t_game *game);
-
-#include "Parsing/Parsing.h"
-#include "Map_validity/Validity.h"
 
 #endif

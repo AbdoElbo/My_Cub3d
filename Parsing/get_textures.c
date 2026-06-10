@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:55:37 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/06 17:50:03 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/10 15:12:10 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	get_north_location(t_game *game, int i, int j)
 {
-	char	*str;
-	int		k;
+	char		*str;
+	int			k;
 	static int	counter;
 
 	j += 2;
@@ -38,8 +38,8 @@ static int	get_north_location(t_game *game, int i, int j)
 
 static int	get_south_location(t_game *game, int i, int j)
 {
-	char	*str;
-	int		k;
+	char		*str;
+	int			k;
 	static int	counter;
 
 	j += 2;
@@ -62,8 +62,8 @@ static int	get_south_location(t_game *game, int i, int j)
 
 static int	get_west_location(t_game *game, int i, int j)
 {
-	char	*str;
-	int		k;
+	char		*str;
+	int			k;
 	static int	counter;
 
 	j += 2;
