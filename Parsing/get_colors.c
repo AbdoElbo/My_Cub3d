@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 18:46:33 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/10 15:11:40 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/12 11:23:23 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ static int	get_floor_color(t_game *game, int i, int j)
 	counter++;
 	arr = ft_split(&game->map[i][j], ',');
 	if (!arr)
-		return (printf(R"Error:\nNo Floor Color Found!\n"RESET), 0);
+		return (printf(Y"Error:\nNo Floor Color Found!\n"RESET), 0);
 	if (counter > 1)
-		return (free_arr(arr), printf(R"Error:\nDuplicated color\n"RESET), 0);
+		return (free_arr(arr), printf(Y"Error:\nDuplicated color\n"RESET), 0);
 	if (arr_size(arr) != 3)
-		return (free_arr(arr), printf(R"Error:\nWrong RGB values\n"RESET), 0);
+		return (free_arr(arr), printf(Y"Error:\nWrong RGB values\n"RESET), 0);
 	r = ft_atoi(arr[0]);
 	g = ft_atoi(arr[1]);
 	b = ft_atoi(arr[2]);
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
-		return (free_arr(arr), printf(R"Error:\nWrong RGB values\n"RESET), 0);
+		return (free_arr(arr), printf(Y"Error:\nWrong RGB values\n"RESET), 0);
 	game->floor_color = get_rgb_color(r, g, b);
 	return (free_arr(arr), 1);
 }
@@ -59,14 +59,14 @@ static int	get_ceiling_color(t_game *game, int i, int j)
 	counter++;
 	arr = ft_split(&game->map[i][j], ',');
 	if (!arr)
-		return (printf(R"Error:\nNo Ceiling Color Found!\n"RESET), 0);
+		return (printf(Y"Error:\nNo Ceiling Color Found!\n"RESET), 0);
 	if (counter > 1)
-		return (free_arr(arr), printf(R"Error:\nDuplicated C color\n"RESET), 0);
+		return (free_arr(arr), printf(Y"Error:\nDuplicated C color\n"RESET), 0);
 	r = ft_atoi(arr[0]);
 	g = ft_atoi(arr[1]);
 	b = ft_atoi(arr[2]);
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
-		return (free_arr(arr), printf(R"Error:\nWrong RGB values\n"RESET), 0);
+		return (free_arr(arr), printf(Y"Error:\nWrong RGB values\n"RESET), 0);
 	game->ceiling_color = get_rgb_color(r, g, b);
 	return (free_arr(arr), 1);
 }
@@ -91,6 +91,6 @@ int	get_colors(t_game *game)
 		i++;
 	}
 	if (game->map_start == -1)
-		return (printf(R"Error:\n(MAP) Map Not Found!! Exiting...\n"RESET), 0);
+		return (printf(Y"Error:\n(MAP) Map Not Found!! Exiting...\n"RESET), 0);
 	return (1);
 }

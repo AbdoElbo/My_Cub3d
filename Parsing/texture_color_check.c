@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 13:31:43 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/10 15:16:43 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/12 11:23:29 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ int	check_map_order(char **map)
 	i = textures_check(map);
 	if (i == 0)
 	{
-		printf(R"Error: \nMap Not Ordered Correctly or Missing ");
+		printf(Y"Error: \nMap Not Ordered Correctly or Missing ");
 		return (printf("Textures! Exiting...\n"RESET), 0);
 	}
 	j = colors_check(map, i);
 	if (j == 0)
 	{
-		printf(R"Error: \nMap Not Ordered Correctly or Missing ");
+		printf(Y"Error: \nMap Not Ordered Correctly or Missing ");
 		return (printf("Colors! Exiting...\n"RESET), 0);
 	}
 	return (1);

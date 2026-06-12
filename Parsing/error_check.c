@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 13:31:43 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/09 21:02:50 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/12 11:23:15 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int	error_check(int argc, char *argv)
 {
 	if (argc != 2)
 	{
-		printf(R"Please Enter correct number of Args\n"RESET);
+		printf(Y"Please Enter correct number of Args\n"RESET);
 		printf("Example: ./cubed maps/map1.cub\n");
 		return (0);
 	}
 	if (!check_arg(argv))
 	{
-		printf(R"Error:\nWrong File Bruh\n"RESET);
+		printf(Y"Error:\nWrong File Bruh\n"RESET);
 		printf("Format *.cub\n");
 		return (0);
 	}

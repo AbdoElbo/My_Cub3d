@@ -23,8 +23,8 @@ Once Compiled, run the program by passing a ".cub" map file as an argument:\
 replace "your_map.cub" with the path to your actual map file.\
 for example: **./cub3D /Resources/maps/simple.cub**
 
-The program will exist cleanly if the map provided has flaws, like an disorderd\
-map components, or an open map and many many more errors\
+The program will exist cleanly if the map provided has flaws, like disorderd\
+map components, or an open map and many many more errors prevention..\
 (there are examples in the /Resources/maps/invalid folder for invalid maps to check).
 
 ## Resources:
