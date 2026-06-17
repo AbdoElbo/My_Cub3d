@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/10 17:40:09 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/17 15:11:17 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,23 @@ typedef struct s_files
 {
 	char	*north;
 	int		fd_n;
+	int		fd_n_flag;
 	char	*south;
 	int		fd_s;
+	int		fd_s_flag;
 	char	*west;
 	int		fd_w;
+	int		fd_w_flag;
 	char	*east;
 	int		fd_e;
+	int		fd_e_flag;
 }	t_files;
 
 typedef struct s_player
 {
 	float	x;
 	float	y;
+	char	direction;
 }	t_player;
 
 typedef struct s_game

@@ -1,4 +1,15 @@
-SO ./assets/textures/south.xpm
+
+
+
+
+
+
+
+
+
+
+
+           SO ./assets/textures/south.xpm
 WE  			./assets/textures/west.xpm
 EA./assets/textures/east.xpm
 NO                 ./assets/textures/north.xpm
@@ -18,4 +29,4 @@ C 252, 202, 0
                11100011001
                11000011001
                11111111111
-               
+
