@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/17 15:56:22 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/06/18 18:38:03 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_hook(void *param)
 	t_game		*game;
 
 	game = (t_game *)param;
+	update_minimap(game);
+	draw_minimap(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	// if (mlx_is_key_down(game->mlx, MLX_KEY_W))
@@ -34,7 +36,7 @@ int	load_map_and_components(t_game *game)
 	game->mlx = mlx_init(MAX_WIDTH, MAX_HEIGHT, "Our Awesome Game", 1);
 	if (!game->mlx)
 		return (printf("Error:\nMlx initialization failed\n"), 0);
-	game->img = mlx_new_image(game->mlx, 1000, 1000);
+	game->img = mlx_new_image(game->mlx, MINIMAP_HEIGHT, MINIMAP_WIDTH);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 	return (1);
 }
@@ -46,6 +48,13 @@ void	print_map(t_game *game)
 	for(int i = 0; game->map[i]; i++)
 		printf("%s\n", game->map[i]);
 	printf("\nPlayer at X= %f, Y= %f\n", game->player.x, game->player.y);
+}
+
+void	print_2array(char **arr)
+{
+	printf("\nPRINTING THE 2ARRAY:\n");
+	for(int i = 0; arr[i]; i++)
+		printf("%s\n", arr[i]);
 }
 
 // static void	print_stuff(t_game *game)
@@ -70,9 +79,13 @@ int	main(int argc, char **argv)
 		return (cleanup(&game), EXIT_FAILURE);
 	if (!map_validity(&game))
 		return (cleanup(&game), EXIT_FAILURE);
-	// if (!load_map_and_components(&game))
-	// 	return (cleanup(&game), EXIT_FAILURE);
-	// mlx_loop_hook(game.mlx, &ft_hook, &game);
-	// mlx_loop(game.mlx);
+	print_map(&game);
+	if (!make_plane(&game))
+		return (cleanup(&game), EXIT_FAILURE);
+
+	if (!load_map_and_components(&game))
+		return (cleanup(&game), EXIT_FAILURE);
+	mlx_loop_hook(game.mlx, &ft_hook, &game);
+	mlx_loop(game.mlx);
 	return (cleanup(&game), EXIT_SUCCESS);
 }

@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Parsing.h                                          :+:      :+:    :+:   */
+/*   Plane.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/04 13:36:06 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/18 18:35:40 by aelbouaz         ###   ########.fr       */
+/*   Created: 2026/06/17 17:47:31 by aelbouaz          #+#    #+#             */
+/*   Updated: 2026/06/18 18:39:52 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#ifndef PLANE_H
+# define PLANE_H
 
-# include "../Cubed.h"
+#include "../Cubed.h"
 
 typedef struct s_game	t_game ;
 typedef struct s_files	t_files ;
 typedef struct s_player	t_player ;
 
+# define RADIUS 5
+# define MINIMAP_SIZE (RADIUS * 2 + 1)
+# define TILE_SIZE 25
 
-int			error_check(int argc, char *argv);
-int			check_arg(char *str);
+int		make_plane(t_game *game);
+void	update_minimap(t_game *game);
+void	draw_minimap(t_game *game);
 
-int			init_map(int argc, char *argv, t_game *game);
-char		*get_next_line(int fd);
-int			check_map_order(char **map);
 
-uint32_t	get_rgb_color(int r, int g, int b);
-int			get_textures(t_game *game);
-int			get_colors(t_game *game);
-
-int			update_map(t_game *game);
-
-int			is_empty(char *str);
-void		free_arr(char **arr);
-int			arr_size(char **arr);
-void		cleanup(t_game *game);
-
-#endif
+# endif

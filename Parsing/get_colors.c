@@ -6,13 +6,13 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 18:46:33 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/12 11:23:23 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/18 18:35:09 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Parsing.h"
 
-static uint32_t	get_rgb_color(int r, int g, int b)
+uint32_t	get_rgb_color(int r, int g, int b)
 {
 	return (r << 24 | g << 16 | b << 8 | 255);
 }

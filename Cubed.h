@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/17 15:11:17 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/06/18 14:38:13 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <sys/time.h>
 # include "Parsing/Parsing.h"
 # include "Map_validity/Validity.h"
+# include "Plane/Plane.h"
 
 typedef struct s_files
 {
@@ -46,12 +47,16 @@ typedef struct s_player
 {
 	float	x;
 	float	y;
+	float	dir_x;
+	float	dir_y;
+	float	speed;
 	char	direction;
 }	t_player;
 
 typedef struct s_game
 {
 	char		**map;
+	char		**mini;
 	t_player	player;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
@@ -67,5 +72,6 @@ typedef struct s_game
 }	t_game;
 
 void	print_map(t_game *game);
+void	print_2array(char **arr);
 
 #endif
