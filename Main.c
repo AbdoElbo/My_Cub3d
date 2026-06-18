@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/17 15:56:22 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/06/18 14:18:17 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_hook(void *param)
 	t_game		*game;
 
 	game = (t_game *)param;
+	render_frame(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	// if (mlx_is_key_down(game->mlx, MLX_KEY_W))
@@ -34,8 +35,8 @@ int	load_map_and_components(t_game *game)
 	game->mlx = mlx_init(MAX_WIDTH, MAX_HEIGHT, "Our Awesome Game", 1);
 	if (!game->mlx)
 		return (printf("Error:\nMlx initialization failed\n"), 0);
-	game->img = mlx_new_image(game->mlx, 1000, 1000);
-	mlx_image_to_window(game->mlx, game->img, 0, 0);
+	// game->img = mlx_new_image(game->mlx, 1000, 1000);
+	// mlx_image_to_window(game->mlx, game->img, 0, 0);
 	return (1);
 }
 
@@ -70,9 +71,14 @@ int	main(int argc, char **argv)
 		return (cleanup(&game), EXIT_FAILURE);
 	if (!map_validity(&game))
 		return (cleanup(&game), EXIT_FAILURE);
-	// if (!load_map_and_components(&game))
-	// 	return (cleanup(&game), EXIT_FAILURE);
-	// mlx_loop_hook(game.mlx, &ft_hook, &game);
-	// mlx_loop(game.mlx);
+	if (!load_map_and_components(&game))
+		return (cleanup(&game), EXIT_FAILURE);
+	game.ray.texture = mlx_load_png("Resources/textures/north_texture.png"); //FOR TESTING PURPOSES.
+	if (!game.ray.texture)
+		printf("NO GOOD.\n");
+	game.framebuf = mlx_new_image(game.mlx, MAX_WIDTH, MAX_HEIGHT);
+	mlx_image_to_window(game.mlx, game.framebuf, 0, 0);
+	mlx_loop_hook(game.mlx, &ft_hook, &game);
+	mlx_loop(game.mlx);
 	return (cleanup(&game), EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/17 15:11:17 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/06/18 13:29:17 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <sys/time.h>
 # include "Parsing/Parsing.h"
 # include "Map_validity/Validity.h"
+# include "Rendering/Rendering.h"
 
 typedef struct s_files
 {
@@ -49,6 +50,14 @@ typedef struct s_player
 	char	direction;
 }	t_player;
 
+typedef struct s_ray
+{
+	float	distance;
+	float	angle;
+	float	wall_x; // between 0.0 and 1.0
+	mlx_texture_t	*texture;
+}	t_ray;
+
 typedef struct s_game
 {
 	char		**map;
@@ -57,6 +66,7 @@ typedef struct s_game
 	mlx_image_t	*img;
 	int			multiplier;
 	t_files		files;
+	t_ray		ray;
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
 	int			status;
@@ -64,6 +74,7 @@ typedef struct s_game
 	int			width;
 	int			map_start;
 	int			fd;
+	mlx_image_t	*framebuf;
 }	t_game;
 
 void	print_map(t_game *game);
