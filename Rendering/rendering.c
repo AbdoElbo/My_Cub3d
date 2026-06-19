@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 13:00:44 by lpieck            #+#    #+#             */
-/*   Updated: 2026/06/18 14:58:43 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/06/19 14:27:36 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Rendering.h"
 
-
-void draw_background_to_buf(t_game *game)
+void	 draw_background_to_buf(t_game *game)
 {
 	int i;
 	uint32_t *pixels;
@@ -32,7 +31,37 @@ void draw_background_to_buf(t_game *game)
 	}
 }
 
-void draw_column_to_buf(t_game *game, int col)
+static uint32_t	 sample_texture_pixel(t_game *game, int tex_x, int tex_y)
+{
+	uint8_t *p;
+
+	p = &game->ray.texture->pixels[(tex_y * 1024 + tex_x) * 4];
+	return (*(uint32_t *)p);
+}
+
+void	 draw_to_buf(t_game *game, t_draw_params *dp)
+{
+	int			tex_x;
+	double		step; // how many pixels from the texture are taken. the further, the less pixels
+	double		tex_pos; // makes sure the starting pixels are correct: if close to the wall, you do not see the top part of the texture
+	int			tex_y;
+	uint32_t	*dst;
+
+	step = (double)1024 / dp->line_height;
+	tex_x = (int)(game->ray.wall_x * 1024);
+	tex_pos = (dp->draw_start - MAX_HEIGHT / 2 + dp->line_height / 2) * step;
+	dst = (uint32_t *)game->framebuf->pixels + dp->draw_start * MAX_WIDTH + dp->col;
+	while (dp->draw_start < dp->draw_end)
+	{
+		tex_y = (int)tex_pos % 1024;
+		tex_pos += step;
+		*dst = sample_texture_pixel(game, tex_x, tex_y);
+		dst += MAX_WIDTH;
+		dp->draw_start++;
+	}
+}
+
+void	 define_column_heifht(t_game *game, int col)
 {
 	// shoot_ray();
 	// texture resolution currently is 1024 x 1024
@@ -43,8 +72,8 @@ void draw_column_to_buf(t_game *game, int col)
 	int line_height;
 	int draw_start;
 	int draw_end;
-	int tex_x;
-
+	t_draw_params dp;
+	
 	line_height = (int)(MAX_HEIGHT / game->ray.distance);
 	draw_start = MAX_HEIGHT / 2 - line_height / 2;
 	if (draw_start < 0)
@@ -52,27 +81,14 @@ void draw_column_to_buf(t_game *game, int col)
 	draw_end = MAX_HEIGHT / 2 + line_height / 2;
 	if (draw_end > MAX_HEIGHT)
 		draw_end = MAX_HEIGHT - 1; //test what happens without - 1
-	tex_x = (int)(game->ray.wall_x * 1024);
-
-
-	double step    = (double)1024 / line_height;
-	double tex_pos = (draw_start - MAX_HEIGHT / 2 + line_height / 2) * step;
-
-	uint32_t *pixels = (uint32_t *)game->framebuf->pixels;
-
-	for (int y = draw_start; y < draw_end; y++)
-	{
-		int tex_y = (int)tex_pos % 1024;
-		tex_pos += step;
-
-		uint8_t *p    = &game->ray.texture->pixels[(tex_y * 1024 + tex_x) * 4];
-		// uint32_t color = (p[3] << 24) | (p[2] << 16) | (p[1] << 8) | p[0]; this is an option as well, dont understand the difference yet
-		uint32_t color = *(uint32_t *)p;
-		pixels[y * MAX_WIDTH + col] = color;
-	}
+	dp.col = col;
+	dp.line_height = line_height;
+	dp.draw_start = draw_start;
+	dp.draw_end = draw_end;
+	draw_to_buf(game, &dp);
 }
 
-void render_frame(t_game *game)
+void	 render_frame(t_game *game)
 {
 	int i;
 
@@ -80,7 +96,7 @@ void render_frame(t_game *game)
 	i = 0;
 	while (i < MAX_WIDTH) // i <
 	{
-		draw_column_to_buf(game, i);
+		define_column_heifht(game, i);
 		i++;
 	}
 	// render_buf_to_screen(game);

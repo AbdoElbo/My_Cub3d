@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Rendering.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 12:53:28 by lpieck            #+#    #+#             */
-/*   Updated: 2026/06/18 14:53:52 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/06/19 14:24:57 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@ typedef struct s_game	t_game ;
 typedef struct s_files	t_files ;
 typedef struct s_player	t_player ;
 
-void render_frame(t_game *game);
+typedef struct s_draw_params
+{
+	int col;
+	int line_height;
+	int draw_start;
+	int draw_end;
+}	t_draw_params;
+
+void	 render_frame(t_game *game);
+
 
 #endif
