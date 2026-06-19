@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Components_exist.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:26:19 by gekko             #+#    #+#             */
-/*   Updated: 2026/06/17 15:10:45 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/06/19 17:29:31 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	player_exists(t_game *game)
 				found++;
 				game->player.x = i;
 				game->player.y = j;
-				game->player.direction = game->map[i][j];
+				game->player.dir_char = game->map[i][j];
 			}
 			j++;
 		}

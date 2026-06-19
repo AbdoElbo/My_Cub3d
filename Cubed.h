@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/18 14:38:13 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/19 17:47:55 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include "Parsing/Parsing.h"
 # include "Map_validity/Validity.h"
 # include "Plane/Plane.h"
+# include "Game_Dev/Game_Dev.h"
 
 typedef struct s_files
 {
@@ -45,12 +46,16 @@ typedef struct s_files
 
 typedef struct s_player
 {
-	float	x;
-	float	y;
-	float	dir_x;
-	float	dir_y;
-	float	speed;
-	char	direction;
+	long long	current;
+	long long	delta;
+	long long	last_move;
+	float		x;
+	float		y;
+	float		dir_x;
+	float		dir_y;
+	float		speed;
+	float		dir_float;
+	char		dir_char;
 }	t_player;
 
 typedef struct s_game

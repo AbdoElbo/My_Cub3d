@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/18 18:38:03 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/19 17:38:49 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	ft_hook(void *param)
 	draw_minimap(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_W))
-	// 	move_forward(game->mlx);
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_S))
-	// 	move_backwards(game->mlx);
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_D))
-	// 	move_right(game->mlx);
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_A))
-	// 	move_left(game->mlx);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
+		move_forwards(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
+		move_backwards(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+		move_right(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+		move_left(game);
 }
 
 int	load_map_and_components(t_game *game)
@@ -43,11 +43,11 @@ int	load_map_and_components(t_game *game)
 
 void	print_map(t_game *game)
 {
-	printf("\n map->height:%d\n", game->height);
 	printf("\nPRINTING THE MAP:\n");
 	for(int i = 0; game->map[i]; i++)
 		printf("%s\n", game->map[i]);
 	printf("\nPlayer at X= %f, Y= %f\n", game->player.x, game->player.y);
+	printf("and his direction is :%c\n", game->player.dir_char);
 }
 
 void	print_2array(char **arr)
@@ -82,7 +82,6 @@ int	main(int argc, char **argv)
 	print_map(&game);
 	if (!make_plane(&game))
 		return (cleanup(&game), EXIT_FAILURE);
-
 	if (!load_map_and_components(&game))
 		return (cleanup(&game), EXIT_FAILURE);
 	mlx_loop_hook(game.mlx, &ft_hook, &game);
