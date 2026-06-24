@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/19 17:53:39 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/23 20:53:23 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,18 @@ static long long	get_time_in_ms(void)
 void	move_forwards(t_game *game)
 {
 	char	temp;
-	int		x;
-	int		y;
+	float	x;
+	float	y;
 
 	game->player.current = get_time_in_ms();
 	if (game->player.current - game->player.last_move < game->player.speed)
 		return ;
 	x = game->player.x;
 	y = game->player.y;
-	temp = game->map[x][y];
-	if (game->map[x - 1][y] == '1')
-		return ;
+	temp = game->map[(int)x][(int)y];
+
 	game->player.last_move = game->player.current;
-	game->map[x][y] = game->map[x - 1][y];
-	game->map[x - 1][y] = temp;
-	game->player.x = game->player.x - 1;
+
 }
 
 void	move_backwards(t_game *game)

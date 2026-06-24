@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 17:11:56 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/18 18:53:32 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/23 20:39:19 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 // and we don't have to realloc again
 # define MAX_WIDTH 2000
 # define MAX_HEIGHT 1300
-# define MINIMAP_WIDTH 275
-# define MINIMAP_HEIGHT 275
 
 # define R "\033[1;31m"
 # define G "\033[1;32m"

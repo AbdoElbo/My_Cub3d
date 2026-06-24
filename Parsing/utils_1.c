@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 16:29:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/18 14:56:30 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/23 20:55:35 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,6 @@ void	cleanup(t_game *game)
 {
 	if (game->map)
 		free_arr(game->map);
-	else
-		return ;
-	if (game->mini)
-		free_arr(game->mini);
 	else
 		return ;
 	if (game->files.north)

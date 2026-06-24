@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Plane.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:47:31 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/19 17:19:02 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/23 20:54:43 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ typedef struct s_player	t_player ;
 # define MINIMAP_SIZE (RADIUS * 2 + 1)
 # define TILE_SIZE 25
 
-int		make_plane(t_game *game);
-void	update_minimap(t_game *game);
+// void    minimap_update(t_game *game);
 void	draw_minimap(t_game *game);
-
 
 # endif
