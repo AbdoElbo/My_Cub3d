@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/23 20:58:43 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/24 16:23:20 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,7 @@ void	ft_hook(void *param)
 	draw_minimap(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_W))
-	// 	move_forwards(game);
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_S))
-	// 	move_backwards(game);
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_D))
-	// 	move_right(game);
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_A))
-	// 	move_left(game);
+	move_player(game);
 }
 
 int	load_map_and_components(t_game *game)
@@ -35,8 +28,11 @@ int	load_map_and_components(t_game *game)
 	game->mlx = mlx_init(MAX_WIDTH, MAX_HEIGHT, "Our Awesome Game", 1);
 	if (!game->mlx)
 		return (printf("Error:\nMlx initialization failed\n"), 0);
-	game->mm_img = mlx_new_image(game->mlx, MINIMAP_SIZE * TILE_SIZE, MINIMAP_SIZE * TILE_SIZE);
-	mlx_image_to_window(game->mlx, game->img, 10, 10);
+	game->mm_img = mlx_new_image(game->mlx, MINIMAP_PX, MINIMAP_PX);
+	if (!game->mm_img)
+		return (printf("Error:\nMlx img_mm creation failed\n"), 0);
+	if (mlx_image_to_window(game->mlx, game->mm_img, 10, 10))
+		return (printf("Error:\nMlx img_mm image_to_window failed\n"), 0);
 	return (1);
 }
 
@@ -78,7 +74,7 @@ int	main(int argc, char **argv)
 		return (cleanup(&game), EXIT_FAILURE);
 	if (!map_validity(&game))
 		return (cleanup(&game), EXIT_FAILURE);
-	print_map(&game);
+	// print_map(&game);
 	if (!load_map_and_components(&game))
 		return (cleanup(&game), EXIT_FAILURE);
 	mlx_loop_hook(game.mlx, &ft_hook, &game);

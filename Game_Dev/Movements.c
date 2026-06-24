@@ -3,97 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   Movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/23 20:53:23 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/24 17:47:50 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game_Dev.h"
 
-static long long	get_time_in_ms(void)
+// static int	is_wall(t_game *game, float x, float y)
+// {
+// 	int map_col;
+// 	int map_row;
+
+// 	map_col = (int)x;
+// 	map_row = (int)y;
+// 	if (map_row < 0 || map_row >= game->height
+// 		|| map_col < 0 || map_col >= game->width)
+// 		return (1);
+// 	if (!game->map[map_row])
+// 		return (1);
+// 	if (map_col >= (int)ft_strlen(game->map[map_row]))
+// 		return (1);
+// 	return (game->map[map_row][map_col] == '1');
+// }
+
+void	move_player(t_game *game)
 {
-	struct timeval	time;
+	int		nx;
+	int		ny;
+	float	speed;
 
-	if (gettimeofday(&time, NULL) != 0)
-		return (-1);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-}
-
-void	move_forwards(t_game *game)
-{
-	char	temp;
-	float	x;
-	float	y;
-
-	game->player.current = get_time_in_ms();
-	if (game->player.current - game->player.last_move < game->player.speed)
-		return ;
-	x = game->player.x;
-	y = game->player.y;
-	temp = game->map[(int)x][(int)y];
-
-	game->player.last_move = game->player.current;
-
-}
-
-void	move_backwards(t_game *game)
-{
-	char	temp;
-	int		x;
-	int		y;
-
-	game->player.current = get_time_in_ms();
-	if (game->player.current - game->player.last_move < game->player.speed)
-		return ;
-	x = game->player.x;
-	y = game->player.y;
-	temp = game->map[x][y];
-	if (game->map[x + 1][y] == '1')
-		return ;
-	game->player.last_move = game->player.current;
-	game->map[x][y] = game->map[x + 1][y];
-	game->map[x + 1][y] = temp;
-	game->player.x = game->player.x + 1;
-}
-
-void	move_right(t_game *game)
-{
-	char	temp;
-	int		x;
-	int		y;
-
-	game->player.current = get_time_in_ms();
-	if (game->player.current - game->player.last_move < game->player.speed)
-		return ;
-	x = game->player.x;
-	y = game->player.y;
-	temp = game->map[x][y];
-	if (game->map[x][y + 1] == '1')
-		return ;
-	game->player.last_move = game->player.current;
-	game->map[x][y] = game->map[x][y + 1];
-	game->map[x][y + 1] = temp;
-	game->player.y = game->player.y + 1;
-}
-
-void	move_left(t_game *game)
-{
-	char	temp;
-	int		x;
-	int		y;
-
-	game->player.current = get_time_in_ms();
-	if (game->player.current - game->player.last_move < game->player.speed)
-		return ;
-	x = game->player.x;
-	y = game->player.y;
-	temp = game->map[x][y];
-	if (game->map[x][y - 1] == '1')
-		return ;
-	game->player.last_move = game->player.current;
-	game->map[x][y] = game->map[x][y - 1];
-	game->map[x][y - 1] = temp;
-	game->player.y = game->player.y - 1;
+	speed = 0.1f;
+	nx = game->player.x;
+	ny = game->player.y;
+	printf("x: %f  y: %f\n", game->player.x, game->player.y);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
+		game->player.y -= speed;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
+		game->player.y += speed;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+		game->player.x  += speed;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+		game->player.x  -= speed;
+	// if (!is_wall(game, nx, ny))
+	// {
+	// game->player.x = nx;
+	// game->player.y = ny;
+	// }/
 }
