@@ -35,7 +35,7 @@ static uint32_t	 sample_texture_pixel(t_game *game, int tex_x, int tex_y)
 {
 	uint8_t *p;
 
-	p = &game->ray.texture->pixels[(tex_y * 1024 + tex_x) * 4];
+	p = &game->ray.texture->pixels[(tex_y * 128 + tex_x) * 4];
 	return (*(uint32_t *)p);
 }
 
@@ -47,13 +47,13 @@ void	 draw_to_buf(t_game *game, t_draw_params *dp)
 	int			tex_y;
 	uint32_t	*dst;
 
-	step = (double)1024 / dp->line_height;
-	tex_x = (int)(game->ray.wall_x * 1024);
+	step = (double)128 / dp->line_height;
+	tex_x = (int)(game->ray.wall_x * 128);
 	tex_pos = (dp->draw_start - MAX_HEIGHT / 2 + dp->line_height / 2) * step;
 	dst = (uint32_t *)game->framebuf->pixels + dp->draw_start * MAX_WIDTH + dp->col;
 	while (dp->draw_start < dp->draw_end)
 	{
-		tex_y = (int)tex_pos % 1024;
+		tex_y = (int)tex_pos % 128;
 		tex_pos += step;
 		*dst = sample_texture_pixel(game, tex_x, tex_y);
 		dst += MAX_WIDTH;
@@ -64,7 +64,7 @@ void	 draw_to_buf(t_game *game, t_draw_params *dp)
 void	 define_column_heifht(t_game *game, int col)
 {
 	// shoot_ray();
-	// texture resolution currently is 1024 x 1024
+	// texture resolution currently is 128 x 128
 	game->ray.distance = 2.0;
 	game->ray.angle = 0.0;
 	game->ray.wall_x = 0.5;
@@ -73,7 +73,7 @@ void	 define_column_heifht(t_game *game, int col)
 	int draw_start;
 	int draw_end;
 	t_draw_params dp;
-	
+
 	line_height = (int)(MAX_HEIGHT / game->ray.distance);
 	draw_start = MAX_HEIGHT / 2 - line_height / 2;
 	if (draw_start < 0)
