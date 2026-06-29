@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/24 16:23:20 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/25 14:19:44 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 void	ft_hook(void *param)
 {
 	t_game		*game;
+	int		off_x;
+	int		off_y;
 
 	game = (t_game *)param;
-	draw_minimap(game);
+	off_x = (int)((game->player.x - (int)game->player.x) * TILE_SIZE);
+	off_y = (int)((game->player.y - (int)game->player.y) * TILE_SIZE);
+	draw_minimap(game, off_x, off_y);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	move_player(game);

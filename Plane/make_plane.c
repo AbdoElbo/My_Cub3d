@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:47:58 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/24 17:40:33 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/25 14:19:07 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,27 @@ static uint32_t tile_color(char c)
 	if (c == '1')
 		return (get_rgb_color(0, 0, 200));
 	if (c == '0')
-		return (get_rgb_color(20, 20, 20));
+		return (get_rgb_color(20, 0, 0));
 	return (get_rgb_color(20, 20, 20));
 }
 
 static void	draw_tile(t_game *game, int px, int py, uint32_t color)
 {
-	int dy;
-	int dx;
+	int i;
+	int j;
 
-	dy = 0;
-	while (dy < TILE_SIZE)
+	i = 0;
+	while (i < TILE_SIZE)
 	{
-		dx = 0;
-		while (dx < TILE_SIZE)
+		j = 0;
+		while (j < TILE_SIZE)
 		{
-			if (px + dx >= 0 && px + dx < MINIMAP_PX
-				&& py + dy >= 0 && py + dy < MINIMAP_PX)
-			mlx_put_pixel(game->mm_img, px + dx, py + dy, color);
-			dx++;
+			if (px + j >= 0 && px + j < MINIMAP_PX
+				&& py + i >= 0 && py + i < MINIMAP_PX)
+			mlx_put_pixel(game->mm_img, px + j, py + i, color);
+			j++;
 		}
-		dy++;
+		i++;
 	}
 }
 
@@ -61,23 +61,19 @@ static void	draw_circle(t_game *game, int cx, int cy, int r, uint32_t color)
 	}
 }
 
-void	draw_minimap(t_game *game)
+void	draw_minimap(t_game *game, int offset_x, int offset_y)
 {
 	char	c;
 	int		row;
 	int		col;
 	int		map_row;
 	int		map_col;
-	int		offset_x;
-	int		offset_y;
 
-	offset_x = (int)((game->player.x - (int)game->player.x) * TILE_SIZE);
-	offset_y = (int)((game->player.y - (int)game->player.y) * TILE_SIZE);
-	row = 0;
-	while (row < MINIMAP_SIZE)
+	row = -1;
+	while (row <= MINIMAP_SIZE)
 	{
-		col = 0;
-		while (col < MINIMAP_SIZE)
+		col = -1;
+		while (col <= MINIMAP_SIZE)
 		{
 			map_row = (int)game->player.y - RADIUS + row;
 			map_col = (int)game->player.x - RADIUS + col;
