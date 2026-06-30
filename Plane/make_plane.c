@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:47:58 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/25 14:19:07 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/30 16:59:21 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static uint32_t tile_color(char c)
 {
 	if (c == '1')
 		return (get_rgb_color(0, 0, 200));
-	if (c == '0')
-		return (get_rgb_color(20, 0, 0));
+	// if (c == '0')
+	// 	return (get_rgb_color(20, 0, 0));
 	return (get_rgb_color(20, 20, 20));
 }
 

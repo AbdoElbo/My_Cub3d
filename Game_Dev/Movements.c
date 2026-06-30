@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/25 13:54:23 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/06/30 16:58:26 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 // static int	is_wall(t_game *game, float x, float y)
 // {
-// 	int	map_col;
-// 	int	map_row;
+// 	int		map_col;
+// 	int		map_row;
+// 	char	c;
 
-// 	map_col = (int)x;
-// 	map_row = (int)y;
+// 	map_col = (int)floorf(x);
+// 	map_row = (int)floorf(y);
 // 	if (map_row < 0 || map_row >= game->height
 // 		|| map_col < 0 || map_col >= game->width)
 // 		return (1);
@@ -26,30 +27,42 @@
 // 		return (1);
 // 	if (map_col >= (int)ft_strlen(game->map[map_row]))
 // 		return (1);
+// 	c = game->map[map_row][map_col];
+// 	if (c == '1' || c == ' ' || c == '.')
+// 		return (1);
 // 	return (0);
+// }
+
+// static int	hits_wall(t_game *game, float x, float y)
+// {
+// 	float	m;
+
+// 	m = 0.2f;
+// 	return (is_wall(game, x + m, y + m)
+// 		|| is_wall(game, x - m, y + m)
+// 		|| is_wall(game, x + m, y - m)
+// 		|| is_wall(game, x - m, y - m));
 // }
 
 void	move_player(t_game *game)
 {
-	// int		nx;
-	// int		ny;
+	float	nx;
+	float	ny;
 	float	speed;
 
 	speed = 0.1f;
-	// nx = game->player.x;
-	// ny = game->player.y;
-	printf("x: %f  y: %f\n", game->player.x, game->player.y);
+	nx = game->player.x;
+	ny = game->player.y;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
-		game->player.y -= speed;
+		ny -= speed;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
-		game->player.y += speed;
+		ny += speed;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
-		game->player.x += speed;
+		nx += speed;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
-		game->player.x -= speed;
-	// if (!is_wall(game, nx, ny))
-	// {
-	// 	game->player.x = nx;
-	// 	game->player.y = ny;
-	// }
+		nx -= speed;
+	// if (!hits_wall(game, nx, game->player.y))
+	game->player.x = nx;
+	// if (!hits_wall(game, game->player.x, ny))
+	game->player.y = ny;
 }

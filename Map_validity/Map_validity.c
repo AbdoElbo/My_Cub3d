@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Map_validity.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:38:34 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/17 15:05:43 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/06/30 17:07:33 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,20 @@ int	textures_exist(t_game *game)
 	return (1);
 }
 
+void	set_player_direction(t_game *game)
+{
+	if (game->player.dir_char == 'N')
+		game->player.angle = -PI / 2;
+	else if (game->player.dir_char == 'S')
+		game->player.angle = PI / 2;
+	else if (game->player.dir_char == 'E')
+		game->player.angle = 0;
+	else if (game->player.dir_char == 'W')
+		game->player.angle = PI;
+	game->player.dir_x = cos(game->player.angle);
+	game->player.dir_y = sin(game->player.angle);
+}
+
 int	map_validity(t_game *game)
 {
 	int	p_exist;
@@ -44,6 +58,7 @@ int	map_validity(t_game *game)
 		return (printf(Y"ERROR:\nMultiple Players Found!\n"RESET), 0);
 	else if (p_exist == 0)
 		return (printf(Y"ERROR:\nNo Player Found!\n"RESET), false);
+	set_player_direction(game);
 	if (!flood_fill_outside(game))
 		return (printf(Y"Error:\nMap Open to the outside world\n"RESET), 0);
 	if (!check_inside(game->map))

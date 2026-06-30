@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/23 20:37:35 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/30 17:07:43 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # include "Map_validity/Validity.h"
 # include "Plane/Plane.h"
 # include "Game_Dev/Game_Dev.h"
+
+# define PI 3.14159265358979323846
 
 typedef struct s_files
 {
@@ -51,8 +53,11 @@ typedef struct s_player
 	long long	last_move;
 	float		x;
 	float		y;
+	float		angle;
 	float		dir_x;
 	float		dir_y;
+	float		plane_x;
+	float		plane_y;
 	float		speed;
 	float		dir_float;
 	char		dir_char;

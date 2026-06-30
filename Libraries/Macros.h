@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 17:11:56 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/23 20:39:19 by gekko            ###   ########.fr       */
+/*   Updated: 2026/06/29 17:31:49 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define BUFFER_SIZE 200
 // we'll limit this to the limit we put ourselves, so we'll always do one read()
 // and we don't have to realloc again
-# define MAX_WIDTH 2000
-# define MAX_HEIGHT 1300
+# define SCREEN_WIDTH 2000
+# define SCREEN_HEIGHT 1300
 
 # define R "\033[1;31m"
 # define G "\033[1;32m"
