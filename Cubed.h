@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/18 13:29:17 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/01 16:14:15 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include "Parsing/Parsing.h"
 # include "Map_validity/Validity.h"
 # include "Rendering/Rendering.h"
+# include "Enemy/enemy.h"
 
 typedef struct s_files
 {
@@ -67,6 +68,7 @@ typedef struct s_game
 	int			multiplier;
 	t_files		files;
 	t_ray		ray;
+	t_enemy		enemy;
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
 	int			status;
@@ -75,6 +77,7 @@ typedef struct s_game
 	int			map_start;
 	int			fd;
 	mlx_image_t	*framebuf;
+	double		zbuffer[MAX_WIDTH];
 }	t_game;
 
 void	print_map(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 13:00:44 by lpieck            #+#    #+#             */
-/*   Updated: 2026/06/19 14:27:36 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/01 16:00:23 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,14 @@ void	 draw_to_buf(t_game *game, t_draw_params *dp)
 	}
 }
 
-void	 define_column_heifht(t_game *game, int col)
+void	 define_column_height(t_game *game, int col)
 {
 	// shoot_ray();
 	// texture resolution currently is 128 x 128
 	game->ray.distance = 2.0;
 	game->ray.angle = 0.0;
 	game->ray.wall_x = 0.5;
+	game->zbuffer[col] = game->ray.distance;
 
 	int line_height;
 	int draw_start;
@@ -80,7 +81,7 @@ void	 define_column_heifht(t_game *game, int col)
 		draw_start = 0;
 	draw_end = MAX_HEIGHT / 2 + line_height / 2;
 	if (draw_end > MAX_HEIGHT)
-		draw_end = MAX_HEIGHT - 1; //test what happens without - 1
+		draw_end = MAX_HEIGHT - 1;
 	dp.col = col;
 	dp.line_height = line_height;
 	dp.draw_start = draw_start;
@@ -94,10 +95,9 @@ void	 render_frame(t_game *game)
 
 	draw_background_to_buf(game);
 	i = 0;
-	while (i < MAX_WIDTH) // i <
+	while (i < MAX_WIDTH)
 	{
-		define_column_heifht(game, i);
+		define_column_height(game, i);
 		i++;
 	}
-	// render_buf_to_screen(game);
 }

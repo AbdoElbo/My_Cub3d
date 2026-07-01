@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lpieck <lpieck@student.42.fr>              +#+  +:+       +#+         #
+#    By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/07 16:20:34 by aelbouaz          #+#    #+#              #
-#    Updated: 2026/06/18 14:53:52 by lpieck           ###   ########.fr        #
+#    Updated: 2026/07/01 16:15:24 by lpieck           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CUBED_SRCS = Main.c \
 			Parsing/get_textures.c Parsing/gnl.c Parsing/initialise_map.c \
 			Parsing/utils_1.c Parsing/update_map.c Parsing/texture_color_check.c\
 			Map_validity/Map_validity.c Map_validity/Components_exist.c \
-			Map_validity/Flood_fill.c Rendering/rendering.c
+			Map_validity/Flood_fill.c Rendering/rendering.c Enemy/enemy.c \
 
 CUBED_SRCS_BONUS = Bonus/Animations.c Bonus/Doors_opening.c \
 			Bonus/Minimap.c Bonus/Mouse_mouvements.c
