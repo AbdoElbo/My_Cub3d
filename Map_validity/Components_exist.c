@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:26:19 by gekko             #+#    #+#             */
-/*   Updated: 2026/06/29 17:36:57 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/02 15:19:28 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ int	player_exists(t_game *game)
 				|| game->map[i][j] == 'E' || game->map[i][j] == 'S')
 			{
 				found++;
-				game->player.y = i;
-				game->player.x = j;
+				game->player.y = i + 0.5f;
+				game->player.x = j + 0.5f;
 				game->player.dir_char = game->map[i][j];
+				game->map[i][j] = '0';
 			}
 			j++;
 		}

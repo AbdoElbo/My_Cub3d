@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:47:58 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/30 16:59:21 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/02 15:24:04 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ static uint32_t tile_color(char c)
 
 static void	draw_tile(t_game *game, int px, int py, uint32_t color)
 {
-	int i;
-	int j;
+	int			i;
+	int			j;
+	uint32_t	px_color;
 
 	i = 0;
 	while (i < TILE_SIZE)
@@ -34,7 +35,14 @@ static void	draw_tile(t_game *game, int px, int py, uint32_t color)
 		{
 			if (px + j >= 0 && px + j < MINIMAP_PX
 				&& py + i >= 0 && py + i < MINIMAP_PX)
-			mlx_put_pixel(game->mm_img, px + j, py + i, color);
+			{
+				if (i == 0 || i == TILE_SIZE - 1
+					|| j == 0 || j == TILE_SIZE - 1)
+					px_color = get_rgb_color(0, 50, 0);
+				else
+					px_color = color;
+				mlx_put_pixel(game->mm_img, px + j, py + i, px_color);
+			}
 			j++;
 		}
 		i++;
@@ -82,10 +90,12 @@ void	draw_minimap(t_game *game, int offset_x, int offset_y)
 				c = ' ';
 			else
 				c = game->map[map_row][map_col];
-			draw_tile(game, col * TILE_SIZE - offset_x , row * TILE_SIZE - offset_y, tile_color(c));
+			draw_tile(game, col * TILE_SIZE - offset_x + TILE_SIZE / 2,
+				row * TILE_SIZE - offset_y + TILE_SIZE / 2,
+			tile_color(c));
 			col++;
 		}
 		row++;
 	}
-	draw_circle(game, MINIMAP_PX / 2, MINIMAP_PX / 2, 5, get_rgb_color(255, 100, 0));
+	draw_circle(game, MINIMAP_PX / 2, MINIMAP_PX / 2, 3, get_rgb_color(255, 100, 0));
 }
