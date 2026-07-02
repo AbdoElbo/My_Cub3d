@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/02 15:24:58 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/02 15:33:43 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_hook(void *param)
 {
-	t_game		*game;
-	int			off_x;
-	int			off_y;
+	t_game	*game;
+	int		off_x;
+	int		off_y;
 
 	game = (t_game *)param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
@@ -26,9 +26,9 @@ void	ft_hook(void *param)
 	off_x = (int)((game->player.x - (int)game->player.x) * TILE_SIZE);
 	off_y = (int)((game->player.y - (int)game->player.y) * TILE_SIZE);
 	draw_minimap(game, off_x, off_y);
-	printf("n\nplayer x=%f, y=%f\n",game->player.x, game->player.y);
-	printf("player dir_x=%f, dir_y=%f\n",game->player.dir_x, game->player.dir_y);
-	printf("Angle is %f\n",game->player.angle);
+	// printf("n\nplayer x=%f, y=%f\n",game->player.x, game->player.y);
+	// printf("player dir_x=%f, dir_y=%f\n",game->player.dir_x, game->player.dir_y);
+	// printf("Angle is %f\n",game->player.angle);
 }
 
 int	load_map_and_components(t_game *game)
@@ -82,14 +82,7 @@ int	main(int argc, char **argv)
 		return (cleanup(&game), EXIT_FAILURE);
 	if (!map_validity(&game))
 		return (cleanup(&game), EXIT_FAILURE);
-	print_map(&game);
-	int i = 0;
-	while (game.map[i])
-	{
-		printf("row %d: '%s'\n", i, game.map[i]);
-		i++;
-	}
-	printf("width=%d height=%d\n", game.width, game.height);
+	// print_map(&game);
 	if (!load_map_and_components(&game))
 		return (cleanup(&game), EXIT_FAILURE);
 	mlx_loop_hook(game.mlx, &ft_hook, &game);
