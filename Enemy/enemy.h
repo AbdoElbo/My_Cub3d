@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 14:24:42 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/01 17:09:39 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/02 14:10:01 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ typedef struct s_enemy
 int		init_enemy_sprite(t_enemy *enemy, t_game *game);
 void	test_sprite_loop(t_game *game);
 int		init_enemy(t_game *game);
+void	set_animation(t_sprite *s, t_anim anim);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/01 17:48:36 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/02 14:11:07 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	ft_hook(void *param)
 	test_sprite_loop(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_W))
-	// 	move_forward(game->mlx);
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_S))
-	// 	move_backwards(game->mlx);
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_D))
-	// 	move_right(game->mlx);
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_A))
-	// 	move_left(game->mlx);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
+		set_animation(&game->enemy.sprite, ANIM_WALK);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
+		set_animation(&game->enemy.sprite, ANIM_HURT);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+		set_animation(&game->enemy.sprite, ANIM_ATTACK);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+		set_animation(&game->enemy.sprite, ANIM_DEATH);
 }
 
 int	load_map_and_components(t_game *game)

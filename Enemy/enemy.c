@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 14:24:39 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/01 17:52:00 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/02 15:17:36 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static void extract_frame(t_sprite *sprite, int f, int a)
 		while (x < sprite->frame_w)
 		{
 			pixel = &sprite->sheet->pixels[((sprite->anims[a].row * sprite->frame_h + y) * sprite->sheet->width+ (f * sprite->frame_w + x)) * 4];
-			printf("Pixel set successfully!\n");
-			color = *(uint32_t *)pixel;
+			color = (uint32_t)pixel[0] << 24 | (uint32_t)pixel[1] << 16
+				| (uint32_t)pixel[2] << 8 | (uint32_t)pixel[3];
 			mlx_put_pixel(sprite->frames[a * 13 + f], x, y, color);
 			x++;
 		}
@@ -76,6 +76,12 @@ void	update_sprite(t_sprite *s, double dt)
 		return ;
 	s->frame_timer = 0.0;
 	def = &s->anims[s->current_anim];
+	if (s->current_anim == ANIM_HURT || s->current_anim == ANIM_DEATH) // oneshot hurt and death animations
+	{
+		if (s->current_frame < def->frame_count - 1)
+			s->current_frame++;
+		return ;
+	}
 	s->current_frame = (s->current_frame + 1) % def->frame_count;
 }
 
@@ -145,7 +151,8 @@ void	test_sprite_loop(t_game *game)
 		x = 0;
 		while (x < frame->width)
 		{
-			dst[y * game->framebuf->width + x] = src[y * frame->width + x];
+			if (src[y * frame->width + x] & 0xFF)
+				dst[y * game->framebuf->width + x] = src[y * frame->width + x];
 			x++;
 		}
 		y++;
