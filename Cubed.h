@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/30 17:07:43 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/02 17:43:48 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,5 @@ typedef struct s_game
 }	t_game;
 
 void	print_map(t_game *game);
-void	print_2array(char **arr);
 
 #endif

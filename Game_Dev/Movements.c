@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/02 15:28:50 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/02 18:42:04 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,49 @@ static int	hits_wall(t_game *game, float x, float y)
 		|| is_wall(game, x - m, y - m));
 }
 
+static void	move_dir(t_game *game, float *nx, float *ny, int dir)
+{
+	float	speed = 0.05f;
+
+	if (dir == 0)
+	{
+		*nx += game->player.dir_x * speed;
+		*ny += game->player.dir_y * speed;
+	}
+	else if (dir == 1)
+	{
+		*nx -= game->player.dir_x * speed;
+		*ny -= game->player.dir_y * speed;
+	}
+	else if (dir == 2)
+	{
+		*nx -= game->player.dir_y * speed;
+		*ny += game->player.dir_x * speed;
+	}
+	else if (dir == 3)
+	{
+		*nx += game->player.dir_y * speed;
+		*ny -= game->player.dir_x * speed;
+	}
+}
+
 void	move_player(t_game *game)
 {
 	float	nx;
 	float	ny;
 	float	speed;
 
-	speed = 0.1f;
+	speed = 0.05f;
 	nx = game->player.x;
 	ny = game->player.y;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
-		ny -= speed;
+		move_dir(game, &nx, &ny, 0);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
-		ny += speed;
+		move_dir(game, &nx, &ny, 1);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
-		nx += speed;
+		move_dir(game, &nx, &ny, 2);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
-		nx -= speed;
+		move_dir(game, &nx, &ny, 3);
 	if (!hits_wall(game, nx, game->player.y))
 		game->player.x = nx;
 	if (!hits_wall(game, game->player.x, ny))

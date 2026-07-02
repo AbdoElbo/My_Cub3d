@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/02 15:33:43 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/02 18:21:33 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	ft_hook(void *param)
 	off_x = (int)((game->player.x - (int)game->player.x) * TILE_SIZE);
 	off_y = (int)((game->player.y - (int)game->player.y) * TILE_SIZE);
 	draw_minimap(game, off_x, off_y);
-	// printf("n\nplayer x=%f, y=%f\n",game->player.x, game->player.y);
-	// printf("player dir_x=%f, dir_y=%f\n",game->player.dir_x, game->player.dir_y);
-	// printf("Angle is %f\n",game->player.angle);
+	printf("\nnplayer x=%f, y=%f\n",game->player.x, game->player.y);
+	printf("player dir_x=%f, dir_y=%f\n",game->player.dir_x, game->player.dir_y);
+	printf("Angle is %f\n",game->player.angle);
 }
 
 int	load_map_and_components(t_game *game)
@@ -51,13 +51,6 @@ void	print_map(t_game *game)
 		printf("%s\n", game->map[i]);
 	printf("\nPlayer at X= %f, Y= %f\n", game->player.x, game->player.y);
 	printf("and his direction is :%c\n", game->player.dir_char);
-}
-
-void	print_2array(char **arr)
-{
-	printf("\nPRINTING THE 2ARRAY:\n");
-	for(int i = 0; arr[i]; i++)
-		printf("%s\n", arr[i]);
 }
 
 // static void	print_stuff(t_game *game)
