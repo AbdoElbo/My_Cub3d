@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 13:00:44 by lpieck            #+#    #+#             */
-/*   Updated: 2026/06/19 14:27:36 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/03 17:32:05 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	 draw_background_to_buf(t_game *game)
 
 	pixels = (uint32_t *)game->framebuf->pixels;
 	i = 0;
-	while (i < (MAX_HEIGHT / 2) * MAX_WIDTH)
+	while (i < (SCREEN_HEIGHT / 2) * SCREEN_WIDTH)
 	{
 		pixels[i] = game->ceiling_color;
 		i++;
 	}
-	while (i < MAX_HEIGHT * MAX_WIDTH)
+	while (i < SCREEN_HEIGHT * SCREEN_WIDTH)
 	{
 		pixels[i] = game->floor_color;
 		i++;
@@ -49,14 +49,14 @@ void	 draw_to_buf(t_game *game, t_draw_params *dp)
 
 	step = (double)128 / dp->line_height;
 	tex_x = (int)(game->ray.wall_x * 128);
-	tex_pos = (dp->draw_start - MAX_HEIGHT / 2 + dp->line_height / 2) * step;
-	dst = (uint32_t *)game->framebuf->pixels + dp->draw_start * MAX_WIDTH + dp->col;
+	tex_pos = (dp->draw_start - SCREEN_HEIGHT / 2 + dp->line_height / 2) * step;
+	dst = (uint32_t *)game->framebuf->pixels + dp->draw_start * SCREEN_WIDTH + dp->col;
 	while (dp->draw_start < dp->draw_end)
 	{
 		tex_y = (int)tex_pos % 128;
 		tex_pos += step;
 		*dst = sample_texture_pixel(game, tex_x, tex_y);
-		dst += MAX_WIDTH;
+		dst += SCREEN_WIDTH;
 		dp->draw_start++;
 	}
 }
@@ -74,13 +74,13 @@ void	 define_column_heifht(t_game *game, int col)
 	int draw_end;
 	t_draw_params dp;
 
-	line_height = (int)(MAX_HEIGHT / game->ray.distance);
-	draw_start = MAX_HEIGHT / 2 - line_height / 2;
+	line_height = (int)(SCREEN_HEIGHT / game->ray.distance);
+	draw_start = SCREEN_HEIGHT / 2 - line_height / 2;
 	if (draw_start < 0)
 		draw_start = 0;
-	draw_end = MAX_HEIGHT / 2 + line_height / 2;
-	if (draw_end > MAX_HEIGHT)
-		draw_end = MAX_HEIGHT - 1; //test what happens without - 1
+	draw_end = SCREEN_HEIGHT / 2 + line_height / 2;
+	if (draw_end > SCREEN_HEIGHT)
+		draw_end = SCREEN_HEIGHT - 1; //test what happens without - 1
 	dp.col = col;
 	dp.line_height = line_height;
 	dp.draw_start = draw_start;
@@ -94,7 +94,7 @@ void	 render_frame(t_game *game)
 
 	draw_background_to_buf(game);
 	i = 0;
-	while (i < MAX_WIDTH) // i <
+	while (i < SCREEN_WIDTH) // i <
 	{
 		define_column_heifht(game, i);
 		i++;
