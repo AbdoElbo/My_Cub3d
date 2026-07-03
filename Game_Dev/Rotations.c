@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 16:54:14 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/02 18:30:57 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/02 20:44:23 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	rotate_player(t_game *game)
 {
 	float	rot_speed;
 
-	rot_speed = 0.1f;
+	rot_speed = 0.05f;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
 		game->player.angle -= rot_speed;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
@@ -35,8 +35,8 @@ void	draw_line(t_game *game, uint32_t color)
 {
 	int		i;
 	int		j;
-	double	x = 0.00001f;
-	double	y = 0.00001f;
+	double	x = 0;
+	double	y = 0;
 	double	distance;
 
 	distance = 0;
