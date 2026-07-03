@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/02 18:21:33 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/03 17:30:59 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_hook(void *param)
 	int		off_y;
 
 	game = (t_game *)param;
+	render_frame(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	move_player(game);
@@ -41,6 +42,8 @@ int	load_map_and_components(t_game *game)
 		return (printf("Error:\nMlx img_mm creation failed\n"), 0);
 	if (mlx_image_to_window(game->mlx, game->mm_img, 0, 0))
 		return (printf("Error:\nMlx img_mm image_to_window failed\n"), 0);
+	// game->img = mlx_new_image(game->mlx, 1000, 1000);
+	// mlx_image_to_window(game->mlx, game->img, 0, 0);
 	return (1);
 }
 
@@ -75,9 +78,13 @@ int	main(int argc, char **argv)
 		return (cleanup(&game), EXIT_FAILURE);
 	if (!map_validity(&game))
 		return (cleanup(&game), EXIT_FAILURE);
-	// print_map(&game);
 	if (!load_map_and_components(&game))
 		return (cleanup(&game), EXIT_FAILURE);
+	game.ray.texture = mlx_load_png("Resources/textures/north_texture.png"); //FOR TESTING PURPOSES.
+	if (!game.ray.texture)
+		printf("NO GOOD.\n");
+	game.framebuf = mlx_new_image(game.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	mlx_image_to_window(game.mlx, game.framebuf, 0, 0);
 	mlx_loop_hook(game.mlx, &ft_hook, &game);
 	mlx_loop(game.mlx);
 	return (cleanup(&game), EXIT_SUCCESS);

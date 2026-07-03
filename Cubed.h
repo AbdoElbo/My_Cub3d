@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/02 17:43:48 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/03 17:30:16 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include "Game_Dev/Game_Dev.h"
 
 # define PI 3.14159265358979323846
+# include "Rendering/Rendering.h"
 
 typedef struct s_files
 {
@@ -63,6 +64,14 @@ typedef struct s_player
 	char		dir_char;
 }	t_player;
 
+typedef struct s_ray
+{
+	float	distance;
+	float	angle;
+	float	wall_x; // between 0.0 and 1.0
+	mlx_texture_t	*texture;
+}	t_ray;
+
 typedef struct s_game
 {
 	char		**map;
@@ -72,6 +81,7 @@ typedef struct s_game
 	mlx_image_t	*img;
 	int			multiplier;
 	t_files		files;
+	t_ray		ray;
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
 	int			status;
@@ -79,6 +89,7 @@ typedef struct s_game
 	int			width;
 	int			map_start;
 	int			fd;
+	mlx_image_t	*framebuf;
 }	t_game;
 
 void	print_map(t_game *game);
