@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/03 17:30:16 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/05 14:17:23 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ typedef struct s_game
 	t_ray		ray;
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
+	double		mouse_x;
+	double		mouse_y;
 	int			status;
 	int			height;
 	int			width;

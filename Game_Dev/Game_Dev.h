@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Game_Dev.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:17:07 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/02 18:04:30 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/05 16:03:49 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,17 @@ typedef struct s_game	t_game ;
 typedef struct s_files	t_files ;
 typedef struct s_player	t_player ;
 
+typedef enum s_guns
+{
+    GUN_1,
+    GUN_2,
+    GUN_3,
+    GUN_4
+}   t_guns;
+
 void	move_player(t_game *game);
 void	rotate_player(t_game *game);
 void	draw_line(t_game *game, uint32_t color);
+void	gun_dev(t_game *game);
 
 # endif

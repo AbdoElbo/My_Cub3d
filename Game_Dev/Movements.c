@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/02 18:42:04 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/05 14:08:39 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,7 @@ void	move_player(t_game *game)
 {
 	float	nx;
 	float	ny;
-	float	speed;
 
-	speed = 0.05f;
 	nx = game->player.x;
 	ny = game->player.y;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))

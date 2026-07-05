@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   Main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/03 17:33:25 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/05 16:28:55 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cubed.h"
+
+
+void	ft_mouse_mvm(double x, double y, void *param)
+{
+	t_game	*game;
+
+	// (void)x;
+	// (void)y;
+	game = (t_game *)param;
+	game->mouse_x = x;
+	game->mouse_y = y;
+	printf("mouse coordinations:\nx=%f\ny=%f\n", game->mouse_x, game->mouse_y);
+	mlx_set_mouse_pos(game->mlx, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+}
 
 void	ft_hook(void *param)
 {
@@ -19,7 +33,7 @@ void	ft_hook(void *param)
 	int		off_y;
 
 	game = (t_game *)param;
-	render_frame(game);
+	// render_frame(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	move_player(game);
@@ -27,9 +41,9 @@ void	ft_hook(void *param)
 	off_x = (int)((game->player.x - (int)game->player.x) * TILE_SIZE);
 	off_y = (int)((game->player.y - (int)game->player.y) * TILE_SIZE);
 	draw_minimap(game, off_x, off_y);
-	printf("\nnplayer x=%f, y=%f\n",game->player.x, game->player.y);
-	printf("player dir_x=%f, dir_y=%f\n",game->player.dir_x, game->player.dir_y);
-	printf("Angle is %f\n",game->player.angle);
+	// printf("\nplayer x=%f, y=%f\n",game->player.x, game->player.y);
+	// printf("player dir_x=%f, dir_y=%f\n",game->player.dir_x, game->player.dir_y);
+	// printf("Angle is %f\n",game->player.angle);
 }
 
 int	load_map_and_components(t_game *game)
@@ -37,6 +51,7 @@ int	load_map_and_components(t_game *game)
 	game->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Our Awesome Game", 1);
 	if (!game->mlx)
 		return (printf("Error:\nMlx initialization failed\n"), 0);
+	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
 	game->mm_img = mlx_new_image(game->mlx, MINIMAP_PX, MINIMAP_PX);
 	if (!game->mm_img)
 		return (printf("Error:\nMlx img_mm creation failed\n"), 0);
@@ -86,6 +101,7 @@ int	main(int argc, char **argv)
 	game.framebuf = mlx_new_image(game.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	mlx_image_to_window(game.mlx, game.framebuf, 0, 0);
 	mlx_loop_hook(game.mlx, &ft_hook, &game);
+	mlx_cursor_hook(game.mlx, ft_mouse_mvm, &game);
 	mlx_loop(game.mlx);
 	return (cleanup(&game), EXIT_SUCCESS);
 }

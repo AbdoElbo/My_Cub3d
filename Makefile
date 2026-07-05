@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+         #
+#    By: gekko <gekko@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/07 16:20:34 by aelbouaz          #+#    #+#              #
-#    Updated: 2026/07/03 17:31:00 by aelbouaz         ###   ########.fr        #
+#    Updated: 2026/07/05 15:17:52 by gekko            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CUBED_SRCS = Main.c \
 			Map_validity/Map_validity.c Map_validity/Components_exist.c \
 			Map_validity/Flood_fill.c Rendering/rendering.c\
 			Plane/make_plane.c Plane/rays.c \
-			Game_Dev/Movements.c Game_Dev/Rotations.c
+			Game_Dev/Movements.c Game_Dev/Rotations.c Game_Dev/Weapons.c \
 
 CUBED_SRCS_BONUS = Bonus/Animations.c Bonus/Doors_opening.c \
 			Bonus/Minimap.c Bonus/Mouse_mouvements.c
