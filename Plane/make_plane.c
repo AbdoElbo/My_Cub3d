@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_plane.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:47:58 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/02 18:04:18 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/06 14:02:21 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,5 @@ void	draw_minimap(t_game *game, int offset_x, int offset_y)
 		row++;
 	}
 	draw_circle(game, 3, get_rgb_color(255, 100, 0));
-	draw_line(game, get_rgb_color(0, 200, 0));
+	// draw_line(game, game->rays, get_rgb_color(0, 200, 0));
 }

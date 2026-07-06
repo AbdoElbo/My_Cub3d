@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/02 18:42:04 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/06 11:49:29 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ static int	is_wall(t_game *game, float x, float y)
 	return (0);
 }
 
-static int	hits_wall(t_game *game, float x, float y)
+int	hits_wall(t_game *game, float x, float y)
 {
 	float	m;
 
-	m = 0.09f;
+	m = 0.02f;
 	return (is_wall(game, x + m, y + m)
 		|| is_wall(game, x - m, y + m)
 		|| is_wall(game, x + m, y - m)
@@ -74,9 +74,7 @@ void	move_player(t_game *game)
 {
 	float	nx;
 	float	ny;
-	float	speed;
-
-	speed = 0.05f;
+	
 	nx = game->player.x;
 	ny = game->player.y;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))

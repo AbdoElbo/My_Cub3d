@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/03 17:30:16 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/06 13:38:46 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,12 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	float	distance;
-	float	angle;
-	float	wall_x; // between 0.0 and 1.0
+	double	distance;
+	double	angle;
+	double	wall_x; // between 0.0 and 1.0
+	double	dir_x;
+	double	dir_y;
+	int	side; // 0 for vertical wall, 1 for horizontal wall
 	mlx_texture_t	*texture;
 }	t_ray;
 
@@ -81,7 +84,7 @@ typedef struct s_game
 	mlx_image_t	*img;
 	int			multiplier;
 	t_files		files;
-	t_ray		ray;
+	t_ray		rays[NUM_RAYS];
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
 	int			status;

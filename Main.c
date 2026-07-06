@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/03 17:33:25 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/06 15:11:02 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,19 @@ void	ft_hook(void *param)
 	int		off_y;
 
 	game = (t_game *)param;
+	off_x = (int)((game->player.x - (int)game->player.x) * TILE_SIZE);
+	off_y = (int)((game->player.y - (int)game->player.y) * TILE_SIZE);
+	cast_rays(game);
+	printf("Rays are cast\n");
+	printf("Minimap is drawn\n");
+	draw_minimap(game, off_x, off_y);
 	render_frame(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
+	printf("frame is rendered\n");
 	move_player(game);
 	rotate_player(game);
-	off_x = (int)((game->player.x - (int)game->player.x) * TILE_SIZE);
-	off_y = (int)((game->player.y - (int)game->player.y) * TILE_SIZE);
-	draw_minimap(game, off_x, off_y);
-	printf("\nnplayer x=%f, y=%f\n",game->player.x, game->player.y);
-	printf("player dir_x=%f, dir_y=%f\n",game->player.dir_x, game->player.dir_y);
-	printf("Angle is %f\n",game->player.angle);
+
 }
 
 int	load_map_and_components(t_game *game)
@@ -80,8 +82,8 @@ int	main(int argc, char **argv)
 		return (cleanup(&game), EXIT_FAILURE);
 	if (!load_map_and_components(&game))
 		return (cleanup(&game), EXIT_FAILURE);
-	game.ray.texture = mlx_load_png("Resources/textures/north_texture.png"); //FOR TESTING PURPOSES.
-	if (!game.ray.texture)
+	game.rays->texture = mlx_load_png("Resources/textures/north_texture.png"); //FOR TESTING PURPOSES.
+	if (!game.rays->texture)
 		printf("NO GOOD.\n");
 	game.framebuf = mlx_new_image(game.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	mlx_image_to_window(game.mlx, game.framebuf, 0, 0);

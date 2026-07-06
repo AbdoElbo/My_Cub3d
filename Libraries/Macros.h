@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 17:11:56 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/29 17:31:49 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/06 14:51:48 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 // and we don't have to realloc again
 # define SCREEN_WIDTH 2000
 # define SCREEN_HEIGHT 1300
+# define NUM_RAYS 2000
+# define FOV (90.0 * PI / 180.0)
 
 # define R "\033[1;31m"
 # define G "\033[1;32m"
