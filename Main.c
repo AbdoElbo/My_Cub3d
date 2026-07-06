@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/05 16:28:55 by gekko            ###   ########.fr       */
+/*   Updated: 2026/07/06 17:12:50 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cubed.h"
-
-
-void	ft_mouse_mvm(double x, double y, void *param)
-{
-	t_game	*game;
-
-	// (void)x;
-	// (void)y;
-	game = (t_game *)param;
-	game->mouse_x = x;
-	game->mouse_y = y;
-	printf("mouse coordinations:\nx=%f\ny=%f\n", game->mouse_x, game->mouse_y);
-	mlx_set_mouse_pos(game->mlx, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-}
 
 void	ft_hook(void *param)
 {

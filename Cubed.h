@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/05 14:17:23 by gekko            ###   ########.fr       */
+/*   Updated: 2026/07/06 15:37:34 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ typedef struct s_files
 
 typedef struct s_player
 {
-	long long	current;
-	long long	delta;
-	long long	last_move;
+	float		delta_x;
+	float		delta_y;
+	float		previous_x;
+	float		previous_y;
 	float		x;
 	float		y;
 	float		angle;

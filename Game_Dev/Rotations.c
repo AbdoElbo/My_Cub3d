@@ -6,11 +6,31 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 16:54:14 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/02 20:44:23 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/06 17:12:37 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game_Dev.h"
+
+void	ft_mouse_mvm(double x, double y, void *param)
+{
+	t_game	*game;
+	int32_t	current_x = 0;
+	int32_t	current_y = 0;
+	int		dx;
+	int		dy;
+	float	rot_speed;
+
+	(void)y;
+	(void)x;
+	game = (t_game *)param;
+	rot_speed = 0.001f;
+	mlx_get_mouse_pos(game->mlx, &current_x, &current_y);
+	dx = current_x - game->mouse_x;
+	dy = current_y - game->mouse_y;
+	mlx_set_mouse_pos(game->mlx, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	game->player.angle += dx * rot_speed;
+}
 
 void	rotate_player(t_game *game)
 {
@@ -21,12 +41,6 @@ void	rotate_player(t_game *game)
 		game->player.angle -= rot_speed;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		game->player.angle += rot_speed;
-	// next 4 lines are kinda unnnecessary
-	// but it's good to give the angle a range of 0 -> PI * 2
-	if (game->player.angle < 0)
-		game->player.angle += 2 * PI;
-	if (game->player.angle >= 2 * PI)
-		game->player.angle -= 2 * PI;
 	game->player.dir_x = cos(game->player.angle);
 	game->player.dir_y = sin(game->player.angle);
 }
