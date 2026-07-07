@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:17:07 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/06 14:24:19 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/06 17:18:26 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ typedef struct s_player	t_player ;
 
 typedef enum s_guns
 {
-    GUN_1,
-    GUN_2,
-    GUN_3,
-    GUN_4
-}   t_guns;
+	PISTOL,
+	UZI,
+	AK47,
+	M134
+}	t_guns;
 
 void	move_player(t_game *game);
 void	ft_mouse_mvm(double x, double y, void *param);

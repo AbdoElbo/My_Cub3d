@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/06 17:12:50 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/07 21:00:21 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_hook(void *param)
 
 int	load_map_and_components(t_game *game)
 {
-	game->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Our Awesome Game", 1);
+	game->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Our Awesome Game🔫", 1);
 	if (!game->mlx)
 		return (printf("Error:\nMlx initialization failed\n"), 0);
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);

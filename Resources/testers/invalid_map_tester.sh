@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROGRAM="../cub3D"
+PROGRAM="../../cub3D"
 MAPS_DIR="../../Resources/maps/invalid"
 
 RED="\033[1;31m"
@@ -31,6 +31,8 @@ for map in "$MAPS_DIR"/*.cub; do
     if [ $exit_code -eq 139 ]; then
         echo -e "${RED}[SEGFAULT]${RESET}  $map"
         segfault_count=$((segfault_count + 1))
+    elif [ $exit_code -eq 0 ]; then
+        echo -e "${RED}[KO $exit_code]${RESET}    $map"
     else
         echo -e "${GREEN}[OK $exit_code]${RESET}    $map"
         pass_count=$((pass_count + 1))
@@ -38,7 +40,14 @@ for map in "$MAPS_DIR"/*.cub; do
 done
 
 echo -e "\n${YELLOW}--- Results ---${RESET}"
-echo -e "${GREEN}Passed:    $pass_count / $total${RESET}"
+
+# echo -e "${GREEN}Passed:    $pass_count / $total${RESET}"
+if [ $pass_count -ne $total ]; then
+    echo -e "${RED}Passed: $pass_count / $total${RESET}"
+else
+    echo -e "${GREEN}Passed: $pass_count / $total — all clean!${RESET}"
+fi
+
 if [ $segfault_count -gt 0 ]; then
     echo -e "${RED}Segfaults: $segfault_count / $total${RESET}"
 else

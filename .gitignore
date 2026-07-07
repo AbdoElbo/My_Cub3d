@@ -1,0 +1,4 @@
+*.o
+*.d
+cub3D
+libft.a
