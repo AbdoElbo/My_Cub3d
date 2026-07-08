@@ -24,12 +24,12 @@ void	ft_hook(void *param)
 	cast_rays(game);
 	printf("Rays are cast\n");
 	printf("Minimap is drawn\n");
-	draw_minimap(game, off_x, off_y);
 	render_frame(game);
+	draw_minimap(game, off_x, off_y);
 	test_sprite_loop(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
-	printf("frame is rendered\n");
+	// printf("frame is rendered\n");
 	move_player(game);
 	rotate_player(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_1))
@@ -47,11 +47,17 @@ int	load_map_and_components(t_game *game)
 	game->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Our Awesome Game", 1);
 	if (!game->mlx)
 		return (printf("Error:\nMlx initialization failed\n"), 0);
+	game->framebuf = mlx_new_image(game->mlx, MAX_WIDTH, MAX_HEIGHT);
+	mlx_image_to_window(game->mlx, game->framebuf, 0, 0);
 	game->mm_img = mlx_new_image(game->mlx, MINIMAP_PX, MINIMAP_PX);
 	if (!game->mm_img)
 		return (printf("Error:\nMlx img_mm creation failed\n"), 0);
 	if (mlx_image_to_window(game->mlx, game->mm_img, 0, 0))
 		return (printf("Error:\nMlx img_mm image_to_window failed\n"), 0);
+	game->texture_north = mlx_load_png("Resources/textures/north_texture.png"); // MAKE LOADING OF TEXTURES SAFE
+	game->texture_east = mlx_load_png("Resources/textures/east_texture.png");
+	game->texture_west = mlx_load_png("Resources/textures/west_texture.png");
+	game->texture_south = mlx_load_png("Resources/textures/south_texture.png");
 	// game->img = mlx_new_image(game->mlx, 1000, 1000);
 	// mlx_image_to_window(game->mlx, game->img, 0, 0);
 	return (1);
@@ -91,15 +97,14 @@ int	main(int argc, char **argv)
 	if (!load_map_and_components(&game))
 		return (cleanup(&game), EXIT_FAILURE);
 	printf("Map loaded successfully!\n");
-	game.rays->texture = mlx_load_png("Resources/textures/north_texture.png"); //FOR TESTING PURPOSES.
-	if (!game.rays->texture)
-		printf("NO GOOD.\n");
+	// game.rays->texture = mlx_load_png("Resources/textures/north_texture.png"); //FOR TESTING PURPOSES.
+	// if (!game.rays->texture)
+	// 	printf("NO GOOD.\n");
 	printf("About to load enemy!\n");
 	if (!init_enemy(&game))
 			return (cleanup(&game), EXIT_FAILURE);
 	printf("Enemy loaded successfully!\n");
-	game.framebuf = mlx_new_image(game.mlx, MAX_WIDTH, MAX_HEIGHT);
-	mlx_image_to_window(game.mlx, game.framebuf, 0, 0);
+
 	mlx_loop_hook(game.mlx, &ft_hook, &game);
 	mlx_loop(game.mlx);
 	return (cleanup(&game), EXIT_SUCCESS);

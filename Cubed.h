@@ -73,7 +73,7 @@ typedef struct s_ray
 	double	dir_x;
 	double	dir_y;
 	int	side; // 0 for vertical wall, 1 for horizontal wall
-	mlx_texture_t	*texture;
+	mlx_texture_t	texture_hit;
 }	t_ray;
 
 typedef struct s_game
@@ -96,6 +96,11 @@ typedef struct s_game
 	mlx_image_t	*framebuf;
 	double		zbuffer[MAX_WIDTH];
 	t_enemy		enemy;
+	mlx_texture_t	*texture_east;
+	mlx_texture_t	*texture_west;
+	mlx_texture_t	*texture_south;
+	mlx_texture_t	*texture_north;
+	// mlx_texture_t	*texture_door;
 }	t_game;
 
 void	print_map(t_game *game);

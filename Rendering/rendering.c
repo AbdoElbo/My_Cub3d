@@ -12,34 +12,100 @@
 
 #include "Rendering.h"
 
+// void	 draw_background_to_buf(t_game *game)
+// {
+// 	int i;
+// 	uint32_t *pixels;
+
+// 	pixels = (uint32_t *)game->framebuf->pixels;
+// 	i = 0;
+// 	while (i < (SCREEN_HEIGHT / 2) * SCREEN_WIDTH)
+// 	{
+// 		pixels[i] = game->ceiling_color;
+// 		mlx_put_pixel( x, y, color);
+// 		i++;
+// 	}
+// 	while (i < SCREEN_HEIGHT * SCREEN_WIDTH)
+// 	{
+// 		pixels[i] = game->floor_color;
+// 		i++;
+// 	}
+// }
+
 void	 draw_background_to_buf(t_game *game)
 {
-	int i;
-	uint32_t *pixels;
+	int x;
+	int y;
 
-	pixels = (uint32_t *)game->framebuf->pixels;
-	i = 0;
-	while (i < (SCREEN_HEIGHT / 2) * SCREEN_WIDTH)
+	y = 0;
+	while (y < SCREEN_HEIGHT / 2)
 	{
-		pixels[i] = game->ceiling_color;
-		i++;
+		x = 0;
+		while (x < SCREEN_WIDTH)
+		{
+			mlx_put_pixel(game->framebuf, x, y, game->ceiling_color);
+			x++;
+		}
+		y++;
 	}
-	while (i < SCREEN_HEIGHT * SCREEN_WIDTH)
+	while (y < SCREEN_HEIGHT)
 	{
-		pixels[i] = game->floor_color;
-		i++;
+		x = 0;
+		while (x < SCREEN_WIDTH)
+		{
+			mlx_put_pixel(game->framebuf, x, y, game->floor_color);
+			x++;
+		}
+		y++;
 	}
 }
 
-static uint32_t	 sample_texture_pixel(t_game *game, int tex_x, int tex_y)
+// static uint32_t	 sample_texture_pixel(t_game *game, int tex_x, int tex_y)
+// {
+// 	uint8_t *p;
+
+// 	if (game->rays->dir_x > 0 && game->rays->dir_y < 0)
+// 		p = &game->texture_east->pixels[(tex_y * 128 + tex_x) * 4];
+// 	else if (game->rays->dir_x < 0 && game->rays->dir_y > 0)
+// 		p = &game->texture_west->pixels[(tex_y * 128 + tex_x) * 4];
+// 	else if (game->rays->dir_x > 0 && game->rays->dir_y > 0)
+// 		p = &game->texture_north->pixels[(tex_y * 128 + tex_x) * 4];
+// 	else
+// 		p = &game->texture_south->pixels[(tex_y * 128 + tex_x) * 4];
+// 	return (*(uint32_t *)p);
+// }
+
+
+// static uint32_t sample_texture_pixel(t_game *game, int tex_x, int tex_y)
+// {
+// 	uint8_t *p;
+
+// 	if (game->rays->side == 0) // EW wall, hit while stepping in x
+// 	{
+// 		if (game->rays->dir_x > 0)
+// 			p = &game->texture_east->pixels[(tex_y * 128 + tex_x) * 4];
+// 		else
+// 			p = &game->texture_west->pixels[(tex_y * 128 + tex_x) * 4];
+// 	}
+// 	else // NS wall, hit while stepping in y
+// 	{
+// 		if (game->rays->dir_y > 0)
+// 			p = &game->texture_south->pixels[(tex_y * 128 + tex_x) * 4];
+// 		else
+// 			p = &game->texture_north->pixels[(tex_y * 128 + tex_x) * 4];
+// 	}
+// 	return (*(uint32_t *)p);
+// }
+
+static uint32_t sample_texture_pixel(t_ray *ray, int tex_x, int tex_y)
 {
 	uint8_t *p;
 
-	p = &game->rays->texture->pixels[(tex_y * 128 + tex_x) * 4];
+	p = &ray->texture_hit.pixels[(tex_y * 128 + tex_x) * 4];
 	return (*(uint32_t *)p);
 }
 
-void	 draw_to_buf(t_game *game, t_ray *ray, t_draw_params *dp)
+void	 draw_to_buf(t_game *game, t_ray ray, t_draw_params *dp)
 {
 	int			tex_x;
 	double		step; // how many pixels from the texture are taken. the further, the less pixels
@@ -48,14 +114,14 @@ void	 draw_to_buf(t_game *game, t_ray *ray, t_draw_params *dp)
 	uint32_t	*dst;
 
 	step = (double)128 / dp->line_height;
-	tex_x = (int)(ray->wall_x * 128);
+	tex_x = (int)(ray.wall_x * 128);
 	tex_pos = (dp->draw_start - SCREEN_HEIGHT / 2 + dp->line_height / 2) * step;
 	dst = (uint32_t *)game->framebuf->pixels + dp->draw_start * SCREEN_WIDTH + dp->col;
 	while (dp->draw_start < dp->draw_end)
 	{
 		tex_y = (int)tex_pos % 128;
 		tex_pos += step;
-		*dst = sample_texture_pixel(game, tex_x, tex_y);
+		*dst = sample_texture_pixel(&ray, tex_x, tex_y);
 		dst += SCREEN_WIDTH;
 		dp->draw_start++;
 	}
@@ -74,7 +140,7 @@ static t_draw_params	 define_column_height(t_ray *ray, int col)
 	int draw_end;
 	t_draw_params dp;
 
-	line_height = (int)(SCREEN_HEIGHT / ray->distance);
+	line_height = (int)(SCREEN_HEIGHT /(ray->distance * 1.5));
 	draw_start = SCREEN_HEIGHT / 2 - line_height / 2;
 	if (draw_start < 0)
 		draw_start = 0;
@@ -97,10 +163,10 @@ void	 render_frame(t_game *game)
 	i = 0;
 	while (i < NUM_RAYS) // i <
 	{
-		printf("ray distance: %f\n", game->rays[i].distance);
-		printf("ray wall_x: %f\n", game->rays[i].wall_x);
+		// printf("ray distance: %f\n", game->rays[i].distance);
+		// printf("ray wall_x: %f\n", game->rays[i].wall_x);
 		dp = define_column_height(&game->rays[i], i);
-		draw_to_buf(game, &game->rays[i], &dp);
+		draw_to_buf(game, game->rays[i], &dp);
 		i++;
 	}
 }
