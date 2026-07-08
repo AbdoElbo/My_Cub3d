@@ -26,6 +26,8 @@ static int  has_invalid_chars(char *str)
 		i++;
 	while (str[i])
 	{
+		if (ft_isspace(str[i]) && i > 0)
+			return (0);
 		if (!ft_isdigit(str[i]))
 			return (1);
 		i++;
