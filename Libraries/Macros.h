@@ -18,6 +18,8 @@
 // and we don't have to realloc again
 # define SCREEN_WIDTH 2000
 # define SCREEN_HEIGHT 1300
+# define MAX_WIDTH SCREEN_WIDTH
+# define MAX_HEIGHT SCREEN_HEIGHT
 # define NUM_RAYS 2000
 # define FOV (90.0 * PI / 180.0)
 

@@ -61,7 +61,7 @@ void	 draw_to_buf(t_game *game, t_ray *ray, t_draw_params *dp)
 	}
 }
 
-t_draw_params	 define_column_height(t_ray *ray, int col)
+static t_draw_params	 define_column_height(t_ray *ray, int col)
 {
 	// shoot_ray();
 	// texture resolution currently is 128 x 128
@@ -103,6 +103,4 @@ void	 render_frame(t_game *game)
 		draw_to_buf(game, &game->rays[i], &dp);
 		i++;
 	}
-	// render_buf_to_screen(game);
 }
-	

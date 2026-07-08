@@ -30,6 +30,7 @@
 
 # define PI 3.14159265358979323846
 # include "Rendering/Rendering.h"
+# include "Enemy/enemy.h"
 
 typedef struct s_files
 {
@@ -93,6 +94,8 @@ typedef struct s_game
 	int			map_start;
 	int			fd;
 	mlx_image_t	*framebuf;
+	double		zbuffer[MAX_WIDTH];
+	t_enemy		enemy;
 }	t_game;
 
 void	print_map(t_game *game);
