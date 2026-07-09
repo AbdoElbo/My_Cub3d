@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 18:46:33 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/07 21:24:00 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/08 16:08:58 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,3 +110,4 @@ int	get_colors(t_game *game)
 		return (printf(Y"Error:\n(MAP) Map Not Found!! Exiting...\n"RESET), 0);
 	return (1);
 }
+

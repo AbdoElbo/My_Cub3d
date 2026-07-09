@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/07 21:00:21 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/08 15:53:14 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_hook(void *param)
 	draw_minimap(game, off_x, off_y);
 	// printf("\nplayer x=%f, y=%f\n",game->player.x, game->player.y);
 	// printf("player dir_x=%f, dir_y=%f\n",game->player.dir_x, game->player.dir_y);
-	// printf("Angle is %f\n",game->player.angle);
+	printf("Angle is %f\n",game->player.angle);
 }
 
 int	load_map_and_components(t_game *game)
