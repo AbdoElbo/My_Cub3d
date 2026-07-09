@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/06 15:37:34 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/09 18:32:09 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,38 @@ typedef struct s_ray
 	mlx_texture_t	*texture;
 }	t_ray;
 
+typedef struct s_tex
+{
+	mlx_texture_t		*pistol_tex_0;
+	mlx_texture_t		*pistol_tex_1;
+	mlx_texture_t		*pistol_tex_2;
+	mlx_texture_t		*pistol_tex_3;
+	mlx_texture_t		*uzi_tex_0;
+	mlx_texture_t		*uzi_tex_1;
+	mlx_texture_t		*uzi_tex_2;
+	mlx_texture_t		*uzi_tex_3;
+	mlx_texture_t		*ak47_tex_0;
+	mlx_texture_t		*ak47_tex_1;
+	mlx_texture_t		*ak47_tex_2;
+	mlx_texture_t		*ak47_tex_3;
+}	t_tex;
+
+typedef struct s_img
+{
+	mlx_image_t		*pistol_img_0;
+	mlx_image_t		*pistol_img_1;
+	mlx_image_t		*pistol_img_2;
+	mlx_image_t		*pistol_img_3;
+	mlx_image_t		*uzi_img_0;
+	mlx_image_t		*uzi_img_1;
+	mlx_image_t		*uzi_img_2;
+	mlx_image_t		*uzi_img_3;
+	mlx_image_t		*ak47_img_0;
+	mlx_image_t		*ak47_img_1;
+	mlx_image_t		*ak47_img_2;
+	mlx_image_t		*ak47_img_3;
+}	t_img;
+
 typedef struct s_game
 {
 	char		**map;
@@ -93,6 +125,8 @@ typedef struct s_game
 	int			map_start;
 	int			fd;
 	mlx_image_t	*framebuf;
+	t_img		images;
+	t_tex		textures;
 }	t_game;
 
 void	print_map(t_game *game);

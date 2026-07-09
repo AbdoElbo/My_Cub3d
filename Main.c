@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/09 17:36:58 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/09 18:35:45 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ void	ft_hook(void *param)
 	off_x = (int)((game->player.x - (int)game->player.x) * TILE_SIZE);
 	off_y = (int)((game->player.y - (int)game->player.y) * TILE_SIZE);
 	draw_minimap(game, off_x, off_y);
+	gun_dev(game);
 	// printf("\nplayer x=%f, y=%f\n",game->player.x, game->player.y);
 	// printf("player dir_x=%f, dir_y=%f\n",game->player.dir_x, game->player.dir_y);
 	printf("Angle is %f\n",game->player.angle);
 }
+
 
 int	load_map_and_components(t_game *game)
 {
@@ -45,6 +47,9 @@ int	load_map_and_components(t_game *game)
 		return (printf("Error:\nMlx img_mm image_to_window failed\n"), 0);
 	// game->img = mlx_new_image(game->mlx, 1000, 1000);
 	// mlx_image_to_window(game->mlx, game->img, 0, 0);
+	if (!load_pistol_tex(game) || !load_uzi_tex(game)
+		|| !load_ak47_tex(game))
+		return (0);
 	return (1);
 }
 
