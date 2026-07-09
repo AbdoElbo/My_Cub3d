@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 12:53:28 by lpieck            #+#    #+#             */
-/*   Updated: 2026/06/19 14:24:57 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/09 16:44:12 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,25 @@ typedef struct s_draw_params
 	int draw_end;
 }	t_draw_params;
 
-void	 render_frame(t_game *game);
+typedef struct s_dda
+{
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	double	raw_dist;
+	double	hit_x;
+	double	hit_y;
+}	t_dda;
+
+void	render_frame(t_game *game);
+void	cast_rays(t_game *game);
 
 
 #endif
