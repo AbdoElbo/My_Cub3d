@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 16:29:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/23 20:55:35 by gekko            ###   ########.fr       */
+/*   Updated: 2026/07/09 17:42:33 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,36 @@ int	arr_size(char **arr)
 	return (i);
 }
 
+static void	free_files(t_files *files)
+{
+	if (files->north)
+		free(files->north);
+	if (files->south)
+		free(files->south);
+	if (files->west)
+		free(files->west);
+	if (files->east)
+		free(files->east);
+	if (files->fd_n_flag)
+		close(files->fd_n);
+	if (files->fd_e_flag)
+		close(files->fd_e);
+	if (files->fd_s_flag)
+		close(files->fd_s);
+	if (files->fd_w_flag)
+		close(files->fd_w);
+}
+
 void	cleanup(t_game *game)
 {
 	if (game->map)
 		free_arr(game->map);
 	else
 		return ;
-	if (game->files.north)
-		free(game->files.north);
-	if (game->files.south)
-		free(game->files.south);
-	if (game->files.west)
-		free(game->files.west);
-	if (game->files.east)
-		free(game->files.east);
 	if (game->img)
 		mlx_delete_image(game->mlx, game->img);
 	if (game->fd >= 0)
 		close(game->fd);
-///////////// CHECK FOR THE GAME->FILES.FDs IF OPEN !!!!
+	free_files(&game->files);
+	mlx_terminate(game->mlx);
 }
