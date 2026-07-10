@@ -27,10 +27,14 @@
 # include "Map_validity/Validity.h"
 # include "Plane/Plane.h"
 # include "Game_Dev/Game_Dev.h"
+# include "Bonus/Bonus.h"
 
 # define PI 3.14159265358979323846
 # include "Rendering/Rendering.h"
 # include "Enemy/enemy.h"
+
+typedef struct s_door	t_door;
+
 
 typedef struct s_files
 {
@@ -93,6 +97,9 @@ typedef struct s_game
 	int			width;
 	int			map_start;
 	int			fd;
+	int			door_count;
+	int			enemy_count;
+	t_door		*doors;
 	mlx_image_t	*framebuf;
 	double		zbuffer[MAX_WIDTH];
 	t_enemy		enemy;
@@ -100,7 +107,7 @@ typedef struct s_game
 	mlx_texture_t	*texture_west;
 	mlx_texture_t	*texture_south;
 	mlx_texture_t	*texture_north;
-	// mlx_texture_t	*texture_door;
+	mlx_texture_t	*texture_door;
 }	t_game;
 
 void	print_map(t_game *game);

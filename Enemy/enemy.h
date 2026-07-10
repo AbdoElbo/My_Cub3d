@@ -13,8 +13,6 @@
 #ifndef ENEMY_H
 # define ENEMY_H
 
-// # include "../Cubed.h"
-
 # include "../Libraries/Mlx42/include/MLX42/MLX42.h"
 
 typedef struct s_game t_game;
@@ -34,14 +32,6 @@ typedef struct s_anim_def
 	int	row;
 	int	frame_count;
 }	t_anim_def;
-
-// static t_anim_def	g_anims[ANIM_COUNT] = {
-// 	[ANIM_IDLE]		= {0, 8},
-// 	[ANIM_WALK]		= {1, 8},
-// 	[ANIM_ATTACK]	= {2, 13}, //row 3 & 4 unused
-// 	[ANIM_HURT]		= {5, 5},
-// 	[ANIM_DEATH]	= {6, 9},
-// };
 
 typedef struct s_sprite
 {

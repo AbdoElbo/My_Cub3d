@@ -28,7 +28,7 @@ static int	is_wall(t_game *game, float x, float y)
 	if (map_col >= (int)ft_strlen(game->map[map_row]))
 		return (1);
 	c = game->map[map_row][map_col];
-	if (c == '1' || c == ' ' || c == '.')
+	if (c == '1' || c == 'D')
 		return (1);
 	return (0);
 }
@@ -74,7 +74,7 @@ void	move_player(t_game *game)
 {
 	float	nx;
 	float	ny;
-	
+
 	nx = game->player.x;
 	ny = game->player.y;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))

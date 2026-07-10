@@ -22,8 +22,6 @@ void	ft_hook(void *param)
 	off_x = (int)((game->player.x - (int)game->player.x) * TILE_SIZE);
 	off_y = (int)((game->player.y - (int)game->player.y) * TILE_SIZE);
 	cast_rays(game);
-	printf("Rays are cast\n");
-	printf("Minimap is drawn\n");
 	render_frame(game);
 	draw_minimap(game, off_x, off_y);
 	test_sprite_loop(game);
@@ -97,15 +95,10 @@ int	main(int argc, char **argv)
 		return (cleanup(&game), EXIT_FAILURE);
 	if (!load_map_and_components(&game))
 		return (cleanup(&game), EXIT_FAILURE);
-	printf("Map loaded successfully!\n");
-	// game.rays->texture = mlx_load_png("Resources/textures/north_texture.png"); //FOR TESTING PURPOSES.
-	// if (!game.rays->texture)
-	// 	printf("NO GOOD.\n");
-	printf("About to load enemy!\n");
+	// printf("Map loaded successfully!\n");
+	print_map(&game);
 	if (!init_enemy(&game))
 			return (cleanup(&game), EXIT_FAILURE);
-	printf("Enemy loaded successfully!\n");
-
 	mlx_loop_hook(game.mlx, &ft_hook, &game);
 	mlx_loop(game.mlx);
 	return (cleanup(&game), EXIT_SUCCESS);

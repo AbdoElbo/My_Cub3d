@@ -15,9 +15,19 @@
 
 #include "../Cubed.h"
 
-int func2(void);
-int func1(void);
-int func3(void);
-int func4(void); 
+
+typedef struct s_game	t_game;
+typedef struct s_files	t_files;
+typedef struct s_player	t_player;
+
+
+typedef struct s_door
+{
+	int				x;
+	int				y;
+	bool			open;
+}	t_door;
+
+int init_doors(t_game *game);
 
 #endif

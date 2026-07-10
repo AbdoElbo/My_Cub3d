@@ -20,7 +20,7 @@ CUBED_SRCS = Main.c \
 			Parsing/utils_1.c Parsing/update_map.c Parsing/texture_color_check.c\
 			Map_validity/Map_validity.c Map_validity/Components_exist.c \
 			Plane/make_plane.c Plane/rays.c \
-			Game_Dev/Movements.c Game_Dev/Rotations.c \
+			Game_Dev/Movements.c Game_Dev/Rotations.c Bonus/Doors.c\
 			Map_validity/Flood_fill.c Rendering/rendering.c Rendering/raycasting.c Enemy/enemy.c \
 
 CUBED_SRCS_BONUS = Bonus/Animations.c Bonus/Doors_opening.c \

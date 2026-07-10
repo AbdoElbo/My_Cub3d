@@ -49,6 +49,36 @@ void	set_player_direction(t_game *game)
 	game->player.plane_y = game->player.dir_x * tan(FOV / 2.0);
 }
 
+void	count_extras(t_game *game)
+{
+	game->door_count = 0;
+	game->enemy_count = 0;
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'D')
+				game->door_count++;
+			else if (game->map[i][j] == 'E')
+				game->enemy_count++;
+			j++;
+		}
+		i++;
+	}
+	return ;
+}
+
+void	init_bonus(t_game *game)
+{
+	count_extras(game);
+	init_doors(game);
+}
+
 int	map_validity(t_game *game)
 {
 	int	p_exist;
@@ -65,5 +95,6 @@ int	map_validity(t_game *game)
 		return (printf(Y"Error:\nMap Open to the outside world\n"RESET), 0);
 	if (!check_inside(game->map))
 		return (printf(Y"Error:\nUnknown char inside the map\n" RESET), 0);
+	init_bonus(game);
 	return (1);
 }
