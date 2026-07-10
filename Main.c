@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/09 18:35:45 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/10 20:31:22 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ void	ft_hook(void *param)
 	gun_dev(game);
 	// printf("\nplayer x=%f, y=%f\n",game->player.x, game->player.y);
 	// printf("player dir_x=%f, dir_y=%f\n",game->player.dir_x, game->player.dir_y);
-	printf("Angle is %f\n",game->player.angle);
+	// printf("Angle is %f\n",game->player.angle);
 }
 
 
 int	load_map_and_components(t_game *game)
 {
-	game->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Our Awesome Game🔫", 1);
+	game->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Our Awesome Game", 1);
 	if (!game->mlx)
 		return (printf("Error:\nMlx initialization failed\n"), 0);
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
@@ -47,8 +47,7 @@ int	load_map_and_components(t_game *game)
 		return (printf("Error:\nMlx img_mm image_to_window failed\n"), 0);
 	// game->img = mlx_new_image(game->mlx, 1000, 1000);
 	// mlx_image_to_window(game->mlx, game->img, 0, 0);
-	if (!load_pistol_tex(game) || !load_uzi_tex(game)
-		|| !load_ak47_tex(game))
+	if (!load_tex(game))
 		return (0);
 	return (1);
 }

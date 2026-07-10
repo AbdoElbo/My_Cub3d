@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/09 18:32:09 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/10 20:28:29 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@
 
 # define PI 3.14159265358979323846
 # include "Rendering/Rendering.h"
+
+typedef enum e_weapons
+{
+	SWORD,
+	OTHER,
+}	t_weapons;
 
 typedef struct s_files
 {
@@ -75,43 +81,50 @@ typedef struct s_ray
 
 typedef struct s_tex
 {
-	mlx_texture_t		*pistol_tex_0;
-	mlx_texture_t		*pistol_tex_1;
-	mlx_texture_t		*pistol_tex_2;
-	mlx_texture_t		*pistol_tex_3;
-	mlx_texture_t		*uzi_tex_0;
-	mlx_texture_t		*uzi_tex_1;
-	mlx_texture_t		*uzi_tex_2;
-	mlx_texture_t		*uzi_tex_3;
-	mlx_texture_t		*ak47_tex_0;
-	mlx_texture_t		*ak47_tex_1;
-	mlx_texture_t		*ak47_tex_2;
-	mlx_texture_t		*ak47_tex_3;
+	mlx_texture_t		*sword_tex_0;
+	mlx_texture_t		*sword_tex_1;
+	mlx_texture_t		*sword_tex_2;
+	mlx_texture_t		*sword_tex_3;
+	mlx_texture_t		*other_tex_0;
+	mlx_texture_t		*other_tex_1;
+	mlx_texture_t		*other_tex_2;
+	mlx_texture_t		*other_tex_3;
 }	t_tex;
 
 typedef struct s_img
 {
-	mlx_image_t		*pistol_img_0;
-	mlx_image_t		*pistol_img_1;
-	mlx_image_t		*pistol_img_2;
-	mlx_image_t		*pistol_img_3;
-	mlx_image_t		*uzi_img_0;
-	mlx_image_t		*uzi_img_1;
-	mlx_image_t		*uzi_img_2;
-	mlx_image_t		*uzi_img_3;
-	mlx_image_t		*ak47_img_0;
-	mlx_image_t		*ak47_img_1;
-	mlx_image_t		*ak47_img_2;
-	mlx_image_t		*ak47_img_3;
+	mlx_image_t		*sword_img_0;
+	mlx_image_t		*sword_img_1;
+	mlx_image_t		*sword_img_2;
+	mlx_image_t		*sword_img_3;
+	mlx_image_t		*other_img_0;
+	mlx_image_t		*other_img_1;
+	mlx_image_t		*other_img_2;
+	mlx_image_t		*other_img_3;
 }	t_img;
+
+typedef enum e_movement
+{
+	FREE,
+	BUSY,
+}	t_movement;
+
+typedef enum e_frame
+{
+	IDLE,
+	ATTACK1,
+	ATTACK2,
+	ATTACK3,
+}	t_frame;
 
 typedef struct s_game
 {
 	char		**map;
 	mlx_image_t	*mm_img;
+	mlx_image_t	*img;
+	mlx_image_t	*framebuf;
 	t_player	player;
 	mlx_t		*mlx;
-	mlx_image_t	*img;
 	int			multiplier;
 	t_files		files;
 	t_ray		ray;
@@ -124,9 +137,13 @@ typedef struct s_game
 	int			width;
 	int			map_start;
 	int			fd;
-	mlx_image_t	*framebuf;
 	t_img		images;
 	t_tex		textures;
+	t_weapons	weapon;
+	t_movement	movement;
+	t_frame		frame;
+	long long	frame_start;
+	bool		mouse_was_down;
 }	t_game;
 
 void	print_map(t_game *game);

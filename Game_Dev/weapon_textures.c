@@ -6,97 +6,58 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 18:29:27 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/09 18:39:22 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/10 20:55:55 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game_Dev.h"
 
-int	load_pistol_tex(t_game *game)
+static int	load_images(t_game *game, char *path
+		, mlx_texture_t **tex, mlx_image_t **img)
 {
-	game->textures.pistol_tex_0 = mlx_load_png("./Resources/textures/pistol_idle.png");
-	if (!game->textures.pistol_tex_0)
-		return (printf("pistol Tex didn't Load"), 0);
-	game->images.pistol_img_0 = mlx_texture_to_image(game->mlx, game->textures.pistol_tex_0);
-	if (!game->images.pistol_img_0)
-		return (printf("Pistol tex wasn't converted to image"), 0);
-	// game->textures.pistol_tex_1 = mlx_load_png("./Resources/textures/pistol_1.png");
-	// if (!game->textures.pistol_tex_1)
-	// 	return (printf("pistol Tex didn't Load"), 0);
-	// game->images.pistol_img_1 = mlx_texture_to_image(game->mlx, game->textures.pistol_tex_1);
-	// if (!game->images.pistol_img_1)
-	// 	return (printf("Pistol tex wasn't converted to image"), 0);
-	// game->textures.pistol_tex_0 = mlx_load_png("./Resources/textures/pistol_2.png");
-	// if (!game->textures.pistol_tex_0)
-	// 	return (printf("pistol Tex didn't Load"), 0);
-	// game->images.pistol_img_0 = mlx_texture_to_image(game->mlx, game->textures.pistol_tex_0);
-	// if (!game->images.pistol_img_0)
-	// 	return (printf("Pistol tex wasn't converted to image"), 0);
-	// game->textures.pistol_tex_0 = mlx_load_png("./Resources/textures/pistol_3.png");
-	// if (!game->textures.pistol_tex_0)
-	// 	return (printf("pistol Tex didn't Load"), 0);
-	// game->images.pistol_img_0 = mlx_texture_to_image(game->mlx, game->textures.pistol_tex_0);
-	// if (!game->images.pistol_img_0)
-	// 	return (printf("Pistol tex wasn't converted to image"), 0);
+	int	x_pos;
+	int	y_pos;
+
+	x_pos = SCREEN_WIDTH / 2 + 300;
+	y_pos = SCREEN_HEIGHT - 376; // - 100 should be - the size of the texture
+	*tex = mlx_load_png(path);
+	if (!*tex)
+		return (printf("Texture didn't load: %s\n", path), 0);
+	*img = mlx_texture_to_image(game->mlx, *tex);
+	if (!*img)
+		return (printf("Texture wasn't converted to image: %s\n", path), 0);
+	if (mlx_image_to_window(game->mlx, *img, x_pos, y_pos))
+		return (printf("Error:\nMlx image_to_window failed\n"), 0);
+	(*img)->enabled = false;
 	return (1);
 }
 
-int	load_uzi_tex(t_game *game)
+int	load_tex(t_game *game)
 {
-	(void)game;
-	// game->textures.uzi_tex_0 = mlx_load_png("./Resources/textures/uzi_idle.png");
-	// if (!game->textures.uzi_tex_0)
-	// 	return (printf("pistol Tex didn't Load"), 0);
-	// game->images.uzi_img_0 = mlx_texture_to_image(game->mlx, game->textures.uzi_tex_0);
-	// if (!game->images.uzi_img_0)
-	// 	return (printf("Pistol tex wasn't converted to image"), 0);
-	// game->textures.uzi_tex_1 = mlx_load_png("./Resources/textures/uzi_1.png");
-	// if (!game->textures.uzi_tex_1)
-	// 	return (printf("pistol Tex didn't Load"), 0);
-	// game->images.uzi_img_1 = mlx_texture_to_image(game->mlx, game->textures.uzi_tex_1);
-	// if (!game->images.uzi_img_1)
-	// 	return (printf("Pistol tex wasn't converted to image"), 0);
-	// game->textures.uzi_tex_0 = mlx_load_png("./Resources/textures/uzi_2.png");
-	// if (!game->textures.uzi_tex_0)
-	// 	return (printf("pistol Tex didn't Load"), 0);
-	// game->images.uzi_img_0 = mlx_texture_to_image(game->mlx, game->textures.uzi_tex_0);
-	// if (!game->images.uzi_img_0)
-	// 	return (printf("Pistol tex wasn't converted to image"), 0);
-	// game->textures.uzi_tex_0 = mlx_load_png("./Resources/textures/uzi_3.png");
-	// if (!game->textures.uzi_tex_0)
-	// 	return (printf("pistol Tex didn't Load"), 0);
-	// game->images.uzi_img_0 = mlx_texture_to_image(game->mlx, game->textures.uzi_tex_0);
-	// if (!game->images.uzi_img_0)
-	// 	return (printf("Pistol tex wasn't converted to image"), 0);
+	if (!load_images(game, "./Resources/textures/sword_0.png",
+		&game->textures.sword_tex_0, &game->images.sword_img_0))
+		return (0);
+	if (!load_images(game, "./Resources/textures/sword_1.png",
+		&game->textures.sword_tex_1, &game->images.sword_img_1))
+		return (0);
+	if (!load_images(game, "./Resources/textures/sword_2.png",
+		&game->textures.sword_tex_2, &game->images.sword_img_2))
+		return (0);
+	if (!load_images(game, "./Resources/textures/sword_3.png",
+		&game->textures.sword_tex_3, &game->images.sword_img_3))
+		return (0);
+	if (!load_images(game, "./Resources/textures/other_0.png",
+		&game->textures.other_tex_0, &game->images.other_img_0))
+		return (0);
+	if (!load_images(game, "./Resources/textures/other_1.png",
+		&game->textures.other_tex_1, &game->images.other_img_1))
+		return (0);
+	if (!load_images(game, "./Resources/textures/other_2.png",
+		&game->textures.other_tex_2, &game->images.other_img_2))
+		return (0);
+	if (!load_images(game, "./Resources/textures/other_3.png",
+		&game->textures.other_tex_3, &game->images.other_img_3))
+		return (0);
 	return (1);
 }
 
-int	load_ak47_tex(t_game *game)
-{
-	(void)game;
-	// game->textures.ak47_tex_0 = mlx_load_png("./Resources/textures/ak47_idle.png");
-	// if (!game->textures.ak47_tex_0)
-	// 	return (printf("pistol Tex didn't Load"), 0);
-	// game->images.ak47_img_0 = mlx_texture_to_image(game->mlx, game->textures.ak47_tex_0);
-	// if (!game->images.ak47_img_0)
-	// 	return (printf("Pistol tex wasn't converted to image"), 0);
-	// game->textures.ak47_tex_1 = mlx_load_png("./Resources/textures/ak47_1.png");
-	// if (!game->textures.ak47_tex_1)
-	// 	return (printf("pistol Tex didn't Load"), 0);
-	// game->images.ak47_img_1 = mlx_texture_to_image(game->mlx, game->textures.ak47_tex_1);
-	// if (!game->images.ak47_img_1)
-	// 	return (printf("Pistol tex wasn't converted to image"), 0);
-	// game->textures.ak47_tex_0 = mlx_load_png("./Resources/textures/ak47_2.png");
-	// if (!game->textures.ak47_tex_0)
-	// 	return (printf("pistol Tex didn't Load"), 0);
-	// game->images.ak47_img_0 = mlx_texture_to_image(game->mlx, game->textures.ak47_tex_0);
-	// if (!game->images.ak47_img_0)
-	// 	return (printf("Pistol tex wasn't converted to image"), 0);
-	// game->textures.ak47_tex_0 = mlx_load_png("./Resources/textures/ak47_3.png");
-	// if (!game->textures.ak47_tex_0)
-	// 	return (printf("pistol Tex didn't Load"), 0);
-	// game->images.ak47_img_0 = mlx_texture_to_image(game->mlx, game->textures.ak47_tex_0);
-	// if (!game->images.ak47_img_0)
-	// 	return (printf("Pistol tex wasn't converted to image"), 0);
-	return (1);
-}
