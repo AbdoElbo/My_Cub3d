@@ -57,6 +57,7 @@ int	load_map_and_components(t_game *game)
 	game->texture_east = mlx_load_png("Resources/textures/east_texture.png");
 	game->texture_west = mlx_load_png("Resources/textures/west_texture.png");
 	game->texture_south = mlx_load_png("Resources/textures/south_texture.png");
+	game->texture_door = mlx_load_png("Resources/textures/door.png");
 	// game->img = mlx_new_image(game->mlx, 1000, 1000);
 	// mlx_image_to_window(game->mlx, game->img, 0, 0);
 	return (1);

@@ -71,7 +71,7 @@ void calculate_first_ray_part(t_dda *dda, t_ray *ray, t_game *game)
 void look_for_hit(t_dda *dda, t_game *game)
 {
 	int hit;
-	
+
 	hit = 0;
 	while (!hit)
 	{
@@ -87,7 +87,7 @@ void look_for_hit(t_dda *dda, t_game *game)
 			dda->map_y += dda->step_y;
 			dda->side = 1;
 		}
-		if (game->map[dda->map_y][dda->map_x] == '1')
+		if (game->map[dda->map_y][dda->map_x] == '1' || game->map[dda->map_y][dda->map_x] == 'D')
 			hit = 1;
 	}
 }
@@ -104,13 +104,15 @@ static double ft_dda(t_game *game, t_ray *ray)
 	ray->side = dda.side;
 	ray->wall_x = hit_wall_x(&dda, ray, game);
 	ray->distance = dda.raw_dist;
-	if (dda.side == 0 && dda.step_x > 0)
+	if (game->map[dda.map_y][dda.map_x] == 'D')
+		ray->texture_hit = *game->texture_door;
+	else if (dda.side == 0 && dda.step_x > 0)
 		ray->texture_hit = *game->texture_east;
 	else if (dda.side == 0 && dda.step_x < 0)
 		ray->texture_hit = *game->texture_west;
 	else if (dda.side == 1 && dda.step_y > 0)
 		ray->texture_hit = *game->texture_south;
-	else
+	else if (dda.side == 1 && dda.step_y < 0)
 		ray->texture_hit = *game->texture_north;
 	return (dda.raw_dist);
 }
