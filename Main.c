@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/06 15:11:02 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/09 10:51:27 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_hook(void *param)
 	render_frame(game);
 	draw_minimap(game, off_x, off_y);
 	test_sprite_loop(game);
+	draw_minimap(game, off_x, off_y);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	// printf("frame is rendered\n");
