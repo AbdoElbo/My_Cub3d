@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 18:46:33 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/08 16:08:58 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/13 19:35:13 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ static int	get_floor_color(t_game *game, int i, int j)
 	if (counter > 1)
 		return (free_arr(arr), printf(Y"Error:\nDuplicated F color\n"RESET), 0);
 	if (arr_size(arr) != 3)
-		return (free_arr(arr), printf(Y"Error:\nIncorrect amount of RGB values\n"RESET), 0);
-	if (has_invalid_chars(arr[0]) || has_invalid_chars(arr[1]) || has_invalid_chars(arr[2]))
-		return (free_arr(arr), printf(Y"Error:\nRGB has_invalid_chars\n"RESET), 0);
+		return (free_arr(arr), printf(Y"Error:\nRGB Incorrect num\n"RESET), 0);
+	if (has_invalid_chars(arr[0]) || has_invalid_chars(arr[1])
+		|| has_invalid_chars(arr[2]))
+		return (free_arr(arr), printf(Y"Error:\nRGB invalid values\n"RESET), 0);
 	r = ft_atoi(arr[0]);
 	g = ft_atoi(arr[1]);
 	b = ft_atoi(arr[2]);
@@ -75,9 +76,10 @@ static int	get_ceiling_color(t_game *game, int i, int j)
 	if (counter > 1)
 		return (free_arr(arr), printf(Y"Error:\nDuplicated C color\n"RESET), 0);
 	if (arr_size(arr) != 3)
-		return (free_arr(arr), printf(Y"Error:\nIncorrect amount of RGB values\n"RESET), 0);
-	if (has_invalid_chars(arr[0]) || has_invalid_chars(arr[1]) || has_invalid_chars(arr[2]))
-		return (free_arr(arr), printf(Y"Error:\nRGB has_invalid_chars\n"RESET), 0);
+		return (free_arr(arr), printf(Y"Error:\nRGB Incorrect num\n"RESET), 0);
+	if (has_invalid_chars(arr[0]) || has_invalid_chars(arr[1])
+		|| has_invalid_chars(arr[2]))
+		return (free_arr(arr), printf(Y"Error:\nRGB invalid values\n"RESET), 0);
 	r = ft_atoi(arr[0]);
 	g = ft_atoi(arr[1]);
 	b = ft_atoi(arr[2]);
@@ -110,4 +112,3 @@ int	get_colors(t_game *game)
 		return (printf(Y"Error:\n(MAP) Map Not Found!! Exiting...\n"RESET), 0);
 	return (1);
 }
-

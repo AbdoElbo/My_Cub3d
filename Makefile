@@ -6,7 +6,7 @@
 #    By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/07 16:20:34 by aelbouaz          #+#    #+#              #
-#    Updated: 2026/07/13 16:12:47 by aelbouaz         ###   ########.fr        #
+#    Updated: 2026/07/13 19:40:53 by aelbouaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CUBED_SRCS = Main.c \
 			Parsing/utils_1.c Parsing/update_map.c Parsing/texture_color_check.c\
 			Map_validity/Map_validity.c Map_validity/Components_exist.c \
 			Map_validity/Flood_fill.c Rendering/rendering.c\
-			Plane/make_plane.c Plane/rays.c \
+			Plane/make_plane.c \
 			Game_Dev/Movements.c Game_Dev/Rotations.c Game_Dev/weapon_textures.c \
 			Game_Dev/weapons_animation.c Game_Dev/weapons_animation_utils.c
 

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 16:54:14 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/08 15:50:50 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/13 19:30:27 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 void	ft_mouse_mvm(double x, double y, void *param)
 {
 	t_game	*game;
-	int32_t	current_x = 0;
-	int32_t	current_y = 0;
+	int32_t	current_x;
+	int32_t	current_y;
 	int		dx;
-	int		dy;
 	float	rot_speed;
 
 	(void)y;
 	(void)x;
+	current_x = 0;
+	current_y = 0;
 	game = (t_game *)param;
 	rot_speed = 0.001f;
 	mlx_get_mouse_pos(game->mlx, &current_x, &current_y);
 	dx = current_x - game->mouse_x;
-	dy = current_y - game->mouse_y;
 	mlx_set_mouse_pos(game->mlx, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	game->player.angle += dx * rot_speed;
 }
@@ -49,10 +49,12 @@ void	draw_line(t_game *game, uint32_t color)
 {
 	int		i;
 	int		j;
-	double	x = 0;
-	double	y = 0;
+	double	x;
+	double	y;
 	double	distance;
 
+	x = 0;
+	y = 0;
 	distance = 0;
 	i = MINIMAP_PX / 2;
 	j = MINIMAP_PX / 2;

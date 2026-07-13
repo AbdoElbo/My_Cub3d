@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/05 14:08:39 by gekko            ###   ########.fr       */
+/*   Updated: 2026/07/13 19:27:33 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ static int	hits_wall(t_game *game, float x, float y)
 
 static void	move_dir(t_game *game, float *nx, float *ny, int dir)
 {
-	float	speed = 0.05f;
+	float	speed;
 
+	speed = 0.05f;
 	if (dir == 0)
 	{
 		*nx += game->player.dir_x * speed;

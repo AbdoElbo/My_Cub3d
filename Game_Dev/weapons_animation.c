@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 15:17:30 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/13 17:55:24 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/13 19:31:38 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void	gun_dev(t_game *game)
 	if (game->movement == FREE)
 	{
 		if (mlx_is_key_down(game->mlx, MLX_KEY_1))
-		game->weapon = SWORD;
+			game->weapon = SWORD;
 		if (mlx_is_key_down(game->mlx, MLX_KEY_2))
-		game->weapon = OTHER;
+			game->weapon = OTHER;
 	}
 	mouse_down = mlx_is_mouse_down(game->mlx, MLX_MOUSE_BUTTON_LEFT);
 	if (mouse_down && !game->mouse_was_down)

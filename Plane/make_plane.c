@@ -6,18 +6,16 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:47:58 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/02 18:04:18 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/13 19:40:27 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Plane.h"
 
-static uint32_t tile_color(char c)
+static uint32_t	tile_color(char c)
 {
 	if (c == '1')
 		return (get_rgb_color(0, 0, 200));
-	// if (c == '0')
-	// 	return (get_rgb_color(20, 0, 0));
 	return (get_rgb_color(20, 20, 20));
 }
 
@@ -66,14 +64,14 @@ static void	draw_circle(t_game *game, int r, uint32_t color)
 		{
 			if (dx * dx + dy * dy <= r * r)
 				mlx_put_pixel(game->mm_img,
-				cx + dx, cy + dy, color);
+					cx + dx, cy + dy, color);
 			dx++;
 		}
 		dy++;
 	}
 }
 
-void	draw_minimap(t_game *game, int offset_x, int offset_y)
+static void	draw_floor(t_game *game, int offset_x, int offset_y)
 {
 	char	c;
 	int		row;
@@ -100,6 +98,11 @@ void	draw_minimap(t_game *game, int offset_x, int offset_y)
 		}
 		row++;
 	}
+}
+
+void	draw_minimap(t_game *game, int offset_x, int offset_y)
+{
+	draw_floor(game, offset_x, offset_y);
 	draw_circle(game, 3, get_rgb_color(255, 100, 0));
 	draw_line(game, get_rgb_color(0, 200, 0));
 }

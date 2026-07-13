@@ -6,12 +6,12 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:17:07 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/13 17:44:07 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/13 19:27:12 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_DEH_H
-# define GAME_DEH_H
+#ifndef GAME_DEV_H
+# define GAME_DEV_H
 
 # include "../Cubed.h"
 
@@ -32,4 +32,4 @@ long long	get_time_in_ms(void);
 void		sword_attack(t_game *game);
 void		other_attack(t_game *game);
 
-# endif
+#endif

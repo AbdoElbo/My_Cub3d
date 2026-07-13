@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 18:29:27 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/13 17:24:48 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/13 19:31:12 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int	load_images(t_game *game, char *path
 	if (!*tex)
 		return (printf("Texture didn't load: %s\n", path), 0);
 	*img = mlx_texture_to_image(game->mlx, *tex);
+	mlx_delete_texture(*tex); // im deleting tex before checking for img so in case of conversion failure, tex will always be deleted ...
 	if (!*img)
 		return (printf("Texture wasn't converted to image: %s\n", path), 0);
 	scale_image(img);
@@ -48,19 +49,19 @@ static int	load_images(t_game *game, char *path
 int	load_sword_tex(t_game *game)
 {
 	if (!load_images(game, "./Resources/textures/sword_0.png",
-		&game->textures.sword_tex_0, &game->images.sword_img_0))
+			&game->textures.sword_tex_0, &game->images.sword_img_0))
 		return (0);
 	if (!load_images(game, "./Resources/textures/sword_1.png",
-		&game->textures.sword_tex_1, &game->images.sword_img_1))
+			&game->textures.sword_tex_1, &game->images.sword_img_1))
 		return (0);
 	if (!load_images(game, "./Resources/textures/sword_2.png",
-		&game->textures.sword_tex_2, &game->images.sword_img_2))
+			&game->textures.sword_tex_2, &game->images.sword_img_2))
 		return (0);
 	if (!load_images(game, "./Resources/textures/sword_3.png",
-		&game->textures.sword_tex_3, &game->images.sword_img_3))
+			&game->textures.sword_tex_3, &game->images.sword_img_3))
 		return (0);
 	if (!load_images(game, "./Resources/textures/sword_4.png",
-		&game->textures.sword_tex_4, &game->images.sword_img_4))
+			&game->textures.sword_tex_4, &game->images.sword_img_4))
 		return (0);
 	return (1);
 }
@@ -68,19 +69,19 @@ int	load_sword_tex(t_game *game)
 int	load_other_tex(t_game *game)
 {
 	if (!load_images(game, "./Resources/textures/other_0.png",
-		&game->textures.other_tex_0, &game->images.other_img_0))
+			&game->textures.other_tex_0, &game->images.other_img_0))
 		return (0);
 	if (!load_images(game, "./Resources/textures/other_1.png",
-		&game->textures.other_tex_1, &game->images.other_img_1))
+			&game->textures.other_tex_1, &game->images.other_img_1))
 		return (0);
 	if (!load_images(game, "./Resources/textures/other_2.png",
-		&game->textures.other_tex_2, &game->images.other_img_2))
+			&game->textures.other_tex_2, &game->images.other_img_2))
 		return (0);
 	if (!load_images(game, "./Resources/textures/other_3.png",
-		&game->textures.other_tex_3, &game->images.other_img_3))
+			&game->textures.other_tex_3, &game->images.other_img_3))
 		return (0);
 	if (!load_images(game, "./Resources/textures/other_4.png",
-		&game->textures.other_tex_4, &game->images.other_img_4))
+			&game->textures.other_tex_4, &game->images.other_img_4))
 		return (0);
 	return (1);
 }

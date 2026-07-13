@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/10 20:29:12 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/13 19:35:27 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	init_vars(t_game *game)
 	game->files.fd_s_flag = 0;
 	game->mouse_x = SCREEN_WIDTH / 2;
 	game->mouse_y = SCREEN_HEIGHT / 2;
-	game->movement= FREE;
+	game->movement = FREE;
 	game->weapon = SWORD;
 	game->mouse_was_down = false;
 }
