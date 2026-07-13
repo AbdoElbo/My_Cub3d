@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 18:29:27 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/13 15:56:34 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/13 17:24:48 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	load_images(t_game *game, char *path
 	return (1);
 }
 
-int	load_tex(t_game *game)
+int	load_sword_tex(t_game *game)
 {
 	if (!load_images(game, "./Resources/textures/sword_0.png",
 		&game->textures.sword_tex_0, &game->images.sword_img_0))
@@ -59,6 +59,14 @@ int	load_tex(t_game *game)
 	if (!load_images(game, "./Resources/textures/sword_3.png",
 		&game->textures.sword_tex_3, &game->images.sword_img_3))
 		return (0);
+	if (!load_images(game, "./Resources/textures/sword_4.png",
+		&game->textures.sword_tex_4, &game->images.sword_img_4))
+		return (0);
+	return (1);
+}
+
+int	load_other_tex(t_game *game)
+{
 	if (!load_images(game, "./Resources/textures/other_0.png",
 		&game->textures.other_tex_0, &game->images.other_img_0))
 		return (0);
@@ -71,6 +79,8 @@ int	load_tex(t_game *game)
 	if (!load_images(game, "./Resources/textures/other_3.png",
 		&game->textures.other_tex_3, &game->images.other_img_3))
 		return (0);
+	if (!load_images(game, "./Resources/textures/other_4.png",
+		&game->textures.other_tex_4, &game->images.other_img_4))
+		return (0);
 	return (1);
 }
-

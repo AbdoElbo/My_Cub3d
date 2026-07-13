@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:17:07 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/13 16:13:41 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/13 17:44:07 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ void		rotate_player(t_game *game);
 void		draw_line(t_game *game, uint32_t color);
 void		gun_dev(t_game *game);
 
-int			load_tex(t_game *game);
+int			load_sword_tex(t_game *game);
+int			load_other_tex(t_game *game);
 long long	get_time_in_ms(void);
 
-void	sword_attack(t_game *game);
-void	other_attack(t_game *game);
+void		sword_attack(t_game *game);
+void		other_attack(t_game *game);
 
 # endif

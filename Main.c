@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/13 16:16:11 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/13 19:12:53 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	load_map_and_components(t_game *game)
 		return (printf("Error:\nMlx img_mm image_to_window failed\n"), 0);
 	// game->img = mlx_new_image(game->mlx, 1000, 1000);
 	// mlx_image_to_window(game->mlx, game->img, 0, 0);
-	if (!load_tex(game))
+	if (!load_sword_tex(game) || !load_other_tex(game))
 		return (0);
 	return (1);
 }

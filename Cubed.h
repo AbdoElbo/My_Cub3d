@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/10 20:28:29 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/13 17:25:37 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,12 @@ typedef struct s_tex
 	mlx_texture_t		*sword_tex_1;
 	mlx_texture_t		*sword_tex_2;
 	mlx_texture_t		*sword_tex_3;
+	mlx_texture_t		*sword_tex_4;
 	mlx_texture_t		*other_tex_0;
 	mlx_texture_t		*other_tex_1;
 	mlx_texture_t		*other_tex_2;
 	mlx_texture_t		*other_tex_3;
+	mlx_texture_t		*other_tex_4;
 }	t_tex;
 
 typedef struct s_img
@@ -97,10 +99,12 @@ typedef struct s_img
 	mlx_image_t		*sword_img_1;
 	mlx_image_t		*sword_img_2;
 	mlx_image_t		*sword_img_3;
+	mlx_image_t		*sword_img_4;
 	mlx_image_t		*other_img_0;
 	mlx_image_t		*other_img_1;
 	mlx_image_t		*other_img_2;
 	mlx_image_t		*other_img_3;
+	mlx_image_t		*other_img_4;
 }	t_img;
 
 typedef enum e_movement
@@ -115,6 +119,7 @@ typedef enum e_frame
 	ATTACK1,
 	ATTACK2,
 	ATTACK3,
+	ATTACK4,
 }	t_frame;
 
 typedef struct s_game

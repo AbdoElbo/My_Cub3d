@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 15:17:30 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/13 16:42:18 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/13 17:44:18 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	sword_attack(t_game *game)
 	img = game->images;
 	if (game->movement != BUSY)
 		return ;
-	frame_duration = 50;
+	frame_duration = 100;
 	now = get_time_in_ms();
 	if (now - game->frame_start < frame_duration)
 		return ;
@@ -41,8 +41,10 @@ void	sword_attack(t_game *game)
 	else if (game->frame == ATTACK2)
 		set_frames(game, img.sword_img_2, img.sword_img_3, ATTACK3);
 	else if (game->frame == ATTACK3)
+		set_frames(game, img.sword_img_3, img.sword_img_4, ATTACK4);
+	else if (game->frame == ATTACK4)
 	{
-		set_frames(game, img.sword_img_3, img.sword_img_0, IDLE);
+		set_frames(game, img.sword_img_4, img.sword_img_0, IDLE);
 		game->movement = FREE;
 	}
 }
@@ -68,8 +70,10 @@ void	other_attack(t_game *game)
 	else if (game->frame == ATTACK2)
 		set_frames(game, img.other_img_2, img.other_img_3, ATTACK3);
 	else if (game->frame == ATTACK3)
+		set_frames(game, img.other_img_3, img.other_img_4, ATTACK4);
+	else if (game->frame == ATTACK4)
 	{
-		set_frames(game, img.other_img_3, img.other_img_0, IDLE);
+		set_frames(game, img.other_img_4, img.other_img_0, IDLE);
 		game->movement = FREE;
 	}
 }
