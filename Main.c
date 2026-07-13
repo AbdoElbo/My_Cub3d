@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/09 10:51:27 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/13 17:51:38 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_hook(void *param)
 	t_game	*game;
 	int		off_x;
 	int		off_y;
+	static int e_was_down;
+	int		e_is_down;
 
 	game = (t_game *)param;
 	off_x = (int)((game->player.x - (int)game->player.x) * TILE_SIZE);
@@ -31,6 +33,10 @@ void	ft_hook(void *param)
 	// printf("frame is rendered\n");
 	move_player(game);
 	rotate_player(game);
+	e_is_down = mlx_is_key_down(game->mlx, MLX_KEY_E);
+	if (e_is_down && !e_was_down)
+		open_close_door(game);
+	e_was_down = e_is_down;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_1))
 		set_animation(&game->enemy.sprite, ANIM_WALK);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_2))

@@ -6,11 +6,12 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 10:58:13 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/09 17:11:30 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/13 18:24:15 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Rendering.h"
+// #include "Bonus.h"
 
 // 0 for vertical wall, 1 for horizontal wall
 double hit_wall_x(t_dda *dda, t_ray *ray, t_game *game)
@@ -71,6 +72,7 @@ void calculate_first_ray_part(t_dda *dda, t_ray *ray, t_game *game)
 void look_for_hit(t_dda *dda, t_game *game)
 {
 	int hit;
+	int tile;
 
 	hit = 0;
 	while (!hit)
@@ -87,7 +89,12 @@ void look_for_hit(t_dda *dda, t_game *game)
 			dda->map_y += dda->step_y;
 			dda->side = 1;
 		}
-		if (game->map[dda->map_y][dda->map_x] == '1' || game->map[dda->map_y][dda->map_x] == 'D')
+		tile = game->map[dda->map_y][dda->map_x];
+		if (tile == '1')
+		{
+			hit = 1;
+		}
+		else if (tile == 'D' && !check_open_door(dda->map_x, dda->map_y, game))
 			hit = 1;
 	}
 }
@@ -104,7 +111,7 @@ static double ft_dda(t_game *game, t_ray *ray)
 	ray->side = dda.side;
 	ray->wall_x = hit_wall_x(&dda, ray, game);
 	ray->distance = dda.raw_dist;
-	if (game->map[dda.map_y][dda.map_x] == 'D')
+	if (game->map[dda.map_y][dda.map_x] == 'D' && game->texture_door)
 		ray->texture_hit = *game->texture_door;
 	else if (dda.side == 0 && dda.step_x > 0)
 		ray->texture_hit = *game->texture_east;

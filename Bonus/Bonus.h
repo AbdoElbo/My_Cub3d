@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bonus.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 15:51:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/05 17:13:23 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/13 18:09:34 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ typedef struct s_door
 }	t_door;
 
 int init_doors(t_game *game);
+int check_open_door(int map_x, int map_y, t_game *game);
+void open_close_door(t_game *game);
 
 #endif

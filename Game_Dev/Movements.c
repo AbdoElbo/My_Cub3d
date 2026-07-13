@@ -28,7 +28,9 @@ static int	is_wall(t_game *game, float x, float y)
 	if (map_col >= (int)ft_strlen(game->map[map_row]))
 		return (1);
 	c = game->map[map_row][map_col];
-	if (c == '1' || c == 'D')
+	if (c == '1')
+		return (1);
+	if (c == 'D' && !check_open_door(map_col, map_row, game))
 		return (1);
 	return (0);
 }
