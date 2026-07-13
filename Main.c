@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/10 20:31:22 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/13 16:16:11 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	ft_hook(void *param)
 	off_y = (int)((game->player.y - (int)game->player.y) * TILE_SIZE);
 	draw_minimap(game, off_x, off_y);
 	gun_dev(game);
-	// printf("\nplayer x=%f, y=%f\n",game->player.x, game->player.y);
-	// printf("player dir_x=%f, dir_y=%f\n",game->player.dir_x, game->player.dir_y);
 	// printf("Angle is %f\n",game->player.angle);
 }
 

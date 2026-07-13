@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 15:17:30 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/10 20:57:34 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/13 16:12:54 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	show_weapon(t_game *game)
 	}
 }
 
-void	start_attack(t_game *game)
+static void	start_attack(t_game *game)
 {
 	if (game->movement == FREE && game->weapon == SWORD)
 	{
@@ -54,84 +54,6 @@ void	start_attack(t_game *game)
 		game->frame_start = get_time_in_ms();
 		game->images.other_img_0->enabled = false;
 		game->images.other_img_1->enabled = true;
-	}
-}
-
-static void	sword_attack(t_game *game)
-{
-	long long	now;
-	long long	frame_duration;
-
-	if (game->movement != BUSY)
-		return ;
-	frame_duration = 250;
-	now = get_time_in_ms();
-	if (now - game->frame_start < frame_duration)
-		return ; // not enough time has passed yet, do nothing this tick
-	game->frame_start = now;
-	if (game->frame == IDLE)
-	{
-		game->images.sword_img_1->enabled = false;
-		game->images.sword_img_2->enabled = true;
-		game->frame = ATTACK1;
-	}
-	if (game->frame == ATTACK1)
-	{
-		game->images.sword_img_1->enabled = false;
-		game->images.sword_img_2->enabled = true;
-		game->frame = ATTACK2;
-	}
-	else if (game->frame == ATTACK2)
-	{
-		game->images.sword_img_2->enabled = false;
-		game->images.sword_img_3->enabled = true;
-		game->frame = ATTACK3;
-	}
-	else if (game->frame == ATTACK3)
-	{
-		game->images.sword_img_3->enabled = false;
-		game->images.sword_img_0->enabled = true;
-		game->frame = IDLE;
-		game->movement = FREE;
-	}
-}
-
-static void	other_attack(t_game *game)
-{
-	long long	now;
-	long long	frame_duration;
-
-	if (game->movement != BUSY)
-		return ;
-	frame_duration = 250;
-	now = get_time_in_ms();
-	if (now - game->frame_start < frame_duration)
-		return ; // not enough time has passed yet, do nothing this tick
-	game->frame_start = now;
-	if (game->frame == IDLE)
-	{
-		game->images.other_img_1->enabled = false;
-		game->images.other_img_2->enabled = true;
-		game->frame = ATTACK1;
-	}
-	if (game->frame == ATTACK1)
-	{
-		game->images.other_img_1->enabled = false;
-		game->images.other_img_2->enabled = true;
-		game->frame = ATTACK2;
-	}
-	else if (game->frame == ATTACK2)
-	{
-		game->images.other_img_2->enabled = false;
-		game->images.other_img_3->enabled = true;
-		game->frame = ATTACK3;
-	}
-	else if (game->frame == ATTACK3)
-	{
-		game->images.other_img_3->enabled = false;
-		game->images.other_img_0->enabled = true;
-		game->frame = IDLE;
-		game->movement = FREE;
 	}
 }
 

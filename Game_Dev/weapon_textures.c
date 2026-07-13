@@ -6,11 +6,23 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 18:29:27 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/10 20:55:55 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/13 15:56:34 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game_Dev.h"
+
+static void	scale_image(mlx_image_t **img)
+{
+	double	scale_x;
+	double	scale_y;
+	double	scale;
+
+	scale_x = (double)SCREEN_WIDTH / (*img)->width;
+	scale_y = (double)SCREEN_HEIGHT / (*img)->height;
+	scale = fmax(scale_x, scale_y);
+	mlx_resize_image((*img), (*img)->width * scale, (*img)->height * scale);
+}
 
 static int	load_images(t_game *game, char *path
 		, mlx_texture_t **tex, mlx_image_t **img)
@@ -18,14 +30,15 @@ static int	load_images(t_game *game, char *path
 	int	x_pos;
 	int	y_pos;
 
-	x_pos = SCREEN_WIDTH / 2 + 300;
-	y_pos = SCREEN_HEIGHT - 376; // - 100 should be - the size of the texture
 	*tex = mlx_load_png(path);
 	if (!*tex)
 		return (printf("Texture didn't load: %s\n", path), 0);
 	*img = mlx_texture_to_image(game->mlx, *tex);
 	if (!*img)
 		return (printf("Texture wasn't converted to image: %s\n", path), 0);
+	scale_image(img);
+	x_pos = SCREEN_WIDTH - (*img)->width;
+	y_pos = SCREEN_HEIGHT - (*img)->height;
 	if (mlx_image_to_window(game->mlx, *img, x_pos, y_pos))
 		return (printf("Error:\nMlx image_to_window failed\n"), 0);
 	(*img)->enabled = false;
