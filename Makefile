@@ -6,7 +6,7 @@
 #    By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/07 16:20:34 by aelbouaz          #+#    #+#              #
-#    Updated: 2026/07/14 13:07:38 by aelbouaz         ###   ########.fr        #
+#    Updated: 2026/07/14 13:19:12 by aelbouaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,14 @@ CFLAGS = -Wall -Wextra -Werror -MMD
 CC = cc
 
 CUBED = cub3D
-CUBED_SRCS = Main.c \
-			Parsing/error_check.c Parsing/get_colors.c \
+CUBED_SRCS = Main.c Parsing/error_check.c Parsing/get_colors.c \
 			Parsing/get_textures.c Parsing/gnl.c Parsing/initialise_map.c \
-			Parsing/utils_1.c Parsing/update_map.c Parsing/texture_color_check.c\
+			Parsing/utils_1.c Parsing/update_map.c Parsing/texture_color_check.c \
 			Map_validity/Map_validity.c Map_validity/Components_exist.c \
-			Map_validity/Flood_fill.c Rendering/rendering.c Game_Dev/weapon_textures.c \
-			Game_Dev/weapons_animation.c Game_Dev/weapons_animation_utils.c
-			Plane/make_plane.c Plane/rays.c Game_Dev/Movements.c \
-			Game_Dev/Rotations.c  Enemy/enemy.c \
+			Map_validity/Flood_fill.c Plane/make_plane.c \
+			Rendering/rendering.c Game_Dev/weapon_textures.c \
+			Game_Dev/weapons_animation.c Game_Dev/weapons_animation_utils.c \
+			Game_Dev/Movements.c Game_Dev/Rotations.c Enemy/enemy.c \
 
 CUBED_SRCS_BONUS = Bonus/Animations.c Bonus/Doors_opening.c \
 			Bonus/Minimap.c Bonus/Mouse_mouvements.c

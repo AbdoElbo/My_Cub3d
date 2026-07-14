@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 13:11:09 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 13:16:47 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,6 @@ typedef struct s_game
 	t_frame		frame;
 	long long	frame_start;
 	bool		mouse_was_down;
-	mlx_image_t	*framebuf;
 	double		zbuffer[MAX_WIDTH];
 	t_enemy		enemy;
 	mlx_texture_t	*texture_east;

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 16:54:14 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 13:10:45 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 13:28:47 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,8 +154,6 @@ static double trace_line_distance(t_game *game, t_ray *ray)
 
 void	draw_line(t_game *game, t_ray *ray, uint32_t color)
 {
-	int		i;
-	int		j;
 	double	x;
 	double	y;
 	double	distance;
@@ -163,18 +161,15 @@ void	draw_line(t_game *game, t_ray *ray, uint32_t color)
 
 	x = 0;
 	y = 0;
-	distance = 0;
 	step = 0.01;
 	distance = trace_line_distance(game, ray);
 	ray->distance = distance;
-	i = MINIMAP_PX / 2;
-	j = MINIMAP_PX / 2;
-	x = i;
-	y = j;
+	x = MINIMAP_PX / 2;
+	y = MINIMAP_PX / 2;
 	while (distance >= 0.0)
 	{
-		x = i + ray->dir_x * distance * TILE_SIZE;
-		y = j + ray->dir_y * distance * TILE_SIZE;
+		x = (MINIMAP_PX / 2) + ray->dir_x * distance * TILE_SIZE;
+		y = (MINIMAP_PX / 2) + ray->dir_y * distance * TILE_SIZE;
 		if (x > 0 && x < MINIMAP_PX && y > 0 && y < MINIMAP_PX)
 			mlx_put_pixel(game->mm_img, x, y, color);
 		if (distance <= 0.0)

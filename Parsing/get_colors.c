@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 18:46:33 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 13:12:37 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 13:21:22 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,6 @@
 uint32_t	get_rgb_color(int r, int g, int b)
 {
 	return (r << 24 | g << 16 | b << 8 | 255);
-}
-
-static int	has_invalid_chars(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (ft_isspace(str[i]))
-		i++;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (1);
-		i++;
-	}
-	return (0);
 }
 
 static int  has_invalid_chars(char *str)
@@ -76,7 +60,6 @@ static int  get_floor_color(t_game *game, int i, int j)
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		return (free_arr(arr), printf(Y"Error:\nWrong RGB values\n"RESET), 0);
 	game->floor_color = get_rgb_color(r, g, b);
-	printf("Floor:'0x%08X'\n", game->floor_color);
 	return (free_arr(arr), 1);
 }
 
@@ -105,7 +88,6 @@ static int  get_ceiling_color(t_game *game, int i, int j)
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		return (free_arr(arr), printf(Y"Error:\nWrong RGB values\n"RESET), 0);
 	game->ceiling_color = get_rgb_color(r, g, b);
-	printf("Ceiling:'0x%08X'\n\n", game->ceiling_color);
 	return (free_arr(arr), 1);
 }
 

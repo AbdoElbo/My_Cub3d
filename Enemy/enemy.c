@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 14:24:39 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/02 15:17:36 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/14 13:25:34 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	load_all_frames(mlx_t *mlx, t_sprite *sprite, int max_frames)
 		{
 			sprite->frames[a * max_frames + f] = mlx_new_image(mlx, sprite->frame_w, sprite->frame_h);
 			extract_frame(sprite, f, a);
-			printf("Frame %d of animation %d loaded successfully!\n", f, a);
+			// printf("Frame %d of animation %d loaded successfully!\n", f, a);
 			f++;
 		}
 		a++;
@@ -98,7 +98,7 @@ int init_enemy_sprite(t_enemy *enemy, t_game *game)
 	sprite.frames = malloc(sizeof(mlx_image_t *) * ANIM_COUNT * 13);
 	if (!sprite.frames)
 		return (cleanup(game), 0);
-	printf("sheet loaded successfully!\n");
+	// printf("sheet loaded successfully!\n");
 	sprite.anims[ANIM_IDLE]   = (t_anim_def){0, 8};
 	sprite.anims[ANIM_WALK]   = (t_anim_def){1, 8};
 	sprite.anims[ANIM_ATTACK] = (t_anim_def){2, 13};
@@ -109,7 +109,7 @@ int init_enemy_sprite(t_enemy *enemy, t_game *game)
 	load_all_frames(game->mlx, &sprite, 13);
 	if (!enemy->sprite.sheet)
 		return (cleanup(game), 0);
-	printf("Frames loaded successfully!\n");
+	// printf("Frames loaded successfully!\n");
 	return (1);
 }
 
@@ -121,7 +121,7 @@ int init_enemy(t_game *game)
 	enemy.damage = 1;
 	if (!init_enemy_sprite(&enemy, game))
 		return (0);
-	printf("Enemy sprite initialized successfully!\n");
+	// printf("Enemy sprite initialized successfully!\n");
 	enemy.x = 1; //update in map parsing;
 	enemy.y = 2; //update in map parsing;
 	game->enemy = enemy;

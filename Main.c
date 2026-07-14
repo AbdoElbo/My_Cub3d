@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 13:06:44 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 13:30:05 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,26 @@ void	ft_hook(void *param)
 	off_x = (int)((game->player.x - (int)game->player.x) * TILE_SIZE);
 	off_y = (int)((game->player.y - (int)game->player.y) * TILE_SIZE);
 	cast_rays(game);
-	printf("Rays are cast\n");
-	printf("Minimap is drawn\n");
+	// printf("Rays are cast\n");
+	// printf("Minimap is drawn\n");
 	render_frame(game);
 	test_sprite_loop(game);
-	// draw_minimap(game, off_x, off_y);
+	draw_minimap(game, off_x, off_y);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	// printf("frame is rendered\n");
 	move_player(game);
 	rotate_player(game);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_1))
-		set_animation(&game->enemy.sprite, ANIM_WALK);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_2))
-		set_animation(&game->enemy.sprite, ANIM_HURT);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_3))
-		set_animation(&game->enemy.sprite, ANIM_ATTACK);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_4))
-		set_animation(&game->enemy.sprite, ANIM_DEATH);
+	gun_dev(game);
+	// if (mlx_is_key_down(game->mlx, MLX_KEY_7))
+	// 	set_animation(&game->enemy.sprite, ANIM_WALK);
+	// if (mlx_is_key_down(game->mlx, MLX_KEY_8))
+	// 	set_animation(&game->enemy.sprite, ANIM_HURT);
+	// if (mlx_is_key_down(game->mlx, MLX_KEY_9))
+	// 	set_animation(&game->enemy.sprite, ANIM_ATTACK);
+	// if (mlx_is_key_down(game->mlx, MLX_KEY_0))
+	// 	set_animation(&game->enemy.sprite, ANIM_DEATH);
 }
-
 
 int	load_map_and_components(t_game *game)
 {
