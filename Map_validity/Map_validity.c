@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Map_validity.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:38:34 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/30 17:07:33 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 12:36:03 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	count_extras(t_game *game)
 		{
 			if (game->map[i][j] == 'D')
 				game->door_count++;
-			else if (game->map[i][j] == 'E')
+			else if (game->map[i][j] == 'V')
 				game->enemy_count++;
 			j++;
 		}
@@ -77,6 +77,7 @@ void	init_bonus(t_game *game)
 {
 	count_extras(game);
 	init_doors(game);
+	init_enemy(game);
 }
 
 int	map_validity(t_game *game)

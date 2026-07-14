@@ -58,6 +58,11 @@ void	cleanup(t_game *game)
 		free_arr(game->map);
 	else
 		return ;
+	if (game->enemy)
+	{
+		destroy_enemy_sprite(&game->enemy[0].sprite, game->mlx);
+		free(game->enemy);
+	}
 	if (game->files.north)
 		free(game->files.north);
 	if (game->files.south)

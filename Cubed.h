@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/09 13:12:37 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/14 12:13:08 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ typedef struct s_game
 	t_door		*doors;
 	mlx_image_t	*framebuf;
 	double		zbuffer[MAX_WIDTH];
-	t_enemy		enemy;
+	t_enemy		*enemy;
 	mlx_texture_t	*texture_east;
 	mlx_texture_t	*texture_west;
 	mlx_texture_t	*texture_south;

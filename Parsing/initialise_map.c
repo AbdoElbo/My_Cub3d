@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/29 17:39:38 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 13:22:05 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ static void	init_vars(t_game *game)
 {
 	game->player.x = 0;
 	game->player.y = 0;
+	game->enemy = NULL;
+	game->doors = NULL;
+	game->mlx = NULL;
+	game->framebuf = NULL;
+	game->mm_img = NULL;
 	game->width = 0;
 	game->height = 0;
 	game->files.east = NULL;
@@ -76,6 +81,7 @@ static void	init_vars(t_game *game)
 	game->files.fd_w_flag = 0;
 	game->files.fd_s_flag = 0;
 	game->player.last_move = 0;
+	game->fd = -1;
 }
 
 static int	get_map_size(t_game *game)

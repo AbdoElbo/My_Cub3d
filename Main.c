@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/13 17:51:38 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/14 13:39:39 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ void	ft_hook(void *param)
 	if (e_is_down && !e_was_down)
 		open_close_door(game);
 	e_was_down = e_is_down;
-	if (mlx_is_key_down(game->mlx, MLX_KEY_1))
-		set_animation(&game->enemy.sprite, ANIM_WALK);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_2))
-		set_animation(&game->enemy.sprite, ANIM_HURT);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_3))
-		set_animation(&game->enemy.sprite, ANIM_ATTACK);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_4))
-		set_animation(&game->enemy.sprite, ANIM_DEATH);
+	// if (mlx_is_key_down(game->mlx, MLX_KEY_1))
+	// 	set_animation(&game->enemy.sprite, ANIM_WALK);
+	// if (mlx_is_key_down(game->mlx, MLX_KEY_2))
+	// 	set_animation(&game->enemy.sprite, ANIM_HURT);
+	// if (mlx_is_key_down(game->mlx, MLX_KEY_3))
+	// 	set_animation(&game->enemy.sprite, ANIM_ATTACK);
+	// if (mlx_is_key_down(game->mlx, MLX_KEY_4))
+	// 	set_animation(&game->enemy.sprite, ANIM_DEATH);
 }
 
 int	load_map_and_components(t_game *game)
@@ -102,10 +102,10 @@ int	main(int argc, char **argv)
 		return (cleanup(&game), EXIT_FAILURE);
 	if (!load_map_and_components(&game))
 		return (cleanup(&game), EXIT_FAILURE);
+	if (!init_enemy_sprite(&game))
+		return (cleanup(&game), EXIT_FAILURE);
 	// printf("Map loaded successfully!\n");
 	print_map(&game);
-	if (!init_enemy(&game))
-			return (cleanup(&game), EXIT_FAILURE);
 	mlx_loop_hook(game.mlx, &ft_hook, &game);
 	mlx_loop(game.mlx);
 	return (cleanup(&game), EXIT_SUCCESS);
