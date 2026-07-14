@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/13 19:27:33 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 13:11:45 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ static int	is_wall(t_game *game, float x, float y)
 	return (0);
 }
 
-static int	hits_wall(t_game *game, float x, float y)
+int	hits_wall(t_game *game, float x, float y)
 {
 	float	m;
 
-	m = 0.09f;
+	m = 0.02f;
 	return (is_wall(game, x + m, y + m)
 		|| is_wall(game, x - m, y + m)
 		|| is_wall(game, x + m, y - m)

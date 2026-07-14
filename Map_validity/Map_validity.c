@@ -45,6 +45,8 @@ void	set_player_direction(t_game *game)
 		game->player.angle = PI;
 	game->player.dir_x = cos(game->player.angle);
 	game->player.dir_y = sin(game->player.angle);
+	game->player.plane_x = -game->player.dir_y * tan(FOV / 2.0);
+	game->player.plane_y = game->player.dir_x * tan(FOV / 2.0);
 }
 
 int	map_validity(t_game *game)
