@@ -3,16 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   Doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 16:02:25 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/13 18:29:42 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/14 16:15:03 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bonus.h"
+#include "Game_Dev.h"
 
-void look_for_door_coordinates(t_game *game)
+int	load_images_compass(t_game *game, char *path
+		, mlx_texture_t **tex, mlx_image_t **img)
+{
+	*tex = mlx_load_png(path);
+	if (!*tex)
+		return (printf("Texture didn't load: %s\n", path), 0);
+	*img = mlx_texture_to_image(game->mlx, *tex);
+	if (!*img)
+		return (printf("Texture wasn't converted to image: %s\n", path), 0);
+	return (1);
+}
+
+void	look_for_door_coordinates(t_game *game)
 {
 	int	i;
 	int	j;
@@ -39,14 +51,14 @@ void look_for_door_coordinates(t_game *game)
 	return ;
 }
 
-int init_doors(t_game *game)
+int	init_doors(t_game *game)
 {
 	t_door *doors;
 
 	doors = NULL;
-	if (game->door_count > 0)
+	if (game->vars.door_count > 0)
 	{
-		doors = malloc(sizeof(t_door) * game->door_count);
+		doors = malloc(sizeof(t_door) * game->vars.door_count);
 		if (!doors)
 		{
 			printf("Door malloc error.\n");
@@ -59,7 +71,7 @@ int init_doors(t_game *game)
 	return (1);
 }
 
-void open_close_door(t_game *game)
+void	open_close_door(t_game *game)
 {
 	int i;
 	int target_x;
@@ -68,7 +80,7 @@ void open_close_door(t_game *game)
 	target_x = (int)floor(game->player.x + game->player.dir_x * 1);
 	target_y = (int)floor(game->player.y + game->player.dir_y * 1);
 	i = 0;
-	while(i < game->door_count)
+	while(i < game->vars.door_count)
 	{
 		if (game->doors[i].x == target_x && game->doors[i].y == target_y)
 		{
@@ -79,12 +91,12 @@ void open_close_door(t_game *game)
 	}
 }
 
-int check_open_door(int map_x, int map_y, t_game *game)
+int	check_open_door(int map_x, int map_y, t_game *game)
 {
 	int i;
 
 	i = 0;
-	while(i < game->door_count)
+	while(i < game->vars.door_count)
 	{
 		if (game->doors[i].x == map_x && game->doors[i].y == map_y)
 		{

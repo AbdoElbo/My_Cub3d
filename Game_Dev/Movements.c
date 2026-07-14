@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 13:11:45 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 15:49:02 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static int	is_wall(t_game *game, float x, float y)
 
 	map_col = (int)floorf(x);
 	map_row = (int)floorf(y);
-	if (map_row < 0 || map_row >= game->height
-		|| map_col < 0 || map_col >= game->width)
+	if (map_row < 0 || map_row >= game->vars.height
+		|| map_col < 0 || map_col >= game->vars.width)
 		return (1);
 	if (!game->map[map_row])
 		return (1);

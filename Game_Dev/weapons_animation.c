@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 15:17:30 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/13 19:31:38 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 16:17:32 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static void	show_weapon(t_game *game)
 	if (game->weapon == SWORD)
 	{
 		game->images.sword_img_0->enabled = true;
-		game->images.other_img_0->enabled = false;
+		game->images.shotgun_img_0->enabled = false;
 	}
 	else
 	{
-		game->images.other_img_0->enabled = true;
+		game->images.shotgun_img_0->enabled = true;
 		game->images.sword_img_0->enabled = false;
 	}
 }
@@ -43,7 +43,7 @@ static void	start_attack(t_game *game)
 	{
 		game->movement = BUSY;
 		game->frame = IDLE;
-		game->frame_start = get_time_in_ms();
+		game->vars.frame_start = get_time_in_ms();
 		if (game->weapon == SWORD)
 		{
 			game->images.sword_img_0->enabled = false;
@@ -51,8 +51,8 @@ static void	start_attack(t_game *game)
 		}
 		else
 		{
-			game->images.other_img_0->enabled = false;
-			game->images.other_img_1->enabled = true;
+			game->images.shotgun_img_0->enabled = false;
+			game->images.shotgun_img_1->enabled = true;
 		}
 	}
 }
@@ -67,14 +67,14 @@ void	gun_dev(t_game *game)
 		if (mlx_is_key_down(game->mlx, MLX_KEY_1))
 			game->weapon = SWORD;
 		if (mlx_is_key_down(game->mlx, MLX_KEY_2))
-			game->weapon = OTHER;
+			game->weapon = SHOTGUN;
 	}
 	mouse_down = mlx_is_mouse_down(game->mlx, MLX_MOUSE_BUTTON_LEFT);
-	if (mouse_down && !game->mouse_was_down)
+	if (mouse_down && !game->vars.mouse_was_down)
 		start_attack(game);
-	game->mouse_was_down = mouse_down;
+	game->vars.mouse_was_down = mouse_down;
 	if (game->weapon == SWORD)
 		sword_attack(game);
 	else
-		other_attack(game);
+		shotgun_attack(game);
 }

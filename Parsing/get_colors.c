@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 18:46:33 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 13:21:22 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 15:54:12 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int  get_floor_color(t_game *game, int i, int j)
 	b = ft_atoi(arr[2]);
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		return (free_arr(arr), printf(Y"Error:\nWrong RGB values\n"RESET), 0);
-	game->floor_color = get_rgb_color(r, g, b);
+	game->vars.floor_color = get_rgb_color(r, g, b);
 	return (free_arr(arr), 1);
 }
 
@@ -85,7 +85,7 @@ static int  get_ceiling_color(t_game *game, int i, int j)
 	b = ft_atoi(arr[2]);
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		return (free_arr(arr), printf(Y"Error:\nWrong RGB values\n"RESET), 0);
-	game->ceiling_color = get_rgb_color(r, g, b);
+	game->vars.ceiling_color = get_rgb_color(r, g, b);
 	return (free_arr(arr), 1);
 }
 
@@ -104,11 +104,11 @@ int get_colors(t_game *game)
 			return (0);
 		else if (game->map[i][j] == 'C' && !get_ceiling_color(game, i, j + 1))
 			return (0);
-		else if (game->map[i][j] == '1' && game->map_start == -1)
-			game->map_start = i;
+		else if (game->map[i][j] == '1' && game->vars.map_start == -1)
+			game->vars.map_start = i;
 		i++;
 	}
-	if (game->map_start == -1)
+	if (game->vars.map_start == -1)
 		return (printf(Y"Error:\n(MAP) Map Not Found!! Exiting...\n"RESET), 0);
 	return (1);
 }

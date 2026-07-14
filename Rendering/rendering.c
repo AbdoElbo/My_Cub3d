@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 13:00:44 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/06 14:38:55 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/14 15:57:48 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	 draw_background_to_buf(t_game *game)
 		x = 0;
 		while (x < SCREEN_WIDTH)
 		{
-			mlx_put_pixel(game->framebuf, x, y, game->ceiling_color);
+			mlx_put_pixel(game->framebuf, x, y, game->vars.ceiling_color);
 			x++;
 		}
 		y++;
@@ -53,7 +53,7 @@ void	 draw_background_to_buf(t_game *game)
 		x = 0;
 		while (x < SCREEN_WIDTH)
 		{
-			mlx_put_pixel(game->framebuf, x, y, game->floor_color);
+			mlx_put_pixel(game->framebuf, x, y, game->vars.floor_color);
 			x++;
 		}
 		y++;

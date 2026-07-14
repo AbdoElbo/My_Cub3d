@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 12:56:06 by gekko             #+#    #+#             */
-/*   Updated: 2026/06/10 15:17:25 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 15:56:09 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,26 +62,26 @@ int	update_map(t_game *game)
 	char	**temp;
 	int		i;
 
-	temp = malloc(sizeof(char *) * (game->height + 4));
+	temp = malloc(sizeof(char *) * (game->vars.height + 4));
 	if (!temp)
 		return (0);
-	temp[0] = make_empty(game->width);
+	temp[0] = make_empty(game->vars.width);
 	if (!temp[0])
 		return (free_arr(temp), 0);
 	i = 0;
-	while (i < game->height + 1)
+	while (i < game->vars.height + 1)
 	{
-		temp[i + 1] = line_padding(game->map[i + game->map_start], game->width);
+		temp[i + 1] = line_padding(game->map[i + game->vars.map_start], game->vars.width);
 		if (!temp[i + 1])
 			return (free_arr(temp), 0);
 		i++;
 	}
-	temp[game->height + 2] = make_empty(game->width);
-	if (!temp[game->height + 2])
+	temp[game->vars.height + 2] = make_empty(game->vars.width);
+	if (!temp[game->vars.height + 2])
 		return (free_arr(temp), 0);
-	temp[game->height + 3] = NULL;
+	temp[game->vars.height + 3] = NULL;
 	free_arr(game->map);
 	game->map = temp;
-	game->map_start = 0;
+	game->vars.map_start = 0;
 	return (1);
 }

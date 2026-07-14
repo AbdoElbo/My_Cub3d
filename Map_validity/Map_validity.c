@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:38:34 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 15:32:37 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 15:53:48 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	set_player_direction(t_game *game)
 
 static void	count_extras(t_game *game)
 {
-	game->door_count = 0;
-	game->enemy_count = 0;
+	game->vars.door_count = 0;
+	game->vars.enemy_count = 0;
 	int	i;
 	int	j;
 
@@ -63,9 +63,9 @@ static void	count_extras(t_game *game)
 		while (game->map[i][j])
 		{
 			if (game->map[i][j] == 'D')
-				game->door_count++;
+				game->vars.door_count++;
 			else if (game->map[i][j] == 'V')
-				game->enemy_count++;
+				game->vars.enemy_count++;
 			j++;
 		}
 		i++;

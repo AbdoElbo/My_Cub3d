@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 15:20:38 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 16:16:13 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # include "Map_validity/Validity.h"
 # include "Plane/Plane.h"
 # include "Game_Dev/Game_Dev.h"
-# include "Bonus/Bonus.h"
 
 # define PI 3.14159265358979323846
 # include "Rendering/Rendering.h"
@@ -36,7 +35,7 @@
 typedef enum e_weapons
 {
 	SWORD,
-	OTHER,
+	SHOTGUN,
 }	t_weapons;
 
 typedef struct s_door	t_door;
@@ -88,30 +87,42 @@ typedef struct s_ray
 
 typedef struct s_tex
 {
-	mlx_texture_t		*sword_tex_0;
-	mlx_texture_t		*sword_tex_1;
-	mlx_texture_t		*sword_tex_2;
-	mlx_texture_t		*sword_tex_3;
-	mlx_texture_t		*sword_tex_4;
-	mlx_texture_t		*other_tex_0;
-	mlx_texture_t		*other_tex_1;
-	mlx_texture_t		*other_tex_2;
-	mlx_texture_t		*other_tex_3;
-	mlx_texture_t		*other_tex_4;
+	mlx_texture_t	*sword_tex_0;
+	mlx_texture_t	*sword_tex_1;
+	mlx_texture_t	*sword_tex_2;
+	mlx_texture_t	*sword_tex_3;
+	mlx_texture_t	*sword_tex_4;
+	mlx_texture_t	*shotgun_tex_0;
+	mlx_texture_t	*shotgun_tex_1;
+	mlx_texture_t	*shotgun_tex_2;
+	mlx_texture_t	*shotgun_tex_3;
+	mlx_texture_t	*shotgun_tex_4;
+	mlx_texture_t	*east_tex;
+	mlx_texture_t	*west_tex;
+	mlx_texture_t	*south_tex;
+	mlx_texture_t	*north_tex;
+	mlx_texture_t	*door_tex;
 }	t_tex;
 
 typedef struct s_img
 {
-	mlx_image_t		*sword_img_0;
-	mlx_image_t		*sword_img_1;
-	mlx_image_t		*sword_img_2;
-	mlx_image_t		*sword_img_3;
-	mlx_image_t		*sword_img_4;
-	mlx_image_t		*other_img_0;
-	mlx_image_t		*other_img_1;
-	mlx_image_t		*other_img_2;
-	mlx_image_t		*other_img_3;
-	mlx_image_t		*other_img_4;
+	mlx_image_t	*mm_img;
+	mlx_image_t	*img;
+	mlx_image_t	*sword_img_0;
+	mlx_image_t	*sword_img_1;
+	mlx_image_t	*sword_img_2;
+	mlx_image_t	*sword_img_3;
+	mlx_image_t	*sword_img_4;
+	mlx_image_t	*shotgun_img_0;
+	mlx_image_t	*shotgun_img_1;
+	mlx_image_t	*shotgun_img_2;
+	mlx_image_t	*shotgun_img_3;
+	mlx_image_t	*shotgun_img_4;
+	mlx_image_t	*north_img;
+	mlx_image_t	*south_img;
+	mlx_image_t	*east_img;
+	mlx_image_t	*west_img;
+	mlx_image_t	*door_img;
 }	t_img;
 
 typedef enum e_movement
@@ -129,17 +140,8 @@ typedef enum e_frame
 	ATTACK4,
 }	t_frame;
 
-typedef struct s_game
+typedef struct s_vars
 {
-	char		**map;
-	mlx_image_t	*mm_img;
-	mlx_image_t	*img;
-	mlx_image_t	*framebuf;
-	t_player	player;
-	mlx_t		*mlx;
-	int			multiplier;
-	t_files		files;
-	t_ray		rays[NUM_RAYS];
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
 	double		mouse_x;
@@ -149,23 +151,29 @@ typedef struct s_game
 	int			width;
 	int			map_start;
 	int			fd;
+	int			door_count;
+	int			enemy_count;
+	long long	frame_start;
+	bool		mouse_was_down;
+}	t_vars;
+
+typedef struct s_game
+{
+	char		**map;
+	mlx_image_t	*framebuf;
+	t_player	player;
+	mlx_t		*mlx;
+	t_files		files;
+	t_ray		rays[NUM_RAYS];
+	t_vars		vars;
 	t_img		images;
 	t_tex		textures;
 	t_weapons	weapon;
 	t_movement	movement;
 	t_frame		frame;
-	long long	frame_start;
-	bool		mouse_was_down;
-	int			door_count;
-	int			enemy_count;
 	t_door		*doors;
 	double		zbuffer[MAX_WIDTH];
 	t_enemy		*enemy;
-	mlx_texture_t	*texture_east;
-	mlx_texture_t	*texture_west;
-	mlx_texture_t	*texture_south;
-	mlx_texture_t	*texture_north;
-	mlx_texture_t	*texture_door;
 }	t_game;
 
 void	print_map(t_game *game);

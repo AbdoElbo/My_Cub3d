@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 15:31:03 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 16:16:34 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	ft_hook(void *param)
 	render_frame(game);
 	draw_minimap(game, off_x, off_y);
 	test_sprite_loop(game);
-	draw_minimap(game, off_x, off_y);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	// printf("frame is rendered\n");
@@ -38,13 +37,13 @@ void	ft_hook(void *param)
 	if (e_is_down && !e_was_down)
 		open_close_door(game);
 	e_was_down = e_is_down;
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_1))
+	// if (mlx_is_key_down(game->mlx, MLX_KEY_6))
 	// 	set_animation(&game->enemy.sprite, ANIM_WALK);
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_2))
+	// if (mlx_is_key_down(game->mlx, MLX_KEY_7))
 	// 	set_animation(&game->enemy.sprite, ANIM_HURT);
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_3))
+	// if (mlx_is_key_down(game->mlx, MLX_KEY_8))
 	// 	set_animation(&game->enemy.sprite, ANIM_ATTACK);
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_4))
+	// if (mlx_is_key_down(game->mlx, MLX_KEY_9))
 	// 	set_animation(&game->enemy.sprite, ANIM_DEATH);
 }
 
@@ -56,19 +55,14 @@ int	load_map_and_components(t_game *game)
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
 	game->framebuf = mlx_new_image(game->mlx, MAX_WIDTH, MAX_HEIGHT);
 	mlx_image_to_window(game->mlx, game->framebuf, 0, 0);
-	game->mm_img = mlx_new_image(game->mlx, MINIMAP_PX, MINIMAP_PX);
-	if (!game->mm_img)
+	game->images.mm_img = mlx_new_image(game->mlx, MINIMAP_PX, MINIMAP_PX);
+	if (!game->images.mm_img)
 		return (printf("Error:\nMlx img_mm creation failed\n"), 0);
-	if (mlx_image_to_window(game->mlx, game->mm_img, 0, 0))
+	if (mlx_image_to_window(game->mlx, game->images.mm_img, 0, 0))
 		return (printf("Error:\nMlx img_mm image_to_window failed\n"), 0);
-	game->texture_north = mlx_load_png("Resources/textures/north_texture.png"); // MAKE LOADING OF TEXTURES SAFE
-	game->texture_east = mlx_load_png("Resources/textures/east_texture.png");
-	game->texture_west = mlx_load_png("Resources/textures/west_texture.png");
-	game->texture_south = mlx_load_png("Resources/textures/south_texture.png");
-	game->texture_door = mlx_load_png("Resources/textures/door.png");
-	// game->img = mlx_new_image(game->mlx, 1000, 1000);
-	// mlx_image_to_window(game->mlx, game->img, 0, 0);
-	if (!load_sword_tex(game) || !load_other_tex(game))
+	if (!load_compass_tex(game))
+		return (0);
+	if (!load_sword_tex(game) || !load_shotgun_tex(game))
 		return (0);
 	return (1);
 }

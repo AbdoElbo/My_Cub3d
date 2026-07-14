@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:25:46 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/14 13:24:41 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/14 15:53:23 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	recursive(t_game *game, int row, int col, int height)
 {
-	if (row >= height || col >= game->width
+	if (row >= height || col >= game->vars.width
 		|| row < 0 || col < 0)
 		return ;
 	if (game->map[row][col] == '1' || game->map[row][col] == '.'
@@ -33,7 +33,7 @@ int	flood_fill_outside(t_game *game)
 	int	counter_after;
 
 	counter_before = comp_counter(game->map);
-	recursive(game, 0, 0, game->height + 1);
+	recursive(game, 0, 0, game->vars.height + 1);
 	counter_after = comp_counter(game->map);
 	if (counter_before != counter_after)
 		return (false);

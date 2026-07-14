@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 14:24:39 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/14 15:28:03 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 15:53:04 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	look_for_enemy_coordinates(t_game *game)
 		{
 			if (game->map[i][j] == 'V')
 			{
-				if (k >= game->enemy_count)
+				if (k >= game->vars.enemy_count)
 					return ;
 				game->enemy[k] = assign_values_to_enemy(j, i);
 				game->map[i][j] = '0';
@@ -169,13 +169,13 @@ static int	load_enemy_sprite(t_sprite *sprite, mlx_t *mlx)
 
 int init_enemy(t_game *game)
 {
-	printf("Amount of enemies: %d\n", game->enemy_count);
-	if (game->enemy_count <= 0)
+	printf("Amount of enemies: %d\n", game->vars.enemy_count);
+	if (game->vars.enemy_count <= 0)
 	{
 		game->enemy = NULL;
 		return (1);
 	}
-	game->enemy = ft_calloc(game->enemy_count, sizeof(t_enemy));
+	game->enemy = ft_calloc(game->vars.enemy_count, sizeof(t_enemy));
 	if (!game->enemy)
 		return (0);
 	look_for_enemy_coordinates(game);
@@ -187,12 +187,12 @@ int init_enemy_sprite(t_game *game)
 	t_sprite	sprite;
 	int			i;
 
-	if (!game->enemy || game->enemy_count <= 0)
+	if (!game->enemy || game->vars.enemy_count <= 0)
 		return (1);
 	if (!load_enemy_sprite(&sprite, game->mlx))
 		return (0);
 	i = 0;
-	while (i < game->enemy_count)
+	while (i < game->vars.enemy_count)
 	{
 		game->enemy[i].sprite = sprite;
 		i++;
@@ -214,7 +214,7 @@ void	test_sprite_loop(t_game *game)
 	uint32_t	y;
 	uint32_t	x;
 
-	if (!game->enemy || game->enemy_count <= 0)
+	if (!game->enemy || game->vars.enemy_count <= 0)
 		return ;
 	update_sprite(&game->enemy[0].sprite, game->mlx->delta_time);
 	frame = get_current_frame(&game->enemy[0].sprite, 13);

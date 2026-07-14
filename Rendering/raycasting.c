@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 10:58:13 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/13 18:24:15 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/14 15:57:37 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,16 +111,16 @@ static double ft_dda(t_game *game, t_ray *ray)
 	ray->side = dda.side;
 	ray->wall_x = hit_wall_x(&dda, ray, game);
 	ray->distance = dda.raw_dist;
-	if (game->map[dda.map_y][dda.map_x] == 'D' && game->texture_door)
-		ray->texture_hit = *game->texture_door;
+	if (game->map[dda.map_y][dda.map_x] == 'D' && game->textures.door_tex)
+		ray->texture_hit = *game->textures.door_tex;
 	else if (dda.side == 0 && dda.step_x > 0)
-		ray->texture_hit = *game->texture_east;
+		ray->texture_hit = *game->textures.east_tex;
 	else if (dda.side == 0 && dda.step_x < 0)
-		ray->texture_hit = *game->texture_west;
+		ray->texture_hit = *game->textures.west_tex;
 	else if (dda.side == 1 && dda.step_y > 0)
-		ray->texture_hit = *game->texture_south;
+		ray->texture_hit = *game->textures.south_tex;
 	else if (dda.side == 1 && dda.step_y < 0)
-		ray->texture_hit = *game->texture_north;
+		ray->texture_hit = *game->textures.north_tex;
 	return (dda.raw_dist);
 }
 
@@ -145,7 +145,7 @@ void	draw_line(t_game *game, t_ray *ray, uint32_t color)
 		x = i + ray->dir_x * distance * TILE_SIZE;
 		y = j + ray->dir_y * distance * TILE_SIZE;
 		if (x > 0 && x < MINIMAP_PX && y > 0 && y < MINIMAP_PX)
-			mlx_put_pixel(game->mm_img, x, y, color);
+			mlx_put_pixel(game->images.mm_img, x, y, color);
 		if (distance <= 0.0)
 			break;
 		distance -= step;

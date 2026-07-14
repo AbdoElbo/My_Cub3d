@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 16:29:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 15:21:52 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 16:15:38 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,20 @@ static void	free_files(t_files *files)
 		close(files->fd_w);
 }
 
+static void	delete_compass_textures(t_tex *tex)
+{
+	if (tex->door_tex)
+		mlx_delete_texture(tex->door_tex);
+	if (tex->north_tex)
+		mlx_delete_texture(tex->north_tex);
+	if (tex->east_tex)
+		mlx_delete_texture(tex->east_tex);
+	if (tex->south_tex)
+		mlx_delete_texture(tex->south_tex);
+	if (tex->west_tex)
+		mlx_delete_texture(tex->west_tex);
+}
+
 void	cleanup(t_game *game)
 {
 	if (game->map)
@@ -91,10 +105,11 @@ void	cleanup(t_game *game)
 		free(game->files.west);
 	if (game->files.east)
 		free(game->files.east);
-	if (game->img)
-		mlx_delete_image(game->mlx, game->img);
-	if (game->fd >= 0)
-		close(game->fd);
+	if (game->images.img)
+		mlx_delete_image(game->mlx, game->images.img);
+	if (game->vars.fd >= 0)
+		close(game->vars.fd);
 	free_files(&game->files);
+	delete_compass_textures(&game->textures);
 	mlx_terminate(game->mlx);
 }

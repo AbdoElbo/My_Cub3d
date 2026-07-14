@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 16:54:14 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 15:28:49 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 15:51:29 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_mouse_mvm(double x, double y, void *param)
 	game = (t_game *)param;
 	rot_speed = 0.001f;
 	mlx_get_mouse_pos(game->mlx, &current_x, &current_y);
-	dx = current_x - game->mouse_x;
+	dx = current_x - game->vars.mouse_x;
 	mlx_set_mouse_pos(game->mlx, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	game->player.angle += dx * rot_speed;
 }

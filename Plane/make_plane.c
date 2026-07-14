@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:47:58 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 13:09:04 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 16:01:31 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ static uint32_t tile_color(t_game *game, char c)
 {
 	if (c == '1')
 		return (get_rgb_color(88, 57, 39));
-	return (game->floor_color);
+	if (c == 'D')
+		return (get_rgb_color(0, 100, 100));
+	return (game->vars.floor_color);
 }
 
 static void	draw_tile(t_game *game, int px, int py, uint32_t color)
@@ -39,7 +41,7 @@ static void	draw_tile(t_game *game, int px, int py, uint32_t color)
 					px_color = get_rgb_color(0,0,0);
 				else
 					px_color = color;
-				mlx_put_pixel(game->mm_img, px + j, py + i, px_color);
+				mlx_put_pixel(game->images.mm_img, px + j, py + i, px_color);
 			}
 			j++;
 		}
@@ -63,7 +65,7 @@ static void	draw_circle(t_game *game, int r, uint32_t color)
 		while (dx < r)
 		{
 			if (dx * dx + dy * dy <= r * r)
-				mlx_put_pixel(game->mm_img,
+				mlx_put_pixel(game->images.mm_img,
 					cx + dx, cy + dy, color);
 			dx++;
 		}
@@ -87,8 +89,8 @@ static void	draw_floor(t_game *game, int offset_x, int offset_y)
 		{
 			map_row = (int)game->player.y - RADIUS + row;
 			map_col = (int)game->player.x - RADIUS + col;
-			if (map_row < 0 || map_row >= game->height
-				|| map_col < 0 || map_col >= game->width)
+			if (map_row < 0 || map_row >= game->vars.height
+				|| map_col < 0 || map_col >= game->vars.width)
 				c = ' ';
 			else
 				c = game->map[map_row][map_col];

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 18:29:27 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/13 19:31:12 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 16:16:49 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,26 @@ static int	load_images(t_game *game, char *path
 	return (1);
 }
 
+int	load_compass_tex(t_game *game)
+{
+	if (!load_images_compass(game, "Resources/textures/north_texture.png",
+			&game->textures.north_tex , &game->images.north_img))
+		return (0);
+	if (!load_images_compass(game, "Resources/textures/west_texture.png",
+			&game->textures.west_tex , &game->images.west_img))
+		return (0);
+	if (!load_images_compass(game, "Resources/textures/south_texture.png",
+			&game->textures.south_tex , &game->images.south_img))
+		return (0);
+	if (!load_images_compass(game, "Resources/textures/east_texture.png",
+			&game->textures.east_tex , &game->images.east_img))
+		return (0);
+	if (!load_images_compass(game, "Resources/textures/door.png",
+			&game->textures.door_tex , &game->images.door_img))
+		return (0);
+	return (1);
+}
+
 int	load_sword_tex(t_game *game)
 {
 	if (!load_images(game, "./Resources/textures/sword_0.png",
@@ -66,22 +86,22 @@ int	load_sword_tex(t_game *game)
 	return (1);
 }
 
-int	load_other_tex(t_game *game)
+int	load_shotgun_tex(t_game *game)
 {
-	if (!load_images(game, "./Resources/textures/other_0.png",
-			&game->textures.other_tex_0, &game->images.other_img_0))
+	if (!load_images(game, "./Resources/textures/shotgun_0.png",
+			&game->textures.shotgun_tex_0, &game->images.shotgun_img_0))
 		return (0);
-	if (!load_images(game, "./Resources/textures/other_1.png",
-			&game->textures.other_tex_1, &game->images.other_img_1))
+	if (!load_images(game, "./Resources/textures/shotgun_1.png",
+			&game->textures.shotgun_tex_1, &game->images.shotgun_img_1))
 		return (0);
-	if (!load_images(game, "./Resources/textures/other_2.png",
-			&game->textures.other_tex_2, &game->images.other_img_2))
+	if (!load_images(game, "./Resources/textures/shotgun_2.png",
+			&game->textures.shotgun_tex_2, &game->images.shotgun_img_2))
 		return (0);
-	if (!load_images(game, "./Resources/textures/other_3.png",
-			&game->textures.other_tex_3, &game->images.other_img_3))
+	if (!load_images(game, "./Resources/textures/shotgun_3.png",
+			&game->textures.shotgun_tex_3, &game->images.shotgun_img_3))
 		return (0);
-	if (!load_images(game, "./Resources/textures/other_4.png",
-			&game->textures.other_tex_4, &game->images.other_img_4))
+	if (!load_images(game, "./Resources/textures/shotgun_4.png",
+			&game->textures.shotgun_tex_4, &game->images.shotgun_img_4))
 		return (0);
 	return (1);
 }
