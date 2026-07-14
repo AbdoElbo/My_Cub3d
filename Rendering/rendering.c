@@ -129,12 +129,6 @@ void	 draw_to_buf(t_game *game, t_ray ray, t_draw_params *dp)
 
 static t_draw_params	 define_column_height(t_ray *ray, int col)
 {
-	// shoot_ray();
-	// texture resolution currently is 128 x 128
-	// game->ray.distance = 2.0;
-	// game->rays.angle = 0.0;
-	// ray->wall_x = 0.5;
-
 	int line_height;
 	int draw_start;
 	int draw_end;

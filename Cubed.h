@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 13:16:47 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 15:20:38 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "Map_validity/Validity.h"
 # include "Plane/Plane.h"
 # include "Game_Dev/Game_Dev.h"
+# include "Bonus/Bonus.h"
 
 # define PI 3.14159265358979323846
 # include "Rendering/Rendering.h"
@@ -37,6 +38,8 @@ typedef enum e_weapons
 	SWORD,
 	OTHER,
 }	t_weapons;
+
+typedef struct s_door	t_door;
 
 typedef struct s_files
 {
@@ -153,13 +156,16 @@ typedef struct s_game
 	t_frame		frame;
 	long long	frame_start;
 	bool		mouse_was_down;
+	int			door_count;
+	int			enemy_count;
+	t_door		*doors;
 	double		zbuffer[MAX_WIDTH];
-	t_enemy		enemy;
+	t_enemy		*enemy;
 	mlx_texture_t	*texture_east;
 	mlx_texture_t	*texture_west;
 	mlx_texture_t	*texture_south;
 	mlx_texture_t	*texture_north;
-	// mlx_texture_t	*texture_door;
+	mlx_texture_t	*texture_door;
 }	t_game;
 
 void	print_map(t_game *game);

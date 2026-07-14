@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/13 19:35:27 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 15:21:32 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ static void	init_vars(t_game *game)
 {
 	game->player.x = 0;
 	game->player.y = 0;
+	game->enemy = NULL;
+	game->doors = NULL;
+	game->mlx = NULL;
+	game->framebuf = NULL;
+	game->mm_img = NULL;
 	game->width = 0;
 	game->height = 0;
 	game->files.east = NULL;
@@ -80,6 +85,7 @@ static void	init_vars(t_game *game)
 	game->movement = FREE;
 	game->weapon = SWORD;
 	game->mouse_was_down = false;
+	game->fd = -1;
 }
 
 static int	get_map_size(t_game *game)

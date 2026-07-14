@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 14:24:39 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/14 13:25:34 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 15:28:03 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,64 @@ void	set_animation(t_sprite *sprite, t_anim anim)
 	sprite->current_frame = 0;
 	sprite->frame_timer = 0.0;
 	printf("Animation set successfully!\n");
+}
+
+void	destroy_enemy_sprite(t_sprite *sprite, mlx_t *mlx)
+{
+	int	i;
+
+	if (!sprite)
+		return ;
+	i = 0;
+	while (i < ANIM_COUNT * 13)
+	{
+		if (sprite->frames && sprite->frames[i])
+			mlx_delete_image(mlx, sprite->frames[i]);
+		i++;
+	}
+	free(sprite->frames);
+	if (sprite->sheet)
+		mlx_delete_texture(sprite->sheet);
+}
+
+t_enemy assign_values_to_enemy(int x, int y)
+{
+	t_enemy new_enemy;
+
+	new_enemy.x = x + 0.5f;
+	new_enemy.y = y + 0.5f;
+	new_enemy.health = 3;
+	new_enemy.damage = 1;
+	new_enemy.sprite.sheet = NULL;
+	new_enemy.sprite.frames = NULL;
+	return(new_enemy);
+}
+
+static void	look_for_enemy_coordinates(t_game *game)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = 0;
+	k = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'V')
+			{
+				if (k >= game->enemy_count)
+					return ;
+				game->enemy[k] = assign_values_to_enemy(j, i);
+				game->map[i][j] = '0';
+				k++;
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
 static void extract_frame(t_sprite *sprite, int f, int a)
@@ -85,46 +143,61 @@ void	update_sprite(t_sprite *s, double dt)
 	s->current_frame = (s->current_frame + 1) % def->frame_count;
 }
 
-int init_enemy_sprite(t_enemy *enemy, t_game *game)
+static int	load_enemy_sprite(t_sprite *sprite, mlx_t *mlx)
 {
-	t_sprite	sprite;
-
-	sprite.frame_w = 160;
-	sprite.frame_h = 128;
-	sprite.frame_duration = 0.1;
-	sprite.sheet = mlx_load_png("Resources/textures/enemy.png");
-	if (!sprite.sheet)
-		return (cleanup(game), 0);
-	sprite.frames = malloc(sizeof(mlx_image_t *) * ANIM_COUNT * 13);
-	if (!sprite.frames)
-		return (cleanup(game), 0);
-	// printf("sheet loaded successfully!\n");
-	sprite.anims[ANIM_IDLE]   = (t_anim_def){0, 8};
-	sprite.anims[ANIM_WALK]   = (t_anim_def){1, 8};
-	sprite.anims[ANIM_ATTACK] = (t_anim_def){2, 13};
-	sprite.anims[ANIM_HURT]   = (t_anim_def){5, 5};
-	sprite.anims[ANIM_DEATH]  = (t_anim_def){6, 9};
-	set_animation(&sprite, ANIM_IDLE);
-	enemy->sprite = sprite;
-	load_all_frames(game->mlx, &sprite, 13);
-	if (!enemy->sprite.sheet)
-		return (cleanup(game), 0);
-	// printf("Frames loaded successfully!\n");
+	sprite->frame_w = 160;
+	sprite->frame_h = 128;
+	sprite->frame_duration = 0.1;
+	sprite->sheet = mlx_load_png("Resources/textures/enemy.png");
+	if (!sprite->sheet)
+		return (0);
+	sprite->frames = ft_calloc(ANIM_COUNT * 13, sizeof(mlx_image_t *));
+	if (!sprite->frames)
+	{
+		mlx_delete_texture(sprite->sheet);
+		return (0);
+	}
+	sprite->anims[ANIM_IDLE]   = (t_anim_def){0, 8};
+	sprite->anims[ANIM_WALK]   = (t_anim_def){1, 8};
+	sprite->anims[ANIM_ATTACK] = (t_anim_def){2, 13};
+	sprite->anims[ANIM_HURT]   = (t_anim_def){5, 5};
+	sprite->anims[ANIM_DEATH]  = (t_anim_def){6, 9};
+	set_animation(sprite, ANIM_IDLE);
+	load_all_frames(mlx, sprite, 13);
 	return (1);
 }
 
 int init_enemy(t_game *game)
 {
-	t_enemy enemy;
-
-	enemy.health = 3;
-	enemy.damage = 1;
-	if (!init_enemy_sprite(&enemy, game))
+	printf("Amount of enemies: %d\n", game->enemy_count);
+	if (game->enemy_count <= 0)
+	{
+		game->enemy = NULL;
+		return (1);
+	}
+	game->enemy = ft_calloc(game->enemy_count, sizeof(t_enemy));
+	if (!game->enemy)
 		return (0);
-	// printf("Enemy sprite initialized successfully!\n");
-	enemy.x = 1; //update in map parsing;
-	enemy.y = 2; //update in map parsing;
-	game->enemy = enemy;
+	look_for_enemy_coordinates(game);
+	return (1);
+}
+
+int init_enemy_sprite(t_game *game)
+{
+	t_sprite	sprite;
+	int			i;
+
+	if (!game->enemy || game->enemy_count <= 0)
+		return (1);
+	if (!load_enemy_sprite(&sprite, game->mlx))
+		return (0);
+	i = 0;
+	while (i < game->enemy_count)
+	{
+		game->enemy[i].sprite = sprite;
+		i++;
+	}
+	printf("Enemy sprite initialized successfully!\n");
 	return (1);
 }
 
@@ -141,8 +214,10 @@ void	test_sprite_loop(t_game *game)
 	uint32_t	y;
 	uint32_t	x;
 
-	update_sprite(&game->enemy.sprite, game->mlx->delta_time);
-	frame = get_current_frame(&game->enemy.sprite, 13);
+	if (!game->enemy || game->enemy_count <= 0)
+		return ;
+	update_sprite(&game->enemy[0].sprite, game->mlx->delta_time);
+	frame = get_current_frame(&game->enemy[0].sprite, 13);
 	src = (uint32_t *)frame->pixels;
 	dst = (uint32_t *)game->framebuf->pixels;
 	y = 0;

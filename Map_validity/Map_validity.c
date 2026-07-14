@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:38:34 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/30 17:07:33 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 15:32:37 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,37 @@ void	set_player_direction(t_game *game)
 	game->player.plane_y = game->player.dir_x * tan(FOV / 2.0);
 }
 
+static void	count_extras(t_game *game)
+{
+	game->door_count = 0;
+	game->enemy_count = 0;
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'D')
+				game->door_count++;
+			else if (game->map[i][j] == 'V')
+				game->enemy_count++;
+			j++;
+		}
+		i++;
+	}
+	return ;
+}
+
+void	init_bonus(t_game *game)
+{
+	count_extras(game);
+	init_doors(game);
+	init_enemy(game);
+}
+
 int	map_validity(t_game *game)
 {
 	int	p_exist;
@@ -65,5 +96,6 @@ int	map_validity(t_game *game)
 		return (printf(Y"Error:\nMap Open to the outside world\n"RESET), 0);
 	if (!check_inside(game->map))
 		return (printf(Y"Error:\nUnknown char inside the map\n" RESET), 0);
+	init_bonus(game);
 	return (1);
 }

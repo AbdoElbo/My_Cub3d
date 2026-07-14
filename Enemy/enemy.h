@@ -6,14 +6,12 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 14:24:42 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/02 14:10:01 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/14 13:39:39 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENEMY_H
 # define ENEMY_H
-
-// # include "../Cubed.h"
 
 # include "../Libraries/Mlx42/include/MLX42/MLX42.h"
 
@@ -35,14 +33,6 @@ typedef struct s_anim_def
 	int	frame_count;
 }	t_anim_def;
 
-// static t_anim_def	g_anims[ANIM_COUNT] = {
-// 	[ANIM_IDLE]		= {0, 8},
-// 	[ANIM_WALK]		= {1, 8},
-// 	[ANIM_ATTACK]	= {2, 13}, //row 3 & 4 unused
-// 	[ANIM_HURT]		= {5, 5},
-// 	[ANIM_DEATH]	= {6, 9},
-// };
-
 typedef struct s_sprite
 {
 	mlx_texture_t	*sheet;
@@ -56,8 +46,6 @@ typedef struct s_sprite
 	t_anim_def		anims[ANIM_COUNT];
 }	t_sprite;
 
-
-
 typedef struct s_enemy
 {
 	float		x;
@@ -68,9 +56,10 @@ typedef struct s_enemy
 }	t_enemy;
 
 
-int		init_enemy_sprite(t_enemy *enemy, t_game *game);
 void	test_sprite_loop(t_game *game);
 int		init_enemy(t_game *game);
+int		init_enemy_sprite(t_game *game);
+void	destroy_enemy_sprite(t_sprite *sprite, mlx_t *mlx);
 void	set_animation(t_sprite *s, t_anim anim);
 
 #endif
