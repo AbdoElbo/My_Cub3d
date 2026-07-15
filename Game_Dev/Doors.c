@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 16:02:25 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 16:15:03 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 17:25:34 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,20 @@
 int	load_images_compass(t_game *game, char *path
 		, mlx_texture_t **tex, mlx_image_t **img)
 {
+	*tex = NULL;
 	*tex = mlx_load_png(path);
 	if (!*tex)
+	{
+		*tex = NULL;
 		return (printf("Texture didn't load: %s\n", path), 0);
+	}
+	*img = NULL;
 	*img = mlx_texture_to_image(game->mlx, *tex);
 	if (!*img)
+	{
+		*img = NULL;
 		return (printf("Texture wasn't converted to image: %s\n", path), 0);
+	}
 	return (1);
 }
 

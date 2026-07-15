@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 16:29:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 16:15:38 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 17:29:46 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,20 +70,28 @@ static void	free_files(t_files *files)
 		close(files->fd_s);
 	if (files->fd_w_flag)
 		close(files->fd_w);
+	if (files->north)
+		free(files->north);
+	if (files->south)
+		free(files->south);
+	if (files->west)
+		free(files->west);
+	if (files->east)
+		free(files->east);
 }
 
-static void	delete_compass_textures(t_tex *tex)
+static void	delete_compass_textures(t_game *game)
 {
-	if (tex->door_tex)
-		mlx_delete_texture(tex->door_tex);
-	if (tex->north_tex)
-		mlx_delete_texture(tex->north_tex);
-	if (tex->east_tex)
-		mlx_delete_texture(tex->east_tex);
-	if (tex->south_tex)
-		mlx_delete_texture(tex->south_tex);
-	if (tex->west_tex)
-		mlx_delete_texture(tex->west_tex);
+	if (game->textures.door_tex)
+		mlx_delete_texture(game->textures.door_tex);
+	if (game->textures.north_tex)
+		mlx_delete_texture(game->textures.north_tex);
+	if (game->textures.east_tex)
+		mlx_delete_texture(game->textures.east_tex);
+	if (game->textures.south_tex)
+		mlx_delete_texture(game->textures.south_tex);
+	if (game->textures.west_tex)
+		mlx_delete_texture(game->textures.west_tex);
 }
 
 void	cleanup(t_game *game)
@@ -97,19 +105,12 @@ void	cleanup(t_game *game)
 		destroy_enemy_sprite(&game->enemy[0].sprite, game->mlx);
 		free(game->enemy);
 	}
-	if (game->files.north)
-		free(game->files.north);
-	if (game->files.south)
-		free(game->files.south);
-	if (game->files.west)
-		free(game->files.west);
-	if (game->files.east)
-		free(game->files.east);
 	if (game->images.img)
 		mlx_delete_image(game->mlx, game->images.img);
 	if (game->vars.fd >= 0)
 		close(game->vars.fd);
 	free_files(&game->files);
-	delete_compass_textures(&game->textures);
+	delete_compass_textures(game);
+	printf("WHY IS IT SEG FAULTING IN mlx_terminate\n");
 	mlx_terminate(game->mlx);
 }

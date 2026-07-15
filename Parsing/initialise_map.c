@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 15:55:52 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/14 17:30:54 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static void	init_vars(t_game *game)
 	game->doors = NULL;
 	game->mlx = NULL;
 	game->framebuf = NULL;
-	game->images.mm_img = NULL;
 	game->vars.width = 0;
 	game->vars.height = 0;
 	game->files.east = NULL;
@@ -75,7 +74,8 @@ static void	init_vars(t_game *game)
 	game->vars.ceiling_color = 0;
 	game->vars.floor_color = 0;
 	game->vars.map_start = -1;
-	game->images.img = NULL;
+	// game->images.mm_img = NULL;
+	// game->images.img = NULL;
 	game->files.fd_e_flag = 0;
 	game->files.fd_n_flag = 0;
 	game->files.fd_w_flag = 0;

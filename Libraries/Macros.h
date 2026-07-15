@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 17:11:56 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 13:09:42 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/15 15:25:48 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define SCREEN_HEIGHT 1300
 # define MAX_WIDTH SCREEN_WIDTH
 # define MAX_HEIGHT SCREEN_HEIGHT
-# define NUM_RAYS 2000
+# define NUM_RAYS SCREEN_WIDTH
 # define FOV (90.0 * PI / 180.0)
 
 # define R "\033[1;31m"
