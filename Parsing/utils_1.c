@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 16:29:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/15 16:24:46 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/15 16:35:12 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,6 @@ static void	free_files(t_files *files)
 		close(files->fd_s);
 	if (files->fd_w_flag)
 		close(files->fd_w);
-	if (files->north)
-		free(files->north);
-	if (files->south)
-		free(files->south);
-	if (files->west)
-		free(files->west);
-	if (files->east)
-		free(files->east);
 }
 
 static void	delete_compass_textures(t_game *game)
@@ -110,7 +102,6 @@ void	cleanup(t_game *game)
 	if (game->vars.fd >= 0)
 		close(game->vars.fd);
 	free_files(&game->files);
-	printf("WHY IS IT SEG FAULTING \n");
 	delete_compass_textures(game);
 	mlx_terminate(game->mlx);
 }
