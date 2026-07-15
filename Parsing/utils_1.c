@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 16:29:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 17:29:46 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/15 16:24:46 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,17 +100,17 @@ void	cleanup(t_game *game)
 		free_arr(game->map);
 	else
 		return ;
-	if (game->enemy)
+	if (game->doors)
+		free(game->doors);
+	if (game->enemy && game->vars.enemy_count > 0)
 	{
 		destroy_enemy_sprite(&game->enemy[0].sprite, game->mlx);
 		free(game->enemy);
 	}
-	if (game->images.img)
-		mlx_delete_image(game->mlx, game->images.img);
 	if (game->vars.fd >= 0)
 		close(game->vars.fd);
 	free_files(&game->files);
+	printf("WHY IS IT SEG FAULTING \n");
 	delete_compass_textures(game);
-	printf("WHY IS IT SEG FAULTING IN mlx_terminate\n");
 	mlx_terminate(game->mlx);
 }

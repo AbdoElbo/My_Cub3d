@@ -6,19 +6,29 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 16:27:40 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/15 16:08:46 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cubed.h"
+
+static void	ft_open_door(t_game *game)
+{
+	static int	e_was_down;
+	int			e_is_down;
+
+	e_is_down = mlx_is_key_down(game->mlx, MLX_KEY_E);
+	if (e_is_down && !e_was_down)
+		open_close_door(game);
+	e_was_down = e_is_down;
+}
 
 void	ft_hook(void *param)
 {
 	t_game	*game;
 	int		off_x;
 	int		off_y;
-	static int e_was_down;
-	int		e_is_down;
+
 
 	game = (t_game *)param;
 	off_x = (int)((game->player.x - (int)game->player.x) * TILE_SIZE);
@@ -33,18 +43,15 @@ void	ft_hook(void *param)
 	move_player(game);
 	rotate_player(game);
 	gun_dev(game);
-	e_is_down = mlx_is_key_down(game->mlx, MLX_KEY_E);
-	if (e_is_down && !e_was_down)
-		open_close_door(game);
-	e_was_down = e_is_down;
+	ft_open_door(game);
 	// if (mlx_is_key_down(game->mlx, MLX_KEY_6))
-	// 	set_animation(&game->enemy.sprite, ANIM_WALK);
+	// 	set_animation(&game->enemy->sprite, ANIM_WALK);
 	// if (mlx_is_key_down(game->mlx, MLX_KEY_7))
-	// 	set_animation(&game->enemy.sprite, ANIM_HURT);
+	// 	set_animation(&game->enemy->sprite, ANIM_HURT);
 	// if (mlx_is_key_down(game->mlx, MLX_KEY_8))
-	// 	set_animation(&game->enemy.sprite, ANIM_ATTACK);
+	// 	set_animation(&game->enemy->sprite, ANIM_ATTACK);
 	// if (mlx_is_key_down(game->mlx, MLX_KEY_9))
-	// 	set_animation(&game->enemy.sprite, ANIM_DEATH);
+	// 	set_animation(&game->enemy->sprite, ANIM_DEATH);
 }
 
 int	load_map_and_components(t_game *game)
