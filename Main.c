@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/16 14:28:16 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/16 17:24:03 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	ft_hook(void *param)
 		mlx_close_window(game->mlx);
 	// printf("frame is rendered\n");
 	move_player(game);
+	move_enemies(game);
 	rotate_player(game);
 	gun_dev(game);
 	ft_open_door(game);

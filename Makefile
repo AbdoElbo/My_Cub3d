@@ -6,7 +6,7 @@
 #    By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/07 16:20:34 by aelbouaz          #+#    #+#              #
-#    Updated: 2026/07/16 15:24:46 by aelbouaz         ###   ########.fr        #
+#    Updated: 2026/07/16 16:49:40 by aelbouaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,10 @@ CUBED_SRCS = Main.c Parsing/error_check.c Parsing/get_colors.c \
 			Map_validity/Flood_fill.c Plane/make_plane.c \
 			Rendering/rendering.c Rendering/raycasting.c Game_Dev/weapon_textures.c \
 			Game_Dev/weapons_animation.c Game_Dev/weapons_animation_utils.c \
-			Game_Dev/Movements.c Game_Dev/Rotations.c Game_Dev/Doors.c \
-			Enemy/enemy_hook.c Enemy/enemy_utils.c \
+			Game_Dev/player_Movements.c Game_Dev/Rotations.c Game_Dev/Doors.c \
+			Enemy/enemy_hook.c Enemy/enemy_utils.c Enemy/enemy_Movements.c \
 			Enemy/enemy_init_vars.c Enemy/enemy_init_sprites.c \
-			
+
 
 OBJS_DIR = Objects
 CUBED_OBJ = $(addprefix $(OBJS_DIR)/, $(CUBED_SRCS:.c=.o))

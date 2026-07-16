@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Movements.c                                        :+:      :+:    :+:   */
+/*   player_Movements.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/16 13:33:57 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/16 16:51:51 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game_Dev.h"
 
-static int	is_wall(t_game *game, float x, float y)
+int	is_wall(t_game *game, float x, float y)
 {
 	int		map_col;
 	int		map_row;

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:17:07 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 16:16:41 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/16 16:52:23 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ long long	get_time_in_ms(void);
 
 void		sword_attack(t_game *game);
 void		shotgun_attack(t_game *game);
+
+int			is_wall(t_game *game, float x, float y);
+int			hits_wall(t_game *game, float x, float y);
 
 int			init_doors(t_game *game);
 int			check_open_door(int map_x, int map_y, t_game *game);

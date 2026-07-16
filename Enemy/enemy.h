@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 14:24:42 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/16 15:26:21 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/16 17:04:52 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,12 @@ typedef struct s_enemy
 {
 	float		x;
 	float		y;
+	float		dir_x;
+	float		dir_y;
+	float		angle;
 	int			health; //for later use
 	int			damage; //for later use
+	float		dst_from_player;
 	t_sprite	sprite;
 }	t_enemy;
 
@@ -62,5 +66,6 @@ int		init_enemy_sprite(t_game *game);
 void	set_animation(t_sprite *sprite, t_anim anim);
 void	test_sprite_loop(t_game *game, t_enemy *enemy);
 void	destroy_enemy_sprite(t_sprite *sprite, mlx_t *mlx);
+void	move_enemies(t_game *game);
 
 #endif

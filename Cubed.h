@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/16 15:27:14 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/16 16:34:34 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_files
 
 typedef struct s_player
 {
-	int			damage;
 	int			health;
 	float		delta_x;
 	float		delta_y;
@@ -72,7 +71,6 @@ typedef struct s_player
 	float		dir_y;
 	float		plane_x;
 	float		plane_y;
-	float		speed;
 	float		dir_float;
 	char		dir_char;
 }	t_player;

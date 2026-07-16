@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:47:58 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 16:01:31 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/16 16:30:06 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	draw_tile(t_game *game, int px, int py, uint32_t color)
 	}
 }
 
-static void	draw_circle(t_game *game, int r, uint32_t color)
+static void	draw_player_circle(t_game *game, int r, uint32_t color)
 {
 	int	dx;
 	int	dy;
@@ -102,9 +102,53 @@ static void	draw_floor(t_game *game, int offset_x, int offset_y)
 	}
 }
 
+
+static void	draw_enemy_circle(t_game *game, int r, double ex, double ey)
+{
+	int	dx;
+	int	dy;
+	int	cx;
+	int	cy;
+	// int	offset_x;
+	// int	offset_y;
+
+	// convert enemy world pos to minimap pixel pos
+	// same offset logic as the tile grid
+	// offset_x = (int)((game->player.x - (int)game->player.x) * TILE_SIZE);
+	// offset_y = (int)((game->player.y - (int)game->player.y) * TILE_SIZE);
+
+	// enemy position relative to player, in pixels
+	cx = (int)((ex - game->player.x) * TILE_SIZE) + MINIMAP_PX / 2;
+	cy = (int)((ey - game->player.y) * TILE_SIZE) + MINIMAP_PX / 2;
+
+	dy = -r;
+	while (dy <= r)
+	{
+		dx = -r;
+		while (dx <= r)  // fix: <= not
+		{
+			if (dx * dx + dy * dy <= r * r)
+			{
+				if (cx + dx >= 0 && cx + dx < MINIMAP_PX
+					&& cy + dy >= 0 && cy + dy < MINIMAP_PX)
+					mlx_put_pixel(game->images.mm_img,
+						cx + dx, cy + dy, get_rgb_color(0, 0, 0));
+			}
+			dx++;
+		}
+		dy++;
+	}
+}
+
 void	draw_minimap(t_game *game, int offset_x, int offset_y)
 {
+	int	i = 0;
+
 	draw_floor(game, offset_x, offset_y);
-	draw_circle(game, 3, get_rgb_color(255, 100, 0));
-	// draw_line(game, game->rays, get_rgb_color(0, 200, 0));
+	draw_player_circle(game, 3, get_rgb_color(255, 100, 0));
+	while(i < game->vars.enemy_count)
+	{
+		draw_enemy_circle(game, 3, game->enemy[i].x, game->enemy[i].y);
+		i++;
+	}
 }
