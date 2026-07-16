@@ -6,16 +6,18 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 14:24:42 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/15 16:06:52 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/16 15:26:21 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENEMY_H
 # define ENEMY_H
 
-# include "../Libraries/Mlx42/include/MLX42/MLX42.h"
+# include "../Cubed.h"
 
-typedef struct s_game t_game;
+typedef struct s_game	t_game ;
+typedef struct s_files	t_files ;
+typedef struct s_player	t_player ;
 
 typedef enum e_anim
 {
@@ -55,11 +57,10 @@ typedef struct s_enemy
 	t_sprite	sprite;
 }	t_enemy;
 
-
-void	test_sprite_loop(t_game *game);
 int		init_enemy(t_game *game);
 int		init_enemy_sprite(t_game *game);
+void	set_animation(t_sprite *sprite, t_anim anim);
+void	test_sprite_loop(t_game *game, t_enemy *enemy);
 void	destroy_enemy_sprite(t_sprite *sprite, mlx_t *mlx);
-void	set_animation(t_sprite *s, t_anim anim);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 15:49:02 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/16 13:33:57 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	move_dir(t_game *game, float *nx, float *ny, int dir)
 {
 	float	speed;
 
-	speed = 0.05f;
+	speed = 0.03f;
 	if (dir == 0)
 	{
 		*nx += game->player.dir_x * speed;

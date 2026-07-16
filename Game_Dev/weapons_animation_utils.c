@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 15:17:30 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/14 16:16:57 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/16 14:48:55 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	sword_attack(t_game *game)
 	img = game->images;
 	if (game->movement != BUSY)
 		return ;
-	frame_duration = 100;
+	frame_duration = 70;
 	now = get_time_in_ms();
 	if (now - game->vars.frame_start < frame_duration)
 		return ;
@@ -58,7 +58,7 @@ void	shotgun_attack(t_game *game)
 	img = game->images;
 	if (game->movement != BUSY)
 		return ;
-	frame_duration = 100;
+	frame_duration = 80;
 	now = get_time_in_ms();
 	if (now - game->vars.frame_start < frame_duration)
 		return ;

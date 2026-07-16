@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:38:34 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 15:53:48 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/16 14:04:12 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,13 @@ static void	count_extras(t_game *game)
 	return ;
 }
 
-void	init_bonus(t_game *game)
+int	init_bonus(t_game *game)
 {
 	count_extras(game);
 	init_doors(game);
-	init_enemy(game);
+	if (!init_enemy(game))
+		return (0);
+	return (1);
 }
 
 int	map_validity(t_game *game)
@@ -96,6 +98,7 @@ int	map_validity(t_game *game)
 		return (printf(Y"Error:\nMap Open to the outside world\n"RESET), 0);
 	if (!check_inside(game->map))
 		return (printf(Y"Error:\nUnknown char inside the map\n" RESET), 0);
-	init_bonus(game);
+	if (!init_bonus(game))
+		return (printf(Y"Error:\nBonus init failure\n"RESET), 0);
 	return (1);
 }

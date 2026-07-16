@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 16:16:13 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/16 15:27:14 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 # include "Parsing/Parsing.h"
 # include "Map_validity/Validity.h"
 # include "Plane/Plane.h"
+# include "Enemy/enemy.h"
 # include "Game_Dev/Game_Dev.h"
 
 # define PI 3.14159265358979323846
 # include "Rendering/Rendering.h"
-# include "Enemy/enemy.h"
 
 typedef enum e_weapons
 {
@@ -39,6 +39,7 @@ typedef enum e_weapons
 }	t_weapons;
 
 typedef struct s_door	t_door;
+typedef struct s_enemy	t_enemy ;
 
 typedef struct s_files
 {
@@ -58,6 +59,8 @@ typedef struct s_files
 
 typedef struct s_player
 {
+	int			damage;
+	int			health;
 	float		delta_x;
 	float		delta_y;
 	float		previous_x;
