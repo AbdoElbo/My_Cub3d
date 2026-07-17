@@ -6,7 +6,7 @@
 #    By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/07 16:20:34 by aelbouaz          #+#    #+#              #
-#    Updated: 2026/07/17 16:56:44 by aelbouaz         ###   ########.fr        #
+#    Updated: 2026/07/17 17:41:38 by aelbouaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CUBED_SRCS = Main.c Parsing/error_check.c Parsing/get_colors.c \
 			Game_Dev/player_Movements.c Game_Dev/Rotations.c Game_Dev/Doors.c \
 			Game_Dev/Collectibles.c Game_Dev/Easter.c \
 			Enemy/enemy_hook.c Enemy/enemy_utils.c Enemy/enemy_Movements.c \
-			Enemy/enemy_init_vars.c Enemy/enemy_init_sprites.c \
+			Enemy/enemy_init_vars.c Enemy/enemy_init_sprites.c Enemy/enemy_rendering.c\
 
 
 OBJS_DIR = Objects

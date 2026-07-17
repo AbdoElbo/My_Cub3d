@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 10:58:13 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/14 15:57:37 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/17 15:11:22 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ void cast_rays(t_game *game)
 		game->rays[i].dir_x = game->player.dir_x + game->player.plane_x * camera_x;
 		game->rays[i].dir_y = game->player.dir_y + game->player.plane_y * camera_x;
 		draw_line(game, &game->rays[i], 0xFF0000FF);
+		game->zbuf[i] = game->rays[i].distance;
 		i++;
 	}
 }

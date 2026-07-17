@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 14:24:42 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/16 17:04:52 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/17 16:15:56 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,9 @@ void	set_animation(t_sprite *sprite, t_anim anim);
 void	test_sprite_loop(t_game *game, t_enemy *enemy);
 void	destroy_enemy_sprite(t_sprite *sprite, mlx_t *mlx);
 void	move_enemies(t_game *game);
+void	render_enemy(t_game *game, t_enemy *enemy);
+void	update_sprite(t_enemy *enemy, double dt);
+mlx_image_t	*get_current_frame(t_sprite *s, int max_frames);
+
 
 #endif

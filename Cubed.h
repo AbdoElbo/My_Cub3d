@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/17 16:18:39 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/17 17:41:27 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ typedef struct s_game
 	mlx_t		*mlx;
 	t_files		files;
 	t_ray		rays[NUM_RAYS];
+	double		zbuf[SCREEN_WIDTH];
 	t_vars		vars;
 	t_img		images;
 	t_tex		textures;
