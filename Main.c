@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/16 17:24:03 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/17 15:32:39 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_hook(void *param)
 	draw_minimap(game, off_x, off_y);
 	i = 0;
 	while (i < game->vars.enemy_count)
-		test_sprite_loop(game, &game->enemy[i++]);
+		render_enemy(game, &game->enemy[i++]);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	// printf("frame is rendered\n");

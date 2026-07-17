@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/16 16:34:34 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/17 15:58:15 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ typedef struct s_game
 	mlx_t		*mlx;
 	t_files		files;
 	t_ray		rays[NUM_RAYS];
+	double		zbuf[SCREEN_WIDTH];
 	t_vars		vars;
 	t_img		images;
 	t_tex		textures;
@@ -173,7 +174,6 @@ typedef struct s_game
 	t_movement	movement;
 	t_frame		frame;
 	t_door		*doors;
-	double		zbuffer[MAX_WIDTH];
 	t_enemy		*enemy;
 }	t_game;
 
