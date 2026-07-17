@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Components_exist.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:26:19 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/14 12:31:34 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/17 15:40:45 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int	comp_counter(char **map)
 		while (map[i][j])
 		{
 			if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'W'
-				|| map[i][j] == 'E' || map[i][j] == 'S' || map[i][j] == 'D' || map[i][j] == 'V')
+				|| map[i][j] == 'E' || map[i][j] == 'S' || map[i][j] == 'D'
+				|| map[i][j] == 'V' || map[i][j] == 'C')
 				count++;
 			j++;
 		}

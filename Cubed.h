@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/16 16:34:34 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/17 16:18:39 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ typedef enum e_weapons
 	SHOTGUN,
 }	t_weapons;
 
-typedef struct s_door	t_door;
-typedef struct s_enemy	t_enemy ;
+typedef struct s_door		t_door;
+typedef struct s_enemy		t_enemy;
+typedef struct s_collect	t_collect;
 
 typedef struct s_files
 {
@@ -103,6 +104,7 @@ typedef struct s_tex
 	mlx_texture_t	*south_tex;
 	mlx_texture_t	*north_tex;
 	mlx_texture_t	*door_tex;
+	mlx_texture_t	*collectible_tex;
 }	t_tex;
 
 typedef struct s_img
@@ -124,6 +126,7 @@ typedef struct s_img
 	mlx_image_t	*east_img;
 	mlx_image_t	*west_img;
 	mlx_image_t	*door_img;
+	mlx_image_t	*collectible_img;
 }	t_img;
 
 typedef enum e_movement
@@ -154,7 +157,9 @@ typedef struct s_vars
 	int			fd;
 	int			door_count;
 	int			enemy_count;
+	int			collect_count;
 	long long	frame_start;
+	int			easter_egg;
 	bool		mouse_was_down;
 }	t_vars;
 
@@ -173,8 +178,9 @@ typedef struct s_game
 	t_movement	movement;
 	t_frame		frame;
 	t_door		*doors;
-	double		zbuffer[MAX_WIDTH];
+	t_collect	*collect;
 	t_enemy		*enemy;
+	double		zbuffer[MAX_WIDTH];
 }	t_game;
 
 void	print_map(t_game *game);

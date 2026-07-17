@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 13:31:43 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/12 11:23:15 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/17 16:17:03 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	check_arg(char *str)
 
 int	error_check(int argc, char *argv)
 {
-	if (argc != 2)
+	if (argc != 2 && argc != 3)
 	{
 		printf(Y"Please Enter correct number of Args\n"RESET);
 		printf("Example: ./cubed maps/map1.cub\n");

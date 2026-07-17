@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:47:58 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/16 16:30:06 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/17 16:15:13 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,30 +109,21 @@ static void	draw_enemy_circle(t_game *game, int r, double ex, double ey)
 	int	dy;
 	int	cx;
 	int	cy;
-	// int	offset_x;
-	// int	offset_y;
 
-	// convert enemy world pos to minimap pixel pos
-	// same offset logic as the tile grid
-	// offset_x = (int)((game->player.x - (int)game->player.x) * TILE_SIZE);
-	// offset_y = (int)((game->player.y - (int)game->player.y) * TILE_SIZE);
-
-	// enemy position relative to player, in pixels
 	cx = (int)((ex - game->player.x) * TILE_SIZE) + MINIMAP_PX / 2;
 	cy = (int)((ey - game->player.y) * TILE_SIZE) + MINIMAP_PX / 2;
-
 	dy = -r;
 	while (dy <= r)
 	{
 		dx = -r;
-		while (dx <= r)  // fix: <= not
+		while (dx <= r)
 		{
 			if (dx * dx + dy * dy <= r * r)
 			{
 				if (cx + dx >= 0 && cx + dx < MINIMAP_PX
 					&& cy + dy >= 0 && cy + dy < MINIMAP_PX)
 					mlx_put_pixel(game->images.mm_img,
-						cx + dx, cy + dy, get_rgb_color(0, 0, 0));
+						cx + dx, cy + dy, get_rgb_color(251, 43, 43));
 			}
 			dx++;
 		}
@@ -140,15 +131,54 @@ static void	draw_enemy_circle(t_game *game, int r, double ex, double ey)
 	}
 }
 
-void	draw_minimap(t_game *game, int offset_x, int offset_y)
+static void	draw_collect_img(t_game *game, int r, double ex, double ey)
 {
-	int	i = 0;
+	int	dx;
+	int	dy;
+	int	cx;
+	int	cy;
 
-	draw_floor(game, offset_x, offset_y);
-	draw_player_circle(game, 3, get_rgb_color(255, 100, 0));
+	cx = (int)((ex - game->player.x) * TILE_SIZE) + MINIMAP_PX / 2;
+	cy = (int)((ey - game->player.y) * TILE_SIZE) + MINIMAP_PX / 2;
+	dy = -r;
+	while (dy <= r)
+	{
+		dx = -r;
+		while (dx <= r)
+		{
+			if (dx * dx + dy * dy <= r * r)
+			{
+				if (cx + dx >= 0 && cx + dx < MINIMAP_PX
+					&& cy + dy >= 0 && cy + dy < MINIMAP_PX)
+					mlx_put_pixel(game->images.mm_img,
+						cx + dx, cy + dy, get_rgb_color(251, 223, 43));
+			}
+			dx++;
+		}
+		dy++;
+	}
+}
+
+void	draw_minimap(t_game *game)
+{
+	int	i;
+	int	off_x;
+	int	off_y;
+
+	i = 0;
+	off_x = (int)((game->player.x - (int)game->player.x) * TILE_SIZE);
+	off_y = (int)((game->player.y - (int)game->player.y) * TILE_SIZE);
+	draw_floor(game, off_x, off_y);
+	draw_player_circle(game, 3, get_rgb_color(43, 251, 57));
 	while(i < game->vars.enemy_count)
 	{
 		draw_enemy_circle(game, 3, game->enemy[i].x, game->enemy[i].y);
+		i++;
+	}
+	i = 0;
+	while(i < game->vars.collect_count)
+	{
+		draw_collect_img(game, 3, game->collect[i].x, game->collect[i].y);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:38:34 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/16 14:04:12 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/17 15:34:14 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	count_extras(t_game *game)
 {
 	game->vars.door_count = 0;
 	game->vars.enemy_count = 0;
+	game->vars.collect_count = 0;
 	int	i;
 	int	j;
 
@@ -66,6 +67,8 @@ static void	count_extras(t_game *game)
 				game->vars.door_count++;
 			else if (game->map[i][j] == 'V')
 				game->vars.enemy_count++;
+			else if (game->map[i][j] == 'C')
+				game->vars.collect_count++;
 			j++;
 		}
 		i++;
@@ -76,8 +79,11 @@ static void	count_extras(t_game *game)
 int	init_bonus(t_game *game)
 {
 	count_extras(game);
-	init_doors(game);
+	if (!init_doors(game))
+		return (0);
 	if (!init_enemy(game))
+		return (0);
+	if (!init_collectibles(game))
 		return (0);
 	return (1);
 }

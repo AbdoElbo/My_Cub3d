@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 13:36:06 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/13 19:32:13 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/17 16:32:53 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_player	t_player ;
 int			error_check(int argc, char *argv);
 int			check_arg(char *str);
 
-int			init_map(int argc, char *argv, t_game *game);
+int			init_map(int argc, char **argv, t_game *game);
 char		*get_next_line(int fd);
 int			check_map_order(char **map);
 

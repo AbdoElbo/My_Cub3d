@@ -6,13 +6,13 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 16:02:25 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 17:25:34 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/17 16:03:51 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game_Dev.h"
 
-int	load_images_compass(t_game *game, char *path
+int	load_images(t_game *game, char *path
 		, mlx_texture_t **tex, mlx_image_t **img)
 {
 	*tex = NULL;
@@ -68,14 +68,10 @@ int	init_doors(t_game *game)
 	{
 		doors = malloc(sizeof(t_door) * game->vars.door_count);
 		if (!doors)
-		{
-			printf("Door malloc error.\n");
-			return(0);
-		}
+			return(printf("Door malloc error.\n"), 0);
+		game->doors = doors;
+		look_for_door_coordinates(game);
 	}
-	game->doors = doors;
-	look_for_door_coordinates(game);
-	// make_doors_solid(game);
 	return (1);
 }
 

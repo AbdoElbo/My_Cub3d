@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:25:46 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/14 15:53:23 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/17 15:37:04 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,19 @@ static int	check_surroundings(char **str, int index_i, int index_j)
 	left = str[index_i][index_j - 1];
 	right = str[index_i][index_j + 1];
 	if (up != '1' && up != '0' && up != 'N' && up != 'W'
-		&& up != 'E' && up != 'S' && up != 'D' && up != 'V')
+		&& up != 'E' && up != 'S' && up != 'D' && up != 'V'&& up != 'C')
 		return (false);
 	if (down != '1' && down != '0' && down != 'N' && down != 'W'
-		&& down != 'E' && down != 'S' && down != 'D' && down != 'V')
+		&& down != 'E' && down != 'S' && down != 'D' && down != 'V'
+		&& down != 'C')
 		return (false);
 	if (left != '1' && left != '0' && left != 'N' && left != 'W'
-		&& left != 'E' && left != 'S' && left != 'D' && left != 'V')
+		&& left != 'E' && left != 'S' && left != 'D' && left != 'V'
+		&& left != 'C')
 		return (false);
 	if (right != '1' && right != '0' && right != 'N' && right != 'W'
-		&& right != 'E' && right != 'S' && right != 'D' && right != 'V')
+		&& right != 'E' && right != 'S' && right != 'D' && right != 'V'
+		&& right != 'C')
 		return (false);
 	return (true);
 }
@@ -78,7 +81,8 @@ int	check_inside(char **str)
 		while (str[i][j])
 		{
 			if (str[i][j] == '0' || str[i][j] == 'N' || str[i][j] == 'W'
-				|| str[i][j] == 'E' || str[i][j] == 'S' || str[i][j] == 'D' || str[i][j] == 'V')
+				|| str[i][j] == 'E' || str[i][j] == 'S' || str[i][j] == 'D'
+				|| str[i][j] == 'V' || str[i][j] == 'C')
 			{
 				if (!check_surroundings(str, i, j))
 					return (false);

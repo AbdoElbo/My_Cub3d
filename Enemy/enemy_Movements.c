@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/16 17:12:59 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/17 15:52:24 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	move_enemies(t_game *game)
 	while (i < game->vars.enemy_count)
 	{
 		update_dst_from_player(&game->player, &game->enemy[i]);
-		if (game->enemy[i].dst_from_player < 5)
+		if (game->enemy[i].dst_from_player < 5
+			&& game->enemy[i].dst_from_player > 0.4f)
 			go_to_player(game, &game->player, &game->enemy[i]);
 		i++;
 	}
