@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:17:07 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/17 16:35:08 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/17 16:58:22 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ void		gun_dev(t_game *game);
 
 int			load_images(t_game *game, char *path
 				, mlx_texture_t **tex, mlx_image_t **img);
+int			load_gun_tex(t_game *game);
 int			load_sword_tex(t_game *game);
 int			load_shotgun_tex(t_game *game);
-int			load_fish_tex(t_game *game);
-int			load_nokia_tex(t_game *game);
 int			load_compass_tex(t_game *game);
+int			load_gun_images(t_game *game, char *path
+				, mlx_texture_t **tex, mlx_image_t **img);
 long long	get_time_in_ms(void);
 
 void		sword_attack(t_game *game);

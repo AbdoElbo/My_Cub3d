@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/17 16:35:32 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/17 16:59:55 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,12 @@ int	load_map_and_components(t_game *game)
 	game->images.mm_img = mlx_new_image(game->mlx, MINIMAP_PX, MINIMAP_PX);
 	if (!game->images.mm_img)
 		return (printf("Error:\nMlx img_mm creation failed\n"), 0);
-	if (mlx_image_to_window(game->mlx, game->images.mm_img, 200, 0))
+	if (mlx_image_to_window(game->mlx, game->images.mm_img, 0, 0))
 		return (printf("Error:\nMlx img_mm image_to_window failed\n"), 0);
 	if (!load_compass_tex(game))
 		return (0);
-	if (!game->vars.easter_egg)
-	{
-		if (!load_sword_tex(game) || !load_shotgun_tex(game))
-			return (0);
-	}
-	else
-	{
-		if (!load_fish_tex(game) || !load_nokia_tex(game))
-			return (0);
-	}
+	if (!load_gun_tex(game))
+		return (0);
 	return (1);
 }
 
@@ -98,7 +90,6 @@ int	main(int argc, char **argv)
 		return (cleanup(&game), EXIT_FAILURE);
 	// printf("Map loaded successfully!\n");
 	// print_map(&game);
-	printf("easter egg is : %d\n", game.vars.easter_egg);
 	mlx_loop_hook(game.mlx, &ft_hook, &game);
 	mlx_cursor_hook(game.mlx, ft_mouse_mvm, &game);
 	mlx_loop(game.mlx);
