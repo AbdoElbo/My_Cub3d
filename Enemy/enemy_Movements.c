@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/20 14:23:18 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/20 16:52:30 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,9 @@ void	move_enemies(t_game *game)
 			&& game->enemy[i].dst_from_player > 0.4f)
 		{
 			go_to_player(game, &game->player, &game->enemy[i]);
-			// set_animation(&game->enemy[i].sprite, ANIM_WALK);
+			if (game->enemy[i].dst_from_player < 1)
+				set_animation(&game->enemy[i].sprite, ANIM_ATTACK);
 		}
-		if (game->enemy[i].dst_from_player == 1)
-			set_animation(&game->enemy[i].sprite, ANIM_ATTACK);
 		i++;
 	}
 }

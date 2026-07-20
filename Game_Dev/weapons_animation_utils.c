@@ -6,18 +6,33 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 15:17:30 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/20 15:04:22 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/20 18:41:43 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game_Dev.h"
 
+static void	get_multiplier(int *damage, float distance)
+{
+	if (distance > 4)
+		*damage *= 0.4;
+	else if (distance > 3)
+		*damage *= 0.6;
+	else if (distance > 2)
+		*damage *= 0.8;
+	else if (distance > 1)
+		*damage *= 1;
+}
+
 static void	damage_enemies(t_game *game, double distance, int damage)
 {
-	for (int i = 0; i < game->vars.enemy_count; i++)
+	int		i;
+
+	i = 0;
+	while (i < game->vars.enemy_count)
 	{
-		if (game->enemy[i].dst_from_player < distance
-			&& game->enemy[i].health)
+		get_multiplier(&damage, game->enemy[i].dst_from_player); // damage depending on distance
+		if (game->enemy[i].dst_from_player < distance && game->enemy[i].health)
 		{
 			if (game->enemy[i].health - damage <= 0)
 			{
@@ -28,9 +43,10 @@ static void	damage_enemies(t_game *game, double distance, int damage)
 			{
 				game->enemy[i].health -= damage;
 				set_animation(&game->enemy[i].sprite, ANIM_HURT);
-				printf("ENEMY %i took %d damage\n", i, damage);
+				// printf("ENEMY %i took %d damage\n", i, damage);
 			}
 		}
+		i++;
 	}
 }
 

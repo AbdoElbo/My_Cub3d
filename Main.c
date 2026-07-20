@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/17 17:41:32 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/20 18:03:25 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,20 @@ void	ft_hook(void *param)
 	int		i;
 
 	game = (t_game *)param;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(game->mlx);
 	cast_rays(game);
 	render_frame(game);
 	draw_minimap(game);
 	i = 0;
 	while (i < game->vars.enemy_count)
 		render_enemy(game, &game->enemy[i++]);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(game->mlx);
 	// printf("frame is rendered\n");
 	move_player(game);
 	move_enemies(game);
 	rotate_player(game);
 	gun_dev(game);
 	ft_open_door(game);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_5))
-		set_animation(&game->enemy->sprite, ANIM_IDLE);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_6))
-		set_animation(&game->enemy->sprite, ANIM_WALK);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_7))
-		set_animation(&game->enemy->sprite, ANIM_HURT);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_8))
-		set_animation(&game->enemy->sprite, ANIM_ATTACK);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_9))
-		set_animation(&game->enemy->sprite, ANIM_DEATH);
 }
 
 int	load_map_and_components(t_game *game)
