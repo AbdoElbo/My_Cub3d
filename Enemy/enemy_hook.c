@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy_hook.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:18:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/17 16:15:33 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/20 14:35:59 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	update_sprite(t_enemy *enemy, double dt)
 			enemy->sprite.current_frame++;
 		if (enemy->sprite.current_anim == ANIM_DEATH && enemy->sprite.current_frame == 8)
 			enemy->damage = 0;
+		if (enemy->sprite.current_anim == ANIM_HURT && enemy->sprite.current_frame == 4)
+			set_animation(&enemy->sprite, ANIM_IDLE);
 		return ;
 	}
 	enemy->sprite.current_frame = (enemy->sprite.current_frame + 1) % def->frame_count;

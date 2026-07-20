@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:15:44 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/16 15:25:05 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/20 14:53:06 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,6 @@ int	init_enemy_sprite(t_game *game)
 		game->enemy[i].sprite = sprite;
 		i++;
 	}
-	printf("Enemy sprite initialized successfully!\n");
+	// printf("Enemy sprite initialized successfully!\n");
 	return (1);
 }

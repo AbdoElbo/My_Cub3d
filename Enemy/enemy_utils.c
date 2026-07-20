@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:19:18 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/16 15:23:31 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/20 14:52:58 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	set_animation(t_sprite *sprite, t_anim anim)
 	sprite->current_anim = anim;
 	sprite->current_frame = 0;
 	sprite->frame_timer = 0.0;
-	printf("Animation set successfully!\n");
+	// printf("Animation set successfully!\n");
 }
 
 void	destroy_enemy_sprite(t_sprite *sprite, mlx_t *mlx)

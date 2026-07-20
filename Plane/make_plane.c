@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:47:58 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/17 16:15:13 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/20 14:47:51 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,8 @@ void	draw_minimap(t_game *game)
 	draw_player_circle(game, 3, get_rgb_color(43, 251, 57));
 	while(i < game->vars.enemy_count)
 	{
-		draw_enemy_circle(game, 3, game->enemy[i].x, game->enemy[i].y);
+		if (game->enemy[i].health)
+			draw_enemy_circle(game, 3, game->enemy[i].x, game->enemy[i].y);
 		i++;
 	}
 	i = 0;

@@ -6,11 +6,33 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 15:17:30 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/16 14:48:55 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/20 15:04:22 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game_Dev.h"
+
+static void	damage_enemies(t_game *game, double distance, int damage)
+{
+	for (int i = 0; i < game->vars.enemy_count; i++)
+	{
+		if (game->enemy[i].dst_from_player < distance
+			&& game->enemy[i].health)
+		{
+			if (game->enemy[i].health - damage <= 0)
+			{
+				game->enemy[i].health = 0;
+				set_animation(&game->enemy[i].sprite, ANIM_DEATH);
+			}
+			else
+			{
+				game->enemy[i].health -= damage;
+				set_animation(&game->enemy[i].sprite, ANIM_HURT);
+				printf("ENEMY %i took %d damage\n", i, damage);
+			}
+		}
+	}
+}
 
 static void	set_frames(t_game *game, mlx_image_t *img1
 		, mlx_image_t *img2, t_frame next)
@@ -18,7 +40,16 @@ static void	set_frames(t_game *game, mlx_image_t *img1
 	img1->enabled = false;
 	img2->enabled = true;
 	game->frame = next;
-}
+	if (next == IDLE)
+		game->movement = FREE;
+	if (next == ATTACK2)
+	{
+		if (game->weapon == SWORD)
+			damage_enemies(game, 1, KATANA_DAMAGE); // take damage only if distance from player is less than 3
+		else
+			damage_enemies(game, 3.5f, SHOTGUN_DAMAGE); // take damage only if distance from player is less than 5
+		}
+	}
 
 void	sword_attack(t_game *game)
 {
@@ -43,10 +74,7 @@ void	sword_attack(t_game *game)
 	else if (game->frame == ATTACK3)
 		set_frames(game, img.sword_img_3, img.sword_img_4, ATTACK4);
 	else if (game->frame == ATTACK4)
-	{
 		set_frames(game, img.sword_img_4, img.sword_img_0, IDLE);
-		game->movement = FREE;
-	}
 }
 
 void	shotgun_attack(t_game *game)
@@ -72,8 +100,5 @@ void	shotgun_attack(t_game *game)
 	else if (game->frame == ATTACK3)
 		set_frames(game, img.shotgun_img_3, img.shotgun_img_4, ATTACK4);
 	else if (game->frame == ATTACK4)
-	{
 		set_frames(game, img.shotgun_img_4, img.shotgun_img_0, IDLE);
-		game->movement = FREE;
-	}
 }
