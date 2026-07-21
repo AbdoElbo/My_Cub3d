@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 17:11:56 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/20 18:35:14 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/21 17:23:37 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 # define PLAYER_HEALTH 100
 # define KATANA_DAMAGE 40
-# define SHOTGUN_DAMAGE 20
+# define SHOTGUN_DAMAGE 30
 # define ENEMY_HEALTH 100
 # define ENEMY_DAMAGE 20
 

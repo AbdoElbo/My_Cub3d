@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/20 18:03:25 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/21 17:39:41 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,21 @@ static void	ft_open_door(t_game *game)
 	if (e_is_down && !e_was_down)
 		open_close_door(game);
 	e_was_down = e_is_down;
+}
+
+static void	delete_blood(t_game *game)
+{
+	long long	now;
+	long long	frame_duration;
+	mlx_image_t	*img;
+
+	img = game->images.getting_hurt;
+	frame_duration = 500;
+	now = get_time_in_ms();
+	if (now - game->vars.last_hit < frame_duration)
+		return ;
+	game->images.getting_hurt->enabled = false;
+	game->vars.last_hit = 0;
 }
 
 void	ft_hook(void *param)
@@ -43,6 +58,8 @@ void	ft_hook(void *param)
 	rotate_player(game);
 	gun_dev(game);
 	ft_open_door(game);
+	delete_blood(game);
+	// printf("player's health is %d\n", game->player.health);
 }
 
 int	load_map_and_components(t_game *game)

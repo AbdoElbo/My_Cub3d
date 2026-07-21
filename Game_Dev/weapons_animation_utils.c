@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 15:17:30 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/20 18:41:43 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/21 17:52:40 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static void	get_multiplier(int *damage, float distance)
 {
-	if (distance > 4)
+	if (distance > 4 && distance < 5)
 		*damage *= 0.4;
-	else if (distance > 3)
+	else if (distance > 3 && distance < 4)
 		*damage *= 0.6;
-	else if (distance > 2)
+	else if (distance > 2 && distance < 3)
 		*damage *= 0.8;
-	else if (distance > 1)
+	else if (distance > 1 && distance < 2)
 		*damage *= 1;
 }
 
@@ -38,12 +38,12 @@ static void	damage_enemies(t_game *game, double distance, int damage)
 			{
 				game->enemy[i].health = 0;
 				set_animation(&game->enemy[i].sprite, ANIM_DEATH);
+				printf("ENEMY %d DIED\n", i);
 			}
 			else
 			{
 				game->enemy[i].health -= damage;
 				set_animation(&game->enemy[i].sprite, ANIM_HURT);
-				// printf("ENEMY %i took %d damage\n", i, damage);
 			}
 		}
 		i++;

@@ -6,31 +6,11 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 13:00:44 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/14 15:57:48 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/21 17:27:42 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Rendering.h"
-
-// void	 draw_background_to_buf(t_game *game)
-// {
-// 	int i;
-// 	uint32_t *pixels;
-
-// 	pixels = (uint32_t *)game->framebuf->pixels;
-// 	i = 0;
-// 	while (i < (SCREEN_HEIGHT / 2) * SCREEN_WIDTH)
-// 	{
-// 		pixels[i] = game->ceiling_color;
-// 		mlx_put_pixel( x, y, color);
-// 		i++;
-// 	}
-// 	while (i < SCREEN_HEIGHT * SCREEN_WIDTH)
-// 	{
-// 		pixels[i] = game->floor_color;
-// 		i++;
-// 	}
-// }
 
 void	 draw_background_to_buf(t_game *game)
 {
@@ -59,43 +39,6 @@ void	 draw_background_to_buf(t_game *game)
 		y++;
 	}
 }
-
-// static uint32_t	 sample_texture_pixel(t_game *game, int tex_x, int tex_y)
-// {
-// 	uint8_t *p;
-
-// 	if (game->rays->dir_x > 0 && game->rays->dir_y < 0)
-// 		p = &game->texture_east->pixels[(tex_y * 128 + tex_x) * 4];
-// 	else if (game->rays->dir_x < 0 && game->rays->dir_y > 0)
-// 		p = &game->texture_west->pixels[(tex_y * 128 + tex_x) * 4];
-// 	else if (game->rays->dir_x > 0 && game->rays->dir_y > 0)
-// 		p = &game->texture_north->pixels[(tex_y * 128 + tex_x) * 4];
-// 	else
-// 		p = &game->texture_south->pixels[(tex_y * 128 + tex_x) * 4];
-// 	return (*(uint32_t *)p);
-// }
-
-
-// static uint32_t sample_texture_pixel(t_game *game, int tex_x, int tex_y)
-// {
-// 	uint8_t *p;
-
-// 	if (game->rays->side == 0) // EW wall, hit while stepping in x
-// 	{
-// 		if (game->rays->dir_x > 0)
-// 			p = &game->texture_east->pixels[(tex_y * 128 + tex_x) * 4];
-// 		else
-// 			p = &game->texture_west->pixels[(tex_y * 128 + tex_x) * 4];
-// 	}
-// 	else // NS wall, hit while stepping in y
-// 	{
-// 		if (game->rays->dir_y > 0)
-// 			p = &game->texture_south->pixels[(tex_y * 128 + tex_x) * 4];
-// 		else
-// 			p = &game->texture_north->pixels[(tex_y * 128 + tex_x) * 4];
-// 	}
-// 	return (*(uint32_t *)p);
-// }
 
 static uint32_t sample_texture_pixel(t_ray *ray, int tex_x, int tex_y)
 {
