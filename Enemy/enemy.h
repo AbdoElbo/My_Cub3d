@@ -19,6 +19,16 @@ typedef struct s_game	t_game ;
 typedef struct s_files	t_files ;
 typedef struct s_player	t_player ;
 
+typedef struct s_projection
+{
+	int		screen_x;
+	int		size;
+	int		start_x;
+	int		start_y;
+	double	depth;
+} t_projection;
+
+
 typedef enum e_anim
 {
 	ANIM_IDLE = 0,
@@ -55,21 +65,29 @@ typedef struct s_enemy
 	float		dir_x;
 	float		dir_y;
 	float		angle;
+	double		aim_angle;
 	int			health; //for later use
 	int			damage; //for later use
 	float		dst_from_player;
 	t_sprite	sprite;
 }	t_enemy;
 
-int		init_enemy(t_game *game);
-int		init_enemy_sprite(t_game *game);
-void	set_animation(t_sprite *sprite, t_anim anim);
-void	test_sprite_loop(t_game *game, t_enemy *enemy);
-void	destroy_enemy_sprite(t_sprite *sprite, mlx_t *mlx);
-void	move_enemies(t_game *game);
-void	render_enemy(t_game *game, t_enemy *enemy);
-void	update_sprite(t_enemy *enemy, double dt);
-mlx_image_t	*get_current_frame(t_sprite *s, int max_frames);
+int				init_enemy(t_game *game);
+int				init_enemy_sprite(t_game *game);
+void			set_animation(t_sprite *sprite, t_anim anim);
+void			test_sprite_loop(t_game *game, t_enemy *enemy);
+void			destroy_enemy_sprite(t_sprite *sprite, mlx_t *mlx);
+void			move_enemies(t_game *game);
+void			update_sprite(t_enemy *enemy, double dt);
+mlx_image_t		*get_current_frame(t_sprite *s, int max_frames);
+
+double			get_angle_diff(t_game *game, t_enemy *enemy);
+int				sprite_visible(t_enemy *enemy, double angle_diff, double *depth);
+t_projection	compute_projection(double angle_diff, double depth, int size, float height);
+void			draw_sprite_column(t_game *game, mlx_image_t *frame,
+					t_projection *projection, int x);
+void			draw_sprite(t_game *game, mlx_image_t *frame, t_projection *projection);
+void			render_enemy(t_game *game, t_enemy *enemy);
 
 
 #endif

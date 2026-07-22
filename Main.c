@@ -50,12 +50,12 @@ void	ft_hook(void *param)
 	render_frame(game);
 	draw_minimap(game);
 	i = 0;
+	rotate_player(game);
 	while (i < game->vars.enemy_count)
 		render_enemy(game, &game->enemy[i++]);
 	// printf("frame is rendered\n");
 	move_player(game);
 	move_enemies(game);
-	rotate_player(game);
 	gun_dev(game);
 	ft_open_door(game);
 	delete_blood(game);

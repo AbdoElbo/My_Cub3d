@@ -29,3 +29,4 @@ map components, or an open map and many many more errors prevention..\
 
 ## Resources:
 
+sin cos tan : https://www.cuemath.com/sin-cos-tan-formula/
