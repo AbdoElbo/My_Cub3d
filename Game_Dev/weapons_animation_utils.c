@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 15:17:30 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/22 16:53:34 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/22 16:58:40 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void	damage_enemies(t_game *game, double distance, int damage, float fiel
 					set_animation(&game->enemy[i].sprite, ANIM_HURT);
 				}
 			}
-			printf("aim angle %f\n", game->enemy[i].aim_angle);
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:19:18 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/21 16:02:11 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/22 17:03:36 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,18 @@ void	set_animation(t_sprite *sprite, t_anim anim)
 
 void	destroy_enemy_sprite(t_sprite *sprite, mlx_t *mlx)
 {
-	int	i;
+	// int	i;
 
 	if (!sprite)
 		return ;
-	i = 0;
-	while (i < ANIM_COUNT * 13)
-	{
-		if (sprite->frames && sprite->frames[i])
-			mlx_delete_image(mlx, sprite->frames[i]);
-		i++;
-	}
+	(void)mlx;
+	// i = 0;
+	// while (i < ANIM_COUNT * 13)
+	// {
+	// 	if (sprite->frames && sprite->frames[i])
+	// 		mlx_delete_image(mlx, sprite->frames[i]);
+	// 	i++;
+	// }
 	free(sprite->frames);
 	if (sprite->sheet)
 		mlx_delete_texture(sprite->sheet);
