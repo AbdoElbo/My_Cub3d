@@ -15,7 +15,7 @@
 //render_angle = angle ponting from player to enemy
 //angle_diff = difference between dir of player and angle to enemy
 //how smaller, how closer to center
-static double	get_angle_diff(t_game *game, t_enemy *enemy)
+double	get_angle_diff(t_game *game, t_enemy *enemy)
 {
 	double	render_angle;
 	double	angle_diff;
@@ -30,7 +30,7 @@ static double	get_angle_diff(t_game *game, t_enemy *enemy)
 	return (angle_diff);
 }
 
-static int	enemy_visible(t_enemy *enemy, double angle_diff, double *depth)
+int	sprite_visible(t_enemy *enemy, double angle_diff, double *depth)
 {
 	if (angle_diff < -FOV / 2 || angle_diff > FOV /2)
 		return (0);
@@ -42,19 +42,19 @@ static int	enemy_visible(t_enemy *enemy, double angle_diff, double *depth)
 	return (1);
 }
 
-static t_projection	compute_projection(double angle_diff, double depth)
+t_projection	compute_projection(double angle_diff, double depth, int size, float height)
 {
 	t_projection	projection;
 
 	projection.depth = depth;
 	projection.screen_x = (int)((SCREEN_WIDTH / 2.0) * (1.0 + tan(angle_diff) / tan(FOV / 2.0))); // ??
-	projection.size = (int)(SCREEN_HEIGHT / depth);
+	projection.size = (int)(SCREEN_HEIGHT / depth) * size;
 	projection.start_x = projection.screen_x - projection.size / 2;
-	projection.start_y = SCREEN_HEIGHT / 2 - projection.size / 2 - projection.size / 4; // ??
+	projection.start_y = SCREEN_HEIGHT / 2 - height * projection.size; // ??
 	return (projection);
 }
 
-static void	draw_enemy_column(t_game *game, mlx_image_t *frame,
+void	draw_sprite_column(t_game *game, mlx_image_t *frame,
 	t_projection *projection, int x)
 {
 	int			y;
@@ -80,7 +80,7 @@ static void	draw_enemy_column(t_game *game, mlx_image_t *frame,
 
 }
 
-static void draw_enemy_sprite(t_game *game, mlx_image_t *frame, t_projection *projection)
+void draw_sprite(t_game *game, mlx_image_t *frame, t_projection *projection)
 {
 	int	x;
 
@@ -90,7 +90,7 @@ static void draw_enemy_sprite(t_game *game, mlx_image_t *frame, t_projection *pr
 		x = projection->start_x;
 	while (x < projection->start_x + projection->size && x < SCREEN_WIDTH)
 	{
-		draw_enemy_column(game, frame, projection, x);
+		draw_sprite_column(game, frame, projection, x);
 		x++;
 	}
 }
@@ -103,10 +103,10 @@ void	render_enemy(t_game *game, t_enemy *enemy)
 	t_projection	projection ;
 
 	angle_diff = get_angle_diff(game, enemy);
-	if (!enemy_visible(enemy, angle_diff, &depth))
+	if (!sprite_visible(enemy, angle_diff, &depth))
 		return ;
 	update_sprite(enemy, game->mlx->delta_time);
 	frame = get_current_frame(&enemy->sprite, 13);
-	projection = compute_projection(angle_diff, depth);
-	draw_enemy_sprite(game, frame, &projection);
+	projection = compute_projection(angle_diff, depth, 2, 0.65f);
+	draw_sprite(game, frame, &projection);
 }
