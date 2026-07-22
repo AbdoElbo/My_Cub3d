@@ -37,6 +37,7 @@ void	ft_hook(void *param)
 	render_frame(game);
 	draw_minimap(game, off_x, off_y);
 	i = 0;
+	rotate_player(game);
 	while (i < game->vars.enemy_count)
 		render_enemy(game, &game->enemy[i++]);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
@@ -44,7 +45,6 @@ void	ft_hook(void *param)
 	// printf("frame is rendered\n");
 	move_player(game);
 	move_enemies(game);
-	rotate_player(game);
 	gun_dev(game);
 	ft_open_door(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_5))

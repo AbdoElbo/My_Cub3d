@@ -19,6 +19,16 @@ typedef struct s_game	t_game ;
 typedef struct s_files	t_files ;
 typedef struct s_player	t_player ;
 
+typedef struct s_projection
+{
+	int		screen_x;
+	int		size;
+	int		start_x;
+	int		start_y;
+	double	depth;
+} t_projection;
+
+
 typedef enum e_anim
 {
 	ANIM_IDLE = 0,
@@ -55,6 +65,7 @@ typedef struct s_enemy
 	float		dir_x;
 	float		dir_y;
 	float		angle;
+	double		aim_angle;
 	int			health; //for later use
 	int			damage; //for later use
 	float		dst_from_player;
