@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 18:29:27 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/21 17:09:36 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/22 16:36:50 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	load_gun_images(t_game *game, char *path
 	int	x_pos;
 	int	y_pos;
 
+	*tex = NULL;
+	*img = NULL;
 	*tex = mlx_load_png(path);
 	if (!*tex)
 		return (printf("Texture didn't load: %s\n", path), 0);

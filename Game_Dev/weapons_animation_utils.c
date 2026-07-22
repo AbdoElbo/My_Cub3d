@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 15:17:30 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/21 17:52:40 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/22 16:53:34 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	get_multiplier(int *damage, float distance)
 		*damage *= 1;
 }
 
-static void	damage_enemies(t_game *game, double distance, int damage)
+static void	damage_enemies(t_game *game, double distance, int damage, float field)
 {
 	int		i;
 
@@ -32,19 +32,24 @@ static void	damage_enemies(t_game *game, double distance, int damage)
 	while (i < game->vars.enemy_count)
 	{
 		get_multiplier(&damage, game->enemy[i].dst_from_player); // damage depending on distance
-		if (game->enemy[i].dst_from_player < distance && game->enemy[i].health)
+		if (game->enemy[i].aim_angle < field && game->enemy[i].aim_angle > -field)
 		{
-			if (game->enemy[i].health - damage <= 0)
+			if (game->enemy[i].dst_from_player < distance && game->enemy[i].health)
 			{
-				game->enemy[i].health = 0;
-				set_animation(&game->enemy[i].sprite, ANIM_DEATH);
-				printf("ENEMY %d DIED\n", i);
+				if (game->enemy[i].health - damage <= 0)
+				{
+					game->enemy[i].health = 0;
+					set_animation(&game->enemy[i].sprite, ANIM_DEATH);
+					printf("ENEMY %d DIED\n", i);
+				}
+				else
+				{
+					printf("ENEMY %d TOOK DAMAGE\n", i);
+					game->enemy[i].health -= damage;
+					set_animation(&game->enemy[i].sprite, ANIM_HURT);
+				}
 			}
-			else
-			{
-				game->enemy[i].health -= damage;
-				set_animation(&game->enemy[i].sprite, ANIM_HURT);
-			}
+			printf("aim angle %f\n", game->enemy[i].aim_angle);
 		}
 		i++;
 	}
@@ -61,9 +66,9 @@ static void	set_frames(t_game *game, mlx_image_t *img1
 	if (next == ATTACK2)
 	{
 		if (game->weapon == SWORD)
-			damage_enemies(game, 1, KATANA_DAMAGE); // take damage only if distance from player is less than 3
+			damage_enemies(game, 1, KATANA_DAMAGE, KATANA_FIELD); // take damage only if distance from player is less than 3
 		else
-			damage_enemies(game, 3.5f, SHOTGUN_DAMAGE); // take damage only if distance from player is less than 5
+			damage_enemies(game, 3.5f, SHOTGUN_DAMAGE, SHOTGUN_FIELD); // take damage only if distance from player is less than 5
 		}
 	}
 

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 13:00:44 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/21 17:27:42 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/22 16:06:42 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static t_draw_params	 define_column_height(t_ray *ray, int col)
 	return (dp);
 }
 
-void	 render_frame(t_game *game)
+void	render_frame(t_game *game)
 {
 	int i;
 	t_draw_params dp;
@@ -106,4 +106,5 @@ void	 render_frame(t_game *game)
 		draw_to_buf(game, game->rays[i], &dp);
 		i++;
 	}
+	order_enemy_array(game->enemy, game->vars.enemy_count);
 }

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/21 17:39:41 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/22 16:46:30 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	ft_hook(void *param)
 	gun_dev(game);
 	ft_open_door(game);
 	delete_blood(game);
-	// printf("player's health is %d\n", game->player.health);
 }
 
 int	load_map_and_components(t_game *game)

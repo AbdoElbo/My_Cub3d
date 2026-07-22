@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/21 17:51:33 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/22 15:04:26 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,17 @@ void	move_enemies(t_game *game)
 	while (i < game->vars.enemy_count)
 	{
 		update_dst_from_player(&game->player, &game->enemy[i]);
-		if (game->enemy[i].dst_from_player < 5
-			&& game->enemy[i].dst_from_player >= 0.4f)
+		if (game->enemy[i].dst_from_player < 5)
 		{
-			go_to_player(game, &game->player, &game->enemy[i]);
-			if (game->enemy[i].dst_from_player < 1 && game->movement == FREE
+			if (game->enemy[i].dst_from_player >= 0.8f)
+				go_to_player(game, &game->player, &game->enemy[i]);
+			if (game->enemy[i].dst_from_player < 2 && game->movement == FREE
 				&& game->enemy[i].health)
 			{
 				set_animation(&game->enemy[i].sprite, ANIM_ATTACK);
 				check_get_damaged(game, i);
 			}
-			else if (game->enemy[i].dst_from_player > 2 && game->movement == FREE)
+			else if (game->enemy[i].dst_from_player >= 2 && game->movement == FREE)
 				set_animation(&game->enemy[i].sprite, ANIM_IDLE);
 		}
 		i++;

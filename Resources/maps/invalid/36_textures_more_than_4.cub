@@ -1,8 +1,8 @@
-NO ./assets/textures/north.xpm
-			SO ./assets/textures/south.xpm
-WE ./assets/textures/west.xpm
-EA ./assets/textures/east.xpm
-EA ./assets/textures/east.xpm
+SO	./Resources/textures/south_texture.png
+WE	./Resources/textures/west_texture.png
+EA	./Resources/textures/east_texture.png
+NO	./Resources/textures/north_texture.png
+SO	./Resources/textures/south_texture.png
 F 60,60,60
 C 135,206,235
 

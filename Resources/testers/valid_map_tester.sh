@@ -1,12 +1,22 @@
 #!/bin/bash
 
-PROGRAM="../cub3D"
-MAPS_DIR="../../Resources/maps/valid"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+PROGRAM="$PROJECT_ROOT/cub3D"
+MAPS_DIR="$PROJECT_ROOT/Resources/maps/valid"
 
 RED="\033[1;31m"
 GREEN="\033[1;32m"
 YELLOW="\033[1;33m"
 RESET="\033[0m"
+
+if [ ! -x "$PROGRAM" ]; then
+    echo -e "${YELLOW}Building cub3D...${RESET}"
+    make -C "$PROJECT_ROOT" > /dev/null 2>&1 || {
+        echo -e "${RED}Failed to build cub3D${RESET}"
+        exit 1
+    }
+fi
 
 segfault_count=0
 pass_count=0
@@ -15,7 +25,6 @@ total=0
 echo -e "${YELLOW}Testing all .cub maps in $MAPS_DIR${RESET}\n"
 
 for map in "$MAPS_DIR"/*.cub; do
-    # no .cub files found
     if [ ! -f "$map" ]; then
         echo -e "${RED}No .cub files found in $MAPS_DIR${RESET}"
         exit 1
@@ -23,11 +32,9 @@ for map in "$MAPS_DIR"/*.cub; do
 
     total=$((total + 1))
 
-    # run program, suppress output, capture exit code
-    "$PROGRAM" "$map"
+    "$PROGRAM" "$map" > /dev/null 2>&1
     exit_code=$?
 
-    # segfault = exit code 139 (128 + signal 11)
     if [ $exit_code -eq 139 ]; then
         echo -e "${RED}[SEGFAULT]${RESET}  $map"
         segfault_count=$((segfault_count + 1))
