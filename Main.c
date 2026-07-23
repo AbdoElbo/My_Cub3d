@@ -6,37 +6,40 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/23 17:51:41 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/23 18:40:20 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cubed.h"
 
-static int	display_coins_acquired(t_game *game)
+static int	display_text(t_game *game)
 {
-	char	*c_num;
-	char	*hp_num;
+	char	*num_str;
 
-	c_num = ft_itoa(game->vars.collect_count);
-	if (!c_num)
+	num_str = ft_itoa(game->vars.collect_count);
+	if (!num_str)
 		return (0);
-	ft_memcpy(&game->collect_str[23], c_num, ft_strlen(c_num));
-	free(c_num);
+	ft_memcpy(&game->collect_str[23], num_str, ft_strlen(num_str));
+	game->collect_str[23 + ft_strlen(num_str)] = '\0';
+	free(num_str);
 	if (game->images.collect_text)
 		mlx_delete_image(game->mlx, game->images.collect_text);
 	game->images.collect_text = mlx_put_string(game->mlx, game->collect_str
 		, MINIMAP_PX + 10, 20);
-	mlx_set_instance_depth(game->images.collect_text->instances, 1);
+	mlx_resize_image(game->images.collect_text, game->images.collect_text->width * 1.5, game->images.collect_text->height * 1.5);
+	mlx_set_instance_depth(game->images.collect_text->instances, 30);
 
-	hp_num = ft_itoa(game->player.health);
-	if (!hp_num)
+	num_str = ft_itoa(game->player.health);
+	if (!num_str)
 		return (0);
-	ft_memcpy(&game->player_hp_str[13], hp_num, ft_strlen(hp_num));
-	free(hp_num);
+	ft_memcpy(&game->player_hp_str[13], num_str, ft_strlen(num_str));
+	game->player_hp_str[13 + ft_strlen(num_str)] = '\0';
+	free(num_str);
 	if (game->images.player_hp_text)
 		mlx_delete_image(game->mlx, game->images.player_hp_text);
 	game->images.player_hp_text = mlx_put_string(game->mlx, game->player_hp_str
-		, MINIMAP_PX + 10, 40);
+		, MINIMAP_PX + 10, 60);
+	mlx_resize_image(game->images.player_hp_text, game->images.player_hp_text->width * 1.5, game->images.player_hp_text->height * 1.5);
 	mlx_set_instance_depth(game->images.player_hp_text->instances, 30);
 	return (1);
 }
@@ -89,7 +92,7 @@ void	ft_hook(void *param)
 		gun_dev(game);
 		ft_open_door(game);
 		delete_blood(game);
-		if (!display_coins_acquired(game))
+		if (!display_text(game))
 			return ;
 	}
 	else
