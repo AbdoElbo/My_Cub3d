@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/21 17:15:23 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/23 18:14:47 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,11 @@ typedef struct s_tex
 	mlx_texture_t	*south_tex;
 	mlx_texture_t	*north_tex;
 	mlx_texture_t	*door_tex;
+	mlx_texture_t	*exit_door_tex;
 	mlx_texture_t	*collectible_tex;
 	mlx_texture_t	*getting_hurt;
+	mlx_texture_t	*death;
+	mlx_texture_t	*win;
 }	t_tex;
 
 typedef struct s_img
@@ -127,8 +130,13 @@ typedef struct s_img
 	mlx_image_t	*east_img;
 	mlx_image_t	*west_img;
 	mlx_image_t	*door_img;
+	mlx_image_t	*exit_door_img;
 	mlx_image_t	*collectible_img;
 	mlx_image_t	*getting_hurt;
+	mlx_image_t	*collect_text;
+	mlx_image_t	*player_hp_text;
+	mlx_image_t	*death;
+	mlx_image_t	*win;
 }	t_img;
 
 typedef enum e_movement
@@ -169,6 +177,8 @@ typedef struct s_vars
 typedef struct s_game
 {
 	char		**map;
+	char		*collect_str;
+	char		*player_hp_str;
 	mlx_image_t	*framebuf;
 	t_player	player;
 	mlx_t		*mlx;

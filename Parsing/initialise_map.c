@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/22 17:07:42 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/23 17:51:53 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	init_vars(t_game *game)
 {
 	game->player.x = 0;
 	game->player.y = 0;
-	game->player.health = 50;
+	game->player.health = PLAYER_HEALTH;
 	game->enemy = NULL;
 	game->doors = NULL;
 	game->mlx = NULL;

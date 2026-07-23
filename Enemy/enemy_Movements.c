@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/22 15:04:26 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/23 17:52:43 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,16 @@ static void	check_get_damaged(t_game *game, int i)
 	{
 		game->vars.last_hit = get_time_in_ms();
 		game->images.getting_hurt->enabled = true;
-		game->player.health -= 10;
-		printf("Player took %d damage\n", ENEMY_DAMAGE);
+		if (game->player.health - ENEMY_DAMAGE <= 0)
+		{
+			game->player.health = 0;
+			write(1, "PLAYER DIED, RIP!!\n", 19);
+		}
+		else
+		{
+			game->player.health -= ENEMY_DAMAGE;
+			printf("Player took %d damage\n", ENEMY_DAMAGE);
+		}
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 17:11:56 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/22 16:49:15 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/23 18:13:21 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define KATANA_DAMAGE 40
 # define KATANA_FIELD FOV
 # define SHOTGUN_FIELD 0.3 //FOV / 2
-# define SHOTGUN_DAMAGE 1
+# define SHOTGUN_DAMAGE 20
 # define ENEMY_HEALTH 100
 # define ENEMY_DAMAGE 20
 

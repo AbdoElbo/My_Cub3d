@@ -6,11 +6,47 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 16:55:18 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/21 17:09:58 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/23 18:10:12 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game_Dev.h"
+
+static void	scale_image(mlx_image_t **img)
+{
+	double	scale_x;
+	double	scale_y;
+	double	scale;
+
+	scale_x = (double)SCREEN_WIDTH / (*img)->width;
+	scale_y = (double)SCREEN_HEIGHT / (*img)->height;
+	scale = fmin(scale_x, scale_y);
+	mlx_resize_image((*img), (*img)->width * scale, (*img)->height * scale);
+}
+
+static int	load_endgame_images(t_game *game, char *path
+		, mlx_texture_t **tex, mlx_image_t **img)
+{
+	int	x_pos;
+	int	y_pos;
+
+	*tex = NULL;
+	*img = NULL;
+	*tex = mlx_load_png(path);
+	if (!*tex)
+		return (printf("Texture didn't load: %s\n", path), 0);
+	*img = mlx_texture_to_image(game->mlx, *tex);
+	mlx_delete_texture(*tex); // im deleting tex before checking for img so in case of conversion failure, tex will always be deleted ...
+	if (!*img)
+		return (printf("Texture wasn't converted to image: %s\n", path), 0);
+	scale_image(img);
+	x_pos = SCREEN_WIDTH / 2 - ((*img)->width / 2);
+	y_pos = SCREEN_HEIGHT / 2 - ((*img)->height / 2);
+	if (mlx_image_to_window(game->mlx, *img, x_pos, y_pos))
+		return (printf("Error:\nMlx image_to_window failed\n"), 0);
+	(*img)->enabled = false;
+	return (1);
+}
 
 static int	load_fish_tex(t_game *game)
 {
@@ -67,5 +103,11 @@ int	load_gun_tex(t_game *game)
 		if (!load_fish_tex(game) || !load_nokia_tex(game))
 			return (0);
 	}
+	if (!load_endgame_images(game, "./Resources/textures/death.png",
+			&game->textures.death, &game->images.death))
+		return (0);
+	if (!load_endgame_images(game, "./Resources/textures/win.png",
+			&game->textures.win, &game->images.win))
+		return (0);
 	return (1);
 }
