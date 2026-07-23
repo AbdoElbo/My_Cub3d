@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/22 16:46:30 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/23 13:36:35 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	delete_blood(t_game *game)
 {
 	long long	now;
 	long long	frame_duration;
-	mlx_image_t	*img;
+	// mlx_image_t	*img;
 
-	img = game->images.getting_hurt;
+	// img = game->images.getting_hurt;
 	frame_duration = 500;
 	now = get_time_in_ms();
 	if (now - game->vars.last_hit < frame_duration)
@@ -41,7 +41,6 @@ static void	delete_blood(t_game *game)
 void	ft_hook(void *param)
 {
 	t_game	*game;
-	int		i;
 
 	game = (t_game *)param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
@@ -49,10 +48,8 @@ void	ft_hook(void *param)
 	cast_rays(game);
 	render_frame(game);
 	draw_minimap(game);
-	i = 0;
 	rotate_player(game);
-	while (i < game->vars.enemy_count)
-		render_enemy(game, &game->enemy[i++]);
+	render_sprite_queue(game);
 	// printf("frame is rendered\n");
 	move_player(game);
 	move_enemies(game);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy_rendering.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 14:54:00 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/22 14:56:04 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/23 13:02:24 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	sprite_visible(t_enemy *enemy, double angle_diff, double *depth)
 	return (1);
 }
 
-t_projection	compute_projection(double angle_diff, double depth, int size, float height)
+t_projection	compute_projection(double angle_diff, double depth, float size, float height)
 {
 	t_projection	projection;
 
@@ -107,6 +107,6 @@ void	render_enemy(t_game *game, t_enemy *enemy)
 		return ;
 	update_sprite(enemy, game->mlx->delta_time);
 	frame = get_current_frame(&enemy->sprite, 13);
-	projection = compute_projection(angle_diff, depth, 2, 0.65f);
+	projection = compute_projection(angle_diff, depth, 2.0f, 0.65f);
 	draw_sprite(game, frame, &projection);
 }

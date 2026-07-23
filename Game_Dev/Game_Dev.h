@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Game_Dev.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:17:07 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/17 16:58:22 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/23 13:33:46 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_collect
 	float		x;
 	float		y;
 	bool		available;
+	float		dst_to_player;
 }	t_collect;
 
 
@@ -62,5 +63,8 @@ int			init_doors(t_game *game);
 int			init_collectibles(t_game *game);
 int			check_open_door(int map_x, int map_y, t_game *game);
 void		open_close_door(t_game *game);
+void		render_collectible(t_game *game, t_collect *collect);
+double		get_c_angle_diff(t_game *game, t_collect *collect);
+int			c_sprite_visible(t_collect *collect, t_player *p, double angle_diff, double *depth);
 
 #endif

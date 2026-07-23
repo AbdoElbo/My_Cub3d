@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Rendering.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 12:53:28 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/22 16:07:11 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/23 13:37:18 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,23 @@ typedef struct s_dda
 	double	hit_y;
 }	t_dda;
 
+typedef enum e_sprite_kind
+{
+	SPRITE_ENEMY,
+	SPRITE_COLLECT,
+}	t_sprite_kind;
+
+typedef struct s_sprite_draw
+{
+	t_sprite_kind	kind;
+	void			*ptr;
+	double			depth;
+}	t_sprite_draw;
+
 void	render_frame(t_game *game);
 void	cast_rays(t_game *game);
 void	order_enemy_array(t_enemy *enemies, int enemy_count);
+void	render_sprite_queue(t_game *game);
 
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 14:24:42 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/21 16:59:55 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/23 13:03:08 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ mlx_image_t		*get_current_frame(t_sprite *s, int max_frames);
 
 double			get_angle_diff(t_game *game, t_enemy *enemy);
 int				sprite_visible(t_enemy *enemy, double angle_diff, double *depth);
-t_projection	compute_projection(double angle_diff, double depth, int size, float height);
+t_projection	compute_projection(double angle_diff, double depth, float size, float height);
 void			draw_sprite_column(t_game *game, mlx_image_t *frame,
 					t_projection *projection, int x);
 void			draw_sprite(t_game *game, mlx_image_t *frame, t_projection *projection);
