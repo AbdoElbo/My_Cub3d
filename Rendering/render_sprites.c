@@ -104,17 +104,11 @@ static void	render_sorted_draws(t_game *game, t_sprite_draw *draws, int count)
 
 void	render_sprite_queue(t_game *game)
 {
-	t_sprite_draw	*draws;
 	int			visible_count;
 
-	draws = malloc(sizeof(t_sprite_draw)
-		* (game->vars.enemy_count + game->vars.collect_count));
-	if (!draws)
-		return ;
 	visible_count = 0;
-	collect_enemy_draws(game, draws, &visible_count);
-	collect_collectible_draws(game, draws, &visible_count);
-	sort_sprite_draws(draws, visible_count);
-	render_sorted_draws(game, draws, visible_count);
-	free(draws);
+	collect_enemy_draws(game, game->draws, &visible_count);
+	collect_collectible_draws(game, game->draws, &visible_count);
+	sort_sprite_draws(game->draws, visible_count);
+	render_sorted_draws(game, game->draws, visible_count);
 }

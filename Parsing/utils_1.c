@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 16:29:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/22 17:06:03 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/23 14:11:31 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ void	cleanup(t_game *game)
 		close(game->vars.fd);
 	free_files(&game->files);
 	delete_textures(game);
+	if (game->draws)
+		free(game->draws);
 	if (game->mlx)
 		mlx_terminate(game->mlx);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy_init_sprites.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:15:44 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/22 17:03:58 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/23 14:09:32 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static int	load_enemy_sprite(t_sprite *sprite, mlx_t *mlx)
 int	init_enemy_sprite(t_game *game)
 {
 	t_sprite	sprite;
+	t_sprite_draw	*draws;
 	int			i;
 
 	if (game->vars.enemy_count == 0)
@@ -94,6 +95,11 @@ int	init_enemy_sprite(t_game *game)
 		game->enemy[i].sprite = sprite;
 		i++;
 	}
+	draws = malloc(sizeof(t_sprite_draw)
+		* (game->vars.enemy_count + game->vars.collect_count));
+	if (!draws)
+		return (0);
+	game->draws = draws;
 	// printf("Enemy sprite initialized successfully!\n");
 	return (1);
 }
