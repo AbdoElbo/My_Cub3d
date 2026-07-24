@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 14:24:42 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/21 16:59:55 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/24 17:20:18 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ typedef struct s_anim_def
 typedef struct s_sprite
 {
 	mlx_texture_t	*sheet;
-	mlx_image_t		**frames; // array of images, one per frame
+	mlx_image_t		**frames;
 	t_anim			current_anim;
 	int				current_frame;
-	int				frame_w;
-	int				frame_h;
-	double			frame_timer;
-	double			frame_duration; // seconds per frame, e.g. 0.1
-	t_anim_def		anims[ANIM_COUNT];
+	int				frame_w;//
+	int				frame_h;//
+	double			frame_timer;//
+	double			frame_duration;//
+	t_anim_def		anims[ANIM_COUNT];//
 }	t_sprite;
 
 typedef struct s_enemy
@@ -69,13 +69,14 @@ typedef struct s_enemy
 	int			health; //for later use
 	int			damage; //for later use
 	float		dst_from_player;
+	int			visible;
 	t_sprite	sprite;
+	long long	attack_start;
 }	t_enemy;
 
 int				init_enemy(t_game *game);
 int				init_enemy_sprite(t_game *game);
 void			set_animation(t_sprite *sprite, t_anim anim);
-void			test_sprite_loop(t_game *game, t_enemy *enemy);
 void			destroy_enemy_sprite(t_sprite *sprite, mlx_t *mlx);
 void			move_enemies(t_game *game);
 void			update_sprite(t_enemy *enemy, double dt);
@@ -83,11 +84,12 @@ mlx_image_t		*get_current_frame(t_sprite *s, int max_frames);
 
 double			get_angle_diff(t_game *game, t_enemy *enemy);
 int				sprite_visible(t_enemy *enemy, double angle_diff, double *depth);
-t_projection	compute_projection(double angle_diff, double depth, int size, float height);
+t_projection	compute_projection(double angle_diff, double depth, float size, float height);
 void			draw_sprite_column(t_game *game, mlx_image_t *frame,
 					t_projection *projection, int x);
 void			draw_sprite(t_game *game, mlx_image_t *frame, t_projection *projection);
 void			render_enemy(t_game *game, t_enemy *enemy);
+int				enemy_behind_wall(t_game *game, t_enemy *enemy);
 
 
 #endif

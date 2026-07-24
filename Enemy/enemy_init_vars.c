@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 14:24:39 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/20 14:10:09 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/24 17:30:52 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ static t_enemy assign_values_to_enemy(int x, int y)
 	new_enemy.damage = ENEMY_DAMAGE;
 	new_enemy.sprite.sheet = NULL;
 	new_enemy.sprite.frames = NULL;
+	new_enemy.dst_from_player = 0.0f;
+	new_enemy.visible = false;
+	new_enemy.attack_start = 2000000;
 	return(new_enemy);
 }
 

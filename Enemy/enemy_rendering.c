@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 14:54:00 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/22 14:56:04 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/24 17:52:42 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ double	get_angle_diff(t_game *game, t_enemy *enemy)
 
 	render_angle = atan2(enemy->y - game->player.y, enemy->x - game->player.x);
 	angle_diff = render_angle - game->player.angle;
-	enemy->aim_angle = angle_diff;
 	while (angle_diff > PI)
 		angle_diff -= 2 * PI;
 	while (angle_diff < -PI)
 		angle_diff += 2 * PI;
+	enemy->aim_angle = angle_diff;
 	return (angle_diff);
 }
 
@@ -34,15 +34,13 @@ int	sprite_visible(t_enemy *enemy, double angle_diff, double *depth)
 {
 	if (angle_diff < -FOV / 2 || angle_diff > FOV /2)
 		return (0);
-	if (enemy->dst_from_player <= 0.1)
-		return (0);
 	*depth = enemy->dst_from_player * cos(angle_diff);
 	if (*depth <= 0.1)
 		return (0);
 	return (1);
 }
 
-t_projection	compute_projection(double angle_diff, double depth, int size, float height)
+t_projection	compute_projection(double angle_diff, double depth, float size, float height)
 {
 	t_projection	projection;
 
@@ -95,6 +93,34 @@ void draw_sprite(t_game *game, mlx_image_t *frame, t_projection *projection)
 	}
 }
 
+int	enemy_behind_wall(t_game *game, t_enemy *enemy)
+{
+	double	step_x;
+	double	step_y;
+	double	x;
+	double	y;
+	double	steps;
+
+	steps = enemy->dst_from_player / 0.01;
+	step_x = (enemy->x - game->player.x) / steps;
+	step_y = (enemy->y - game->player.y) / steps;
+	x = game->player.x;
+	y = game->player.y;
+	while (steps-- > 0)
+	{
+		x += step_x;
+		y += step_y;
+		if (game->map[(int)y][(int)x] == '1'
+			|| (game->map[(int)y][(int)x] == 'D' && !door_is_open(game, (int)x, (int)y)))
+			{
+				enemy->visible = false;
+				return (1);
+			}
+	}
+	enemy->visible = true;
+	return (0);
+}
+
 void	render_enemy(t_game *game, t_enemy *enemy)
 {
 	double			depth;
@@ -107,6 +133,7 @@ void	render_enemy(t_game *game, t_enemy *enemy)
 		return ;
 	update_sprite(enemy, game->mlx->delta_time);
 	frame = get_current_frame(&enemy->sprite, 13);
-	projection = compute_projection(angle_diff, depth, 2, 0.65f);
+	projection = compute_projection(angle_diff, depth, 2.0f, 0.65f);
 	draw_sprite(game, frame, &projection);
+	enemy_behind_wall(game, enemy);
 }

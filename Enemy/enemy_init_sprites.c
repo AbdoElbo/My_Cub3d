@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy_init_sprites.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:15:44 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/22 17:03:58 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/23 14:09:32 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static int	load_enemy_sprite(t_sprite *sprite, mlx_t *mlx)
 	sprite->frame_w = 160;
 	sprite->frame_h = 128;
 	sprite->frame_duration = 0.1;
+	sprite->frame_timer = 0.0;
 	sprite->sheet = mlx_load_png("Resources/textures/enemy.png");
 	if (!sprite->sheet)
 		return (0);
@@ -74,15 +75,18 @@ static int	load_enemy_sprite(t_sprite *sprite, mlx_t *mlx)
 	sprite->anims[ANIM_ATTACK] = (t_anim_def){2, 13};
 	sprite->anims[ANIM_HURT]   = (t_anim_def){5, 5};
 	sprite->anims[ANIM_DEATH]  = (t_anim_def){6, 10};
-	set_animation(sprite, ANIM_IDLE);
+	// set_animation(sprite, ANIM_IDLE);
+	sprite->current_anim = ANIM_IDLE;
+	sprite->current_frame = 0;
 	load_all_frames(mlx, sprite, 13);
 	return (1);
 }
 
 int	init_enemy_sprite(t_game *game)
 {
-	t_sprite	sprite;
-	int			i;
+	t_sprite		sprite;
+	t_sprite_draw	*draws;
+	int				i;
 
 	if (game->vars.enemy_count == 0)
 		return (1);
@@ -94,6 +98,11 @@ int	init_enemy_sprite(t_game *game)
 		game->enemy[i].sprite = sprite;
 		i++;
 	}
+	draws = malloc(sizeof(t_sprite_draw)
+		* (game->vars.enemy_count + game->vars.collect_count));
+	if (!draws)
+		return (0);
+	game->draws = draws;
 	// printf("Enemy sprite initialized successfully!\n");
 	return (1);
 }

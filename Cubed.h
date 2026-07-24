@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/23 18:14:47 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/24 16:36:13 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ typedef enum e_weapons
 	SHOTGUN,
 }	t_weapons;
 
-typedef struct s_door		t_door;
-typedef struct s_enemy		t_enemy;
-typedef struct s_collect	t_collect;
+typedef struct s_door			t_door;
+typedef struct s_enemy			t_enemy;
+typedef struct s_collect		t_collect;
+typedef struct s_sprite_draw	t_sprite_draw;
 
 typedef struct s_files
 {
@@ -194,6 +195,7 @@ typedef struct s_game
 	t_door		*doors;
 	t_collect	*collect;
 	t_enemy		*enemy;
+	t_sprite_draw *draws;
 	double		zbuffer[MAX_WIDTH];
 }	t_game;
 

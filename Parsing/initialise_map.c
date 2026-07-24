@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/23 17:51:53 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/24 16:35:52 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ static void	init_vars(t_game *game)
 	game->weapon = SWORD;
 	game->vars.mouse_was_down = false;
 	game->vars.fd = -1;
+	game->collect = NULL;
 }
 
 static int	get_map_size(t_game *game)

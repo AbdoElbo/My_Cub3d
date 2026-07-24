@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 15:17:30 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/22 16:58:40 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/24 16:41:35 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	get_multiplier(int *damage, float distance)
 		*damage *= 1;
 }
 
+
 static void	damage_enemies(t_game *game, double distance, int damage, float field)
 {
 	int		i;
@@ -31,8 +32,9 @@ static void	damage_enemies(t_game *game, double distance, int damage, float fiel
 	i = 0;
 	while (i < game->vars.enemy_count)
 	{
-		get_multiplier(&damage, game->enemy[i].dst_from_player); // damage depending on distance
-		if (game->enemy[i].aim_angle < field && game->enemy[i].aim_angle > -field)
+		if (damage == SHOTGUN_DAMAGE)
+			get_multiplier(&damage, game->enemy[i].dst_from_player); // damage depending on distance
+		if (game->enemy[i].aim_angle < field && game->enemy[i].aim_angle > -field && game->enemy[i].visible)
 		{
 			if (game->enemy[i].dst_from_player < distance && game->enemy[i].health)
 			{
@@ -41,11 +43,13 @@ static void	damage_enemies(t_game *game, double distance, int damage, float fiel
 					game->enemy[i].health = 0;
 					set_animation(&game->enemy[i].sprite, ANIM_DEATH);
 					printf("ENEMY %d DIED\n", i);
+					// game->vars.enemy_count--;
 				}
 				else
 				{
-					printf("ENEMY %d TOOK DAMAGE\n", i);
+					printf("ENEMY %d TOOK %d DAMAGE\n", i, damage);
 					game->enemy[i].health -= damage;
+					printf("    enemy has %d health\n", game->enemy[i].health);
 					set_animation(&game->enemy[i].sprite, ANIM_HURT);
 				}
 			}

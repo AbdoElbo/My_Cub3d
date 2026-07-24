@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/23 17:52:43 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/24 17:47:13 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,47 @@ static void	update_dst_from_player(t_player *p, t_enemy *e)
 static void	check_get_damaged(t_game *game, int i)
 {
 	if (game->enemy[i].sprite.current_frame == 9
-		&& game->vars.last_hit == 0 && game->enemy->health != 0)
+		&& game->vars.last_hit == 0 && game->enemy->health != 0 && game->enemy[i].visible)
 	{
 		game->vars.last_hit = get_time_in_ms();
 		game->images.getting_hurt->enabled = true;
 		if (game->player.health - ENEMY_DAMAGE <= 0)
 		{
 			game->player.health = 0;
-			write(1, "PLAYER DIED, RIP!!\n", 19);
+			printf("PLAYER DIED, RIP!!\n");
 		}
 		else
 		{
 			game->player.health -= ENEMY_DAMAGE;
+			printf("Player took %d damage\n", ENEMY_DAMAGE);
+			game->enemy[i].attack_start = get_time_in_ms();
+		}
+	}
+}
+
+static void	check_hit_invisible(t_game *game, t_enemy *enemy)
+{
+	long long	now;
+	long long	frame_duration;
+
+	if ((enemy->aim_angle < -FOV / 2 || enemy->aim_angle > FOV / 2)
+			&& enemy->visible)
+	{
+		frame_duration = 2400;
+		now = get_time_in_ms();
+		if (now - enemy->attack_start < frame_duration)
+			return ;
+		game->vars.last_hit = get_time_in_ms();
+		game->images.getting_hurt->enabled = true;
+		if (game->player.health - ENEMY_DAMAGE <= 0)
+		{
+			game->player.health = 0;
+			printf("PLAYER DIED, RIP!!\n");
+		}
+		else
+		{
+			game->player.health -= ENEMY_DAMAGE;
+			enemy->attack_start = get_time_in_ms();
 			printf("Player took %d damage\n", ENEMY_DAMAGE);
 		}
 	}
@@ -79,6 +108,7 @@ void	move_enemies(t_game *game)
 			if (game->enemy[i].dst_from_player < 2 && game->movement == FREE
 				&& game->enemy[i].health)
 			{
+				check_hit_invisible(game, &game->enemy[i]);
 				set_animation(&game->enemy[i].sprite, ANIM_ATTACK);
 				check_get_damaged(game, i);
 			}

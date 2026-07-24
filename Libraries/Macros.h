@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 17:11:56 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/23 18:35:26 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/24 17:42:17 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 # define NUM_RAYS SCREEN_WIDTH
 # define FOV (90.0 * PI / 180.0)
 
-# define PLAYER_HEALTH 100
-# define KATANA_DAMAGE 40
+# define PLAYER_HEALTH 250
+# define KATANA_DAMAGE 50
 # define KATANA_FIELD FOV
 # define SHOTGUN_FIELD 0.3 //FOV / 2
-# define SHOTGUN_DAMAGE 20
+# define SHOTGUN_DAMAGE 35
 # define ENEMY_HEALTH 100
 # define ENEMY_DAMAGE 20
 

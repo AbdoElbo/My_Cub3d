@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/23 18:40:20 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/24 16:38:24 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ static void	delete_blood(t_game *game)
 {
 	long long	now;
 	long long	frame_duration;
-	mlx_image_t	*img;
+	// mlx_image_t	*img;
 
-	img = game->images.getting_hurt;
+	// img = game->images.getting_hurt;
 	frame_duration = 500;
 	now = get_time_in_ms();
 	if (now - game->vars.last_hit < frame_duration)
