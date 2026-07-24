@@ -113,3 +113,17 @@ int	check_open_door(int map_x, int map_y, t_game *game)
 	}
 	return (0);
 }
+
+int	door_is_open(t_game *game, int x,int y)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->vars.door_count)
+	{
+		if (game->doors[i].x == x && game->doors[i].y == y && game->doors[i].open)
+			return (1);
+		i++;
+	}
+	return (0);
+}

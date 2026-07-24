@@ -69,6 +69,7 @@ typedef struct s_enemy
 	int			health; //for later use
 	int			damage; //for later use
 	float		dst_from_player;
+	int			visible;
 	t_sprite	sprite;
 }	t_enemy;
 
@@ -87,6 +88,7 @@ void			draw_sprite_column(t_game *game, mlx_image_t *frame,
 					t_projection *projection, int x);
 void			draw_sprite(t_game *game, mlx_image_t *frame, t_projection *projection);
 void			render_enemy(t_game *game, t_enemy *enemy);
+int				enemy_behind_wall(t_game *game, t_enemy *enemy);
 
 
 #endif

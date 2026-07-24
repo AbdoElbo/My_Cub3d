@@ -47,12 +47,13 @@ static void	update_dst_from_player(t_player *p, t_enemy *e)
 static void	check_get_damaged(t_game *game, int i)
 {
 	if (game->enemy[i].sprite.current_frame == 9
-		&& game->vars.last_hit == 0 && game->enemy->health != 0)
+		&& game->vars.last_hit == 0 && game->enemy->health != 0 && game->enemy[i].visible)
 	{
 		game->vars.last_hit = get_time_in_ms();
 		game->images.getting_hurt->enabled = true;
-		game->player.health -= 10;
-		printf("Player took %d damage\n", ENEMY_DAMAGE);
+		game->player.health -= ENEMY_DAMAGE;
+		// printf("Player took %d damage by enemy %d\n", ENEMY_DAMAGE, i);
+		// printf("	Player has %d health\n", game->player.health);
 	}
 }
 

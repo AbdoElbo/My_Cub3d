@@ -66,5 +66,6 @@ void		open_close_door(t_game *game);
 void		render_collectible(t_game *game, t_collect *collect);
 double		get_c_angle_diff(t_game *game, t_collect *collect);
 int			c_sprite_visible(t_collect *collect, t_player *p, double angle_diff, double *depth);
+int			door_is_open(t_game *game, int x,int y);
 
 #endif

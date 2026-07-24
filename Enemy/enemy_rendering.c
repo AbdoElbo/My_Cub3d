@@ -22,11 +22,11 @@ double	get_angle_diff(t_game *game, t_enemy *enemy)
 
 	render_angle = atan2(enemy->y - game->player.y, enemy->x - game->player.x);
 	angle_diff = render_angle - game->player.angle;
-	enemy->aim_angle = angle_diff;
 	while (angle_diff > PI)
 		angle_diff -= 2 * PI;
 	while (angle_diff < -PI)
 		angle_diff += 2 * PI;
+	enemy->aim_angle = angle_diff;
 	return (angle_diff);
 }
 
@@ -95,6 +95,34 @@ void draw_sprite(t_game *game, mlx_image_t *frame, t_projection *projection)
 	}
 }
 
+int	enemy_behind_wall(t_game *game, t_enemy *enemy)
+{
+	double	step_x;
+	double	step_y;
+	double	x;
+	double	y;
+	double	steps;
+
+	steps = enemy->dst_from_player / 0.05;
+	step_x = (enemy->x - game->player.x) / steps;
+	step_y = (enemy->y - game->player.y) / steps;
+	x = game->player.x;
+	y = game->player.y;
+	while (steps-- > 0)
+	{
+		x += step_x;
+		y += step_y;
+		if (game->map[(int)y][(int)x] == '1'
+			|| (game->map[(int)y][(int)x] == 'D' && !door_is_open(game, (int)x, (int)y)))
+			{
+				enemy->visible = false;
+				return (1);
+			}
+	}
+	enemy->visible = true;
+	return (0);
+}
+
 void	render_enemy(t_game *game, t_enemy *enemy)
 {
 	double			depth;
@@ -109,4 +137,5 @@ void	render_enemy(t_game *game, t_enemy *enemy)
 	frame = get_current_frame(&enemy->sprite, 13);
 	projection = compute_projection(angle_diff, depth, 2.0f, 0.65f);
 	draw_sprite(game, frame, &projection);
+	enemy_behind_wall(game, enemy);
 }

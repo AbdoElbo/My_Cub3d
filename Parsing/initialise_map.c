@@ -61,7 +61,7 @@ static void	init_vars(t_game *game)
 {
 	game->player.x = 0;
 	game->player.y = 0;
-	game->player.health = 50;
+	game->player.health = 500000;
 	game->enemy = NULL;
 	game->doors = NULL;
 	game->mlx = NULL;

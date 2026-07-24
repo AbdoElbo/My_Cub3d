@@ -27,7 +27,7 @@
 # define KATANA_DAMAGE 40
 # define KATANA_FIELD FOV
 # define SHOTGUN_FIELD 0.3 //FOV / 2
-# define SHOTGUN_DAMAGE 1
+# define SHOTGUN_DAMAGE 35
 # define ENEMY_HEALTH 100
 # define ENEMY_DAMAGE 20
 
