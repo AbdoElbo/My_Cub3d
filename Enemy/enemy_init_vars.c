@@ -24,6 +24,7 @@ static t_enemy assign_values_to_enemy(int x, int y)
 	new_enemy.damage = ENEMY_DAMAGE;
 	new_enemy.sprite.sheet = NULL;
 	new_enemy.sprite.frames = NULL;
+	new_enemy.dst_from_player = 0.0f;
 	return(new_enemy);
 }
 

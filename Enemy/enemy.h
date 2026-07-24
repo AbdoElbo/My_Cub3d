@@ -48,14 +48,14 @@ typedef struct s_anim_def
 typedef struct s_sprite
 {
 	mlx_texture_t	*sheet;
-	mlx_image_t		**frames; // array of images, one per frame
+	mlx_image_t		**frames;
 	t_anim			current_anim;
 	int				current_frame;
-	int				frame_w;
-	int				frame_h;
-	double			frame_timer;
-	double			frame_duration; // seconds per frame, e.g. 0.1
-	t_anim_def		anims[ANIM_COUNT];
+	int				frame_w;//
+	int				frame_h;//
+	double			frame_timer;//
+	double			frame_duration;//
+	t_anim_def		anims[ANIM_COUNT];//
 }	t_sprite;
 
 typedef struct s_enemy
@@ -75,7 +75,6 @@ typedef struct s_enemy
 int				init_enemy(t_game *game);
 int				init_enemy_sprite(t_game *game);
 void			set_animation(t_sprite *sprite, t_anim anim);
-void			test_sprite_loop(t_game *game, t_enemy *enemy);
 void			destroy_enemy_sprite(t_sprite *sprite, mlx_t *mlx);
 void			move_enemies(t_game *game);
 void			update_sprite(t_enemy *enemy, double dt);

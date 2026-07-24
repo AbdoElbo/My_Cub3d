@@ -107,6 +107,8 @@ void	cleanup(t_game *game)
 	delete_textures(game);
 	if (game->draws)
 		free(game->draws);
+	if (game->collect)
+		free(game->collect);
 	if (game->mlx)
 		mlx_terminate(game->mlx);
 }

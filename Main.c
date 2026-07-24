@@ -55,7 +55,8 @@ void	ft_hook(void *param)
 	move_enemies(game);
 	gun_dev(game);
 	ft_open_door(game);
-	delete_blood(game);
+	if (game->images.getting_hurt->enabled == true)
+		delete_blood(game);
 }
 
 int	load_map_and_components(t_game *game)

@@ -86,6 +86,7 @@ static void	init_vars(t_game *game)
 	game->weapon = SWORD;
 	game->vars.mouse_was_down = false;
 	game->vars.fd = -1;
+	game->collect = NULL;
 }
 
 static int	get_map_size(t_game *game)
