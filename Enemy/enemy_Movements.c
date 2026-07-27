@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/24 17:47:13 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/27 17:57:04 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ static void	check_hit_invisible(t_game *game, t_enemy *enemy)
 		now = get_time_in_ms();
 		if (now - enemy->attack_start < frame_duration)
 			return ;
+		game->images.getting_hurt->enabled = false;
 		game->vars.last_hit = get_time_in_ms();
 		game->images.getting_hurt->enabled = true;
 		if (game->player.health - ENEMY_DAMAGE <= 0)

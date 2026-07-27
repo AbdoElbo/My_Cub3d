@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Game_Dev.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:17:07 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/23 13:33:46 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/27 14:57:38 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ typedef struct s_door
 
 typedef struct s_collect
 {
+	int			index;
 	float		x;
 	float		y;
 	bool		available;
 	float		dst_to_player;
+	mlx_image_t	*img;
 }	t_collect;
 
 

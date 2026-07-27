@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Collectibles.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 15:30:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/23 13:07:13 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/27 15:20:13 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	collectible_coordinates(t_game *game)
 				game->collect[k].x = j + 0.5f;;
 				game->collect[k].y = i + 0.5f;;
 				game->collect[k].available = true;
+				game->collect[k].index = k;
 				k++;
 			}
 			j++;
@@ -82,17 +83,39 @@ int	c_sprite_visible(t_collect *collect, t_player *p, double angle_diff, double 
 	return (1);
 }
 
+// void	render_collectible(t_game *game, t_collect *collect)
+// {
+// 	double			depth;
+// 	double			angle_diff;
+// 	mlx_image_t		*frame;
+// 	t_projection	projection ;
+
+// 	angle_diff = get_c_angle_diff(game, collect);
+// 	if (!c_sprite_visible(collect, &game->player, angle_diff, &depth))
+// 		return ;
+// 	frame = game->images.collectible_img;
+// 	projection = compute_projection(angle_diff, depth, 0.2f, 0.1f);
+// 	draw_sprite(game, frame, &projection);
+// }
+
 void	render_collectible(t_game *game, t_collect *collect)
 {
 	double			depth;
 	double			angle_diff;
-	mlx_image_t		*frame;
-	t_projection	projection ;
+	t_projection	projection;
 
-	angle_diff = get_c_angle_diff(game, collect);
-	if (!c_sprite_visible(collect, &game->player, angle_diff, &depth))
-		return ;
-	frame = game->images.collectible_img;
-	projection = compute_projection(angle_diff, depth, 0.2f, 0.1f);
-	draw_sprite(game, frame, &projection);
+	if (collect->available)
+	{
+		angle_diff = get_c_angle_diff(game, collect);
+		if (!c_sprite_visible(collect, &game->player, angle_diff, &depth))
+			return ;
+		collect->img = game->images.collectible_img;
+		projection = compute_projection(angle_diff, depth, 0.2f, 0.1f);
+		draw_sprite(game, collect->img, &projection);
+		if (collect->dst_to_player <= 0.5f)
+		{
+			collect->available = false;
+			collect->img->enabled = 0;
+		}
+	}
 }

@@ -1,11 +1,22 @@
 *This project has been created as part of the 42 curriculum by aelbouaz and lpieck.*
 
-
 # Cub3D
 
 ## Description:
 Cub3D is a 42 School project, focused on the topic of raycasting where you\
 play as a character that moves in a 3D-lookalike (thus the 3D in cub3D) simulation.
+
+The goal is simple: collect all the coins scattered across the map (if available) before making\
+your way to the exit. The exit door isn't a normal door — it stays locked until\
+every collectible has been picked up, so there's no rushing to the end.
+
+Along the way, enemies will notice you and give chase if you get within their\
+detection range, following you for up to 5 meters before giving up the pursuit.\
+Combat works both ways: your gun damages enemies caught in its vicinity, but\
+enemies deal damage back to you, and how much damage you take scales with how\
+close they are to you — the nearer they are, the more it hurts.
+
+Grab every coin, watch your back, and make it to the exit alive.
 
 ## Instructions:
 
@@ -13,20 +24,29 @@ play as a character that moves in a 3D-lookalike (thus the 3D in cub3D) simulati
 Make sure you have "make" and a compatible compiler installed on your system.
 
 ### Step1:
-in your terminal, navigate to the project directory and run :\
-**make**\
+in your terminal, navigate to the project directory and run:
+> **make**
+
 this will compile the source files and produce the *cub3D* executable.
 
 ### Step2:
-Once Compiled, run the program by passing a ".cub" map file as an argument:\
-**./cub3D your_map.cub**\
+Once Compiled, run the program by passing a ".cub" map file as an argument:
+> **./cub3D your_map.cub**
+
 replace "your_map.cub" with the path to your actual map file.\
-for example: **./cub3D /Resources/maps/simple.cub**
+for example:
+> **./cub3D /Resources/maps/simple.cub**
 
 The program will exist cleanly if the map provided has flaws, like disorderd\
 map components, or an open map and many many more errors prevention..\
 (there are examples in the /Resources/maps/invalid folder for invalid maps to check).
 
+### Easter Egg:
+Feeling goofy? Add the word "goofy" at the end of your command when launching\
+the game and the guns will swap to a goofier set of textures:
+> **./cub3D your_map.cub goofy**
+
 ## Resources:
 
-sin cos tan : https://www.cuemath.com/sin-cos-tan-formula/
+Sin/Cos/Tan Formulas : https://www.cuemath.com/sin-cos-tan-formula/ \
+Gun Textures : https://sketchfab.com/

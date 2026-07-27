@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 17:11:56 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/24 17:42:17 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/27 18:00:47 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 # define BUFFER_SIZE 200
 // we'll limit this to the limit we put ourselves, so we'll always do one read()
 // and we don't have to realloc again
-# define SCREEN_WIDTH 2000
-# define SCREEN_HEIGHT 1300
+# define SCREEN_WIDTH 1000
+# define SCREEN_HEIGHT 560
 # define MAX_WIDTH SCREEN_WIDTH
 # define MAX_HEIGHT SCREEN_HEIGHT
 # define NUM_RAYS SCREEN_WIDTH
 # define FOV (90.0 * PI / 180.0)
 
-# define PLAYER_HEALTH 250
-# define KATANA_DAMAGE 50
+# define PLAYER_HEALTH 1500
+# define KATANA_DAMAGE 843
 # define KATANA_FIELD FOV
 # define SHOTGUN_FIELD 0.3 //FOV / 2
 # define SHOTGUN_DAMAGE 35

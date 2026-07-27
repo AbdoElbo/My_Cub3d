@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 18:29:27 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/23 17:59:32 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/27 15:17:55 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,8 @@ int	load_shotgun_tex(t_game *game)
 	if (!load_gun_images(game, "./Resources/textures/getting_hurt.png",
 			&game->textures.getting_hurt, &game->images.getting_hurt))
 		return (0);
+	mlx_resize_image(game->images.getting_hurt, SCREEN_WIDTH, SCREEN_HEIGHT);
+	game->images.getting_hurt->instances->x = 0;
+	game->images.getting_hurt->instances->y = 0;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 16:55:18 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/23 18:10:12 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/27 15:18:41 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ static int	load_nokia_tex(t_game *game)
 	if (!load_gun_images(game, "./Resources/textures/getting_hurt.png",
 			&game->textures.getting_hurt, &game->images.getting_hurt))
 		return (0);
+	mlx_resize_image(game->images.getting_hurt, SCREEN_WIDTH, SCREEN_HEIGHT);
+	game->images.getting_hurt->instances->x = 0;
+	game->images.getting_hurt->instances->y = 0;
 	return (1);
 }
 

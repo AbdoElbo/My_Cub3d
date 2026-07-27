@@ -3,8 +3,8 @@ WE	./Resources/textures/west_texture.png
 EA	./Resources/textures/east_texture.png
 NO	./Resources/textures/north_texture.png
 
-F 70,72,23
-C 75,125,62
+F 60,60,60
+C 135,206,235
 
 1111111111111111111111111
 1000000000110000000000001
