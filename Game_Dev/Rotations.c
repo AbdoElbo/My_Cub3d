@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 16:54:14 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/22 15:39:40 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/27 18:24:10 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void	rotate_player(t_game *game)
 		game->player.angle -= rot_speed;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		game->player.angle += rot_speed;
-	// printf("player angle: %f\n", game->player.angle);
-	// printf("player degree's : %f\n", game->player.angle * 57.29578f);
 	game->player.dir_x = cos(game->player.angle);
 	game->player.dir_y = sin(game->player.angle);
 	game->player.plane_x = -game->player.dir_y * tan(FOV / 2.0);

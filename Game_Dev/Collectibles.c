@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 15:30:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/27 15:20:13 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/27 18:16:39 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	init_collectibles(t_game *game)
 	t_collect *collect;
 
 	collect = NULL;
+	game->vars.obtained_coins = 0;
 	if (game->vars.collect_count > 0)
 	{
 		collect = malloc(sizeof(t_collect) * game->vars.collect_count);
@@ -114,6 +115,7 @@ void	render_collectible(t_game *game, t_collect *collect)
 		draw_sprite(game, collect->img, &projection);
 		if (collect->dst_to_player <= 0.5f)
 		{
+			game->vars.obtained_coins++;
 			collect->available = false;
 			collect->img->enabled = 0;
 		}

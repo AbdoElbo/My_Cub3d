@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/27 17:57:04 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/27 18:24:05 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void	go_to_player(t_game *game, t_player *player, t_enemy *enemy)
 	enemy->angle = atan2f(dy, dx);
 	enemy->dir_x = cosf(enemy->angle);
 	enemy->dir_y = sinf(enemy->angle);
-	// printf("enemy angle is %f\n", enemy->angle * 57.29578f);
 	nx = enemy->x + enemy->dir_x * 0.01f;
 	ny = enemy->y + enemy->dir_y * 0.01f;
 	if (!hits_wall(game, nx, enemy->y))

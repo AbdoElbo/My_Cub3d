@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 13:00:44 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/22 16:06:42 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/27 18:24:32 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,8 @@ void	render_frame(t_game *game)
 
 	draw_background_to_buf(game);
 	i = 0;
-	while (i < NUM_RAYS) // i <
+	while (i < NUM_RAYS)
 	{
-		// printf("ray distance: %f\n", game->rays[i].distance);
-		// printf("ray wall_x: %f\n", game->rays[i].wall_x);
 		dp = define_column_height(&game->rays[i], i);
 		draw_to_buf(game, game->rays[i], &dp);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 17:11:56 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/27 18:00:47 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/27 18:22:22 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define BUFFER_SIZE 200
 // we'll limit this to the limit we put ourselves, so we'll always do one read()
 // and we don't have to realloc again
-# define SCREEN_WIDTH 1000
-# define SCREEN_HEIGHT 560
+# define SCREEN_WIDTH 1200
+# define SCREEN_HEIGHT 700
 # define MAX_WIDTH SCREEN_WIDTH
 # define MAX_HEIGHT SCREEN_HEIGHT
 # define NUM_RAYS SCREEN_WIDTH

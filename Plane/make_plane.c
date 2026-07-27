@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:47:58 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/20 14:47:51 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/27 18:18:52 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ static void	draw_floor(t_game *game, int offset_x, int offset_y)
 	}
 }
 
-
 static void	draw_enemy_circle(t_game *game, int r, double ex, double ey)
 {
 	int	dx;
@@ -131,7 +130,7 @@ static void	draw_enemy_circle(t_game *game, int r, double ex, double ey)
 	}
 }
 
-static void	draw_collect_img(t_game *game, int r, double ex, double ey)
+static void	draw_collect_circle(t_game *game, int r, double ex, double ey)
 {
 	int	dx;
 	int	dy;
@@ -170,6 +169,7 @@ void	draw_minimap(t_game *game)
 	off_y = (int)((game->player.y - (int)game->player.y) * TILE_SIZE);
 	draw_floor(game, off_x, off_y);
 	draw_player_circle(game, 3, get_rgb_color(43, 251, 57));
+	
 	while(i < game->vars.enemy_count)
 	{
 		if (game->enemy[i].health)
@@ -179,7 +179,8 @@ void	draw_minimap(t_game *game)
 	i = 0;
 	while(i < game->vars.collect_count)
 	{
-		draw_collect_img(game, 3, game->collect[i].x, game->collect[i].y);
+		if (game->collect[i].available)
+			draw_collect_circle(game, 3, game->collect[i].x, game->collect[i].y);
 		i++;
 	}
 }

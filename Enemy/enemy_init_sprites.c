@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy_init_sprites.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:15:44 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/23 14:09:32 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/27 18:24:03 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static void	load_all_frames(mlx_t *mlx, t_sprite *sprite, int max_frames)
 		{
 			sprite->frames[a * max_frames + f] = mlx_new_image(mlx, sprite->frame_w, sprite->frame_h);
 			extract_frame(sprite, f, a);
-			// printf("Frame %d of animation %d loaded successfully!\n", f, a);
 			f++;
 		}
 		a++;
@@ -103,6 +102,5 @@ int	init_enemy_sprite(t_game *game)
 	if (!draws)
 		return (0);
 	game->draws = draws;
-	// printf("Enemy sprite initialized successfully!\n");
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/24 16:38:24 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/27 18:23:53 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	display_text(t_game *game)
 {
 	char	*num_str;
 
-	num_str = ft_itoa(game->vars.collect_count);
+	num_str = ft_itoa(game->vars.obtained_coins);
 	if (!num_str)
 		return (0);
 	ft_memcpy(&game->collect_str[23], num_str, ft_strlen(num_str));
@@ -147,8 +147,6 @@ int	main(int argc, char **argv)
 		return (cleanup(&game), EXIT_FAILURE);
 	if (!init_enemy_sprite(&game))
 		return (cleanup(&game), EXIT_FAILURE);
-	// printf("Map loaded successfully!\n");
-	// print_map(&game);
 	mlx_loop_hook(game.mlx, &ft_hook, &game);
 	mlx_cursor_hook(game.mlx, ft_mouse_mvm, &game);
 	mlx_loop(game.mlx);

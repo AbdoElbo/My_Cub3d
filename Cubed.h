@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/24 16:36:13 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/27 18:15:48 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ typedef struct s_vars
 	int			door_count;
 	int			enemy_count;
 	int			collect_count;
+	int			obtained_coins;
 	long long	frame_start;
 	long long	last_hit;
 	int			easter_egg;
