@@ -6,16 +6,16 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 13:00:44 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/27 18:24:32 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 15:25:37 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Rendering.h"
 
-void	 draw_background_to_buf(t_game *game)
+void	draw_background_to_buf(t_game *game)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (y < SCREEN_HEIGHT / 2)
@@ -40,26 +40,32 @@ void	 draw_background_to_buf(t_game *game)
 	}
 }
 
-static uint32_t sample_texture_pixel(t_ray *ray, int tex_x, int tex_y)
+static uint32_t	sample_texture_pixel(t_ray *ray, int tex_x, int tex_y)
 {
-	uint8_t *p;
+	uint8_t	*p;
 
 	p = &ray->texture_hit.pixels[(tex_y * 128 + tex_x) * 4];
 	return (*(uint32_t *)p);
 }
 
-void	 draw_to_buf(t_game *game, t_ray ray, t_draw_params *dp)
+// double step; represents how many pixels from the texture are
+//  taken. the further, the less pixels.
+// double tex_pos; makes sure the starting pixels are correct:
+//  if close to the wall, you do not see the top part of the texture
+void	draw_to_buf(t_game *game, t_ray ray, t_draw_params *dp)
 {
 	int			tex_x;
-	double		step; // how many pixels from the texture are taken. the further, the less pixels
-	double		tex_pos; // makes sure the starting pixels are correct: if close to the wall, you do not see the top part of the texture
+	double		step;
+	double		tex_pos;
 	int			tex_y;
 	uint32_t	*dst;
 
 	step = (double)128 / dp->line_height;
 	tex_x = (int)(ray.wall_x * 128);
-	tex_pos = (dp->draw_start - SCREEN_HEIGHT / 2 + dp->line_height / 2) * step;
-	dst = (uint32_t *)game->framebuf->pixels + dp->draw_start * SCREEN_WIDTH + dp->col;
+	tex_pos = (dp->draw_start - SCREEN_HEIGHT / 2
+			+ dp->line_height / 2) * step;
+	dst = (uint32_t *)game->framebuf->pixels
+		+ dp->draw_start * SCREEN_WIDTH + dp->col;
 	while (dp->draw_start < dp->draw_end)
 	{
 		tex_y = (int)tex_pos % 128;
@@ -70,14 +76,14 @@ void	 draw_to_buf(t_game *game, t_ray ray, t_draw_params *dp)
 	}
 }
 
-static t_draw_params	 define_column_height(t_ray *ray, int col)
+static t_draw_params	define_column_height(t_ray *ray, int col)
 {
-	int line_height;
-	int draw_start;
-	int draw_end;
-	t_draw_params dp;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	t_draw_params	dp;
 
-	line_height = (int)(SCREEN_HEIGHT /(ray->distance * 1.5));
+	line_height = (int)(SCREEN_HEIGHT / (ray->distance * 1.5));
 	draw_start = SCREEN_HEIGHT / 2 - line_height / 2;
 	if (draw_start < 0)
 		draw_start = 0;
@@ -93,8 +99,8 @@ static t_draw_params	 define_column_height(t_ray *ray, int col)
 
 void	render_frame(t_game *game)
 {
-	int i;
-	t_draw_params dp;
+	int				i;
+	t_draw_params	dp;
 
 	draw_background_to_buf(game);
 	i = 0;

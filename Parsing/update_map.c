@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 12:56:06 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/14 15:56:09 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 15:06:00 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ static char	*make_empty(int width)
 	return (new);
 }
 
-static char	*line_padding(char *str, int width)
+static char	*line_padding(t_game *game, char *str)
 {
 	char	*new;
 	int		size;
+	int		width;
 	int		i;
 
+	width = game->vars.width;
 	new = malloc(width + 3);
 	if (!new)
 		return (NULL);
@@ -71,7 +73,7 @@ int	update_map(t_game *game)
 	i = 0;
 	while (i < game->vars.height + 1)
 	{
-		temp[i + 1] = line_padding(game->map[i + game->vars.map_start], game->vars.width);
+		temp[i + 1] = line_padding(game, game->map[i + game->vars.map_start]);
 		if (!temp[i + 1])
 			return (free_arr(temp), 0);
 		i++;

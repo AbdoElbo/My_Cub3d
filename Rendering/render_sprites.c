@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_sprites.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.codam.nl>           +#+  +#+#+#+#+#+   +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 13:34:35 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/23 13:42:56 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/28 15:20:06 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	sort_sprite_draws(t_sprite_draw *draws, int count)
 {
-	int		i;
-	int		j;
+	int				i;
+	int				j;
 	t_sprite_draw	current;
 
 	i = 0;
@@ -46,10 +46,11 @@ static void	collect_enemy_draws(t_game *game, t_sprite_draw *draws,
 	i = 0;
 	while (i < game->vars.enemy_count)
 	{
-		game->enemy[i].dst_from_player = sqrtf((game->enemy[i].x - game->player.x)
-			* (game->enemy[i].x - game->player.x)
-			+ (game->enemy[i].y - game->player.y)
-			* (game->enemy[i].y - game->player.y));
+		game->enemy[i].dst_from_player
+			= sqrtf((game->enemy[i].x - game->player.x)
+				* (game->enemy[i].x - game->player.x)
+				+ (game->enemy[i].y - game->player.y)
+				* (game->enemy[i].y - game->player.y));
 		angle_diff = get_angle_diff(game, &game->enemy[i]);
 		if (game->enemy[i].health
 			&& sprite_visible(&game->enemy[i], angle_diff, &depth))

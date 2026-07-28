@@ -6,13 +6,13 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:47:58 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/28 14:30:21 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 15:10:49 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Plane.h"
 
-static uint32_t	tile_color(t_game *game, char c)
+static uint32_t	tile_col(t_game *game, char c)
 {
 	if (c == '1')
 		return (get_rgb_color(88, 57, 39));
@@ -53,7 +53,7 @@ static void	draw_floor(t_game *game, int offset_x, int offset_y)
 {
 	char	c;
 	int		row;
-	int		col;
+	int		col ;
 	int		map_row;
 	int		map_col;
 
@@ -71,7 +71,7 @@ static void	draw_floor(t_game *game, int offset_x, int offset_y)
 			else
 				c = game->map[map_row][map_col];
 			draw_tile(game, col * TILE_SIZE - offset_x + TILE_SIZE / 2,
-				row * TILE_SIZE - offset_y + TILE_SIZE / 2, tile_color(game, c));
+				row * TILE_SIZE - offset_y + TILE_SIZE / 2, tile_col(game, c));
 			col++;
 		}
 		row++;

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 15:17:30 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/28 13:47:50 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 15:13:41 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 static void	get_multiplier(int *damage, float distance)
 {
-	if (distance > 4 && distance < 5)
-		*damage *= 0.4;
-	else if (distance > 3 && distance < 4)
-		*damage *= 0.6;
-	else if (distance > 2 && distance < 3)
-		*damage *= 0.8;
-	else if (distance > 1 && distance < 2)
-		*damage *= 1;
+	if (*damage == SHOTGUN_DAMAGE)
+	{
+		if (distance > 4 && distance < 5)
+			*damage *= 0.4;
+		else if (distance > 3 && distance < 4)
+			*damage *= 0.6;
+		else if (distance > 2 && distance < 3)
+			*damage *= 0.8;
+		else if (distance > 1 && distance < 2)
+			*damage *= 1;
+	}
 }
 
 static void	damage_enemies(t_game *game, double distance
@@ -32,8 +35,7 @@ static void	damage_enemies(t_game *game, double distance
 	i = 0;
 	while (i < game->vars.enemy_count)
 	{
-		if (damage == SHOTGUN_DAMAGE)
-			get_multiplier(&damage, game->enemy[i].dst_from_player);
+		get_multiplier(&damage, game->enemy[i].dst_from_player);
 		if (game->enemy[i].aim_angle < field && game->enemy[i].health
 			&& game->enemy[i].aim_angle > -field && game->enemy[i].visible
 			&& game->enemy[i].dst_from_player < distance)
@@ -47,9 +49,8 @@ static void	damage_enemies(t_game *game, double distance
 			else
 			{
 				game->enemy[i].health -= damage;
-				printf("ENEMY %d TOOK %d DAMAGE (has %d hp)\n", i,
-					damage, game->enemy[i].health);
 				set_animation(&game->enemy[i].sprite, ANIM_HURT);
+				printf("ENEMY %d TOOK %d DAMAGE \n", i, damage);
 			}
 		}
 		i++;

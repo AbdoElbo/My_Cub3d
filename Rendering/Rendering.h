@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Rendering.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 12:53:28 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/23 13:37:18 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/28 15:18:25 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ typedef struct s_player	t_player ;
 
 typedef struct s_draw_params
 {
-	int col;
-	int line_height;
-	int draw_start;
-	int draw_end;
+	int	col;
+	int	line_height;
+	int	draw_start;
+	int	draw_end;
 }	t_draw_params;
 
 typedef struct s_dda
@@ -62,6 +62,5 @@ void	render_frame(t_game *game);
 void	cast_rays(t_game *game);
 void	order_enemy_array(t_enemy *enemies, int enemy_count);
 void	render_sprite_queue(t_game *game);
-
 
 #endif

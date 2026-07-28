@@ -6,11 +6,31 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 15:17:30 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/22 15:43:23 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 15:15:21 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game_Dev.h"
+
+int	load_images(t_game *game, char *path
+		, mlx_texture_t **tex, mlx_image_t **img)
+{
+	*tex = NULL;
+	*tex = mlx_load_png(path);
+	if (!*tex)
+	{
+		*tex = NULL;
+		return (printf("Texture didn't load: %s\n", path), 0);
+	}
+	*img = NULL;
+	*img = mlx_texture_to_image(game->mlx, *tex);
+	if (!*img)
+	{
+		*img = NULL;
+		return (printf("Texture wasn't converted to image: %s\n", path), 0);
+	}
+	return (1);
+}
 
 long long	get_time_in_ms(void)
 {
