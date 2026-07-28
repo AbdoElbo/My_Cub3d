@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 15:45:28 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/28 15:21:23 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 15:31:02 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,4 @@ void	init_delta_dist(t_dda *dda, t_ray *ray)
 	else
 		dda->delta_dist_y = fabs(1 / ray->dir_y);
 }
+

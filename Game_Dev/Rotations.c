@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 16:54:14 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/27 18:24:10 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 17:46:48 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,46 @@ void	ft_mouse_mvm(double x, double y, void *param)
 	game->player.angle += dx * rot_speed;
 }
 
+// static double	trace_line_distance(t_game *game, t_ray *ray, double step)
+// {
+// 	double	distance;
+// 	double	world_x;
+// 	double	world_y;
+
+// 	distance = 0.0;
+// 	while (distance < game->vars.width
+// 			|| distance < game->vars.height)
+// 	{
+// 		world_x = game->player.x + ray->dir_x * distance;
+// 		world_y = game->player.y + ray->dir_y * distance;
+// 		if (hits_wall(game, world_x, world_y))
+// 			break;
+// 		distance += step;
+// 	}
+// 	return (distance);
+// }
+
+static void	draw_line(t_game *game, uint32_t color)
+{
+	int		i;
+	int		j;
+	double	x = 0;
+	double	y = 0;
+	double	distance;
+
+	distance = 0;
+	i = MINIMAP_PX / 2;
+	j = MINIMAP_PX / 2;
+	while (distance < 10)
+	{
+		x = i + game->player.dir_x * distance;
+		y = j + game->player.dir_y * distance;
+		if (x > 0 && x < MINIMAP_PX && y > 0 && y < MINIMAP_PX)
+			mlx_put_pixel(game->images.mm_img, x, y, color);
+		distance++;
+	}
+}
+
 void	rotate_player(t_game *game)
 {
 	float	rot_speed;
@@ -45,22 +85,6 @@ void	rotate_player(t_game *game)
 	game->player.dir_y = sin(game->player.angle);
 	game->player.plane_x = -game->player.dir_y * tan(FOV / 2.0);
 	game->player.plane_y = game->player.dir_x * tan(FOV / 2.0);
+	draw_line(game, get_rgb_color(0, 200, 0));
 }
 
-// static double	trace_line_distance(t_game *game, t_ray *ray, double step)
-// {
-// 	double	distance;
-// 	double	world_x;
-// 	double	world_y;
-
-// 	distance = 0.0;
-// 	while (distance < game->width || distance < game->height)
-// 	{
-// 		world_x = game->player.x + ray->dir_x * distance;
-// 		world_y = game->player.y + ray->dir_y * distance;
-// 		if (hits_wall(game, world_x, world_y))
-// 			break;
-// 		distance += step;
-// 	}
-// 	return (distance);
-// }

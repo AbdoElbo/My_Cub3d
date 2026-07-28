@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 12:53:28 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/28 15:18:25 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 15:33:05 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_game	t_game ;
 typedef struct s_files	t_files ;
 typedef struct s_enemy	t_enemy;
 typedef struct s_player	t_player ;
+typedef struct s_ray	t_ray ;
 
 typedef struct s_draw_params
 {
@@ -58,6 +59,8 @@ typedef struct s_sprite_draw
 	double			depth;
 }	t_sprite_draw;
 
+double	hit_wall_x(t_dda *dda, t_ray *ray, t_game *game);
+void	init_delta_dist(t_dda *dda, t_ray *ray);
 void	render_frame(t_game *game);
 void	cast_rays(t_game *game);
 void	order_enemy_array(t_enemy *enemies, int enemy_count);

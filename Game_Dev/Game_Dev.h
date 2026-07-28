@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:17:07 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/28 13:58:13 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 17:43:17 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		cast_rays(t_game *game);
 void		move_player(t_game *game);
 void		ft_mouse_mvm(double x, double y, void *param);
 void		rotate_player(t_game *game);
-void		draw_line(t_game *game, t_ray *ray, uint32_t color);
+// void		draw_line(t_game *game, t_ray *ray, uint32_t color);
 void		gun_dev(t_game *game);
 
 int			load_images(t_game *game, char *path,
