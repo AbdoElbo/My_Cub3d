@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/21 17:26:42 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 13:58:33 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static void	move_dir(t_game *game, float *nx, float *ny, int dir)
 	float	speed;
 
 	speed = 0.03f;
-	// THE NEXT TWO LINES HERE ARE TO ADD SPRINTING TO THE PLAYER
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT_SHIFT))
 		speed *= 2;
 	if (dir == 0)

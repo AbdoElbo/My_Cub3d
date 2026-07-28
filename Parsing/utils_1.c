@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 16:29:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/24 16:38:35 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 13:10:40 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	cleanup(t_game *game)
 		free(game->doors);
 	if (game->enemy && game->vars.enemy_count > 0)
 	{
-		destroy_enemy_sprite(&game->enemy[0].sprite, game->mlx);
+		destroy_enemy_sprite(&game->enemy[0].sprite);
 		free(game->enemy);
 	}
 	if (game->vars.fd >= 0)

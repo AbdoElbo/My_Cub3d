@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/27 18:24:05 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 13:18:35 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ static void	update_dst_from_player(t_player *p, t_enemy *e)
 {
 	float	distance;
 
-	// Pythogoras theorum just to calculate the distance from the enemt to the playah
-	// square root of (x1 - x2)^2 + (y1 - y2)^2
 	distance = sqrtf((e->x - p->x) * (e->x - p->x)
-		+ (e->y - p->y) * (e->y - p->y));
+			+ (e->y - p->y) * (e->y - p->y));
 	e->dst_from_player = distance;
 }
 
 static void	check_get_damaged(t_game *game, int i)
 {
 	if (game->enemy[i].sprite.current_frame == 9
-		&& game->vars.last_hit == 0 && game->enemy->health != 0 && game->enemy[i].visible)
+		&& game->vars.last_hit == 0
+		&& game->enemy->health != 0
+		&& game->enemy[i].visible)
 	{
 		game->vars.last_hit = get_time_in_ms();
 		game->images.getting_hurt->enabled = true;
@@ -70,7 +70,7 @@ static void	check_hit_invisible(t_game *game, t_enemy *enemy)
 	long long	frame_duration;
 
 	if ((enemy->aim_angle < -FOV / 2 || enemy->aim_angle > FOV / 2)
-			&& enemy->visible)
+		&& enemy->visible)
 	{
 		frame_duration = 2400;
 		now = get_time_in_ms();
@@ -112,11 +112,10 @@ void	move_enemies(t_game *game)
 				set_animation(&game->enemy[i].sprite, ANIM_ATTACK);
 				check_get_damaged(game, i);
 			}
-			else if (game->enemy[i].dst_from_player >= 2 && game->movement == FREE)
+			else if (game->enemy[i].dst_from_player >= 2
+				&& game->movement == FREE)
 				set_animation(&game->enemy[i].sprite, ANIM_IDLE);
 		}
 		i++;
 	}
 }
-
-

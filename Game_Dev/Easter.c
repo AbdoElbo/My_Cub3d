@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 16:55:18 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/27 15:18:41 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 13:36:59 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	load_endgame_images(t_game *game, char *path
 	if (!*tex)
 		return (printf("Texture didn't load: %s\n", path), 0);
 	*img = mlx_texture_to_image(game->mlx, *tex);
-	mlx_delete_texture(*tex); // im deleting tex before checking for img so in case of conversion failure, tex will always be deleted ...
+	mlx_delete_texture(*tex);
 	if (!*img)
 		return (printf("Texture wasn't converted to image: %s\n", path), 0);
 	scale_image(img);

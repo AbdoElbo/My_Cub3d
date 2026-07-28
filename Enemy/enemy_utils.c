@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:19:18 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/27 18:24:07 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 13:10:51 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,11 @@ void	set_animation(t_sprite *sprite, t_anim anim)
 	sprite->frame_timer = 0.0;
 }
 
-void	destroy_enemy_sprite(t_sprite *sprite, mlx_t *mlx)
+void	destroy_enemy_sprite(t_sprite *sprite)
 {
-	// int	i;
-
 	if (!sprite)
 		return ;
-	(void)mlx;
-	// i = 0;
-	// while (i < ANIM_COUNT * 13)
-	// {
-	// 	if (sprite->frames && sprite->frames[i])
-	// 		mlx_delete_image(mlx, sprite->frames[i]);
-	// 	i++;
-	// }
 	free(sprite->frames);
 	if (sprite->sheet)
 		mlx_delete_texture(sprite->sheet);
 }
-

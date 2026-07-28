@@ -6,17 +6,16 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 14:24:39 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/24 17:30:52 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 13:19:15 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "enemy.h"
 #include "../Cubed.h"
-//INITIALIZE ENEMY
 
-static t_enemy assign_values_to_enemy(int x, int y)
+static t_enemy	assign_values_to_enemy(int x, int y)
 {
-	t_enemy new_enemy;
+	t_enemy	new_enemy;
 
 	new_enemy.x = x + 0.5f;
 	new_enemy.y = y + 0.5f;
@@ -27,7 +26,7 @@ static t_enemy assign_values_to_enemy(int x, int y)
 	new_enemy.dst_from_player = 0.0f;
 	new_enemy.visible = false;
 	new_enemy.attack_start = 2000000;
-	return(new_enemy);
+	return (new_enemy);
 }
 
 static void	look_for_enemy_coordinates(t_game *game)
@@ -45,8 +44,6 @@ static void	look_for_enemy_coordinates(t_game *game)
 		{
 			if (game->map[i][j] == 'V')
 			{
-				// if (k >= game->vars.enemy_count)
-				// 	return ;
 				game->enemy[k] = assign_values_to_enemy(j, i);
 				game->map[i][j] = '0';
 				k++;

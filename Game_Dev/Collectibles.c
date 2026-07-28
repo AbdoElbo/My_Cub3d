@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 15:30:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/27 18:16:39 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 13:57:25 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	collectible_coordinates(t_game *game)
 		{
 			if (game->map[i][j] == 'C')
 			{
-				game->collect[k].x = j + 0.5f;;
-				game->collect[k].y = i + 0.5f;;
+				game->collect[k].x = j + 0.5f;
+				game->collect[k].y = i + 0.5f;
 				game->collect[k].available = true;
 				game->collect[k].index = k;
 				k++;
@@ -41,7 +41,7 @@ static void	collectible_coordinates(t_game *game)
 
 int	init_collectibles(t_game *game)
 {
-	t_collect *collect;
+	t_collect	*collect;
 
 	collect = NULL;
 	game->vars.obtained_coins = 0;
@@ -49,7 +49,7 @@ int	init_collectibles(t_game *game)
 	{
 		collect = malloc(sizeof(t_collect) * game->vars.collect_count);
 		if (!collect)
-			return(printf("Collectibles malloc error.\n"), 0);
+			return (printf("Collectibles malloc error.\n"), 0);
 		game->collect = collect;
 		collectible_coordinates(game);
 	}
@@ -61,7 +61,8 @@ double	get_c_angle_diff(t_game *game, t_collect *collect)
 	double	render_angle;
 	double	angle_diff;
 
-	render_angle = atan2(collect->y - game->player.y, collect->x - game->player.x);
+	render_angle = atan2(collect->y - game->player.y,
+			collect->x - game->player.x);
 	angle_diff = render_angle - game->player.angle;
 	while (angle_diff > PI)
 		angle_diff -= 2 * PI;
@@ -70,11 +71,12 @@ double	get_c_angle_diff(t_game *game, t_collect *collect)
 	return (angle_diff);
 }
 
-int	c_sprite_visible(t_collect *collect, t_player *p, double angle_diff, double *depth)
+int	c_sprite_visible(t_collect *collect, t_player *p,
+		double angle_diff, double *depth)
 {
 	collect->dst_to_player = sqrtf((collect->x - p->x) * (collect->x - p->x)
-		+ (collect->y - p->y) * (collect->y - p->y));
-	if (angle_diff < -FOV / 2 || angle_diff > FOV /2)
+			+ (collect->y - p->y) * (collect->y - p->y));
+	if (angle_diff < -FOV / 2 || angle_diff > FOV / 2)
 		return (0);
 	if (collect->dst_to_player <= 0.1)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 14:24:42 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/24 17:20:18 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 13:23:22 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ typedef struct s_projection
 	int		start_x;
 	int		start_y;
 	double	depth;
-} t_projection;
-
+}	t_projection;
 
 typedef enum e_anim
 {
@@ -77,19 +76,18 @@ typedef struct s_enemy
 int				init_enemy(t_game *game);
 int				init_enemy_sprite(t_game *game);
 void			set_animation(t_sprite *sprite, t_anim anim);
-void			destroy_enemy_sprite(t_sprite *sprite, mlx_t *mlx);
+void			destroy_enemy_sprite(t_sprite *sprite);
 void			move_enemies(t_game *game);
 void			update_sprite(t_enemy *enemy, double dt);
 mlx_image_t		*get_current_frame(t_sprite *s, int max_frames);
 
 double			get_angle_diff(t_game *game, t_enemy *enemy);
-int				sprite_visible(t_enemy *enemy, double angle_diff, double *depth);
-t_projection	compute_projection(double angle_diff, double depth, float size, float height);
-void			draw_sprite_column(t_game *game, mlx_image_t *frame,
-					t_projection *projection, int x);
-void			draw_sprite(t_game *game, mlx_image_t *frame, t_projection *projection);
+int				sprite_visible(t_enemy *enemy, double angle_diff,
+					double *depth);
+t_projection	compute_projection(double angle_diff, double depth,
+					float size, float height);
+void			draw_sprite(t_game *game, mlx_image_t *frame,
+					t_projection *projection);
 void			render_enemy(t_game *game, t_enemy *enemy);
-int				enemy_behind_wall(t_game *game, t_enemy *enemy);
-
 
 #endif

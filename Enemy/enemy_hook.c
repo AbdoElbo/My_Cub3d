@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:18:01 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/21 16:13:10 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 13:09:44 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,11 @@ void	update_sprite(t_enemy *enemy, double dt)
 	{
 		if (enemy->sprite.current_frame < def->frame_count - 1)
 			enemy->sprite.current_frame++;
-		if (enemy->sprite.current_anim == ANIM_DEATH && enemy->sprite.current_frame == 8)
-			enemy->damage = 0; // enemy gone
-		// if (enemy->sprite.current_anim == ANIM_HURT && enemy->sprite.current_frame == 4)
-		// 	set_animation(&enemy->sprite, ANIM_IDLE);
+		if (enemy->sprite.current_anim == ANIM_DEATH
+			&& enemy->sprite.current_frame == 8)
+			enemy->damage = 0;
 		return ;
 	}
-	enemy->sprite.current_frame = (enemy->sprite.current_frame + 1) % def->frame_count;
+	enemy->sprite.current_frame = (enemy->sprite.current_frame + 1)
+		% def->frame_count;
 }
-

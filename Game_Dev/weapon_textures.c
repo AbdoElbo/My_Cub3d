@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 18:29:27 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/27 15:17:55 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 13:39:10 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	load_gun_images(t_game *game, char *path
 	if (!*tex)
 		return (printf("Texture didn't load: %s\n", path), 0);
 	*img = mlx_texture_to_image(game->mlx, *tex);
-	mlx_delete_texture(*tex); // im deleting tex before checking for img so in case of conversion failure, tex will always be deleted ...
+	mlx_delete_texture(*tex);
 	if (!*img)
 		return (printf("Texture wasn't converted to image: %s\n", path), 0);
 	scale_image(img);
@@ -51,22 +51,22 @@ int	load_gun_images(t_game *game, char *path
 int	load_compass_tex(t_game *game)
 {
 	if (!load_images(game, "Resources/textures/north_texture.png",
-			&game->textures.north_tex , &game->images.north_img))
+			&game->textures.north_tex, &game->images.north_img))
 		return (0);
 	if (!load_images(game, "Resources/textures/west_texture.png",
-			&game->textures.west_tex , &game->images.west_img))
+			&game->textures.west_tex, &game->images.west_img))
 		return (0);
 	if (!load_images(game, "Resources/textures/south_texture.png",
-			&game->textures.south_tex , &game->images.south_img))
+			&game->textures.south_tex, &game->images.south_img))
 		return (0);
 	if (!load_images(game, "Resources/textures/east_texture.png",
-			&game->textures.east_tex , &game->images.east_img))
+			&game->textures.east_tex, &game->images.east_img))
 		return (0);
 	if (!load_images(game, "Resources/textures/door.png",
-			&game->textures.door_tex , &game->images.door_img))
+			&game->textures.door_tex, &game->images.door_img))
 		return (0);
 	if (!load_images(game, "Resources/textures/collectible.png",
-			&game->textures.collectible_tex , &game->images.collectible_img))
+			&game->textures.collectible_tex, &game->images.collectible_img))
 		return (0);
 	return (1);
 }
