@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:38:34 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/17 15:34:14 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 14:11:17 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 int	textures_exist(t_game *game)
 {
+	game->files.fd_e_flag = 0;
+	game->files.fd_n_flag = 0;
+	game->files.fd_w_flag = 0;
+	game->files.fd_s_flag = 0;
 	game->files.fd_n = open(game->files.north, O_RDONLY);
 	if (game->files.fd_n < 0)
 		return (printf(Y"Error:\nFailed to open North texture.\n"RESET), 0);
@@ -51,13 +55,13 @@ void	set_player_direction(t_game *game)
 
 static void	count_extras(t_game *game)
 {
-	game->vars.door_count = 0;
-	game->vars.enemy_count = 0;
-	game->vars.collect_count = 0;
 	int	i;
 	int	j;
 
 	i = 0;
+	game->vars.door_count = 0;
+	game->vars.enemy_count = 0;
+	game->vars.collect_count = 0;
 	while (game->map[i])
 	{
 		j = 0;

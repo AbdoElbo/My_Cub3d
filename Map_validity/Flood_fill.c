@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:25:46 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/17 15:37:04 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 14:00:26 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	check_surroundings(char **str, int index_i, int index_j)
 	left = str[index_i][index_j - 1];
 	right = str[index_i][index_j + 1];
 	if (up != '1' && up != '0' && up != 'N' && up != 'W'
-		&& up != 'E' && up != 'S' && up != 'D' && up != 'V'&& up != 'C')
+		&& up != 'E' && up != 'S' && up != 'D' && up != 'V' && up != 'C')
 		return (false);
 	if (down != '1' && down != '0' && down != 'N' && down != 'W'
 		&& down != 'E' && down != 'S' && down != 'D' && down != 'V'

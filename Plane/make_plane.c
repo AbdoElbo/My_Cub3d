@@ -6,18 +6,18 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:47:58 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/27 18:18:52 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 14:30:21 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Plane.h"
 
-static uint32_t tile_color(t_game *game, char c)
+static uint32_t	tile_color(t_game *game, char c)
 {
 	if (c == '1')
 		return (get_rgb_color(88, 57, 39));
 	if (c == 'D')
-		return (get_rgb_color(0, 100, 100));
+		return (get_rgb_color(200, 80, 39));
 	return (game->vars.floor_color);
 }
 
@@ -38,7 +38,7 @@ static void	draw_tile(t_game *game, int px, int py, uint32_t color)
 			{
 				if (i == 0 || i == TILE_SIZE - 1
 					|| j == 0 || j == TILE_SIZE - 1)
-					px_color = get_rgb_color(0,0,0);
+					px_color = get_rgb_color(0, 0, 0);
 				else
 					px_color = color;
 				mlx_put_pixel(game->images.mm_img, px + j, py + i, px_color);
@@ -46,30 +46,6 @@ static void	draw_tile(t_game *game, int px, int py, uint32_t color)
 			j++;
 		}
 		i++;
-	}
-}
-
-static void	draw_player_circle(t_game *game, int r, uint32_t color)
-{
-	int	dx;
-	int	dy;
-	int	cx;
-	int	cy;
-
-	cx = MINIMAP_PX / 2;
-	cy = MINIMAP_PX / 2;
-	dy = -r;
-	while (dy <= r)
-	{
-		dx = -r;
-		while (dx < r)
-		{
-			if (dx * dx + dy * dy <= r * r)
-				mlx_put_pixel(game->images.mm_img,
-					cx + dx, cy + dy, color);
-			dx++;
-		}
-		dy++;
 	}
 }
 
@@ -102,85 +78,29 @@ static void	draw_floor(t_game *game, int offset_x, int offset_y)
 	}
 }
 
-static void	draw_enemy_circle(t_game *game, int r, double ex, double ey)
-{
-	int	dx;
-	int	dy;
-	int	cx;
-	int	cy;
-
-	cx = (int)((ex - game->player.x) * TILE_SIZE) + MINIMAP_PX / 2;
-	cy = (int)((ey - game->player.y) * TILE_SIZE) + MINIMAP_PX / 2;
-	dy = -r;
-	while (dy <= r)
-	{
-		dx = -r;
-		while (dx <= r)
-		{
-			if (dx * dx + dy * dy <= r * r)
-			{
-				if (cx + dx >= 0 && cx + dx < MINIMAP_PX
-					&& cy + dy >= 0 && cy + dy < MINIMAP_PX)
-					mlx_put_pixel(game->images.mm_img,
-						cx + dx, cy + dy, get_rgb_color(251, 43, 43));
-			}
-			dx++;
-		}
-		dy++;
-	}
-}
-
-static void	draw_collect_circle(t_game *game, int r, double ex, double ey)
-{
-	int	dx;
-	int	dy;
-	int	cx;
-	int	cy;
-
-	cx = (int)((ex - game->player.x) * TILE_SIZE) + MINIMAP_PX / 2;
-	cy = (int)((ey - game->player.y) * TILE_SIZE) + MINIMAP_PX / 2;
-	dy = -r;
-	while (dy <= r)
-	{
-		dx = -r;
-		while (dx <= r)
-		{
-			if (dx * dx + dy * dy <= r * r)
-			{
-				if (cx + dx >= 0 && cx + dx < MINIMAP_PX
-					&& cy + dy >= 0 && cy + dy < MINIMAP_PX)
-					mlx_put_pixel(game->images.mm_img,
-						cx + dx, cy + dy, get_rgb_color(251, 223, 43));
-			}
-			dx++;
-		}
-		dy++;
-	}
-}
-
 void	draw_minimap(t_game *game)
 {
 	int	i;
 	int	off_x;
 	int	off_y;
 
-	i = 0;
 	off_x = (int)((game->player.x - (int)game->player.x) * TILE_SIZE);
 	off_y = (int)((game->player.y - (int)game->player.y) * TILE_SIZE);
 	draw_floor(game, off_x, off_y);
 	draw_player_circle(game, 3, get_rgb_color(43, 251, 57));
-	
-	while(i < game->vars.enemy_count)
+	i = 0;
+	while (i < game->vars.enemy_count)
 	{
 		if (game->enemy[i].health)
 			draw_enemy_circle(game, 3, game->enemy[i].x, game->enemy[i].y);
 		i++;
 	}
 	i = 0;
-	while(i < game->vars.collect_count)
+	while (i < game->vars.collect_count)
 	{
 		if (game->collect[i].available)
-			draw_collect_circle(game, 3, game->collect[i].x, game->collect[i].y);
+			draw_collect_circle(game, 3, game->collect[i].x,
+				game->collect[i].y);
 		i++;
 	}
 }

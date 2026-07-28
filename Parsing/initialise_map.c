@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/24 16:35:52 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 14:13:04 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,10 @@ static void	init_vars(t_game *game)
 	game->framebuf = NULL;
 	game->vars.width = 0;
 	game->vars.height = 0;
-	game->files.east = NULL;
-	game->files.north = NULL;
-	game->files.west = NULL;
-	game->files.south = NULL;
 	game->vars.ceiling_color = 0;
 	game->vars.floor_color = 0;
 	game->vars.map_start = -1;
 	game->vars.easter_egg = 0;
-	game->files.fd_e_flag = 0;
-	game->files.fd_n_flag = 0;
-	game->files.fd_w_flag = 0;
-	game->files.fd_s_flag = 0;
 	game->vars.mouse_x = SCREEN_WIDTH / 2;
 	game->vars.mouse_y = SCREEN_HEIGHT / 2;
 	game->movement = FREE;
@@ -115,12 +107,6 @@ static int	get_map_size(t_game *game)
 	return (1);
 }
 
-static void	set_easter(t_game *game, char *str)
-{
-	if (!ft_strncmp(str, "goofy", 6))
-		game->vars.easter_egg = 1;
-}
-
 int	init_map(int argc, char **argv, t_game *game)
 {
 	if (!error_check(argc, argv[1]))
@@ -132,8 +118,8 @@ int	init_map(int argc, char **argv, t_game *game)
 	if (!(game->map))
 		return (0);
 	init_vars(game);
-	if (argc == 3)
-		set_easter(game, argv[2]);
+	if (argc == 3 && !ft_strncmp(argv[2], "goofy", 6))
+		game->vars.easter_egg = 1;
 	if (!check_map_order(game->map))
 		return (0);
 	if (!get_textures(game) || !get_colors(game))

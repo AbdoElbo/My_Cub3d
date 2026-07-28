@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 18:46:33 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/14 15:54:12 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 14:06:28 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ uint32_t	get_rgb_color(int r, int g, int b)
 	return (r << 24 | g << 16 | b << 8 | 255);
 }
 
-static int  has_invalid_chars(char *str)
+static int	has_invalid_chars(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (ft_isspace(str[i]))
@@ -33,13 +33,13 @@ static int  has_invalid_chars(char *str)
 	return (0);
 }
 
-static int  get_floor_color(t_game *game, int i, int j)
+static int	get_floor_color(t_game *game, int i, int j)
 {
-	static int  counter;
-	int		r;
-	int		g;
-	int		b;
-	char	**arr;
+	static int	counter;
+	int			r;
+	int			g;
+	int			b;
+	char		**arr;
 
 	counter++;
 	arr = ft_split(&game->map[i][j + 1], ',');
@@ -61,13 +61,13 @@ static int  get_floor_color(t_game *game, int i, int j)
 	return (free_arr(arr), 1);
 }
 
-static int  get_ceiling_color(t_game *game, int i, int j)
+static int	get_ceiling_color(t_game *game, int i, int j)
 {
-	static int  counter;
-	int		r;
-	int		g;
-	int		b;
-	char	**arr;
+	static int	counter;
+	int			r;
+	int			g;
+	int			b;
+	char		**arr;
 
 	counter++;
 	arr = ft_split(&game->map[i][j + 1], ',');
@@ -89,7 +89,7 @@ static int  get_ceiling_color(t_game *game, int i, int j)
 	return (free_arr(arr), 1);
 }
 
-int get_colors(t_game *game)
+int	get_colors(t_game *game)
 {
 	int	i;
 	int	j;

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:55:37 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/10 15:12:10 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/28 14:12:55 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static int	get_north_location(t_game *game, int i, int j)
 	k = j;
 	while (str[k] && str[k] != '\n')
 		k++;
+	game->files.north = NULL;
 	game->files.north = ft_substr(str, j, k - j);
 	if (!game->files.north)
 		return (printf("Error:\nfiles.north allocation failed\n"), 0);
@@ -54,6 +55,7 @@ static int	get_south_location(t_game *game, int i, int j)
 	k = j;
 	while (str[k] && str[k] != '\n')
 		k++;
+	game->files.south = NULL;
 	game->files.south = ft_substr(str, j, k - j);
 	if (!game->files.south)
 		return (printf("Error:\nfiles.South allocation failed\n"), 0);
@@ -78,6 +80,7 @@ static int	get_west_location(t_game *game, int i, int j)
 	k = j;
 	while (str[k] && str[k] != '\n')
 		k++;
+	game->files.west = NULL;
 	game->files.west = ft_substr(str, j, k - j);
 	if (!game->files.west)
 		return (printf("Error:\nfiles.west allocation failed\n"), 0);
@@ -102,6 +105,7 @@ static int	get_east_location(t_game *game, int i, int j)
 	k = j;
 	while (str[k] && str[k] != '\n')
 		k++;
+	game->files.east = NULL;
 	game->files.east = ft_substr(str, j, k - j);
 	if (!game->files.east)
 		return (printf("Error:\nfiles.east allocation failed\n"), 0);

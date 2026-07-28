@@ -6,7 +6,7 @@
 #    By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/07 16:20:34 by aelbouaz          #+#    #+#              #
-#    Updated: 2026/07/28 13:21:24 by aelbouaz         ###   ########.fr        #
+#    Updated: 2026/07/28 14:20:50 by aelbouaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,13 @@ CFLAGS = -Wall -Wextra -Werror -MMD
 CC = cc
 
 CUBED = cub3D
-CUBED_SRCS = Main.c Parsing/error_check.c Parsing/get_colors.c \
+CUBED_SRCS = Main.c Parsing/error_check.c Parsing/cleanup.c Parsing/get_colors.c \
 			Parsing/get_textures.c Parsing/gnl.c Parsing/initialise_map.c \
 			Parsing/utils_1.c Parsing/update_map.c Parsing/texture_color_check.c \
 			Map_validity/Map_validity.c Map_validity/Components_exist.c \
-			Map_validity/Flood_fill.c Plane/make_plane.c Rendering/render_sprites.c \
-			Rendering/rendering.c Rendering/raycasting.c Rendering/utils.c Game_Dev/weapon_textures.c \
+			Map_validity/Flood_fill.c Plane/make_plane.c Plane/draw_circles.c \
+			Rendering/render_sprites.c Rendering/rendering.c \
+			Rendering/raycasting.c Rendering/utils.c Game_Dev/weapon_textures.c \
 			Game_Dev/weapons_animation.c Game_Dev/weapons_animation_utils.c \
 			Game_Dev/player_Movements.c Game_Dev/Rotations.c Game_Dev/Doors.c \
 			Game_Dev/Collectibles.c Game_Dev/Easter.c \
