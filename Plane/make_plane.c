@@ -18,6 +18,8 @@ static uint32_t	tile_col(t_game *game, char c)
 		return (get_rgb_color(88, 57, 39));
 	if (c == 'D')
 		return (get_rgb_color(200, 80, 39));
+	if (c == 'e')
+		return (get_rgb_color(0, 150, 30));
 	return (game->vars.floor_color);
 }
 

@@ -24,7 +24,7 @@
 # define FOV (90.0 * PI / 180.0)
 
 # define PLAYER_HEALTH 1500
-# define KATANA_DAMAGE 843
+# define KATANA_DAMAGE 40
 # define KATANA_FIELD FOV
 # define SHOTGUN_FIELD 0.3 //FOV / 2
 # define SHOTGUN_DAMAGE 35

@@ -46,6 +46,8 @@ static void	delete_textures(t_game *game)
 		mlx_delete_texture(game->textures.door_tex);
 	if (game->textures.collectible_tex)
 		mlx_delete_texture(game->textures.collectible_tex);
+	if (game->textures.exit_door_tex)
+		mlx_delete_texture(game->textures.exit_door_tex);
 }
 
 void	cleanup(t_game *game)
@@ -65,6 +67,10 @@ void	cleanup(t_game *game)
 		close(game->vars.fd);
 	free_files(&game->files);
 	delete_textures(game);
+	if (game->collect_str)
+		free(game->collect_str);
+	if (game->player_hp_str)
+		free(game->player_hp_str);
 	if (game->mlx)
 		mlx_terminate(game->mlx);
 }

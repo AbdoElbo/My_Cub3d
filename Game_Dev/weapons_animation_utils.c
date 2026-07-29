@@ -42,8 +42,8 @@ static void	damage_enemies(t_game *game, double distance
 		{
 			if (game->enemy[i].health - damage <= 0)
 			{
-				game->enemy[i].health = 0;
 				set_animation(&game->enemy[i].sprite, ANIM_DEATH);
+				game->enemy[i].health = 0;
 				printf("ENEMY %d DIED\n", i);
 			}
 			else

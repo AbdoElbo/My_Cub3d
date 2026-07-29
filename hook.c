@@ -12,21 +12,43 @@
 
 #include "Cubed.h"
 
-static int	display_coins_text(t_game *game)
+int	join_three(t_game *game)
 {
 	char	*num_str;
+	char	*temp;
 
 	num_str = ft_itoa(game->vars.obtained_coins);
 	if (!num_str)
 		return (0);
 	ft_memcpy(&game->collect_str[23], num_str, ft_strlen(num_str));
 	game->collect_str[23 + ft_strlen(num_str)] = '\0';
+	temp = ft_strjoin(game->collect_str, "/");
 	free(num_str);
+	if (!temp)
+		return (0);
+	num_str = ft_itoa(game->vars.collect_count);
+	if (!num_str)
+		return (free(temp), 0);
+	free(game->collect_str);
+	game->collect_str = ft_strjoin(temp, num_str);
+	free(temp);
+	free(num_str);
+	if (!game->collect_str)
+		return (0);
+	return (1);
+}
+
+static int	display_coins_text(t_game *game)
+{
+	if (!join_three(game))
+		return (0);
 	if (game->images.collect_text)
 		mlx_delete_image(game->mlx, game->images.collect_text);
 	game->images.collect_text = mlx_put_string(game->mlx, game->collect_str
 		, MINIMAP_PX + 10, 20);
-	mlx_resize_image(game->images.collect_text, game->images.collect_text->width * 1.5, game->images.collect_text->height * 1.5);
+	mlx_resize_image(game->images.collect_text
+			, game->images.collect_text->width * 1.5
+			, game->images.collect_text->height * 1.5);
 	mlx_set_instance_depth(game->images.collect_text->instances, 30);
 	return (1);
 }
@@ -77,12 +99,11 @@ void	delete_blood(t_game *game)
 void	ft_hook(void *param)
 {
 	t_game	*game;
-	// int		i;
 
 	game = (t_game *)param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
-	if (game->player.health)
+	if (game->player.health && game->vars.ended == 0)
 	{
 		if (!display_coins_text(game) || !display_health_text(game))
 			return ;
@@ -92,9 +113,6 @@ void	ft_hook(void *param)
 		move_player(game);
 		gun_dev(game);
 		ft_open_door(game);
-		// i = 0;
-		// while (i < game->vars.enemy_count)
-		// 	render_enemy(game, &game->enemy[i++]);
 		render_sprite_queue(game);
 		move_enemies(game);
 	}

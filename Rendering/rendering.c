@@ -110,5 +110,4 @@ void	render_frame(t_game *game)
 		draw_to_buf(game, game->rays[i], &dp);
 		i++;
 	}
-	order_enemy_array(game->enemy, game->vars.enemy_count);
 }

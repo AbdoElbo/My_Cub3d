@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Map_validity.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:38:34 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/28 14:11:17 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/27 12:20:31 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 int	textures_exist(t_game *game)
 {
-	game->files.fd_e_flag = 0;
-	game->files.fd_n_flag = 0;
-	game->files.fd_w_flag = 0;
-	game->files.fd_s_flag = 0;
 	game->files.fd_n = open(game->files.north, O_RDONLY);
 	if (game->files.fd_n < 0)
 		return (printf(Y"Error:\nFailed to open North texture.\n"RESET), 0);
@@ -55,13 +51,14 @@ void	set_player_direction(t_game *game)
 
 static void	count_extras(t_game *game)
 {
+	game->vars.door_count = 0;
+	game->vars.enemy_count = 0;
+	game->vars.collect_count = 0;
+	// game->vars.exit_count = 0;
 	int	i;
 	int	j;
 
 	i = 0;
-	game->vars.door_count = 0;
-	game->vars.enemy_count = 0;
-	game->vars.collect_count = 0;
 	while (game->map[i])
 	{
 		j = 0;
@@ -73,6 +70,8 @@ static void	count_extras(t_game *game)
 				game->vars.enemy_count++;
 			else if (game->map[i][j] == 'C')
 				game->vars.collect_count++;
+			// else if (game->map[i][j] == 'e')
+			// 	game->vars.exit_count++;
 			j++;
 		}
 		i++;
@@ -89,6 +88,8 @@ int	init_bonus(t_game *game)
 		return (0);
 	if (!init_collectibles(game))
 		return (0);
+	// if (!init_exit(game))
+	// 	return (0);
 	return (1);
 }
 

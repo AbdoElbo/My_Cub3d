@@ -45,7 +45,6 @@ static void	check_get_damaged(t_game *game, int i)
 {
 	if (game->enemy[i].sprite.current_frame == 9
 		&& game->vars.last_hit == 0
-		&& game->enemy->health != 0
 		&& game->enemy[i].visible)
 	{
 		game->vars.last_hit = get_time_in_ms();

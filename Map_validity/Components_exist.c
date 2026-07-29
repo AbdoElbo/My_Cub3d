@@ -56,7 +56,7 @@ int	comp_counter(char **map)
 		{
 			if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'W'
 				|| map[i][j] == 'E' || map[i][j] == 'S' || map[i][j] == 'D'
-				|| map[i][j] == 'V' || map[i][j] == 'C')
+				|| map[i][j] == 'V' || map[i][j] == 'C' || map[i][j] == 'e')
 				count++;
 			j++;
 		}

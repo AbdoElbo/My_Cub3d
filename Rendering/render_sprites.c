@@ -52,8 +52,7 @@ static void	collect_enemy_draws(t_game *game, t_sprite_draw *draws,
 				+ (game->enemy[i].y - game->player.y)
 				* (game->enemy[i].y - game->player.y));
 		angle_diff = get_angle_diff(game, &game->enemy[i]);
-		if (game->enemy[i].health
-			&& sprite_visible(&game->enemy[i], angle_diff, &depth))
+		if (sprite_visible(&game->enemy[i], angle_diff, &depth))
 		{
 			draws[*visible_count].kind = SPRITE_ENEMY;
 			draws[*visible_count].ptr = &game->enemy[i];

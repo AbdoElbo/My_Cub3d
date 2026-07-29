@@ -68,6 +68,9 @@ int	load_compass_tex(t_game *game)
 	if (!load_images(game, "Resources/textures/collectible.png",
 			&game->textures.collectible_tex, &game->images.collectible_img))
 		return (0);
+	if (!load_images(game, "Resources/textures/exit_door.png",
+		&game->textures.exit_door_tex , &game->images.exit_door_img))
+		return (0);
 	return (1);
 }
 
@@ -122,3 +125,5 @@ int	load_shotgun_tex(t_game *game)
 	game->images.getting_hurt->instances->y = 0;
 	return (1);
 }
+
+

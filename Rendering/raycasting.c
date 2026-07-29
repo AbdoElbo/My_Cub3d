@@ -3,14 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 10:58:13 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/28 15:17:48 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/17 15:11:22 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Rendering.h"
+// #include "Bonus.h"
+
+// 0 for vertical wall, 1 for horizontal wall
+// double hit_wall_x(t_dda *dda, t_ray *ray, t_game *game)
+// {
+// 	if (dda->side == 0)
+// 	{
+// 		dda->raw_dist = dda->side_dist_x - dda->delta_dist_x;
+// 		dda->hit_y = game->player.y + dda->raw_dist * ray->dir_y;
+// 		return (dda->hit_y - floor(dda->hit_y));
+// 	}
+// 	else
+// 	{
+// 		dda->raw_dist = dda->side_dist_y - dda->delta_dist_y;
+// 		dda->hit_x = game->player.x + dda->raw_dist * ray->dir_x;
+// 		return (dda->hit_x - floor(dda->hit_x));
+// 	}
+// }
+
+// //calculate the lenght of the ray to cross exactly one tile in both x and y direction
+// //if delta_dist_y < delta_dist_x, it means the ray is going going up/down sharper
+// void init_delta_dist(t_dda *dda, t_ray *ray)
+// {
+// 	if (ray->dir_x == 0)
+// 		dda->delta_dist_x =  INFINITY;
+// 	else
+// 		dda->delta_dist_x = fabs(1 / ray->dir_x);
+// 	if (ray->dir_y == 0)
+// 		dda->delta_dist_y =  INFINITY;
+// 	else
+// 		dda->delta_dist_y = fabs(1 / ray->dir_y);
+// }
 
 void calculate_first_ray_part(t_dda *dda, t_ray *ray, t_game *game)
 {
@@ -58,10 +90,8 @@ void look_for_hit(t_dda *dda, t_game *game)
 			dda->side = 1;
 		}
 		tile = game->map[dda->map_y][dda->map_x];
-		if (tile == '1')
-		{
+		if (tile == '1' || tile == 'e')
 			hit = 1;
-		}
 		else if (tile == 'D' && !check_open_door(dda->map_x, dda->map_y, game))
 			hit = 1;
 	}
@@ -81,6 +111,8 @@ static double ft_dda(t_game *game, t_ray *ray)
 	ray->distance = dda.raw_dist;
 	if (game->map[dda.map_y][dda.map_x] == 'D' && game->textures.door_tex)
 		ray->texture_hit = *game->textures.door_tex;
+	else if (game->map[dda.map_y][dda.map_x] == 'e')
+		ray->texture_hit = *game->textures.exit_door_tex;
 	else if (dda.side == 0 && dda.step_x > 0)
 		ray->texture_hit = *game->textures.east_tex;
 	else if (dda.side == 0 && dda.step_x < 0)
