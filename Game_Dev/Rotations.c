@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 16:54:14 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/28 17:52:10 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/29 14:02:00 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,13 @@ static void	draw_line(t_game *game, uint32_t color)
 {
 	int		i;
 	int		j;
-	double	x = 0;
-	double	y = 0;
+	double	x;
+	double	y;
 	double	distance;
 
 	distance = 0;
+	x = 0;
+	y = 0;
 	i = MINIMAP_PX / 2;
 	j = MINIMAP_PX / 2;
 	while (distance < 10)
@@ -87,4 +89,3 @@ void	rotate_player(t_game *game)
 	game->player.plane_y = game->player.dir_x * tan(FOV / 2.0);
 	draw_line(game, get_rgb_color(0, 200, 0));
 }
-
