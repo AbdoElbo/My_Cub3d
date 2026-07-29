@@ -6,7 +6,7 @@
 #    By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/07 16:20:34 by aelbouaz          #+#    #+#              #
-#    Updated: 2026/07/28 14:20:50 by aelbouaz         ###   ########.fr        #
+#    Updated: 2026/07/29 13:30:45 by aelbouaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CFLAGS = -Wall -Wextra -Werror -MMD
 CC = cc
 
 CUBED = cub3D
-CUBED_SRCS = Main.c Parsing/error_check.c Parsing/cleanup.c Parsing/get_colors.c \
+CUBED_SRCS = Main.c hook.c Parsing/error_check.c Parsing/cleanup.c Parsing/get_colors.c \
 			Parsing/get_textures.c Parsing/gnl.c Parsing/initialise_map.c \
 			Parsing/utils_1.c Parsing/update_map.c Parsing/texture_color_check.c \
 			Map_validity/Map_validity.c Map_validity/Components_exist.c \

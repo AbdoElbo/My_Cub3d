@@ -6,11 +6,46 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 15:45:28 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/28 15:31:02 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/29 13:30:01 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Rendering.h"
+
+int	allocate_text(t_game *game)
+{
+	game->collect_str = ft_calloc(40, sizeof(char));
+	if (!game->collect_str)
+		return (printf("Error:\ngame->collect_str allocation failed\n"), 0);
+	game->player_hp_str = ft_calloc(40, sizeof(char));
+	if (!game->player_hp_str)
+		return (printf("Error:\ngame->player_hp_str allocation failed\n"), 0);
+	ft_strlcpy(game->collect_str, "Collectibles obtained: ", 25);
+	ft_strlcpy(game->player_hp_str, "Player's HP: ", 15);
+	return (1);
+}
+
+int	load_map_and_components(t_game *game)
+{
+	game->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Our Awesome Game", 1);
+	if (!game->mlx)
+		return (printf("Error:\nMlx initialization failed\n"), 0);
+	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
+	game->framebuf = mlx_new_image(game->mlx, MAX_WIDTH, MAX_HEIGHT);
+	mlx_image_to_window(game->mlx, game->framebuf, 0, 0);
+	game->images.mm_img = mlx_new_image(game->mlx, MINIMAP_PX, MINIMAP_PX);
+	if (!game->images.mm_img)
+		return (printf("Error:\nMlx img_mm creation failed\n"), 0);
+	if (mlx_image_to_window(game->mlx, game->images.mm_img, 0, 0))
+		return (printf("Error:\nMlx img_mm image_to_window failed\n"), 0);
+	if (!load_compass_tex(game))
+		return (0);
+	if (!load_gun_tex(game))
+		return (0);
+	if (!allocate_text(game))
+		return (0);
+	return (1);
+}
 
 void	order_enemy_array(t_enemy *enemies, int enemy_count)
 {

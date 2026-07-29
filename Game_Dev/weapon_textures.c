@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 18:29:27 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/28 13:39:10 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/29 13:54:46 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,12 @@ int	load_sword_tex(t_game *game)
 	if (!load_gun_images(game, "./Resources/textures/sword_4.png",
 			&game->textures.sword_tex_4, &game->images.sword_img_4))
 		return (0);
+	if (!load_gun_images(game, "./Resources/textures/crosshair.png",
+			&game->textures.crosshair, &game->images.crosshair))
+		return (0);
+	mlx_resize_image(game->images.crosshair, 100, 100);
+	game->images.crosshair->instances->x = (SCREEN_WIDTH / 2) - 50;
+	game->images.crosshair->instances->y = (SCREEN_HEIGHT / 2) - 50;
 	return (1);
 }
 

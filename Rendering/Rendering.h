@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 12:53:28 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/28 15:33:05 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/29 13:30:07 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct s_sprite_draw
 	double			depth;
 }	t_sprite_draw;
 
+int		allocate_text(t_game *game);
+int		load_map_and_components(t_game *game);
 double	hit_wall_x(t_dda *dda, t_ray *ray, t_game *game);
 void	init_delta_dist(t_dda *dda, t_ray *ray);
 void	render_frame(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/27 18:15:48 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/29 13:47:27 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct s_tex
 	mlx_texture_t	*getting_hurt;
 	mlx_texture_t	*death;
 	mlx_texture_t	*win;
+	mlx_texture_t	*crosshair;
 }	t_tex;
 
 typedef struct s_img
@@ -138,6 +139,7 @@ typedef struct s_img
 	mlx_image_t	*player_hp_text;
 	mlx_image_t	*death;
 	mlx_image_t	*win;
+	mlx_image_t	*crosshair;
 }	t_img;
 
 typedef enum e_movement
@@ -200,6 +202,6 @@ typedef struct s_game
 	double		zbuffer[MAX_WIDTH];
 }	t_game;
 
-void	print_map(t_game *game);
+void	ft_hook(void *param);
 
 #endif

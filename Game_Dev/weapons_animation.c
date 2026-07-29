@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 15:17:30 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/28 15:15:21 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/29 13:54:30 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ static void	show_weapon(t_game *game)
 	if (game->weapon == SWORD)
 	{
 		game->images.sword_img_0->enabled = true;
+		game->images.crosshair->enabled = false;
 		game->images.shotgun_img_0->enabled = false;
 	}
 	else
 	{
 		game->images.shotgun_img_0->enabled = true;
+		game->images.crosshair->enabled = true;
 		game->images.sword_img_0->enabled = false;
 	}
 }
