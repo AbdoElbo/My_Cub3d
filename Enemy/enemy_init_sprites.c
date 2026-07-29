@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 15:15:44 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/28 13:29:08 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/29 15:25:24 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,11 @@ int	init_enemy_sprite(t_game *game)
 	t_sprite_draw	*draws;
 	int				i;
 
+	draws = malloc(sizeof(t_sprite_draw)
+			* (game->vars.enemy_count + game->vars.collect_count));
+	if (!draws)
+		return (0);
+	game->draws = draws;
 	if (game->vars.enemy_count == 0)
 		return (1);
 	if (!load_enemy_sprite(&sprite, game->mlx))
@@ -99,10 +104,5 @@ int	init_enemy_sprite(t_game *game)
 		game->enemy[i].sprite = sprite;
 		i++;
 	}
-	draws = malloc(sizeof(t_sprite_draw)
-			* (game->vars.enemy_count + game->vars.collect_count));
-	if (!draws)
-		return (0);
-	game->draws = draws;
 	return (1);
 }

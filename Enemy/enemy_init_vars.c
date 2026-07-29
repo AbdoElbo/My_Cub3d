@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 14:24:39 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/28 13:19:15 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/29 15:26:16 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static void	look_for_enemy_coordinates(t_game *game)
 
 int	init_enemy(t_game *game)
 {
-	printf("Amount of enemies: %d\n", game->vars.enemy_count);
 	if (game->vars.enemy_count == 0)
 	{
 		game->enemy = NULL;
