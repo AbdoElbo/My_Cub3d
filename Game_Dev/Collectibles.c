@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 15:30:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/23 13:07:13 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/27 12:14:15 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	init_collectibles(t_game *game)
 		if (!collect)
 			return(printf("Collectibles malloc error.\n"), 0);
 		game->collect = collect;
+		game->vars.to_collect = game->vars.collect_count;
 		collectible_coordinates(game);
 	}
 	return (1);

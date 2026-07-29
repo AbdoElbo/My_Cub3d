@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/24 16:36:13 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/27 12:20:03 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,8 @@ typedef struct s_vars
 	int			door_count;
 	int			enemy_count;
 	int			collect_count;
+	int			to_collect;
+	int			exit_count;
 	long long	frame_start;
 	long long	last_hit;
 	int			easter_egg;

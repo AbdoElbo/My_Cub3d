@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:25:46 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/17 15:37:04 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/27 12:19:20 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static void	recursive(t_game *game, int row, int col, int height)
 		|| row < 0 || col < 0)
 		return ;
 	if (game->map[row][col] == '1' || game->map[row][col] == '.'
-		|| game->map[row][col] == 'D' || game->map[row][col] == 'E')
+		|| game->map[row][col] == 'D' || game->map[row][col] == 'E'
+		|| game->map[row][col] == 'e')
 		return ;
 	game->map[row][col] = '.';
 	recursive(game, row, col - 1, height);
@@ -52,19 +53,20 @@ static int	check_surroundings(char **str, int index_i, int index_j)
 	left = str[index_i][index_j - 1];
 	right = str[index_i][index_j + 1];
 	if (up != '1' && up != '0' && up != 'N' && up != 'W'
-		&& up != 'E' && up != 'S' && up != 'D' && up != 'V'&& up != 'C')
+		&& up != 'E' && up != 'S' && up != 'D' && up != 'V' && up != 'C'
+		&& up != 'e')
 		return (false);
 	if (down != '1' && down != '0' && down != 'N' && down != 'W'
 		&& down != 'E' && down != 'S' && down != 'D' && down != 'V'
-		&& down != 'C')
+		&& down != 'C' && down != 'e')
 		return (false);
 	if (left != '1' && left != '0' && left != 'N' && left != 'W'
 		&& left != 'E' && left != 'S' && left != 'D' && left != 'V'
-		&& left != 'C')
+		&& left != 'C' && left != 'e')
 		return (false);
 	if (right != '1' && right != '0' && right != 'N' && right != 'W'
 		&& right != 'E' && right != 'S' && right != 'D' && right != 'V'
-		&& right != 'C')
+		&& right != 'C' && right != 'e')
 		return (false);
 	return (true);
 }
@@ -82,7 +84,7 @@ int	check_inside(char **str)
 		{
 			if (str[i][j] == '0' || str[i][j] == 'N' || str[i][j] == 'W'
 				|| str[i][j] == 'E' || str[i][j] == 'S' || str[i][j] == 'D'
-				|| str[i][j] == 'V' || str[i][j] == 'C')
+				|| str[i][j] == 'V' || str[i][j] == 'C' || str[i][j] == 'e')
 			{
 				if (!check_surroundings(str, i, j))
 					return (false);

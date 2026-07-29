@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/24 16:35:52 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/27 12:12:34 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ static void	init_vars(t_game *game)
 	game->vars.mouse_was_down = false;
 	game->vars.fd = -1;
 	game->collect = NULL;
+	game->vars.collect_count = 0;
 }
 
 static int	get_map_size(t_game *game)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Doors.c                                            :+:      :+:    :+:   */
+/*   Exit_door.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 16:02:25 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/27 12:09:06 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/27 12:20:59 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	load_images(t_game *game, char *path
 	return (1);
 }
 
-void	look_for_door_coordinates(t_game *game)
+void	look_for_exit_coordinates(t_game *game)
 {
 	int	i;
 	int	j;
@@ -45,11 +45,10 @@ void	look_for_door_coordinates(t_game *game)
 		j = 0;
 		while (game->map[i][j])
 		{
-			if (game->map[i][j] == 'D')
+			if (game->map[i][j] == 'e')
 			{
-				game->doors[k].x = j;
-				game->doors[k].y = i;
-				game->doors[k].open = false;
+				game->exit[k].x = j;
+				game->exit[k].y = i;
 				k++;
 			}
 			j++;
@@ -59,76 +58,18 @@ void	look_for_door_coordinates(t_game *game)
 	return ;
 }
 
-int	init_doors(t_game *game)
+int	init_exit(t_game *game)
 {
 	t_door *doors;
 
 	doors = NULL;
 	if (game->vars.door_count > 0)
 	{
-		doors = malloc(sizeof(t_door) * game->vars.door_count);
+		doors = malloc(sizeof(t_door) * game->vars.exit_count);
 		if (!doors)
 			return(printf("Door malloc error.\n"), 0);
 		game->doors = doors;
-		look_for_door_coordinates(game);
+		look_for_exit_coordinates(game);
 	}
 	return (1);
-}
-
-void	open_close_door(t_game *game)
-{
-	int i;
-	int target_x;
-	int target_y;
-
-	target_x = (int)floor(game->player.x + game->player.dir_x * 1);
-	target_y = (int)floor(game->player.y + game->player.dir_y * 1);
-	i = 0;
-	while(i < game->vars.door_count)
-	{
-		if (game->doors[i].x == target_x && game->doors[i].y == target_y)
-		{
-			game->doors[i].open = !game->doors[i].open;
-			return ;
-		}
-		i++;
-	}
-	if (game->map[target_x][target_y] == "e" && game->vars.to_collect == 0)
-	{
-		//ft_victory();
-		return (cleanup(&game));
-	}
-}
-
-int	check_open_door(int map_x, int map_y, t_game *game)
-{
-	int i;
-
-	i = 0;
-	while(i < game->vars.door_count)
-	{
-		if (game->doors[i].x == map_x && game->doors[i].y == map_y)
-		{
-			if (game->doors[i].open == true)
-				return (1);
-			else
-				return (0);
-		}
-		i++;
-	}
-	return (0);
-}
-
-int	door_is_open(t_game *game, int x,int y)
-{
-	int	i;
-
-	i = 0;
-	while (i < game->vars.door_count)
-	{
-		if (game->doors[i].x == x && game->doors[i].y == y && game->doors[i].open)
-			return (1);
-		i++;
-	}
-	return (0);
 }
