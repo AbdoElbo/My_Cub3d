@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 13:34:35 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/28 15:20:06 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/29 15:08:13 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static void	render_sorted_draws(t_game *game, t_sprite_draw *draws, int count)
 
 void	render_sprite_queue(t_game *game)
 {
-	int			visible_count;
+	int	visible_count;
 
 	visible_count = 0;
 	collect_enemy_draws(game, game->draws, &visible_count);

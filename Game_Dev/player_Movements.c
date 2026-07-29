@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/28 13:58:33 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/29 14:48:41 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	move_player(t_game *game)
 
 	nx = game->player.x;
 	ny = game->player.y;
+	rotate_player(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 		move_dir(game, &nx, &ny, 0);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))

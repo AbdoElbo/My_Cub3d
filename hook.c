@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 13:27:37 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/29 13:40:06 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/29 15:06:20 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	ft_open_door(t_game *game)
 	e_was_down = e_is_down;
 }
 
-static void	delete_blood(t_game *game)
+void	delete_blood(t_game *game)
 {
 	long long	now;
 	long long	frame_duration;
@@ -77,7 +77,7 @@ static void	delete_blood(t_game *game)
 void	ft_hook(void *param)
 {
 	t_game	*game;
-	int		i;
+	// int		i;
 
 	game = (t_game *)param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
@@ -89,16 +89,17 @@ void	ft_hook(void *param)
 		cast_rays(game);
 		render_frame(game);
 		draw_minimap(game);
-		rotate_player(game);
 		move_player(game);
 		gun_dev(game);
 		ft_open_door(game);
-		i = 0;
-		while (i < game->vars.enemy_count)
-			render_enemy(game, &game->enemy[i++]);
+		// i = 0;
+		// while (i < game->vars.enemy_count)
+		// 	render_enemy(game, &game->enemy[i++]);
+		render_sprite_queue(game);
 		move_enemies(game);
-		delete_blood(game);
 	}
+	else if (game->vars.ended == 1)
+		game->images.win->enabled = 1;
 	else
 		game->images.death->enabled = 1;
 }

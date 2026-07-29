@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 15:30:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/28 13:57:25 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/29 15:09:34 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,21 +86,6 @@ int	c_sprite_visible(t_collect *collect, t_player *p,
 	return (1);
 }
 
-// void	render_collectible(t_game *game, t_collect *collect)
-// {
-// 	double			depth;
-// 	double			angle_diff;
-// 	mlx_image_t		*frame;
-// 	t_projection	projection ;
-
-// 	angle_diff = get_c_angle_diff(game, collect);
-// 	if (!c_sprite_visible(collect, &game->player, angle_diff, &depth))
-// 		return ;
-// 	frame = game->images.collectible_img;
-// 	projection = compute_projection(angle_diff, depth, 0.2f, 0.1f);
-// 	draw_sprite(game, frame, &projection);
-// }
-
 void	render_collectible(t_game *game, t_collect *collect)
 {
 	double			depth;
@@ -115,7 +100,7 @@ void	render_collectible(t_game *game, t_collect *collect)
 		collect->img = game->images.collectible_img;
 		projection = compute_projection(angle_diff, depth, 0.2f, 0.1f);
 		draw_sprite(game, collect->img, &projection);
-		if (collect->dst_to_player <= 0.5f)
+		if (collect->dst_to_player <= 0.4f)
 		{
 			game->vars.obtained_coins++;
 			collect->available = false;

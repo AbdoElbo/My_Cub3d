@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/29 13:47:27 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/29 14:58:22 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ typedef struct s_vars
 	int			door_count;
 	int			enemy_count;
 	int			collect_count;
+	int			ended;
 	int			obtained_coins;
 	long long	frame_start;
 	long long	last_hit;
@@ -203,5 +204,6 @@ typedef struct s_game
 }	t_game;
 
 void	ft_hook(void *param);
+void	delete_blood(t_game *game);
 
 #endif

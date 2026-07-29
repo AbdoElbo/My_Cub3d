@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:16:42 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/28 13:18:35 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/29 14:49:47 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,5 @@ void	move_enemies(t_game *game)
 		}
 		i++;
 	}
+	delete_blood(game);
 }
