@@ -51,13 +51,12 @@ void	set_player_direction(t_game *game)
 
 static void	count_extras(t_game *game)
 {
-	game->vars.door_count = 0;
-	game->vars.enemy_count = 0;
-	game->vars.collect_count = 0;
-	// game->vars.exit_count = 0;
 	int	i;
 	int	j;
 
+	game->vars.door_count = 0;
+	game->vars.enemy_count = 0;
+	game->vars.collect_count = 0;
 	i = 0;
 	while (game->map[i])
 	{
@@ -70,8 +69,6 @@ static void	count_extras(t_game *game)
 				game->vars.enemy_count++;
 			else if (game->map[i][j] == 'C')
 				game->vars.collect_count++;
-			// else if (game->map[i][j] == 'e')
-			// 	game->vars.exit_count++;
 			j++;
 		}
 		i++;
@@ -88,8 +85,6 @@ int	init_bonus(t_game *game)
 		return (0);
 	if (!init_collectibles(game))
 		return (0);
-	// if (!init_exit(game))
-	// 	return (0);
 	return (1);
 }
 

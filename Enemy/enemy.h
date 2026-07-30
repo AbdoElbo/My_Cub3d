@@ -89,5 +89,6 @@ t_projection	compute_projection(double angle_diff, double depth,
 void			draw_sprite(t_game *game, mlx_image_t *frame,
 					t_projection *projection);
 void			render_enemy(t_game *game, t_enemy *enemy);
+void			delete_blood(t_game *game);
 
 #endif

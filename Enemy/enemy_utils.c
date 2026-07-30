@@ -12,6 +12,19 @@
 
 #include "enemy.h"
 
+void	delete_blood(t_game *game)
+{
+	long long	now;
+	long long	frame_duration;
+
+	frame_duration = 500;
+	now = get_time_in_ms();
+	if (now - game->vars.last_hit < frame_duration)
+		return ;
+	game->images.getting_hurt->enabled = false;
+	game->vars.last_hit = 0;
+}
+
 void	set_animation(t_sprite *sprite, t_anim anim)
 {
 	if (sprite->current_anim == anim)

@@ -79,12 +79,12 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	double	distance;
-	double	angle;
-	double	wall_x; // between 0.0 and 1.0
-	double	dir_x;
-	double	dir_y;
-	int	side; // 0 for vertical wall, 1 for horizontal wall
+	double			distance;
+	double			angle;
+	double			wall_x; // between 0.0 and 1.0
+	double			dir_x;
+	double			dir_y;
+	int				side; // 0 for vertical wall, 1 for horizontal wall
 	mlx_texture_t	texture_hit;
 }	t_ray;
 
@@ -136,7 +136,7 @@ typedef struct s_img
 	mlx_image_t	*collectible_img;
 	mlx_image_t	*getting_hurt;
 	mlx_image_t	*collect_text;
-	mlx_image_t	*player_hp_text;
+	mlx_image_t	*player_hp_txt;
 	mlx_image_t	*death;
 	mlx_image_t	*win;
 	mlx_image_t	*crosshair;
@@ -181,29 +181,28 @@ typedef struct s_vars
 
 typedef struct s_game
 {
-	char		**map;
-	char		*collect_str;
-	char		*player_hp_str;
-	mlx_image_t	*framebuf;
-	t_player	player;
-	mlx_t		*mlx;
-	t_files		files;
-	t_ray		rays[NUM_RAYS];
-	double		zbuf[SCREEN_WIDTH];
-	t_vars		vars;
-	t_img		images;
-	t_tex		textures;
-	t_weapons	weapon;
-	t_movement	movement;
-	t_frame		frame;
-	t_door		*doors;
-	t_collect	*collect;
-	t_enemy		*enemy;
-	t_sprite_draw *draws;
-	double		zbuffer[MAX_WIDTH];
+	char			**map;
+	char			*collect_str;
+	char			*player_hp_str;
+	mlx_image_t		*framebuf;
+	t_player		player;
+	mlx_t			*mlx;
+	t_files			files;
+	t_ray			rays[NUM_RAYS];
+	double			zbuf[SCREEN_WIDTH];
+	t_vars			vars;
+	t_img			images;
+	t_tex			textures;
+	t_weapons		weapon;
+	t_movement		movement;
+	t_frame			frame;
+	t_door			*doors;
+	t_collect		*collect;
+	t_enemy			*enemy;
+	t_sprite_draw	*draws;
+	double			zbuffer[MAX_WIDTH];
 }	t_game;
 
 void	ft_hook(void *param);
-void	delete_blood(t_game *game);
 
 #endif

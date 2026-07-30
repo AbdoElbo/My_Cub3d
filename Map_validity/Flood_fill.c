@@ -40,6 +40,15 @@ int	flood_fill_outside(t_game *game)
 	return (true);
 }
 
+bool	valid_char(char c)
+{
+	if (c != '1' && c != '0' && c != 'N' && c != 'W'
+		&& c != 'E' && c != 'S' && c != 'D' && c != 'V' && c != 'C'
+		&& c != 'e')
+		return (false);
+	return (true);
+}
+
 static int	check_surroundings(char **str, int index_i, int index_j)
 {
 	char	up;
@@ -51,21 +60,13 @@ static int	check_surroundings(char **str, int index_i, int index_j)
 	down = str[index_i + 1][index_j];
 	left = str[index_i][index_j - 1];
 	right = str[index_i][index_j + 1];
-	if (up != '1' && up != '0' && up != 'N' && up != 'W'
-		&& up != 'E' && up != 'S' && up != 'D' && up != 'V' && up != 'C'
-		&& up != 'e')
+	if (!valid_char(up))
 		return (false);
-	if (down != '1' && down != '0' && down != 'N' && down != 'W'
-		&& down != 'E' && down != 'S' && down != 'D' && down != 'V'
-		&& down != 'C' && down != 'e')
+	if (!valid_char(down))
 		return (false);
-	if (left != '1' && left != '0' && left != 'N' && left != 'W'
-		&& left != 'E' && left != 'S' && left != 'D' && left != 'V'
-		&& left != 'C' && left != 'e')
+	if (!valid_char(left))
 		return (false);
-	if (right != '1' && right != '0' && right != 'N' && right != 'W'
-		&& right != 'E' && right != 'S' && right != 'D' && right != 'V'
-		&& right != 'C' && right != 'e')
+	if (!valid_char(right))
 		return (false);
 	return (true);
 }

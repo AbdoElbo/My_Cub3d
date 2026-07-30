@@ -38,37 +38,39 @@ int	join_three(t_game *game)
 	return (1);
 }
 
-static int	display_coins_text(t_game *game)
+static int	display_coins_text(t_game *g)
 {
-	if (!join_three(game))
+	if (!join_three(g))
 		return (0);
-	if (game->images.collect_text)
-		mlx_delete_image(game->mlx, game->images.collect_text);
-	game->images.collect_text = mlx_put_string(game->mlx, game->collect_str
-		, MINIMAP_PX + 10, 20);
-	mlx_resize_image(game->images.collect_text
-			, game->images.collect_text->width * 1.5
-			, game->images.collect_text->height * 1.5);
-	mlx_set_instance_depth(game->images.collect_text->instances, 30);
+	if (g->images.collect_text)
+	{
+		mlx_delete_image(g->mlx, g->images.collect_text);
+	}
+	g->images.collect_text = mlx_put_string(g->mlx, g->collect_str, 235, 20);
+	mlx_resize_image(g->images.collect_text,
+		g->images.collect_text->width * 1.5,
+		g->images.collect_text->height * 1.5);
+	mlx_set_instance_depth(g->images.collect_text->instances, 30);
 	return (1);
 }
 
-static int	display_health_text(t_game *game)
+static int	display_health_text(t_game *g)
 {
 	char	*num_str;
 
-	num_str = ft_itoa(game->player.health);
+	num_str = ft_itoa(g->player.health);
 	if (!num_str)
 		return (0);
-	ft_memcpy(&game->player_hp_str[13], num_str, ft_strlen(num_str));
-	game->player_hp_str[13 + ft_strlen(num_str)] = '\0';
+	ft_memcpy(&g->player_hp_str[13], num_str, ft_strlen(num_str));
+	g->player_hp_str[13 + ft_strlen(num_str)] = '\0';
 	free(num_str);
-	if (game->images.player_hp_text)
-		mlx_delete_image(game->mlx, game->images.player_hp_text);
-	game->images.player_hp_text = mlx_put_string(game->mlx, game->player_hp_str
-		, MINIMAP_PX + 10, 60);
-	mlx_resize_image(game->images.player_hp_text, game->images.player_hp_text->width * 1.5, game->images.player_hp_text->height * 1.5);
-	mlx_set_instance_depth(game->images.player_hp_text->instances, 30);
+	if (g->images.player_hp_txt)
+		mlx_delete_image(g->mlx, g->images.player_hp_txt);
+	g->images.player_hp_txt = mlx_put_string(g->mlx, g->player_hp_str, 235, 60);
+	mlx_resize_image(g->images.player_hp_txt,
+		g->images.player_hp_txt->width * 1.5,
+		g->images.player_hp_txt->height * 1.5);
+	mlx_set_instance_depth(g->images.player_hp_txt->instances, 30);
 	return (1);
 }
 
@@ -81,19 +83,6 @@ static void	ft_open_door(t_game *game)
 	if (e_is_down && !e_was_down)
 		open_close_door(game);
 	e_was_down = e_is_down;
-}
-
-void	delete_blood(t_game *game)
-{
-	long long	now;
-	long long	frame_duration;
-
-	frame_duration = 500;
-	now = get_time_in_ms();
-	if (now - game->vars.last_hit < frame_duration)
-		return ;
-	game->images.getting_hurt->enabled = false;
-	game->vars.last_hit = 0;
 }
 
 void	ft_hook(void *param)

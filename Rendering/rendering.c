@@ -89,7 +89,7 @@ static t_draw_params	define_column_height(t_ray *ray, int col)
 		draw_start = 0;
 	draw_end = SCREEN_HEIGHT / 2 + line_height / 2;
 	if (draw_end > SCREEN_HEIGHT)
-		draw_end = SCREEN_HEIGHT - 1; //test what happens without - 1
+		draw_end = SCREEN_HEIGHT - 1;
 	dp.col = col;
 	dp.line_height = line_height;
 	dp.draw_start = draw_start;

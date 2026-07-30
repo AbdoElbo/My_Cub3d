@@ -11,68 +11,36 @@
 /* ************************************************************************** */
 
 #include "Rendering.h"
-// #include "Bonus.h"
 
-// 0 for vertical wall, 1 for horizontal wall
-// double hit_wall_x(t_dda *dda, t_ray *ray, t_game *game)
-// {
-// 	if (dda->side == 0)
-// 	{
-// 		dda->raw_dist = dda->side_dist_x - dda->delta_dist_x;
-// 		dda->hit_y = game->player.y + dda->raw_dist * ray->dir_y;
-// 		return (dda->hit_y - floor(dda->hit_y));
-// 	}
-// 	else
-// 	{
-// 		dda->raw_dist = dda->side_dist_y - dda->delta_dist_y;
-// 		dda->hit_x = game->player.x + dda->raw_dist * ray->dir_x;
-// 		return (dda->hit_x - floor(dda->hit_x));
-// 	}
-// }
-
-// //calculate the lenght of the ray to cross exactly one tile in both x and y direction
-// //if delta_dist_y < delta_dist_x, it means the ray is going going up/down sharper
-// void init_delta_dist(t_dda *dda, t_ray *ray)
-// {
-// 	if (ray->dir_x == 0)
-// 		dda->delta_dist_x =  INFINITY;
-// 	else
-// 		dda->delta_dist_x = fabs(1 / ray->dir_x);
-// 	if (ray->dir_y == 0)
-// 		dda->delta_dist_y =  INFINITY;
-// 	else
-// 		dda->delta_dist_y = fabs(1 / ray->dir_y);
-// }
-
-void calculate_first_ray_part(t_dda *dda, t_ray *ray, t_game *game)
+void	calculate_first_ray_part(t_dda *dda, t_ray *ray, t_game *g)
 {
 	if (ray->dir_x < 0)
 	{
 		dda->step_x = -1;
-		dda->side_dist_x = (game->player.x - dda->map_x) * dda->delta_dist_x;
+		dda->side_dist_x = (g->player.x - dda->map_x) * dda->delta_dist_x;
 	}
 	else
 	{
 		dda->step_x = 1;
-		dda->side_dist_x = (dda->map_x + 1.0 - game->player.x) * dda->delta_dist_x;
+		dda->side_dist_x = (dda->map_x + 1.0 - g->player.x) * dda->delta_dist_x;
 	}
 	if (ray->dir_y < 0)
 	{
 		dda->step_y = -1;
-		dda->side_dist_y = (game->player.y - dda->map_y) * dda->delta_dist_y;
+		dda->side_dist_y = (g->player.y - dda->map_y) * dda->delta_dist_y;
 	}
 	else
 	{
 		dda->step_y = 1;
-		dda->side_dist_y = (dda->map_y + 1.0 - game->player.y) * dda->delta_dist_y;
+		dda->side_dist_y = (dda->map_y + 1.0 - g->player.y) * dda->delta_dist_y;
 	}
 }
 
 //adding delta_dist to side_dit until wall is hit
-void look_for_hit(t_dda *dda, t_game *game)
+void	look_for_hit(t_dda *dda, t_game *game)
 {
-	int hit;
-	int tile;
+	int	hit;
+	int	tile;
 
 	hit = 0;
 	while (!hit)
@@ -97,7 +65,7 @@ void look_for_hit(t_dda *dda, t_game *game)
 	}
 }
 
-static double ft_dda(t_game *game, t_ray *ray)
+static double	ft_dda(t_game *game, t_ray *ray)
 {
 	t_dda	dda;
 
@@ -131,10 +99,8 @@ void	draw_line(t_game *game, t_ray *ray, uint32_t color)
 	double	x;
 	double	y;
 	double	distance;
-	double	step;
 
-	step = 0.01;
-	distance = ft_dda(game, ray); //seperate into 2 functions, one for measuring distance, one for drawing the line
+	distance = ft_dda(game, ray);
 	ray->distance = distance;
 	i = MINIMAP_PX / 2;
 	j = MINIMAP_PX / 2;
@@ -147,12 +113,12 @@ void	draw_line(t_game *game, t_ray *ray, uint32_t color)
 		if (x > 0 && x < MINIMAP_PX && y > 0 && y < MINIMAP_PX)
 			mlx_put_pixel(game->images.mm_img, x, y, color);
 		if (distance <= 0.0)
-			break;
-		distance -= step;
+			break ;
+		distance -= 0.01;
 	}
 }
 
-void cast_rays(t_game *game)
+void	cast_rays(t_game *g)
 {
 	int		i;
 	double	camera_x;
@@ -161,11 +127,11 @@ void cast_rays(t_game *game)
 	while (i < NUM_RAYS)
 	{
 		camera_x = 2.0 * i / (double)NUM_RAYS - 1.0;
-		game->rays[i].angle = game->player.angle;
-		game->rays[i].dir_x = game->player.dir_x + game->player.plane_x * camera_x;
-		game->rays[i].dir_y = game->player.dir_y + game->player.plane_y * camera_x;
-		draw_line(game, &game->rays[i], 0xFF0000FF);
-		game->zbuf[i] = game->rays[i].distance;
+		g->rays[i].angle = g->player.angle;
+		g->rays[i].dir_x = g->player.dir_x + g->player.plane_x * camera_x;
+		g->rays[i].dir_y = g->player.dir_y + g->player.plane_y * camera_x;
+		draw_line(g, &g->rays[i], 0xFF0000FF);
+		g->zbuf[i] = g->rays[i].distance;
 		i++;
 	}
 }
