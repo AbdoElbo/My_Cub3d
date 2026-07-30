@@ -67,6 +67,8 @@ void	cleanup(t_game *game)
 	delete_textures(game);
 	if (game->draws)
 		free(game->draws);
+	if (game->collect)
+		free(game->collect);
 	if (game->collect_str)
 		free(game->collect_str);
 	if (game->player_hp_str)
