@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 17:11:56 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/30 17:00:44 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/30 18:47:10 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define MAX_WIDTH SCREEN_WIDTH
 # define MAX_HEIGHT SCREEN_HEIGHT
 # define NUM_RAYS SCREEN_WIDTH
-# define FOV (90.0 * PI / 180.0)
+# define FOV 1.5707963268 // PI / 2
 
 # define PLAYER_HEALTH 100
 # define KATANA_DAMAGE 40
