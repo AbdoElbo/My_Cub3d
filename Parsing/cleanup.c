@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 14:13:58 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/30 14:33:13 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/30 18:57:19 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	cleanup(t_game *game)
 		close(game->vars.fd);
 	free_files(&game->files);
 	delete_textures(game);
+	if (game->draws)
+		free(game->draws);
 	if (game->collect_str)
 		free(game->collect_str);
 	if (game->player_hp_str)

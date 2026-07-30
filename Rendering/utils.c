@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 15:45:28 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/29 14:02:18 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/30 19:06:22 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 int	allocate_text(t_game *game)
 {
+	game->collect_str = NULL;
 	game->collect_str = ft_calloc(40, sizeof(char));
 	if (!game->collect_str)
 		return (printf("Error:\ngame->collect_str allocation failed\n"), 0);
+	game->player_hp_str = NULL;
 	game->player_hp_str = ft_calloc(40, sizeof(char));
 	if (!game->player_hp_str)
 		return (printf("Error:\ngame->player_hp_str allocation failed\n"), 0);
 	ft_strlcpy(game->collect_str, "Collectibles obtained: ", 25);
 	ft_strlcpy(game->player_hp_str, "Player's HP: ", 15);
+	game->images.collect_text = NULL;
+	game->images.player_hp_txt = NULL;
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 13:27:37 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/30 16:58:08 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/30 19:05:51 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ char	*join_three(t_game *game)
 	char	*temp;
 	char	*joint;
 
+	num_str = NULL;
 	num_str = ft_itoa(game->vars.obtained_coins);
 	if (!num_str)
 		return (NULL);
 	temp = ft_strjoin(num_str, "/");
 	free(num_str);
+	num_str = NULL;
 	if (!temp)
 		return (NULL);
 	num_str = ft_itoa(game->vars.collect_count);
@@ -31,7 +33,7 @@ char	*join_three(t_game *game)
 	joint = ft_strjoin(temp, num_str);
 	free(temp);
 	free(num_str);
-	if (!game->collect_str)
+	if (!joint)
 		return (NULL);
 	return (joint);
 }
@@ -52,6 +54,7 @@ static int	display_coins_text(t_game *g)
 	free(joint);
 	if (g->images.collect_text)
 		mlx_delete_image(g->mlx, g->images.collect_text);
+	g->images.collect_text = NULL;
 	g->images.collect_text = mlx_put_string(g->mlx, g->collect_str, 235, 20);
 	if (!g->images.collect_text)
 		return (0);
@@ -76,6 +79,7 @@ static int	display_health_text(t_game *g)
 	num_str = NULL;
 	if (g->images.player_hp_txt)
 		mlx_delete_image(g->mlx, g->images.player_hp_txt);
+	g->images.player_hp_txt = NULL;
 	g->images.player_hp_txt = mlx_put_string(g->mlx, g->player_hp_str, 235, 60);
 	if (!g->images.player_hp_txt)
 		return (0);
@@ -114,7 +118,9 @@ void	ft_hook(void *param)
 		ft_open_door(game);
 		render_sprite_queue(game);
 		move_enemies(game);
-		if (!display_coins_text(game) || display_health_text(game))
+		if (!display_coins_text(game))
+			return ;
+		if (!display_health_text(game))
 			return ;
 	}
 	else if (game->vars.ended == 1)

@@ -6,11 +6,11 @@
 #    By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/07 16:20:34 by aelbouaz          #+#    #+#              #
-#    Updated: 2026/07/30 16:59:22 by aelbouaz         ###   ########.fr        #
+#    Updated: 2026/07/30 19:22:11 by aelbouaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Wextra -Werror -MMD
+CFLAGS = -Wall -Wextra -Werror -MMD 
 CC = cc
 
 CUBED = cub3D

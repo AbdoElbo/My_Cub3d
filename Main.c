@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/30 16:36:43 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/30 19:22:28 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	game.map = NULL;
 	if (!init_map(argc, argv, &game))
 		return (cleanup(&game), EXIT_FAILURE);
 	if (!map_validity(&game))

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/30 14:26:03 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/30 19:17:20 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int	init_map(int argc, char **argv, t_game *game)
 	game->vars.fd = open(argv[1], O_RDONLY);
 	if (game->vars.fd < 0)
 		return (printf("Error:\nMap file doesn't exist\n"), 0);
+	game->map = NULL;
 	game->map = read_into_map(game, argv[1]);
 	if (!(game->map))
 		return (0);
