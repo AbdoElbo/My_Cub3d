@@ -54,8 +54,6 @@ void	cleanup(t_game *game)
 {
 	if (game->map)
 		free_arr(game->map);
-	else
-		return ;
 	if (game->doors)
 		free(game->doors);
 	if (game->enemy && game->vars.enemy_count > 0)

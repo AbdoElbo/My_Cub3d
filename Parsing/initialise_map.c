@@ -59,28 +59,13 @@ static char	**read_into_map(t_game *game, char *file_name)
 
 static void	init_vars(t_game *game)
 {
-	game->player.x = 0;
-	game->player.y = 0;
 	game->player.health = PLAYER_HEALTH;
-	game->enemy = NULL;
-	game->doors = NULL;
-	game->mlx = NULL;
-	game->framebuf = NULL;
-	game->vars.width = 0;
-	game->vars.height = 0;
-	game->vars.ceiling_color = 0;
-	game->vars.floor_color = 0;
 	game->vars.map_start = -1;
-	game->vars.easter_egg = 0;
 	game->vars.mouse_x = SCREEN_WIDTH / 2;
 	game->vars.mouse_y = SCREEN_HEIGHT / 2;
 	game->movement = FREE;
 	game->weapon = SWORD;
-	game->vars.mouse_was_down = false;
 	game->vars.fd = -1;
-	game->collect = NULL;
-	game->vars.ended = 0;
-	game->vars.last_hit = 0;
 }
 
 static int	get_map_size(t_game *game)

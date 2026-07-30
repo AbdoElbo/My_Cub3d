@@ -106,5 +106,7 @@ int	map_validity(t_game *game)
 		return (printf(Y"Error:\nUnknown char inside the map\n" RESET), 0);
 	if (!init_bonus(game))
 		return (printf(Y"Error:\nBonus init failure\n"RESET), 0);
+	if (!collectibles_reachable(game))
+		return (printf(Y"Error:\nNot All Coins are reachable\n"RESET), 0);
 	return (1);
 }

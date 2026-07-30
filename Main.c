@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	ft_bzero(&game, sizeof(t_game));
 	if (!init_map(argc, argv, &game))
 		return (cleanup(&game), EXIT_FAILURE);
 	if (!map_validity(&game))

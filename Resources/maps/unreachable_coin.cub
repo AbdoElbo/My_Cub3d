@@ -1,0 +1,18 @@
+SO	./Resources/textures/south_texture.png
+WE	./Resources/textures/west_texture.png
+EA	./Resources/textures/east_texture.png
+NO	./Resources/textures/north_texture.png
+
+F 60,60,60
+C 135,206,235
+
+111111111111
+1E0V0C0V10V1
+100000001C01
+10000C001111
+1000000V0001
+1C00000000e1
+100C00V00C01
+100000000001
+111111111111
+

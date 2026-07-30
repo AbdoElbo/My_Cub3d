@@ -22,6 +22,7 @@ typedef struct s_player	t_player;
 int	textures_exist(t_game *game);
 int	player_exists(t_game *game);
 int	comp_counter(char **map);
+int	collectibles_reachable(t_game *game);
 
 int	flood_fill_outside(t_game *game);
 int	check_inside(char **str);
