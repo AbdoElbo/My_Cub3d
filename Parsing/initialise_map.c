@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 14:37:49 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/29 14:51:17 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/30 14:26:03 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ static void	init_vars(t_game *game)
 	game->vars.fd = -1;
 	game->collect = NULL;
 	game->vars.ended = 0;
+	game->vars.last_hit = 0;
 }
 
 static int	get_map_size(t_game *game)

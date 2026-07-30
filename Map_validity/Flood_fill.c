@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:25:46 by gekko             #+#    #+#             */
-/*   Updated: 2026/07/28 14:00:26 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/30 16:20:27 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	flood_fill_outside(t_game *game)
 	return (true);
 }
 
-bool	valid_char(char c)
+static bool	valid_char(char c)
 {
 	if (c != '1' && c != '0' && c != 'N' && c != 'W'
 		&& c != 'E' && c != 'S' && c != 'D' && c != 'V' && c != 'C'

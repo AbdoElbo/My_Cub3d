@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:17:46 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/29 14:58:22 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/30 14:29:58 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ typedef struct s_tex
 typedef struct s_img
 {
 	mlx_image_t	*mm_img;
-	mlx_image_t	*img;
 	mlx_image_t	*sword_img_0;
 	mlx_image_t	*sword_img_1;
 	mlx_image_t	*sword_img_2;

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:36:23 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/06/10 15:10:53 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/30 16:31:07 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	comp_counter(char **map);
 
 int	flood_fill_outside(t_game *game);
 int	check_inside(char **str);
-
 int	map_validity(t_game *game);
 
 #endif
