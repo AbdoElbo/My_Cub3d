@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 16:54:14 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/29 14:02:00 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/31 13:20:27 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,6 @@ void	ft_mouse_mvm(double x, double y, void *param)
 	mlx_set_mouse_pos(game->mlx, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	game->player.angle += dx * rot_speed;
 }
-
-// static double	trace_line_distance(t_game *game, t_ray *ray, double step)
-// {
-// 	double	distance;
-// 	double	world_x;
-// 	double	world_y;
-
-// 	distance = 0.0;
-// 	while (distance < game->vars.width
-// 			|| distance < game->vars.height)
-// 	{
-// 		world_x = game->player.x + ray->dir_x * distance;
-// 		world_y = game->player.y + ray->dir_y * distance;
-// 		if (hits_wall(game, world_x, world_y))
-// 			break;
-// 		distance += step;
-// 	}
-// 	return (distance);
-// }
 
 static void	draw_line(t_game *game, uint32_t color)
 {

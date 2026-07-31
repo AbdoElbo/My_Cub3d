@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
+/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 10:58:13 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/17 15:11:22 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/07/31 13:12:34 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,13 @@ static double	ft_dda(t_game *game, t_ray *ray)
 	else if (game->map[dda.map_y][dda.map_x] == 'e')
 		ray->texture_hit = *game->textures.exit_door_tex;
 	else if (dda.side == 0 && dda.step_x > 0)
-		ray->texture_hit = *game->textures.east_tex;
-	else if (dda.side == 0 && dda.step_x < 0)
 		ray->texture_hit = *game->textures.west_tex;
+	else if (dda.side == 0 && dda.step_x < 0)
+		ray->texture_hit = *game->textures.east_tex;
 	else if (dda.side == 1 && dda.step_y > 0)
-		ray->texture_hit = *game->textures.south_tex;
-	else if (dda.side == 1 && dda.step_y < 0)
 		ray->texture_hit = *game->textures.north_tex;
+	else if (dda.side == 1 && dda.step_y < 0)
+		ray->texture_hit = *game->textures.south_tex;
 	return (dda.raw_dist);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 13:00:44 by lpieck            #+#    #+#             */
-/*   Updated: 2026/07/28 15:25:37 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/31 13:21:59 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ static uint32_t	sample_texture_pixel(t_ray *ray, int tex_x, int tex_y)
 }
 
 // double step; represents how many pixels from the texture are
-//  taken. the further, the less pixels.
+// taken. the further, the less pixels.
 // double tex_pos; makes sure the starting pixels are correct:
-//  if close to the wall, you do not see the top part of the texture
+// if close to the wall, you do not see the top part of the texture
 void	draw_to_buf(t_game *game, t_ray ray, t_draw_params *dp)
 {
 	int			tex_x;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Collectible_check.c                                :+:      :+:    :+:   */
+/*   Collectibles_reachable.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 00:00:00 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/30 00:00:00 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/31 13:19:27 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int	collectibles_reachable(t_game *game)
 
 	if (game->vars.collect_count == 0)
 		return (1);
-
 	temp = map_dup(game->map);
 	if (!temp)
 		return (0);

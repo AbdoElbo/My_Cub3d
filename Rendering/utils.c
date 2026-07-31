@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 15:45:28 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/30 19:06:22 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/31 13:21:07 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ double	hit_wall_x(t_dda *dda, t_ray *ray, t_game *game)
 	}
 }
 
-//calculate the lenght of the ray to cross exactly one
+// calculate the lenght of the ray to cross exactly one
 // tile in both x and y direction if delta_dist_y < delta_dist_x,
 // it means the ray is going going up/down sharper
 void	init_delta_dist(t_dda *dda, t_ray *ray)

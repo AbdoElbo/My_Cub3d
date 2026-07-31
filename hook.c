@@ -6,13 +6,13 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 13:27:37 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/30 19:05:51 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/31 13:26:04 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cubed.h"
 
-char	*join_three(t_game *game)
+static char	*join_three(t_game *game)
 {
 	char	*num_str;
 	char	*temp;
@@ -55,7 +55,8 @@ static int	display_coins_text(t_game *g)
 	if (g->images.collect_text)
 		mlx_delete_image(g->mlx, g->images.collect_text);
 	g->images.collect_text = NULL;
-	g->images.collect_text = mlx_put_string(g->mlx, g->collect_str, 235, 20);
+	g->images.collect_text = mlx_put_string(g->mlx, g->collect_str,
+			MINIMAP_PX + 10, 20);
 	if (!g->images.collect_text)
 		return (0);
 	mlx_resize_image(g->images.collect_text,
@@ -80,7 +81,8 @@ static int	display_health_text(t_game *g)
 	if (g->images.player_hp_txt)
 		mlx_delete_image(g->mlx, g->images.player_hp_txt);
 	g->images.player_hp_txt = NULL;
-	g->images.player_hp_txt = mlx_put_string(g->mlx, g->player_hp_str, 235, 60);
+	g->images.player_hp_txt = mlx_put_string(g->mlx, g->player_hp_str,
+			MINIMAP_PX + 10, 60);
 	if (!g->images.player_hp_txt)
 		return (0);
 	mlx_resize_image(g->images.player_hp_txt,

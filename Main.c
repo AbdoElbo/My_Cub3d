@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:14:50 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/30 19:22:28 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/31 13:20:38 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,3 @@ int	main(int argc, char **argv)
 	mlx_loop(game.mlx);
 	return (cleanup(&game), EXIT_SUCCESS);
 }
-
-// norminette Enemy Game_Dev Main.c Map_validity Parsing Plane Rendering
