@@ -41,6 +41,22 @@ The program will exist cleanly if the map provided has flaws, like disorderd\
 map components, or an open map and many many more errors prevention..\
 (there are examples in the /Resources/maps/invalid folder for invalid maps to check).
 
+### CONTROLS:
+
+W : Walk forward \
+S : Walk backward \
+A : Strafe left \
+D : Strafe right \
+E : Interact \
+Space/LMB : Attack \
+Shift : Sprint \
+← (Left arrow) : Rotate camera left \
+→ (Right arrow) : Rotate camera right \
+Mouse move : Look left/right \
+Esc : Quit the game \
+1 : Equip Katana \
+2 : Equip Shotgun
+
 ### Easter Egg:
 Feeling goofy? Add the word "goofy" at the end of your command when launching\
 the game and the guns will swap to a goofier set of textures:

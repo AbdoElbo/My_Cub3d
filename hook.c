@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 13:27:37 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/31 14:01:06 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/31 16:57:47 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,10 @@ static int	display_coins_text(t_game *g)
 			MINIMAP_PX + 10, 20);
 	if (!g->images.collect_text)
 		return (0);
-	mlx_resize_image(g->images.collect_text,
-		g->images.collect_text->width * 1.5,
-		g->images.collect_text->height * 1.5);
+	if (!mlx_resize_image(g->images.collect_text,
+			g->images.collect_text->width * 1.5,
+			g->images.collect_text->height * 1.5))
+		return (0);
 	mlx_set_instance_depth(g->images.collect_text->instances, 30);
 	return (1);
 }
@@ -85,9 +86,10 @@ static int	display_health_text(t_game *g)
 			MINIMAP_PX + 10, 60);
 	if (!g->images.player_hp_txt)
 		return (0);
-	mlx_resize_image(g->images.player_hp_txt,
-		g->images.player_hp_txt->width * 1.5,
-		g->images.player_hp_txt->height * 1.5);
+	if (!mlx_resize_image(g->images.player_hp_txt,
+			g->images.player_hp_txt->width * 1.5,
+			g->images.player_hp_txt->height * 1.5))
+		return (0);
 	mlx_set_instance_depth(g->images.player_hp_txt->instances, 30);
 	return (1);
 }

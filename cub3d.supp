@@ -1,0 +1,7 @@
+{
+   ld_dst_strncmp_overread
+   Memcheck:Addr8
+   fun:strncmp
+   fun:is_dst
+   ...
+}

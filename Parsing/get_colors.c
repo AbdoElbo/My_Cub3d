@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 18:46:33 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/28 14:06:28 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/31 16:52:06 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,22 @@ uint32_t	get_rgb_color(int r, int g, int b)
 static int	has_invalid_chars(char *str)
 {
 	int	i;
+	int	k;
 
 	i = 0;
 	while (ft_isspace(str[i]))
 		i++;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (1);
+	k = 0;
+	while (ft_isdigit(str[i + k]))
+		k++;
+	if (k > 3)
+		return (1);
+	while (ft_isdigit(str[i]))
 		i++;
-	}
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i])
+		return (1);
 	return (0);
 }
 

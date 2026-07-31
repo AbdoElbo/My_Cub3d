@@ -6,7 +6,7 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 15:45:28 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/31 13:21:07 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/31 15:58:13 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,15 @@ int	allocate_text(t_game *game)
 
 int	load_map_and_components(t_game *game)
 {
-	game->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Our Awesome Game", 1);
+	game->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "🗡️🔫Game📵🐟", 0);
 	if (!game->mlx)
 		return (printf("Error:\nMlx initialization failed\n"), 0);
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
 	game->framebuf = mlx_new_image(game->mlx, MAX_WIDTH, MAX_HEIGHT);
-	mlx_image_to_window(game->mlx, game->framebuf, 0, 0);
+	if (!game->framebuf)
+		return (printf("Error:\nFrameBuf creation failed\n"), 0);
+	if (mlx_image_to_window(game->mlx, game->framebuf, 0, 0))
+		return (printf("Error:\nMlx framebuf image_to_window failed\n"), 0);
 	game->images.mm_img = mlx_new_image(game->mlx, MINIMAP_PX, MINIMAP_PX);
 	if (!game->images.mm_img)
 		return (printf("Error:\nMlx img_mm creation failed\n"), 0);

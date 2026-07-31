@@ -6,13 +6,13 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 18:29:27 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/29 13:54:46 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/31 16:56:54 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game_Dev.h"
 
-static void	scale_image(mlx_image_t **img)
+static int	scale_image(mlx_image_t **img)
 {
 	double	scale_x;
 	double	scale_y;
@@ -21,7 +21,10 @@ static void	scale_image(mlx_image_t **img)
 	scale_x = (double)SCREEN_WIDTH / (*img)->width;
 	scale_y = (double)SCREEN_HEIGHT / (*img)->height;
 	scale = fmax(scale_x, scale_y);
-	mlx_resize_image((*img), (*img)->width * scale, (*img)->height * scale);
+	if (!mlx_resize_image((*img), (*img)->width * scale,
+			(*img)->height * scale))
+		return (0);
+	return (1);
 }
 
 int	load_gun_images(t_game *game, char *path
@@ -39,7 +42,8 @@ int	load_gun_images(t_game *game, char *path
 	mlx_delete_texture(*tex);
 	if (!*img)
 		return (printf("Texture wasn't converted to image: %s\n", path), 0);
-	scale_image(img);
+	if (!scale_image(img))
+		return (0);
 	x_pos = SCREEN_WIDTH - (*img)->width;
 	y_pos = SCREEN_HEIGHT - (*img)->height;
 	if (mlx_image_to_window(game->mlx, *img, x_pos, y_pos))
@@ -94,7 +98,8 @@ int	load_sword_tex(t_game *game)
 	if (!load_gun_images(game, "./Resources/textures/crosshair.png",
 			&game->textures.crosshair, &game->images.crosshair))
 		return (0);
-	mlx_resize_image(game->images.crosshair, 100, 100);
+	if (!mlx_resize_image(game->images.crosshair, 100, 100))
+		return (0);
 	game->images.crosshair->instances->x = (SCREEN_WIDTH / 2) - 50;
 	game->images.crosshair->instances->y = (SCREEN_HEIGHT / 2) - 50;
 	return (1);
@@ -120,7 +125,9 @@ int	load_shotgun_tex(t_game *game)
 	if (!load_gun_images(game, "./Resources/textures/getting_hurt.png",
 			&game->textures.getting_hurt, &game->images.getting_hurt))
 		return (0);
-	mlx_resize_image(game->images.getting_hurt, SCREEN_WIDTH, SCREEN_HEIGHT);
+	if (!mlx_resize_image(game->images.getting_hurt,
+			SCREEN_WIDTH, SCREEN_HEIGHT))
+		return (0);
 	game->images.getting_hurt->instances->x = 0;
 	game->images.getting_hurt->instances->y = 0;
 	return (1);

@@ -6,13 +6,13 @@
 /*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 16:55:18 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/30 16:58:43 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/07/31 16:55:28 by aelbouaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game_Dev.h"
 
-static void	scale_image(mlx_image_t **img)
+static int	scale_image(mlx_image_t **img)
 {
 	double	scale_x;
 	double	scale_y;
@@ -21,7 +21,10 @@ static void	scale_image(mlx_image_t **img)
 	scale_x = (double)SCREEN_WIDTH / (*img)->width;
 	scale_y = (double)SCREEN_HEIGHT / (*img)->height;
 	scale = fmin(scale_x, scale_y);
-	mlx_resize_image((*img), (*img)->width * scale, (*img)->height * scale);
+	if (!mlx_resize_image((*img), (*img)->width * scale,
+			(*img)->height * scale))
+		return (0);
+	return (1);
 }
 
 static int	load_endgame_images(t_game *game, char *path
@@ -39,7 +42,8 @@ static int	load_endgame_images(t_game *game, char *path
 	mlx_delete_texture(*tex);
 	if (!*img)
 		return (printf("Texture wasn't converted to image: %s\n", path), 0);
-	scale_image(img);
+	if (!scale_image(img))
+		return (0);
 	x_pos = SCREEN_WIDTH / 2 - ((*img)->width / 2);
 	y_pos = SCREEN_HEIGHT / 2 - ((*img)->height / 2);
 	if (mlx_image_to_window(game->mlx, *img, x_pos, y_pos))
