@@ -4,6 +4,8 @@ This project has been created as part of the 42 curriculum by **aelbouaz** and *
 
 ## 📖 Description
 
+![Gameplay screenshot](screenshots/gameplay_2.png)
+
 Cub3D is a 42 School project focused on the topic of **raycasting**, where you play as a character that moves in a 3D-lookalike simulation (thus the "3D" in Cub3D).
 
 The goal is simple: collect all the coins scattered across the map (if available) before making your way to the exit. The exit door isn't a normal door — it stays locked until every collectible has been picked up, so there's no rushing to the end.
@@ -42,6 +44,11 @@ Replace `your_map.cub` with the path to your actual map file. For example:
 ./cub3D /Resources/maps/simple.cub
 ```
 
+![Gameplay screenshot](screenshots/gameplay_1.png)
+![Gameplay screenshot](screenshots/gameplay_3.png)
+![Gameplay screenshot](screenshots/gameplay_4.png)
+
+
 The program will exit cleanly if the map provided has flaws, like disordered map components, an open map, and many more error preventions. Examples of invalid maps can be found in the `/Resources/maps/invalid` folder.
 
 ## 🎮 Controls
@@ -65,6 +72,10 @@ The program will exit cleanly if the map provided has flaws, like disordered map
 ## 🥚 Easter Egg
 
 Feeling goofy? Add the word `goofy` at the end of your command when launching the game and the guns will swap to a goofier set of textures:
+
+![Gameplay screenshot](screenshots/easter_1.png)
+![Gameplay screenshot](screenshots/easter_2.png)
+
 
 ```bash
 ./cub3D your_map.cub goofy
