@@ -73,13 +73,12 @@ The program will exit cleanly if the map provided has flaws, like disordered map
 
 Feeling goofy? Add the word `goofy` at the end of your command when launching the game and the guns will swap to a goofier set of textures:
 
-![Gameplay screenshot](screenshots/easter_1.png)
-![Gameplay screenshot](screenshots/easter_2.png)
-
-
 ```bash
 ./cub3D your_map.cub goofy
 ```
+
+![Gameplay screenshot](screenshots/easter_1.png)
+![Gameplay screenshot](screenshots/easter_2.png)
 
 ## 📚 Resources
 
