@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 18:29:27 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/31 16:56:54 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/08/04 00:23:54 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,16 @@ int	load_gun_images(t_game *game, char *path
 
 int	load_compass_tex(t_game *game)
 {
-	if (!load_images(game, "Resources/textures/north_texture.png",
+	if (!load_images(game, game->files.north,
 			&game->textures.north_tex, &game->images.north_img))
 		return (0);
-	if (!load_images(game, "Resources/textures/west_texture.png",
+	if (!load_images(game, game->files.west,
 			&game->textures.west_tex, &game->images.west_img))
 		return (0);
-	if (!load_images(game, "Resources/textures/south_texture.png",
+	if (!load_images(game, game->files.south,
 			&game->textures.south_tex, &game->images.south_img))
 		return (0);
-	if (!load_images(game, "Resources/textures/east_texture.png",
+	if (!load_images(game, game->files.east,
 			&game->textures.east_tex, &game->images.east_img))
 		return (0);
 	if (!load_images(game, "Resources/textures/door.png",

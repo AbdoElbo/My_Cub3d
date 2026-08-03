@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouaz <aelbouaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gekko <gekko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 15:45:28 by aelbouaz          #+#    #+#             */
-/*   Updated: 2026/07/31 15:58:13 by aelbouaz         ###   ########.fr       */
+/*   Updated: 2026/08/04 00:22:32 by gekko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	load_map_and_components(t_game *game)
 	if (!load_gun_tex(game))
 		return (0);
 	if (!allocate_text(game))
+		return (0);
+	if (!init_enemy_sprite(game))
 		return (0);
 	return (1);
 }
